@@ -1,0 +1,95 @@
+package com.skilldistillery.swag.entities;
+
+public class User {
+	
+	private int ID;
+	private String password;
+	private String email;
+	private boolean isActive;
+	private String role;
+	private String fName;
+	private String lName;
+	
+	public int getID() {
+		return ID;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public boolean isActive() {
+		return isActive;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getfName() {
+		return fName;
+	}
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+	public String getlName() {
+		return lName;
+	}
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (ID != other.ID)
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "User [ID=" + ID + ", password=" + password + ", email=" + email + ", isActive=" + isActive + ", role="
+				+ role + ", fName=" + fName + ", lName=" + lName + "]";
+	}
+	public User(int iD, String password, String email, boolean isActive, String role, String fName, String lName) {
+		super();
+		ID = iD;
+		this.password = password;
+		this.email = email;
+		this.isActive = isActive;
+		this.role = role;
+		this.fName = fName;
+		this.lName = lName;
+	}
+	public User() {
+		super();
+	}
+	
+	
+	
+	
+
+}
