@@ -4,8 +4,6 @@ target
 build
 bin
 .metadata
-.gradle
-gradle*
 *.war
 *.bak
 .classpath
