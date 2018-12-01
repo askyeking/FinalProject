@@ -44,9 +44,10 @@ class VendorTests {
 	void test() {
 		assertEquals(1, vendor.getId());
 		assertTrue(vendor.isActive());
-		assertEquals(1, vendor.getUser().getID());
+		assertEquals(2, vendor.getUser().getID());
 		assertEquals("I sell swag + you buy swag = We Swag, bro!", vendor.getAbout());
 		assertEquals("theSeller", vendor.getDisplayName());
+		assertNull(vendor.getImgUrl());
 	}
 
 }

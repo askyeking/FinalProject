@@ -2,6 +2,7 @@ package com.skilldistillery.swag.entities;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -35,13 +36,13 @@ class UserTests {
 		em = emf.createEntityManager();
 		user = em.find(User.class, 1);
 	}
-
+	
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
 		user = null;
 	}
-
+	
 	@Test
 	void test() {
 		assertEquals(1, user.getID());
@@ -49,6 +50,8 @@ class UserTests {
 		assertEquals("customer@user.com", user.getEmail());
 		assertTrue(user.isActive());
 		assertEquals("standard", user.getRole());
+		assertNull(user.getVendor());
+		assertEquals(1, user.getCustomer().getId());
 		
 		user = em.find(User.class, 2);
 		assertEquals(2, user.getID());
@@ -56,6 +59,8 @@ class UserTests {
 		assertEquals("vendor@user.com", user.getEmail());
 		assertTrue(user.isActive());
 		assertEquals("standard", user.getRole());
+		assertEquals(1, user.getVendor().getId());
+		assertEquals(2, user.getCustomer().getId());
 		
 	}
 
