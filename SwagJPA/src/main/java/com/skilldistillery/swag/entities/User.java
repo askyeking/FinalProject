@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -21,6 +25,13 @@ public class User {
 	@Column(name="active")
 	private boolean isActive;
 	
+	@JsonIgnore
+	@OneToOne(mappedBy="user")
+	private Vendor vendor;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy="userCustomer")
+	private Customer customer;
 	
 	private String role;
 	
@@ -79,6 +90,36 @@ public class User {
 	public String toString() {
 		return "User [ID=" + ID + ", password=" + password + ", email=" + email + ", isActive=" + isActive + ", role="
 				+ role + "]";
+	}
+	
+	
+	public Vendor getVendor() {
+		return vendor;
+	}
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+	
+	
+	public User(int iD, String password, String email, boolean isActive, Vendor vendor, Customer customer,
+			String role) {
+		super();
+		ID = iD;
+		this.password = password;
+		this.email = email;
+		this.isActive = isActive;
+		this.vendor = vendor;
+		this.customer = customer;
+		this.role = role;
 	}
 	public User(int iD, String password, String email, boolean isActive, String role, String fName, String lName) {
 		super();
