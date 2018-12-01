@@ -14,14 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="inventory_item")
 public class InventoryItem {
-	
-	public Vendor getVendor() {
-		return vendor;
-	}
-
-	public void setVendor(Vendor vendor) {
-		this.vendor = vendor;
-	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -50,6 +42,13 @@ public class InventoryItem {
 	@Column(name="rented")
 	private boolean isRented;
 	
+	public Vendor getVendor() {
+		return vendor;
+	}
+	
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
+	}
 
 	public int getId() {
 		return id;

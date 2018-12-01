@@ -1,15 +1,60 @@
 package com.skilldistillery.swag.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name="payment_method")
 public class PaymentMethod {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	private String name;
 	
+	@Column(name="account_number")
 	private String acctNo;
+	
 	private String cvc;
+	
+	@Column(name="expiration_date")
 	private String expirationDate;
+	
+	@Column(name="account_holder_name")
 	private String cardHolderName;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private Customer customer;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="payment_type_id")
+	private PaymentType paymentType;
+	
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public PaymentType getPaymentType() {
+		return paymentType;
+	}
+	public void setPaymentType(PaymentType paymentType) {
+		this.paymentType = paymentType;
+	}
 	public String getName() {
 		return name;
 	}
@@ -66,9 +111,13 @@ public class PaymentMethod {
 	@Override
 	public String toString() {
 		return "PaymentMethod [id=" + id + ", name=" + name + ", acctNo=" + acctNo + ", cvc=" + cvc
-				+ ", expirationDate=" + expirationDate + ", cardHolderName=" + cardHolderName + "]";
+				+ ", expirationDate=" + expirationDate + ", cardHolderName=" + cardHolderName + ", customer=" + customer
+				+ ", paymentType=" + paymentType + "]";
 	}
-	public PaymentMethod(int id, String name, String acctNo, String cvc, String expirationDate, String cardHolderName) {
+	
+	
+	public PaymentMethod(int id, String name, String acctNo, String cvc, String expirationDate, String cardHolderName,
+			Customer customer, PaymentType paymentType) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -76,6 +125,8 @@ public class PaymentMethod {
 		this.cvc = cvc;
 		this.expirationDate = expirationDate;
 		this.cardHolderName = cardHolderName;
+		this.customer = customer;
+		this.paymentType = paymentType;
 	}
 	public PaymentMethod() {
 		super();

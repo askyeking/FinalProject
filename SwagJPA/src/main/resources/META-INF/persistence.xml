@@ -10,9 +10,14 @@
 
 
 		<!-- Entities -->
-		<!-- <class>com.skilldistillery.jpavideostore.entities.Actor</class> -->
+		<class>com.skilldistillery.swag.entities.Category</class> 
 		<class>com.skilldistillery.swag.entities.Customer</class> 
 		<class>com.skilldistillery.swag.entities.InventoryItem</class> 
+		<class>com.skilldistillery.swag.entities.ItemRental</class> 
+		<class>com.skilldistillery.swag.entities.PaymentMethod</class> 
+		<class>com.skilldistillery.swag.entities.PaymentType</class> 
+		<class>com.skilldistillery.swag.entities.User</class> 
+		<class>com.skilldistillery.swag.entities.Vendor</class> 
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
