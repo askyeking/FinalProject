@@ -98,9 +98,10 @@ CREATE TABLE IF NOT EXISTS `vendor_payment_type` (
   `account_number` VARCHAR(250) NOT NULL,
   `expiration_date` DATE NULL,
   `Account_holder_name` VARCHAR(500) NOT NULL,
+  `id` INT NOT NULL,
   INDEX `vendor-payment-type_vendor_FK_idx` (`vendor_id` ASC),
   INDEX `vendor-payment-type_payment-type-id_idx` (`payment_type_id` ASC),
-  PRIMARY KEY (`vendor_id`, `payment_type_id`),
+  PRIMARY KEY (`id`),
   CONSTRAINT `vendor-payment-type_vendor_FK`
     FOREIGN KEY (`vendor_id`)
     REFERENCES `vendor` (`id`)
@@ -246,9 +247,10 @@ CREATE TABLE IF NOT EXISTS `rating_of_vendor` (
   `customer_id` INT NOT NULL,
   `rating` INT NOT NULL,
   `comment` TEXT NULL,
+  `id` INT NOT NULL,
   INDEX `rating-of-vendor-customer_idx` (`customer_id` ASC),
   INDEX `rating-of-vendor_item-rental_fk_idx` (`item_rental_id` ASC),
-  PRIMARY KEY (`item_rental_id`, `customer_id`),
+  PRIMARY KEY (`id`),
   CONSTRAINT `rating-of-vendor_customer_fk`
     FOREIGN KEY (`customer_id`)
     REFERENCES `customer` (`id`)
@@ -272,9 +274,10 @@ CREATE TABLE IF NOT EXISTS `rating_of_customer` (
   `vendor_id` INT NOT NULL,
   `rating` INT NOT NULL,
   `comment` TEXT NULL,
+  `id` INT NOT NULL,
   INDEX `rating-of-customer_vendor_fk_idx` (`vendor_id` ASC),
   INDEX `rating-of-customer_item-rental_fk_idx` (`item_rental_id` ASC),
-  PRIMARY KEY (`item_rental_id`, `vendor_id`),
+  PRIMARY KEY (`id`),
   CONSTRAINT `rating-of-customer_vendor_fk`
     FOREIGN KEY (`vendor_id`)
     REFERENCES `vendor` (`id`)
@@ -400,7 +403,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaswagdb`;
-INSERT INTO `vendor_payment_type` (`vendor_id`, `payment_type_id`, `account_number`, `expiration_date`, `Account_holder_name`) VALUES (1, 1, '1234567899999999', '2025-11-11', 'Bro Bro');
+INSERT INTO `vendor_payment_type` (`vendor_id`, `payment_type_id`, `account_number`, `expiration_date`, `Account_holder_name`, `id`) VALUES (1, 1, '1234567899999999', '2025-11-11', 'Bro Bro', 1);
 
 COMMIT;
 
@@ -464,7 +467,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaswagdb`;
-INSERT INTO `rating_of_vendor` (`item_rental_id`, `customer_id`, `rating`, `comment`) VALUES (1, 1, 3, 'He give da man, me, 4 stars, I give him 3!');
+INSERT INTO `rating_of_vendor` (`item_rental_id`, `customer_id`, `rating`, `comment`, `id`) VALUES (1, 1, 3, 'He give da man, me, 4 stars, I give him 3!', 1);
 
 COMMIT;
 
@@ -474,7 +477,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaswagdb`;
-INSERT INTO `rating_of_customer` (`item_rental_id`, `vendor_id`, `rating`, `comment`) VALUES (1, 1, 4, 'Decent experience');
+INSERT INTO `rating_of_customer` (`item_rental_id`, `vendor_id`, `rating`, `comment`, `id`) VALUES (1, 1, 4, 'Decent experience', 1);
 
 COMMIT;
 
