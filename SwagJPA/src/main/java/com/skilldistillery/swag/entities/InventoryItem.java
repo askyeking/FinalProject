@@ -1,10 +1,36 @@
 package com.skilldistillery.swag.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name="inventory_item")
 public class InventoryItem {
 	
+	public Vendor getVendor() {
+		return vendor;
+	}
+
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
+	}
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id; 
 	
-//	private int vendorId;
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="vendor_id")
+	private Vendor vendor;
 	
 	private double price;
 	
@@ -15,10 +41,13 @@ public class InventoryItem {
 	
 	private String description;
 	
+	@Column(name="image_url")
 	private String imgUrl;
 	
+	@Column(name="active")
 	private boolean isActive;
 	
+	@Column(name="rented")
 	private boolean isRented;
 	
 
@@ -110,19 +139,20 @@ public class InventoryItem {
 
 	@Override
 	public String toString() {
-		return "InventoryItem [id=" + id + ", price=" + price + ", condition=" + condition + ", name=" + name
-				+ ", description=" + description + ", imgUrl=" + imgUrl + ", isActive=" + isActive + ", isRented="
-				+ isRented + "]";
+		return "InventoryItem [id=" + id + ", vendor=" + vendor + ", price=" + price + ", condition=" + condition
+				+ ", name=" + name + ", description=" + description + ", imgUrl=" + imgUrl + ", isActive=" + isActive
+				+ ", isRented=" + isRented + "]";
 	}
 	
 	public InventoryItem() {
 		
 	}
 
-	public InventoryItem(int id, double price, String condition, String name, String description, String imgUrl,
-			boolean isActive, boolean isRented) {
+	public InventoryItem(int id, Vendor vendor, double price, String condition, String name, String description,
+			String imgUrl, boolean isActive, boolean isRented) {
 		super();
 		this.id = id;
+		this.vendor = vendor;
 		this.price = price;
 		this.condition = condition;
 		this.name = name;
@@ -131,6 +161,8 @@ public class InventoryItem {
 		this.isActive = isActive;
 		this.isRented = isRented;
 	}
+
+	
 	
 	
 
