@@ -88,26 +88,26 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `vendor-payment-type`
+-- Table `vendor_payment_type`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `vendor-payment-type` ;
+DROP TABLE IF EXISTS `vendor_payment_type` ;
 
-CREATE TABLE IF NOT EXISTS `vendor-payment-type` (
-  `vendor-id` INT NOT NULL,
-  `payment-type-id` INT NOT NULL,
-  `account-number` VARCHAR(250) NOT NULL,
-  `expiration-date` DATE NULL,
-  `Account-holder-name` VARCHAR(500) NOT NULL,
-  INDEX `vendor-payment-type_vendor_FK_idx` (`vendor-id` ASC),
-  INDEX `vendor-payment-type_payment-type-id_idx` (`payment-type-id` ASC),
-  PRIMARY KEY (`vendor-id`, `payment-type-id`),
+CREATE TABLE IF NOT EXISTS `vendor_payment_type` (
+  `vendor_id` INT NOT NULL,
+  `payment_type_id` INT NOT NULL,
+  `account_number` VARCHAR(250) NOT NULL,
+  `expiration_date` DATE NULL,
+  `Account_holder_name` VARCHAR(500) NOT NULL,
+  INDEX `vendor-payment-type_vendor_FK_idx` (`vendor_id` ASC),
+  INDEX `vendor-payment-type_payment-type-id_idx` (`payment_type_id` ASC),
+  PRIMARY KEY (`vendor_id`, `payment_type_id`),
   CONSTRAINT `vendor-payment-type_vendor_FK`
-    FOREIGN KEY (`vendor-id`)
+    FOREIGN KEY (`vendor_id`)
     REFERENCES `vendor` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `vendor-payment-type_payment-type-id`
-    FOREIGN KEY (`payment-type-id`)
+    FOREIGN KEY (`payment_type_id`)
     REFERENCES `payment_type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -396,11 +396,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `vendor-payment-type`
+-- Data for table `vendor_payment_type`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaswagdb`;
-INSERT INTO `vendor-payment-type` (`vendor-id`, `payment-type-id`, `account-number`, `expiration-date`, `Account-holder-name`) VALUES (1, 1, '1234567899999999', '2025-11-11', 'Bro Bro');
+INSERT INTO `vendor_payment_type` (`vendor_id`, `payment_type_id`, `account_number`, `expiration_date`, `Account_holder_name`) VALUES (1, 1, '1234567899999999', '2025-11-11', 'Bro Bro');
 
 COMMIT;
 
