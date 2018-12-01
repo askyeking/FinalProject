@@ -44,7 +44,7 @@ class UserTests {
 	}
 	
 	@Test
-	void test() {
+	void test_User_mapping() {
 		assertEquals(1, user.getID());
 		assertEquals("customer", user.getPassword());
 		assertEquals("customer@user.com", user.getEmail());
