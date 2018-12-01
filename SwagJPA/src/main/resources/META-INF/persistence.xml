@@ -11,6 +11,7 @@
 
 		<!-- Entities -->
 		<!-- <class>com.skilldistillery.jpavideostore.entities.Actor</class> -->
+		<class>com.skilldistillery.swag.entities.Customer</class> 
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"

@@ -1,14 +1,43 @@
 package com.skilldistillery.swag.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class Customer {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name="display_name")
 	private String displayName;
 	
+	@Column(name="active")
 	private boolean isActive;
 	
+	@Column(name="avatar_url")
 	private String avatarURL;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User userCustomer;
+
+	public User getUserCustomer() {
+		return userCustomer;
+	}
+
+	public void setUserCustomer(User userCustomer) {
+		this.userCustomer = userCustomer;
+	}
 
 	public String getDisplayName() {
 		return displayName;
@@ -63,15 +92,18 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", displayName=" + displayName + ", isActive=" + isActive + ", avatarURL="
-				+ avatarURL + "]";
+				+ avatarURL + ", userCustomer=" + userCustomer + "]";
 	}
 
-	public Customer(int id, String displayName, boolean isActive, String avatarURL) {
+	
+
+	public Customer(int id, String displayName, boolean isActive, String avatarURL, User userCustomer) {
 		super();
 		this.id = id;
 		this.displayName = displayName;
 		this.isActive = isActive;
 		this.avatarURL = avatarURL;
+		this.userCustomer = userCustomer;
 	}
 
 	public Customer() {
