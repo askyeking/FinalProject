@@ -1,14 +1,32 @@
 package com.skilldistillery.swag.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class User {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int ID;
+	
+	
 	private String password;
+	
 	private String email;
+	
+	@Column(name="active")
 	private boolean isActive;
+	
+	
 	private String role;
-	private String fName;
-	private String lName;
+	
+	
+//	private String fName;
+//	private String lName;
 	
 	public int getID() {
 		return ID;
@@ -37,18 +55,6 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public String getfName() {
-		return fName;
-	}
-	public void setfName(String fName) {
-		this.fName = fName;
-	}
-	public String getlName() {
-		return lName;
-	}
-	public void setlName(String lName) {
-		this.lName = lName;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -72,7 +78,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [ID=" + ID + ", password=" + password + ", email=" + email + ", isActive=" + isActive + ", role="
-				+ role + ", fName=" + fName + ", lName=" + lName + "]";
+				+ role + "]";
 	}
 	public User(int iD, String password, String email, boolean isActive, String role, String fName, String lName) {
 		super();
@@ -81,8 +87,6 @@ public class User {
 		this.email = email;
 		this.isActive = isActive;
 		this.role = role;
-		this.fName = fName;
-		this.lName = lName;
 	}
 	public User() {
 		super();

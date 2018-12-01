@@ -4,29 +4,31 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-	<persistence-unit name="todo">
+	<persistence-unit name="rentaswag">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
 
-		<!--entities below this line -->
-		<!-- <class>com.skilldistillery.todo.entities.Todo</class> -->
-		<!-- change db info -->
+
+		<!-- Entities -->
+		<!-- <class>com.skilldistillery.jpavideostore.entities.Actor</class> -->
+
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/tododb?useSSL=false" />
-			<property name="javax.persistence.jdbc.user" value="todos" />
+				value="jdbc:mysql://localhost:3306/rentaswagdb?useSSL=false" />
+			<property name="javax.persistence.jdbc.user" value="user" />
 			<property name="javax.persistence.jdbc.password"
-				value="todos" />
+				value="user" />
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.jdbc.Driver" />
 
-			<property name="hibernate.show_sql" value="false" />
-			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.show_sql" value="TRUE" />
+			<property name="hibernate.format_sql" value="FALSE" />
 
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.connection.provider_class"
 				value="org.hibernate.connection.C3P0ConnectionProvider" />
+
 			<property name="hibernate.c3p0.max_size" value="5" />
 			<property name="hibernate.c3p0.min_size" value="0" />
 			<property name="hibernate.c3p0.acquire_increment" value="1" />
