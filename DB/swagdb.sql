@@ -157,6 +157,8 @@ CREATE TABLE IF NOT EXISTS `inventory_item` (
   `description` TEXT NULL,
   `image_url` TEXT NULL,
   `condition` VARCHAR(100) NOT NULL,
+  `active` TINYINT(1) NOT NULL DEFAULT 1,
+  `rented` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `inventory-item_vendor_FK_idx` (`vendor_id` ASC),
   CONSTRAINT `inventory-item_vendor_FK`
@@ -418,7 +420,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaswagdb`;
-INSERT INTO `inventory_item` (`id`, `vendor_id`, `price`, `name`, `description`, `image_url`, `condition`) VALUES (1, 1, 3.99, 'swagger hat for swaggy men', 'get that swag bro! I know you want it, you know I want you.', 'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjI097ekv3eAhXI6oMKHdE4AW4QjRx6BAgBEAU&url=https%3A%2F%2Fwww.gangstagroup.com%2Fgangstagroup-sorry-im-swag-snapback-cap-navy-red%2F&psig=AOvVaw0K8zMcx0wimPAOr3YTc7bE&ust=1543702665988705', 'good');
+INSERT INTO `inventory_item` (`id`, `vendor_id`, `price`, `name`, `description`, `image_url`, `condition`, `active`, `rented`) VALUES (1, 1, 3.99, 'swagger hat for swaggy men', 'get that swag bro! I know you want it, you know I want you.', 'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjI097ekv3eAhXI6oMKHdE4AW4QjRx6BAgBEAU&url=https%3A%2F%2Fwww.gangstagroup.com%2Fgangstagroup-sorry-im-swag-snapback-cap-navy-red%2F&psig=AOvVaw0K8zMcx0wimPAOr3YTc7bE&ust=1543702665988705', 'good', 1, 0);
 
 COMMIT;
 
@@ -495,3 +497,4 @@ USE `rentaswagdb`;
 INSERT INTO `comment_from_customer` (`id`, `customer_id`, `item_rental_id`, `comment`) VALUES (1, 1, 1, 'Cool dude');
 
 COMMIT;
+
