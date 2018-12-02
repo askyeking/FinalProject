@@ -13,6 +13,11 @@ export class AuthService {
   }
 
   login(email, password) {
+    console.log('auth service');
+    console.log(email);
+    console.log(password);
+
+
     // Make token
     const token = this.generateBasicAuthToken(email, password);
     // Send token as Authorization header (this is spring security convention for basic auth)
