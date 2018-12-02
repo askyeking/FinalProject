@@ -15,9 +15,15 @@ public class AuthServiceImpl implements AuthService {
 
 	@Autowired
 	PasswordEncoder encoder;
+	
+	@Autowired
+	UserRepository userRepo;
 
 	@Override
 	public User register(User user) {
+		if (this.userRepo.existsByEmail(user.getEmail())) {
+			return null;
+		} else {
 		String encodedPW = encoder.encode(user.getPassword());
 		user.setPassword(encodedPW);
 		
@@ -26,5 +32,6 @@ public class AuthServiceImpl implements AuthService {
 
 		repo.saveAndFlush(user);
 		return user;
+		}
 	}
 }
