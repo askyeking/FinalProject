@@ -17,7 +17,6 @@ public class Vendor {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User user;
