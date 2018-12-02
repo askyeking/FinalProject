@@ -30,7 +30,6 @@ public class UserController {
 
 		// Should also have principal.getEmail or sth...
 		User user = userService.show(id);
-
 		if (user != null) {
 			resp.setStatus(200);
 		} else {
@@ -43,6 +42,8 @@ public class UserController {
 	@PostMapping("user/{uid}/register")
 	public User addUserCustomerOrVendor(@RequestBody User user,  HttpServletRequest req, HttpServletResponse resp,
 			Principal principal ) {
+		
+		
 		
 				return user;
 		

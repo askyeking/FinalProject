@@ -30,7 +30,7 @@ public class User {
 	private Vendor vendor;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy="userCustomer")
+	@OneToOne(mappedBy="customerUser")
 	private Customer customer;
 	
 	private String role;
