@@ -40,7 +40,5 @@ dependencies {
 	runtimeOnly('mysql:mysql-connector-java')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	implementation('org.springframework.boot:spring-boot-starter-tomcat')
- // compile('org.springframework.boot:spring-boot-starter-security')
-
-	
+ 	compile('org.springframework.boot:spring-boot-starter-security')
 }

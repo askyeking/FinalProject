@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `password` VARCHAR(45) NOT NULL,
+  `password` TEXT NOT NULL,
   `email` VARCHAR(200) NOT NULL,
   `active` TINYINT(1) NOT NULL DEFAULT 1,
   `role` VARCHAR(45) NOT NULL DEFAULT 'standard',
@@ -358,8 +358,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaswagdb`;
-INSERT INTO `user` (`id`, `password`, `email`, `active`, `role`) VALUES (1, 'customer', 'customer@user.com', 1, 'standard');
-INSERT INTO `user` (`id`, `password`, `email`, `active`, `role`) VALUES (2, 'vendorcustomer', 'vendor@user.com', 1, 'standard');
+INSERT INTO `user` (`id`, `password`, `email`, `active`, `role`) VALUES (1, '$2a$10$iMp5YPAxCZajml5Bw5EDr.F3tH4WQoFxPwVclYzPLvkyYCUlIh5Ci', 'customer@user.com', 1, 'standard');
+INSERT INTO `user` (`id`, `password`, `email`, `active`, `role`) VALUES (2, '$2a$10$iMp5YPAxCZajml5Bw5EDr.F3tH4WQoFxPwVclYzPLvkyYCUlIh5Ci', 'vendor@user.com', 1, 'standard');
 
 COMMIT;
 
