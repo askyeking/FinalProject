@@ -17,12 +17,23 @@ public class UserServiceImpl implements UserService {
 	public User show(int id) {
 		User user = null;
 		Optional<User> opt = userRepo.findById(id);
-		if(opt.isPresent()) {
+		if (opt.isPresent()) {
 			user = opt.get();
 		}
-		
+
 		return user;
 	}
-	
-	
+
+	@Override
+	public User newUser(User user) {
+		if (this.userRepo.existsByEmail(user.getEmail())) {
+			return null;
+		} else {
+			this.userRepo.saveAndFlush(user);
+			return user;
+		}
+	}
+
+
+
 }

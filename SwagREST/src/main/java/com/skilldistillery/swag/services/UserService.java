@@ -6,4 +6,7 @@ public interface UserService {
 	
 	User show(int id);
 	
+	User newUser(User user);
+	
+	
 }
