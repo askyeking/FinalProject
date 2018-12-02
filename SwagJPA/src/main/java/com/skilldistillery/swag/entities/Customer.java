@@ -26,7 +26,6 @@ public class Customer {
 	@Column(name="avatar_url")
 	private String avatarURL;
 	
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User customerUser;
@@ -35,9 +34,10 @@ public class Customer {
 		return customerUser;
 	}
 
-	public void setCustomerUser(User userCustomer) {
-		this.customerUser = userCustomer;
+	public void setCustomerUser(User customerUser) {
+		this.customerUser = customerUser;
 	}
+
 
 	public String getDisplayName() {
 		return displayName;
