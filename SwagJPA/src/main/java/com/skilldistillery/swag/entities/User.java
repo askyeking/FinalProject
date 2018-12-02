@@ -25,11 +25,9 @@ public class User {
 	@Column(name="active")
 	private boolean isActive;
 	
-	@JsonIgnore
 	@OneToOne(mappedBy="user")
 	private Vendor vendor;
 	
-	@JsonIgnore
 	@OneToOne(mappedBy="userCustomer")
 	private Customer customer;
 	
