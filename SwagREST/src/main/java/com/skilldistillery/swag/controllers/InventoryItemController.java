@@ -30,6 +30,8 @@ public class InventoryItemController {
 		return itemService.indexCustomer();
 	}
 	
+	
+		
 //	@RequestMapping(path = "shaun/todos", method = RequestMethod.GET)
 //	public Set<Todo> showAllTodos(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 //		return todoService.index(principal.getName());
