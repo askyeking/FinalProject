@@ -30,13 +30,14 @@ public class Customer {
 	@JoinColumn(name="user_id")
 	private User customerUser;
 
-	public User getUserCustomer() {
+	public User getCustomerUser() {
 		return customerUser;
 	}
 
-	public void setUserCustomer(User userCustomer) {
-		this.customerUser = userCustomer;
+	public void setCustomerUser(User customerUser) {
+		this.customerUser = customerUser;
 	}
+
 
 	public String getDisplayName() {
 		return displayName;

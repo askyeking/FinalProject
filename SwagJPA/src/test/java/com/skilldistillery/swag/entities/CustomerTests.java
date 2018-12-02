@@ -42,7 +42,7 @@ class CustomerTests {
 	@Test
 	void test_Customer_mapping() {
 		assertEquals("blake", cust.getDisplayName());
-		assertEquals(1, cust.getUserCustomer().getID());
+		assertEquals(1, cust.getCustomerUser().getID());
 		assertEquals(true, cust.isActive());
 	}
 
