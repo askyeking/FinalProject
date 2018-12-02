@@ -9,8 +9,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="rating_of_vendor")
-public class RatingOfVendor {
+@Table(name="rating_of_customer")
+public class RatingOfCustomer {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -25,8 +25,8 @@ public class RatingOfVendor {
 	private ItemRental itemRental;
 	
 	@OneToOne
-	@JoinColumn(name="customer_id")
-	private Customer customer;
+	@JoinColumn(name="vendor_id")
+	private Vendor vendor;
 	
 
 	public ItemRental getItemRental() {
@@ -37,12 +37,12 @@ public class RatingOfVendor {
 		this.itemRental = itemRental;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public Vendor getVendor() {
+		return vendor;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
 	}
 
 	public int getId() {
@@ -83,7 +83,7 @@ public class RatingOfVendor {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RatingOfVendor other = (RatingOfVendor) obj;
+		RatingOfCustomer other = (RatingOfCustomer) obj;
 		if (id != other.id)
 			return false;
 		return true;
@@ -91,24 +91,25 @@ public class RatingOfVendor {
 
 	@Override
 	public String toString() {
-		return "RatingOfVendor [id=" + id + ", rating=" + rating + ", comment=" + comment + ", itemRental=" + itemRental
-				+ ", customer=" + customer + "]";
-	}
-	
-	public RatingOfVendor() {
-		
+		return "RatingOfCustomer [id=" + id + ", rating=" + rating + ", comment=" + comment + ", itemRental="
+				+ itemRental + ", vendor=" + vendor + "]";
 	}
 
-	public RatingOfVendor(int id, int rating, String comment, ItemRental itemRental, Customer customer) {
+	
+
+	public RatingOfCustomer(int id, int rating, String comment, ItemRental itemRental, Vendor vendor) {
 		super();
 		this.id = id;
 		this.rating = rating;
 		this.comment = comment;
 		this.itemRental = itemRental;
-		this.customer = customer;
+		this.vendor = vendor;
 	}
 
+	public RatingOfCustomer() {
+		super();
+	}
 	
 	
-	
+
 }

@@ -16,8 +16,11 @@
 		<class>com.skilldistillery.swag.entities.ItemRental</class> 
 		<class>com.skilldistillery.swag.entities.PaymentMethod</class> 
 		<class>com.skilldistillery.swag.entities.PaymentType</class> 
+		<class>com.skilldistillery.swag.entities.RatingOfCustomer</class> 
+		<class>com.skilldistillery.swag.entities.RatingOfVendor</class> 
 		<class>com.skilldistillery.swag.entities.User</class> 
 		<class>com.skilldistillery.swag.entities.Vendor</class> 
+		<class>com.skilldistillery.swag.entities.VendorPaymentType</class> 
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
