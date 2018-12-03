@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="inventory_item")
 public class InventoryItem {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id; 
@@ -25,6 +25,7 @@ public class InventoryItem {
 	private Vendor vendor;
 	private double price;
 	//change data type to ENUM
+	@Column(name="item_condition")
 	private String condition;
 	private String name;
 	private String description;

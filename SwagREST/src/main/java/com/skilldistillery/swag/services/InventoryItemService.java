@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.skilldistillery.swag.entities.InventoryItem;
-import com.skilldistillery.swag.entities.Vendor;
+import com.skilldistillery.swag.entities.User;
 
 public interface InventoryItemService {
 	
@@ -16,7 +16,7 @@ public interface InventoryItemService {
 
 	public InventoryItem showSingleItem(int id);
 
-	public InventoryItem postItem(InventoryItem item, Vendor vendor);
+	public InventoryItem postItem(InventoryItem item, User poster);
 
 //	  public Todo update(String username, int tid, Todo todo);
 //

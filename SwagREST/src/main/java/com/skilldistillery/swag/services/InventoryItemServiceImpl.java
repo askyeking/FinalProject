@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.swag.entities.InventoryItem;
+import com.skilldistillery.swag.entities.User;
 import com.skilldistillery.swag.entities.Vendor;
 import com.skilldistillery.swag.repositories.InventoryItemRepository;
 import com.skilldistillery.swag.repositories.UserRepository;
@@ -53,9 +54,14 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 	}
 
 	@Override
-	public InventoryItem postItem(InventoryItem item, Vendor vendor) {
+	public InventoryItem postItem(InventoryItem item, User itemPoster) {
 		
-		return null;
+		Vendor itemVendor = itemPoster.getVendor();
+		item.setVendor(itemVendor);
+		item.setRented(false);
+		item.setActive(true);
+		itemRepo.saveAndFlush(item);
+		return item;
 	}
 	
 	  

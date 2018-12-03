@@ -17,19 +17,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.swag.entities.InventoryItem;
+import com.skilldistillery.swag.entities.User;
+import com.skilldistillery.swag.entities.Vendor;
 import com.skilldistillery.swag.services.InventoryItemService;
+import com.skilldistillery.swag.services.UserService;
 import com.skilldistillery.swag.services.VendorService;
 
 @RestController
 @RequestMapping(path = "api")
 @CrossOrigin({ "*", "http://localhost:4207" })
 public class InventoryItemController {
-	
+//	
+//	TODO Create a method that returns items posted by the principal user's vendor
+//	
 	@Autowired
 	InventoryItemService itemService;
 	
 	@Autowired
 	VendorService vendorService;
+	@Autowired
+	UserService userService;
+	
 	
 	
 	@GetMapping("items")
@@ -48,16 +56,27 @@ public class InventoryItemController {
 		if(item == null) {
 			res.setStatus(404);
 		}
+		else {
+			res.setStatus(200);
+		}
 		return item;
 	}
 	
-//	@PostMapping("item/vendor") 
-//	public InventoryItem newItem(@RequestBody InventoryItem itemPosted, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
-//		
-//		
-//		return null;
-//		
-//	}
+	@PostMapping("item") 
+	public InventoryItem newItem(@RequestBody InventoryItem item, HttpServletResponse res, HttpServletRequest req, Principal principal) {
+		
+		User itemPoster = userService.findByEmail(principal.getName());
+		
+		
+		InventoryItem addItem = itemService.postItem(item, itemPoster);
+		if (addItem != null) {
+			res.setStatus(201);
+		}else {
+			res.setStatus(400);
+		}
+		return addItem;
+		
+	}
 		
 
 }
