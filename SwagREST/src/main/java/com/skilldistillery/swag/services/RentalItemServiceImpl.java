@@ -26,14 +26,6 @@ public class RentalItemServiceImpl implements RentalItemService {
 	}
 
 
-	@Override
-	public ItemRental addRental(ItemRental rentedItem, User loggedInUser) {
-		loggedInUser.getCustomer().getRentedItems().add(rentedItem);
-		System.err.println(loggedInUser);
-		this.userRepo.saveAndFlush(loggedInUser);
-//		this.rentalRepo.saveAndFlush(rentedItem);
-		return rentedItem;
-	}
 	
 	
 

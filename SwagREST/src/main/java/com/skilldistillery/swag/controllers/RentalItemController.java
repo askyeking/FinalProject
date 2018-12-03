@@ -41,18 +41,6 @@ public class RentalItemController {
 		return rentalService.showAll();
 	}
 	
-	@PostMapping("rental/customer") 
-	public ItemRental newRental(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
-		
-		User loggedInUser = this.userService.findByEmail(principal.getName());
-		System.err.println(loggedInUser);
-		if(loggedInUser != null) {
-			loggedInUser.getCustomer().getRentedItems().add(itemRented);
-			System.err.println(loggedInUser.getCustomer().getRentedItems());
-			this.rentalService.addRental(itemRented, loggedInUser);
-		}
-		
-		return null;
-	}
+	
 
 }

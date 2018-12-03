@@ -9,7 +9,6 @@ public interface RentalItemService {
 
 	List<ItemRental> showAll();
 
-	ItemRental addRental(ItemRental rentedItem, User loggedInUser);
 	
 	
 	
