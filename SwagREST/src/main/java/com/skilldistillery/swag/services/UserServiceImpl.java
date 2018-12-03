@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
 		if(this.userRepo.existsById(uid)) {
 			Optional<User> userOpt = this.userRepo.findById(uid);
 			if(userOpt.isPresent()) {
+				customer.setActive(true);
 				customer.setCustomerUser(userOpt.get());
 				this.customerRepo.saveAndFlush(customer);
 				return customer.getCustomerUser();
@@ -59,17 +60,18 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	
 	@Override
 	public User addVendor(Vendor vendor, int uid) {
 		System.err.println(vendor);
 		if(this.userRepo.existsById(uid)) {
 			Optional<User> userOpt = this.userRepo.findById(uid);
 			if(userOpt.isPresent()) {
+				vendor.setActive(true);
 				vendor.setUser(userOpt.get());
 				this.vendorRepo.saveAndFlush(vendor);
 				return vendor.getUser();
 			}
-			
 		}
 		return null;
 	}
