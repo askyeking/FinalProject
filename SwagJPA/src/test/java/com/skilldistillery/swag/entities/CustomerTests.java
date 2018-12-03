@@ -44,6 +44,7 @@ class CustomerTests {
 		assertEquals("blake", cust.getDisplayName());
 		assertEquals(1, cust.getCustomerUser().getID());
 		assertEquals(true, cust.isActive());
+		assertEquals(1,cust.getRentedItems().size());
 	}
 
 }
