@@ -50,6 +50,7 @@ class InventoryItemTests {
 				+ "AhXI6oMKHdE4AW4QjRx6BAgBEAU&url=https%3A%2F%2Fwww.gangstagroup.com%2Fgangstagroup-sorry-im-"
 				+ "swag-snapback-cap-navy-red%2F&psig=AOvVaw0K8zMcx0wimPAOr3YTc7bE&ust=1543702665988705", item.getImgUrl());
 		assertEquals("good", item.getCondition());
+		assertEquals("theSeller", item.getVendor().getDisplayName());
 		assertEquals(true, item.isActive());
 		assertEquals(false, item.isRented());
 	}

@@ -53,10 +53,11 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 	}
 
 	@Override
-	public InventoryItem postItem(InventoryItem item, String email) {
-		User user = userRepo.findByEmail(email);
-		item.setVendor(user.getVendor());
-		item.getVendor().setUser(user);
+	public InventoryItem postItem(InventoryItem item) {
+		System.out.println("FINAL ITEM: ");
+		System.out.println(item);
+		System.out.println(item.getVendor());
+		System.out.println(item.getVendor().getUser());
 		itemRepo.saveAndFlush(item);
 		return item;
 	}

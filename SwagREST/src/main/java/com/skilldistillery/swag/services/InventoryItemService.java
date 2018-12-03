@@ -15,7 +15,7 @@ public interface InventoryItemService {
 
 	public InventoryItem showSingleItem(int id);
 
-	public InventoryItem postItem(InventoryItem item, String email);
+	public InventoryItem postItem(InventoryItem item);
 
 //	  public Todo update(String username, int tid, Todo todo);
 //
