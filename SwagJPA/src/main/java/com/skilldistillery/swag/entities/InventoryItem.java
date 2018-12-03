@@ -19,28 +19,20 @@ public class InventoryItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id; 
-	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="vendor_id")
 	private Vendor vendor;
-	
 	private double price;
-	
 	//change data type to ENUM
 	@Column(name="item_condition")
 	private String condition;
-	
 	private String name;
-	
 	private String description;
-	
 	@Column(name="image_url")
 	private String imgUrl;
-	
 	@Column(name="active")
 	private boolean isActive;
-	
 	@Column(name="rented")
 	private boolean isRented;
 

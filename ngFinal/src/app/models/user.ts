@@ -9,13 +9,15 @@ export class User {
   vendor: Vendor;
   customer: Customer;
 
+
   constructor(id?: number,
     email?: string,
     password?: string,
     active?: boolean,
     role?: string,
     vendor?: Vendor,
-    customer?: Customer) {
+    customer?: Customer
+  ) {
     this.id = id;
     this.email = email;
     this.password = password;

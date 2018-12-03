@@ -1,9 +1,14 @@
+import { InventoryItem } from "./inventory-item";
+
 export class Vendor {
   id: number;
   imgUrl: string;
   about: string;
   displayName: string;
   isActive: boolean;
+  inventory: InventoryItem [] = [];
+  
+
 
   constructor(id?: number,
     imgUrl?: string,

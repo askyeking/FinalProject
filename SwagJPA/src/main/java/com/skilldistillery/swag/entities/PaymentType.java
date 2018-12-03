@@ -1,9 +1,12 @@
 package com.skilldistillery.swag.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,12 @@ public class PaymentType {
 	private String type;
 	
 	private String provider;
+	
+	@OneToMany(mappedBy="paymentType")
+	private List<PaymentMethod> paymentMethods;
+	
+	@OneToMany(mappedBy="paymentType")
+	private List<VendorPaymentType> vendorPaymentMethods;
 
 	public int getId() {
 		return id;
