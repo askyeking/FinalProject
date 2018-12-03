@@ -13,7 +13,7 @@ export class AuthService {
   }
 
   login(email, password) {
-    console.log('auth service');
+    console.log('auth login email & password');
     console.log(email);
     console.log(password);
 
@@ -36,7 +36,7 @@ export class AuthService {
         }),
         catchError((err: any) => {
           console.log(err);
-          return throwError('KABOOM');
+          return throwError('KABOOM - auth login');
         })
       );
   }
@@ -44,14 +44,9 @@ export class AuthService {
 
 
     register(user) {
-      // if (this.checkLogin()) {
-      //   this.router.navigateByUrl('login');
-      // }
-    // create request to register a new account
     return this.http.post('http://localhost:8090/register', user)
     .pipe(
         tap((res) => {  // create a user and then upon success, log them in
-          this.login(user.email, user.password);
         }),
         catchError((err: any) => {
           console.log(err);
