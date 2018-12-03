@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.swag.entities.ItemRental;
+import com.skilldistillery.swag.entities.User;
 import com.skilldistillery.swag.repositories.RentalItemRepository;
 import com.skilldistillery.swag.repositories.UserRepository;
 
@@ -23,5 +24,9 @@ public class RentalItemServiceImpl implements RentalItemService {
 	public List<ItemRental> showAll() {
 		return this.rentalRepo.findAll();
 	}
+
+
+	
+	
 
 }
