@@ -1,11 +1,14 @@
 package com.skilldistillery.swag.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,7 +36,21 @@ public class Vendor {
 	@Column(name="active")
 	private boolean isActive;
 	
+	@OneToMany(mappedBy="vendor")
+	private List<InventoryItem> listedItems;
 	
+	
+	
+	
+	
+
+	public List<InventoryItem> getListedItems() {
+		return listedItems;
+	}
+
+	public void setListedItems(List<InventoryItem> listedItems) {
+		this.listedItems = listedItems;
+	}
 
 	public User getUser() {
 		return user;
