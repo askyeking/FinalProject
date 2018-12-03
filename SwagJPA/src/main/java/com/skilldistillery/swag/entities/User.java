@@ -89,7 +89,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [ID=" + ID + ", password=" + password + ", email=" + email + ", isActive=" + isActive + ", role="
-				+ role + "]";
+				+ role + "customer" + "]";
 	}
 	
 	

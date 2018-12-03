@@ -6,8 +6,8 @@ export class User {
   password: string;
   active: boolean;
   role: string;
-  vendorProfile: Vendor;
-  customerProfile: Customer;
+  vendor: Vendor;
+  customer: Customer;
 
   constructor(id?: number,
     email?: string,
@@ -21,7 +21,7 @@ export class User {
     this.password = password;
     this.active = active;
     this.role = role;
-    this.vendorProfile = vendor;
-    this.customerProfile = customer;
+    this.vendor = vendor;
+    this.customer = customer;
   }
 }
