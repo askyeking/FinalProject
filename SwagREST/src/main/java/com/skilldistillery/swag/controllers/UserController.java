@@ -23,6 +23,8 @@ import com.skilldistillery.swag.services.UserService;
 public class UserController {
 	@Autowired
 	UserService userService;
+	
+
 
 	@GetMapping("user/{id}")
 	public User showUser(@PathVariable("id") int id, HttpServletRequest req, HttpServletResponse resp,
@@ -42,13 +44,23 @@ public class UserController {
 	@PostMapping("user/{uid}/register")
 	public User addUserCustomerOrVendor(@RequestBody User user, @PathVariable("uid") int uid , HttpServletRequest req, HttpServletResponse resp,
 			Principal principal ) {
-			if(user.getCustomer() != null) {
-				this.userService.addCustomer(user.getCustomer(), uid);
+			User controlUser = this.userService.show(uid);
+			if(controlUser.getEmail() == principal.getName()) {
+				if(user.getCustomer() != null) {
+					this.userService.addCustomer(user.getCustomer(), uid);
+				}
+				if(user.getVendor() != null) {
+					this.userService.addVendor(user.getVendor(), uid);
+				}
+				resp.setStatus(201);
+				return user;
 			}
-			if(user.getVendor() != null) {
-				this.userService.addVendor(user.getVendor(), uid);
+			else {
+				resp.setStatus(401);
+				return null;
 			}
-			return user;
+		
+			
 		
 	}
 
