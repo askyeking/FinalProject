@@ -1,5 +1,6 @@
 package com.skilldistillery.swag.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class VendorServiceImpl implements VendorService {
 			vendor = vendorOpt.get();
 		}
 		return vendor;
+	}
+	
+	@Override
+	public List<Vendor> showAll() {
+		return this.vendorRepo.findAll();
 	}
 
 }
