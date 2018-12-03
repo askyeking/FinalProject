@@ -18,7 +18,7 @@ export class InventoryItem {
     imgUrl?: string,
     isActive?: boolean,
     isRented?: boolean
-  ){
+  ) {
     this.id = id;
     this.price = price;
     this.condition = condition;

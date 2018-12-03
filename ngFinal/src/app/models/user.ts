@@ -16,7 +16,8 @@ export class User {
     active?: boolean,
     role?: string,
     vendor?: Vendor,
-    customer?: Customer) {
+    customer?: Customer
+  ) {
     this.id = id;
     this.email = email;
     this.password = password;

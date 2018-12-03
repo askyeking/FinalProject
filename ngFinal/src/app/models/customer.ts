@@ -1,5 +1,5 @@
 import { ItemRental } from './item-rental';
-import { User } from "./user";
+import { User } from './user';
 
 export class Customer {
   id: number;
