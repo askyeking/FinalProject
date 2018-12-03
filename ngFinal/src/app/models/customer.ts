@@ -5,10 +5,10 @@ export class Customer {
   avatarURL: string;
 
   constructor(
-    id: number,
-    isActive: boolean,
-    displayName: string,
-    avatarURL: string
+    id?: number,
+    isActive?: boolean,
+    displayName?: string,
+    avatarURL?: string
   ) {
     this.id = id;
     this.isActive = isActive;
