@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, catchError } from 'rxjs/operators';
-import { observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -26,8 +28,10 @@ export class AuthService {
       // .set('X-Request-With', 'XMLHttpRequest');
 
     // create request to authenticate credentials
+    console.log('Base URL: ');
+    console.log(this.baseUrl);
     return this.http
-      .get('http://localhost:8090/authenticate', {headers})
+      .get(this.baseUrl + 'authenticate', {headers})
       .pipe(
         tap((res) => {
           localStorage.setItem('token' , token);
@@ -44,7 +48,7 @@ export class AuthService {
 
 
     register(user) {
-    return this.http.post('http://localhost:8090/register', user)
+    return this.http.post(this.baseUrl + 'register', user)
     .pipe(
         tap((res) => {  // create a user and then upon success, log them in
         }),
