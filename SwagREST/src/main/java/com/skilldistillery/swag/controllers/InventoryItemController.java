@@ -11,11 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.swag.entities.InventoryItem;
 import com.skilldistillery.swag.services.InventoryItemService;
+import com.skilldistillery.swag.services.VendorService;
 
 @RestController
 @RequestMapping(path = "api")
@@ -24,6 +27,9 @@ public class InventoryItemController {
 	
 	@Autowired
 	InventoryItemService itemService;
+	
+	@Autowired
+	VendorService vendorService;
 	
 	
 	@GetMapping("items")
@@ -45,10 +51,13 @@ public class InventoryItemController {
 		return item;
 	}
 	
-	
-		
-//	@RequestMapping(path = "shaun/todos", method = RequestMethod.GET)
-//	public Set<Todo> showAllTodos(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
-//		return todoService.index(principal.getName());
+//	@PostMapping("item/vendor") 
+//	public InventoryItem newItem(@RequestBody InventoryItem itemPosted, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
+//		
+//		
+//		return null;
+//		
 //	}
+		
+
 }
