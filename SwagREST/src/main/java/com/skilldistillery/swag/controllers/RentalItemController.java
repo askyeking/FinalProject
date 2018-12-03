@@ -11,11 +11,16 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.swag.entities.Customer;
 import com.skilldistillery.swag.entities.ItemRental;
+import com.skilldistillery.swag.entities.User;
+import com.skilldistillery.swag.services.CustomerService;
 import com.skilldistillery.swag.services.RentalItemService;
+import com.skilldistillery.swag.services.UserService;
 
 @RestController
 @RequestMapping(path = "api")
@@ -24,18 +29,24 @@ public class RentalItemController {
 	
 	@Autowired
 	RentalItemService rentalService;
-	
+	@Autowired
+	UserService userService;
+	@Autowired
+	CustomerService customerService;
 
 	@GetMapping("rental")
 	public List<ItemRental> index(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		return rentalService.showAll();
-
 	}
 	
-	@PostMapping("rental/customer/{cid}") 
-	public ItemRental newRental(@PathVariable("cid") int cid, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
-		return null;
+	@PostMapping("rental/customer") 
+	public ItemRental newRental(@RequestBody ItemRental itemRented, @PathVariable("cid") int cid, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
+		if(customerService.show(cid).getCustomerUser().getEmail() == principal.getName()  ) {
+			
+		}
 		
+		
+		return null;
 	}
 
 }
