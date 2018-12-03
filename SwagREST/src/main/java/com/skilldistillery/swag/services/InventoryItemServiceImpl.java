@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.swag.entities.InventoryItem;
 import com.skilldistillery.swag.entities.User;
+import com.skilldistillery.swag.entities.Vendor;
 import com.skilldistillery.swag.repositories.InventoryItemRepository;
 import com.skilldistillery.swag.repositories.UserRepository;
 import com.skilldistillery.swag.repositories.VendorRepository;
@@ -53,11 +54,12 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 	}
 
 	@Override
-	public InventoryItem postItem(InventoryItem item) {
-		System.out.println("FINAL ITEM: ");
-		System.out.println(item);
-		System.out.println(item.getVendor());
-		System.out.println(item.getVendor().getUser());
+	public InventoryItem postItem(InventoryItem item, User itemPoster) {
+		
+		Vendor itemVendor = itemPoster.getVendor();
+		item.setVendor(itemVendor);
+		item.setRented(false);
+		item.setActive(true);
 		itemRepo.saveAndFlush(item);
 		return item;
 	}

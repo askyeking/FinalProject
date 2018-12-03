@@ -64,16 +64,11 @@ public class InventoryItemController {
 	
 	@PostMapping("item") 
 	public InventoryItem newItem(@RequestBody InventoryItem item, HttpServletResponse res, HttpServletRequest req, Principal principal) {
-		User itemPoster = userService.findByEmail(principal.getName());
-		Vendor itemVendor = itemPoster.getVendor();
-		System.out.println(itemPoster.getVendor());
-		item.setVendor(itemVendor);
-		System.out.println("**************Item Vendor User****************");
-		System.out.println(item);
-		System.out.println(item.getVendor());
-		System.out.println(item.getVendor().getUser());
 		
-		InventoryItem addItem = itemService.postItem(item);
+		User itemPoster = userService.findByEmail(principal.getName());
+		
+		
+		InventoryItem addItem = itemService.postItem(item, itemPoster);
 		if (addItem != null) {
 			res.setStatus(201);
 		}else {
