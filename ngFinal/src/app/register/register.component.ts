@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(private authService: AuthService, private userService: UserService, private currentRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) {  }
 
     ngOnInit() {
   }
