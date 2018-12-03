@@ -27,17 +27,28 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
   }
 
+  refresh() {
+    this.newUser = new User();
+    this.userProfiles = null;
+    this.customerProfile = new Customer();
+    this.vendorProfile = null;
+    this.isVendor = false;
+  }
+
   register(user: User) {
     this.authService.register(user).subscribe(
       data => {
         console.log('component register email & password');
         console.log(user.email);
         console.log(user.password);
+        console.log(user);
 
         this.authService.login(user.email, user.password).subscribe(
           // tslint:disable-next-line:no-shadowed-variable
           data => {
             console.log('we think login worked');
+            console.log(data);
+
             this.userProfiles = Object.assign({}, this.newUser);
             this.newUser = new User();
             this.newUser.customer = new Customer();
