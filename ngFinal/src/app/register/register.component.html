@@ -1,3 +1,20 @@
-<p>
-  register works!
-</p>
+<form action="" name="registration">
+  <input
+    type="text"
+    name="email"
+    placeholder="email"
+    [(ngModel)]="newUser.email"
+  /><br />
+  <input
+    type="text"
+    name="password"
+    placeholder="password"
+    [(ngModel)]="newUser.password"
+  /><br />
+  <input
+    type="button"
+    class="btn btn-danger"
+    value="Register"
+    (click)="register(newUser)"
+  />
+</form>
