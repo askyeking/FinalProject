@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.swag.entities.Customer;
 import com.skilldistillery.swag.entities.User;
 import com.skilldistillery.swag.services.UserService;
 
@@ -59,7 +60,26 @@ public class UserController {
 	@PostMapping("user/register")
 	public User addUserCustomerOrVendor(@RequestBody User user, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal ) {
-		
+			
+			System.out.println("User entered");
+			System.out.println(user);
+			
+			
+			if (user.getCustomer() != null) {
+			System.out.println(user.getCustomer().getDisplayName());
+			}
+			else {
+				System.out.println("not found customer");
+			}
+			
+			if(user.getVendor() != null) {
+				System.out.println("vendor");
+				System.out.println(user.getVendor().getDisplayName());
+			}
+			else {
+				System.out.println("not found vendor");
+			}
+			
 			User controlUser = userService.findByEmail(principal.getName());
 //			User controlUser = this.userService.show(uid);
  			if(controlUser.getEmail().equals(principal.getName())) {
@@ -77,9 +97,6 @@ public class UserController {
 				resp.setStatus(401);
 				return null;
 			}
-		
-			
-		
 	}
 
 
