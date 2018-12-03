@@ -1,5 +1,7 @@
 package com.skilldistillery.swag.controllers;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.security.Principal;
 import java.util.List;
 
@@ -40,11 +42,15 @@ public class RentalItemController {
 	}
 	
 	@PostMapping("rental/customer") 
-	public ItemRental newRental(@RequestBody ItemRental itemRented, @PathVariable("cid") int cid, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
-		if(customerService.show(cid).getCustomerUser().getEmail() == principal.getName()  ) {
-			
-		}
+	public ItemRental newRental(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		
+		User loggedInUser = this.userService.findByEmail(principal.getName());
+		System.err.println(loggedInUser);
+		if(loggedInUser != null) {
+			loggedInUser.getCustomer().getRentedItems().add(itemRented);
+			System.err.println(loggedInUser.getCustomer().getRentedItems());
+			this.rentalService.addRental(itemRented, loggedInUser);
+		}
 		
 		return null;
 	}

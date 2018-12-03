@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,6 +42,8 @@ public class InventoryItem {
 	
 	@Column(name="rented")
 	private boolean isRented;
+
+	
 	
 	public Vendor getVendor() {
 		return vendor;

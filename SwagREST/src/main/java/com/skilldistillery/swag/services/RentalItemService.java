@@ -2,14 +2,16 @@ package com.skilldistillery.swag.services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.skilldistillery.swag.entities.ItemRental;
+import com.skilldistillery.swag.entities.User;
 
 public interface RentalItemService {
 
 	List<ItemRental> showAll();
+
+	ItemRental addRental(ItemRental rentedItem, User loggedInUser);
+	
+	
 	
 	
 }
