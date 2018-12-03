@@ -40,12 +40,15 @@ public class UserController {
 	}
 	
 	@PostMapping("user/{uid}/register")
-	public User addUserCustomerOrVendor(@RequestBody User user,  HttpServletRequest req, HttpServletResponse resp,
+	public User addUserCustomerOrVendor(@RequestBody User user, @PathVariable("uid") int uid , HttpServletRequest req, HttpServletResponse resp,
 			Principal principal ) {
-		
-		
-		
-				return user;
+			if(user.getCustomer() != null) {
+				this.userService.addCustomer(user.getCustomer(), uid);
+			}
+			if(user.getVendor() != null) {
+				this.userService.addVendor(user.getVendor(), uid);
+			}
+			return user;
 		
 	}
 
