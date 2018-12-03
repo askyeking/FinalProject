@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.swag.entities.InventoryItem;
+import com.skilldistillery.swag.entities.Vendor;
 import com.skilldistillery.swag.services.InventoryItemService;
 import com.skilldistillery.swag.services.VendorService;
 
@@ -30,6 +31,7 @@ public class InventoryItemController {
 	
 	@Autowired
 	VendorService vendorService;
+	
 	
 	
 	@GetMapping("items")
@@ -51,13 +53,17 @@ public class InventoryItemController {
 		return item;
 	}
 	
-//	@PostMapping("item/vendor") 
-//	public InventoryItem newItem(@RequestBody InventoryItem itemPosted, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
-//		
-//		
-//		return null;
-//		
-//	}
+	@PostMapping("item") 
+	public InventoryItem newItem(@RequestBody InventoryItem item, HttpServletResponse res, HttpServletRequest req, Principal principal) {
+		InventoryItem addItem = itemService.postItem(item, "vendor@user.com");
+		if (addItem != null) {
+			res.setStatus(201);
+		}else {
+			res.setStatus(400);
+		}
+		return addItem;
+		
+	}
 		
 
 }
