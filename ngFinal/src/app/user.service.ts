@@ -13,12 +13,7 @@ import { Customer } from './models/customer';
 })
 export class UserService {
   private baseUrl = environment.baseUrl;
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${this.authService.getToken()}`
-    })
-  };
+
   constructor(
     private http: HttpClient,
     private authService: AuthService,
@@ -26,16 +21,49 @@ export class UserService {
   ) {}
 
   createProfiles(user: User) {
-    console.log('user at service');
+    console.log('user at UserService');
     console.log(user);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+    console.log(httpOptions);
 
     return this.http
-      .post<User>(this.baseUrl + 'api/user/register', user, this.httpOptions)
+      .post<User>(this.baseUrl + 'api/user/register', user, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('todoService.create(): Error adding new Todo');
+          return throwError('userService.create(): Error creating profiles');
         })
       );
   }
+
+  // register(user: User) {
+  //   this.authService.register(user).subscribe(
+  //     data => {
+  //       console.log('component register email & password');
+  //       console.log(user.email);
+  //       console.log(user.password);
+
+  //       this.authService.login(user.email, user.password).subscribe(
+  //         // tslint:disable-next-line:no-shadowed-variable
+  //         data => {
+  //           console.log('we think login worked');
+  //           return true;
+  //         },
+  //         err => {
+  //           console.log('we think login didnt work');
+  //           return false;
+  //         }
+  //       );
+  //     },
+  //     err => {
+  //       console.error('Observer got an error' + err);
+  //       return false;
+  //     }
+  //   );
+  // }
 }

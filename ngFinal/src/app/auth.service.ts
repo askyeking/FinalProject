@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { RegisterComponent } from './register/register.component';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class AuthService {
     console.log('auth login email & password');
     console.log(email);
     console.log(password);
+    // this.regComp.refresh();
 
 
     // Make token
@@ -48,6 +50,10 @@ export class AuthService {
 
 
     register(user) {
+      console.log('AuthService.register(user)');
+      console.log(user);
+
+
     return this.http.post(this.baseUrl + 'register', user)
     .pipe(
         tap((res) => {  // create a user and then upon success, log them in

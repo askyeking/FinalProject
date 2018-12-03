@@ -21,8 +21,7 @@ constructor(
   paidAmount?: number,
   isActive?: boolean,
   transactionInfo?: string
-)
-{
+) {
   this.id = id;
   this.isPaid = isPaid;
   this.startDate = startDate;

@@ -1,4 +1,4 @@
-import { InventoryItem } from "./inventory-item";
+import { InventoryItem } from './inventory-item';
 
 export class Vendor {
   id: number;
@@ -7,7 +7,6 @@ export class Vendor {
   displayName: string;
   isActive: boolean;
   inventory: InventoryItem [] = [];
-  
 
 
   constructor(id?: number,

@@ -13,7 +13,7 @@ export class RatingOfVendor {
     comment?: string,
     itemRental?: ItemRental,
     customer?: Customer
-  ){
+  ) {
     this.id = id;
     this.rating = rating;
     this.comment = comment;
