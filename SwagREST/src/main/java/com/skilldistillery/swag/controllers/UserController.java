@@ -25,7 +25,7 @@ public class UserController {
 	UserService userService;
 	
 
-
+	
 	@GetMapping("user/{id}")
 	public User showUser(@PathVariable("id") int id, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {
@@ -41,16 +41,34 @@ public class UserController {
 		return user;
 	}
 	
-	@PostMapping("user/{uid}/register")
-	public User addUserCustomerOrVendor(@RequestBody User user, @PathVariable("uid") int uid , HttpServletRequest req, HttpServletResponse resp,
+	@GetMapping("user/email") 
+	public User showUserByEmail(HttpServletRequest req, HttpServletResponse resp,
+			Principal principal) {
+
+		User user = userService.findByEmail(principal.getName());
+		
+		if (user != null) {
+			resp.setStatus(200);
+		} else {
+			resp.setStatus(404);
+		}
+
+		return user;
+	}
+	
+	@PostMapping("user/register")
+	public User addUserCustomerOrVendor(@RequestBody User user, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal ) {
-			User controlUser = this.userService.show(uid);
+		
+			User controlUser = userService.findByEmail(principal.getName());
+//			User controlUser = this.userService.show(uid);
+			
 			if(controlUser.getEmail() == principal.getName()) {
 				if(user.getCustomer() != null) {
-					this.userService.addCustomer(user.getCustomer(), uid);
+					this.userService.addCustomer(user.getCustomer(), controlUser.getID());
 				}
 				if(user.getVendor() != null) {
-					this.userService.addVendor(user.getVendor(), uid);
+					this.userService.addVendor(user.getVendor(), controlUser.getID());
 				}
 				resp.setStatus(201);
 				return user;
