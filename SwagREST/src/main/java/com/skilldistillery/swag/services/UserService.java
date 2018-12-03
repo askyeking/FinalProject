@@ -10,9 +10,9 @@ public interface UserService {
 	
 	User newUser(User user);
 	
-	User addCustomer(Customer customer);
+	User addCustomer(Customer customer, int uid);
 	
-	User addVendor(Vendor vendor);
+	User addVendor(Vendor vendor, int uid);
 	
 	
 	

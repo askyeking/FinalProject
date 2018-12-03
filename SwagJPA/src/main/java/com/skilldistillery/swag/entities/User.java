@@ -17,7 +17,6 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int ID;
 	
-	
 	private String password;
 	
 	private String email;
@@ -25,11 +24,9 @@ public class User {
 	@Column(name="active")
 	private boolean isActive;
 	
-	@JsonIgnore
 	@OneToOne(mappedBy="user")
 	private Vendor vendor;
 	
-	@JsonIgnore
 	@OneToOne(mappedBy="customerUser")
 	private Customer customer;
 	

@@ -45,19 +45,31 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User addCustomer(Customer customer) {
-		if(this.userRepo.existsById(customer.getCustomerUser().getID())) {
-			this.customerRepo.saveAndFlush(customer);
-			return customer.getCustomerUser();
+	public User addCustomer(Customer customer, int uid) {
+		System.err.println(customer);
+		if(this.userRepo.existsById(uid)) {
+			Optional<User> userOpt = this.userRepo.findById(uid);
+			if(userOpt.isPresent()) {
+				customer.setCustomerUser(userOpt.get());
+				this.customerRepo.saveAndFlush(customer);
+				return customer.getCustomerUser();
+			}
+			
 		}
 		return null;
 	}
 
 	@Override
-	public User addVendor(Vendor vendor) {
-		if(this.userRepo.existsById(vendor.getUser().getID())) {
-			this.vendorRepo.saveAndFlush(vendor);
-			return vendor.getUser();
+	public User addVendor(Vendor vendor, int uid) {
+		System.err.println(vendor);
+		if(this.userRepo.existsById(uid)) {
+			Optional<User> userOpt = this.userRepo.findById(uid);
+			if(userOpt.isPresent()) {
+				vendor.setUser(userOpt.get());
+				this.vendorRepo.saveAndFlush(vendor);
+				return vendor.getUser();
+			}
+			
 		}
 		return null;
 	}

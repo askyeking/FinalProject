@@ -23,14 +23,11 @@ public class AuthController {
 	
 	@RequestMapping(path = "/register", method = RequestMethod.POST)
 	public User register(@RequestBody User user, HttpServletResponse res) {
-	  
 	  if (user == null) {
 	    res.setStatus(400);
 	    return user;
 	  }
-	  
 	  user =  authSvc.register(user);
-
 	  return user;
 	}
 
