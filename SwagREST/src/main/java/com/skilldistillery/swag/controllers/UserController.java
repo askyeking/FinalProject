@@ -62,8 +62,7 @@ public class UserController {
 		
 			User controlUser = userService.findByEmail(principal.getName());
 //			User controlUser = this.userService.show(uid);
-			
-			if(controlUser.getEmail() == principal.getName()) {
+ 			if(controlUser.getEmail().equals(principal.getName())) {
 				if(user.getCustomer() != null) {
 					this.userService.addCustomer(user.getCustomer(), controlUser.getID());
 				}
@@ -71,7 +70,8 @@ public class UserController {
 					this.userService.addVendor(user.getVendor(), controlUser.getID());
 				}
 				resp.setStatus(201);
-				return user;
+				controlUser = userService.findByEmail(principal.getName());
+				return controlUser;
 			}
 			else {
 				resp.setStatus(401);
