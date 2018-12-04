@@ -26,7 +26,7 @@
     </ul>
 
 
-    <form>
+    <form  *ngIf="authService.getToken()">
       <div class="form-group">
         <label for="inputsm"></label>
         <input class="form-control input-sm" id="inputsm" type="text">
