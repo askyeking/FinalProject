@@ -33,7 +33,8 @@ import { InventoryItemListComponent } from './inventory-item-list/inventory-item
   ],
   providers: [
     AuthService,
-    InventoryItemListComponent
+    InventoryItemListComponent,
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })

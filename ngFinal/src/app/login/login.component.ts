@@ -41,5 +41,9 @@ export class LoginComponent implements OnInit {
     // this.router.navigateByUrl('todo');
   }
 
+  registerRedirect() {
+    this.router.navigateByUrl('register');
+  }
+
 
 }

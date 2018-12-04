@@ -36,6 +36,7 @@ export class AuthService {
       .get(this.baseUrl + 'authenticate', {headers})
       .pipe(
         tap((res) => {
+          console.log('hey, inside tap');
           localStorage.setItem('token' , token);
           console.log(res);
           return res;
