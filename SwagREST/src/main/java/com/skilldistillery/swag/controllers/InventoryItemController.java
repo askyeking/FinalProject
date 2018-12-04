@@ -46,7 +46,7 @@ public class InventoryItemController {
 	}
 	
 	@GetMapping("itemslist")
-	public List<InventoryItem> showAllItems(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
+	public List<InventoryItem> showAllItems(HttpServletRequest req, HttpServletResponse resp/*, Principal principal*/) {
 		return itemService.indexItems();
 	}
 	
