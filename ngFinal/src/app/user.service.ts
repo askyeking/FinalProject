@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { Customer } from './models/customer';
 
 @Injectable({
@@ -21,7 +21,6 @@ export class UserService {
   ) {}
 
   createProfiles(user: User) {
-    console.log('user at UserService');
     console.log(user);
     const httpOptions = {
       headers: new HttpHeaders({
@@ -41,29 +40,22 @@ export class UserService {
       );
   }
 
-  // register(user: User) {
-  //   this.authService.register(user).subscribe(
-  //     data => {
-  //       console.log('component register email & password');
-  //       console.log(user.email);
-  //       console.log(user.password);
+  retrieveProfiles(): Observable<User> {
+    console.log('At userService.retrieveProfiles()');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
 
-  //       this.authService.login(user.email, user.password).subscribe(
-  //         // tslint:disable-next-line:no-shadowed-variable
-  //         data => {
-  //           console.log('we think login worked');
-  //           return true;
-  //         },
-  //         err => {
-  //           console.log('we think login didnt work');
-  //           return false;
-  //         }
-  //       );
-  //     },
-  //     err => {
-  //       console.error('Observer got an error' + err);
-  //       return false;
-  //     }
-  //   );
-  // }
+    return this.http.get<User>(this.baseUrl + 'api/user/email', httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('userService.retrieveProfiles(): Error creating profiles');
+      })
+    );
+  }
+
 }
