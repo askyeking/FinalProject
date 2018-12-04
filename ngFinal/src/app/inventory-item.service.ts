@@ -29,7 +29,7 @@ export class InventoryItemService {
       return this.http.get<InventoryItem[]>(this.url).pipe(
         catchError((err: any) => {
 
-        console.log('error in inventoryItemService.index():');
+        console.log('error in inventoryItemService index():');
         console.log(err);
       return throwError('Error getting InventoryItem List');
       })

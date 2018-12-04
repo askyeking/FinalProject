@@ -24,23 +24,25 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-	        http
-	        .csrf().disable()
-	        .authorizeRequests()
-	        .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()  // For CORS, the preflight request will hit the OPTIONS on the route
-	        .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-	        .antMatchers("/login").permitAll()
-	        .antMatchers("/register").permitAll()
-	        .antMatchers("/").permitAll()
-	        .antMatchers("/*").permitAll()
-	        .anyRequest().authenticated()
-	        .and()
-	        .httpBasic();
-
-	        http
-	        .sessionManagement()
-	        .sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
-	  }
+		    http
+	      .csrf().disable()
+	      .authorizeRequests()
+	      .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()  // For CORS, the preflight request will hit the OPTIONS on the route
+	      .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+	      .antMatchers(HttpMethod.GET, "/api/itemslist").permitAll()
+	      .antMatchers("/login").permitAll()
+	      .antMatchers("/register").permitAll()
+	      .antMatchers("/api/**").authenticated()
+	      .and()
+	      .httpBasic()
+	      ;
+	
+	      http
+	      .sessionManagement()
+	      .sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
+	}
+	
+	  
 
 
 	@Override

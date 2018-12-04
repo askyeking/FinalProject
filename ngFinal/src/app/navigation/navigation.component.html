@@ -1,36 +1,79 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand" href="#">Home</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed"
+    aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div
+    class="collapse navbar-collapse"
+    id="navbarSupportedContent"
+    [ngbCollapse]="isCollapsed"
+>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#"> User Profile <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-
-
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li> -->
+      <li class="nav-item"><a class="nav-link" href="#">Vendor Profile</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Cart</a></li>
     </ul>
-    <app-login *ngIf="!authService.getToken()"></app-login>
-    <app-logout *ngIf="authService.getToken()"></app-logout>
+
+
+    <form  *ngIf="authService.getToken()">
+      <div class="form-group">
+        <label for="inputsm"></label>
+        <input class="form-control input-sm" id="inputsm" type="text">
+      </div>
+       <!-- <div class="form-group">
+        <label for="inputdefault">Default input</label>
+        <input class="form-control" id="inputdefault" type="text">
+      </div>
+      <div class="form-group">
+        <label for="inputlg">Large input</label>
+        <input class="form-control input-lg" id="inputlg" type="text">
+      </div> -->
+    </form>&nbsp;
+
+
+    <!-- dropdown menu begin-->
+    <div *ngIf="authService.getToken()" class="btn-group" dropdown>
+      <button
+        id="button-basic"
+        dropdownToggle
+        type="button"
+        class="btn btn-success dropdown-toggle"
+        aria-controls="dropdown-basic">
+        {{dropdownButtonText}}  <span class="caret"></span>
+      </button>
+      <ul id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-basic">
+        <li role="menuitem"><a class="dropdown-item"  (click)="dropdownButtonText = 'Vendor' "  href="#">Vendor</a></li>
+        <li role="menuitem">
+          <a class="dropdown-item" href="#">Another action</a>
+        </li>
+        <li role="menuitem">
+          <a class="dropdown-item" href="#">Something else here</a>
+        </li>
+        <li class="divider dropdown-divider"></li>
+        <li role="menuitem">
+          <a class="dropdown-item" href="#">Separated link</a>
+        </li>
+      </ul>
+    </div>
+    <!-- dropdown menu end-->
+    <div>
+      <app-login *ngIf="!authService.getToken()"></app-login>
+      <app-logout *ngIf="authService.getToken()"></app-logout>
+    </div>
   </div>
 </nav>
-

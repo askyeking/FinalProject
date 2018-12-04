@@ -12,6 +12,9 @@ import { AuthService } from '../auth.service';
 export class NavigationComponent implements OnInit {
   loginUser = new User();
   private baseUrl = environment.baseUrl;
+  public isCollapsed = false;
+  public dropdownButtonText = 'dropdown';
+
 
 
   constructor(private router: Router, public authService: AuthService) { }
@@ -34,5 +37,6 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
 
   }
+
 
 }
