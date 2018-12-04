@@ -7,7 +7,7 @@
         <p class="card-text">{{item.description}}</p>
         <p class="card-text">{{item.price | currency}}</p>
         <p class="card-text">{{item.condition}}</p>
-        <a href="#" class="btn btn-primary">Rent Me</a>
+        <a href="#" class="btn btn-primary" *ngIf="authService.getToken()">Rent Me</a>
       </div>
     </div>
 </div>

@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { InventoryItemListComponent } from './inventory-item-list/inventory-item-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: CustomerProfileComponent },
+  { path: '', component: InventoryItemListComponent },
 ];
 
 @NgModule({
