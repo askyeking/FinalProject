@@ -9,6 +9,7 @@ import { InventoryItemService } from '../inventory-item.service';
 export class InventoryItemListComponent implements OnInit {
 
   inventoryItems = [];
+  selected = null;
 
   loadInventoryItems() {
     this.inventoryItemService.index().subscribe(
