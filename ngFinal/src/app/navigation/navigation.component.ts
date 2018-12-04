@@ -1,3 +1,5 @@
+import { environment } from './../../environments/environment';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../auth.service';
@@ -9,8 +11,8 @@ import { AuthService } from '../auth.service';
 })
 export class NavigationComponent implements OnInit {
   loginUser = new User();
-
-  constructor(private authService: AuthService) { }
+  private baseUrl = environment.baseUrl;
+  constructor(private router: Router, private authService: AuthService) { }
 
 
 login(user: User) {
@@ -19,16 +21,16 @@ login(user: User) {
 
   this.authService.login(user.email, user.password).subscribe(
     data => {
-      // this.todo.selected = user;
       this.loginUser = new User();
-      // this.openTodos();
     },
     err => {
       console.error('Observer got an error' + err);
     }
   );
-  // this.router.navigateByUrl('todo');
 }
+
+
+
 
 
 

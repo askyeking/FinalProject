@@ -1,5 +1,11 @@
-<form action="" name="registration">
+<!-- <form action="" name="registration">
   <input type="text" name="email" placeholder="email" [(ngModel)]="loginUser.email"/><br>
   <input type="text" name="password" placeholder="password" [(ngModel)]="loginUser.password"/><br>
   <input type="button" class="btn btn-danger" value="log in" (click)="login(loginUser)"/>
+</form> -->
+<form class="form-inline my-2 my-lg-0" >
+  <input class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="Search" name="email" [(ngModel)]="loginUser.email">
+  <input class="form-control mr-sm-2" type="text" placeholder="Password" aria-label="Search" name="password" [(ngModel)]="loginUser.password">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="login(loginUser)">Login</button>
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  (click)="registerRedirect()" >Register</button>
 </form>
