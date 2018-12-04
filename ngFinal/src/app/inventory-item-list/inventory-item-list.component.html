@@ -1,5 +1,6 @@
-
-<div *ngIf="!selected">
+<br>
+<br>
+<div *ngIf="!selected" >
   <div *ngFor="let item of inventoryItems" class="card" style="width: 18rem;">
       <img class="card-img-top" src="item.imgUrl" alt="image">
       <div class="card-body">
@@ -7,7 +8,10 @@
         <p class="card-text">{{item.description}}</p>
         <p class="card-text">{{item.price | currency}}</p>
         <p class="card-text">{{item.condition}}</p>
-        <a href="#" class="btn btn-primary" *ngIf="authService.getToken()">Rent Me</a>
+        <div *ngIf="authService.getToken()">
+            <a href="#" class="btn btn-primary">View Item</a>
+        </div>
+
       </div>
     </div>
 </div>

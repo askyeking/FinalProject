@@ -28,7 +28,7 @@ public class VendorServiceImpl implements VendorService {
 	@Override
 	public List<Vendor> showAll() {
 		
-		vendorRepo.
+		//vendorRepo.
 		
 		return this.vendorRepo.findAll();
 	}
