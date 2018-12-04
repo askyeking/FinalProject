@@ -9,7 +9,6 @@ export class User {
   vendor: Vendor;
   customer: Customer;
 
-
   constructor(id?: number,
     email?: string,
     password?: string,
