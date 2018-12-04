@@ -25,8 +25,9 @@ export class InventoryItemService {
 
   index() {
     console.log('URL: ' + this.url);
-    return this.http.get<InventoryItem[]>(this.url, this.httpOptions).pipe(
-      catchError((err: any) => {
+    // return this.http.get<InventoryItem[]>(this.url, this.httpOptions).pipe(
+      return this.http.get<InventoryItem[]>(this.url).pipe(
+        catchError((err: any) => {
 
         console.log('error in inventoryItemService.index():');
         console.log(err);
