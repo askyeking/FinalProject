@@ -1,23 +1,13 @@
-<table *ngIf="!selected">
 
-  <th>ID</th>
-  <th>NAME</th>
-  <th>DESCRIPTION</th>
-  <th>PRICE</th>
-  <th>CONDITION</th>
-  <th>IMAGE</th>
-
-  <!-- {{inventoryItems[0].name}} -->
-
-<tbody>
-<tr *ngFor="let item of inventoryItems">
-  <td>{{item.id}}</td>
-  <td>{{item.name}}</td>
-  <td>{{item.description}}</td>
-  <td>{{item.price}}</td>
-  <td>{{item.condition}}</td>
-  <td>{{item.imgUrl}}</td>
-
-</tr>
-</tbody>
-</table>
+<div *ngIf="!selected">
+  <div *ngFor="let item of inventoryItems" class="card" style="width: 18rem;">
+      <img class="card-img-top" src="item.imgUrl" alt="image">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.description}}</p>
+        <p class="card-text">{{item.price | currency}}</p>
+        <p class="card-text">{{item.condition}}</p>
+        <a href="#" class="btn btn-primary">Rent Me</a>
+      </div>
+    </div>
+</div>
