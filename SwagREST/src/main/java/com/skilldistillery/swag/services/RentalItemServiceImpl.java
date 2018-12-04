@@ -25,6 +25,13 @@ public class RentalItemServiceImpl implements RentalItemService {
 	}
 
 
+	@Override
+	public ItemRental postItemRental() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 	
 
