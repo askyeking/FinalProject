@@ -25,13 +25,10 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-
-	
 	@GetMapping("user/{id}")
 	public User showUser(@PathVariable("id") int id, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {
 
-		// Should also have principal.getEmail or sth...
 		User user = userService.show(id);
 		if (user != null) {
 			resp.setStatus(200);
@@ -81,7 +78,6 @@ public class UserController {
 			}
 			
 			User controlUser = userService.findByEmail(principal.getName());
-//			User controlUser = this.userService.show(uid);
  			if(controlUser.getEmail().equals(principal.getName())) {
 				if(user.getCustomer() != null) {
 					this.userService.addCustomer(user.getCustomer(), controlUser.getID());

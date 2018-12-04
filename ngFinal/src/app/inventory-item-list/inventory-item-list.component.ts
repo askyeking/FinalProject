@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { InventoryItemService } from '../inventory-item.service';
 
@@ -18,7 +19,7 @@ export class InventoryItemListComponent implements OnInit {
     );
   }
 
-  constructor(private inventoryItemService: InventoryItemService) { }
+  constructor(private inventoryItemService: InventoryItemService, public authService: AuthService) { }
 
   ngOnInit() {
     this.loadInventoryItems();

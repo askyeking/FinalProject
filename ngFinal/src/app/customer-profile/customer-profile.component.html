@@ -1,0 +1,26 @@
+<div *ngIf="user">
+<form action="">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="edit()">Edit</button>
+</form>
+
+<h1>{{user.customer.displayName}}</h1>
+  Email: {{user.email}} <br>
+  Name: {{user.customer.displayName}} <br>
+
+  <div *ngIf="user.customer.avatarURL">
+  Image: <img src={{user.customer.avatarURL}}" alt="">
+  </div>
+  <div *ngIf="user.vendor">Vendor profile (add the link)</div>
+  <br>
+  Items rented:  <div  *ngIf="user.customer.rentedItems.length === 0"> No item rent history</div>
+  <div *ngFor="let item of user.customer.rentedItems">
+    {{item.startDate}}
+    {{item.endDate}}
+    {{item.isActive}}
+    {{item.paidAmount}}
+    {{item.transactionInfo}}
+  </div>
+
+
+
+</div>
