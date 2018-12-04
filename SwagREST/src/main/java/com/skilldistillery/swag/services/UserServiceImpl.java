@@ -1,7 +1,5 @@
 package com.skilldistillery.swag.services;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
