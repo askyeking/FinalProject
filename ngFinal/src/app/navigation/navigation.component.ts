@@ -14,7 +14,7 @@ export class NavigationComponent implements OnInit {
   private baseUrl = environment.baseUrl;
 
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, public authService: AuthService) { }
 
 
 // login(user: User) {
