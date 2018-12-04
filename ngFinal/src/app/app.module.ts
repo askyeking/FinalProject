@@ -13,6 +13,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { RegisterComponent } from './register/register.component';
 import { InventoryItemListComponent } from './inventory-item-list/inventory-item-list.component';
+import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { InventoryItemListComponent } from './inventory-item-list/inventory-item
     LogoutComponent,
     NavigationComponent,
     RegisterComponent,
-    InventoryItemListComponent
+    InventoryItemListComponent,
+    CustomerProfileComponent
   ],
   imports: [
     BrowserModule,
