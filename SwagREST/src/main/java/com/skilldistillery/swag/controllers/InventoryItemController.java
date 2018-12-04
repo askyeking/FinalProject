@@ -32,7 +32,6 @@ public class InventoryItemController {
 //	
 	@Autowired
 	InventoryItemService itemService;
-	
 	@Autowired
 	VendorService vendorService;
 	@Autowired
@@ -77,6 +76,16 @@ public class InventoryItemController {
 		return addItem;
 		
 	}
+	
+	
+	@GetMapping("item/vendor")
+	public List<InventoryItem> vendorItems(HttpServletResponse res, HttpServletRequest req, Principal principal) {
 		
+		Vendor vendor = userService.findByEmail(principal.getName()).getVendor();
+		List<InventoryItem> vendorItems = this.itemService.indexVendor(vendor);
+		return vendorItems;
+		
+	}
+	
 
 }

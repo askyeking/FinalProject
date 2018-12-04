@@ -33,9 +33,9 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 	}
 
 	@Override
-	public Set<InventoryItem> indexVendor(String email) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<InventoryItem> indexVendor(Vendor vendor) {
+		return this.itemRepo.findByVendor(vendor);
+		
 	}
 
 	@Override

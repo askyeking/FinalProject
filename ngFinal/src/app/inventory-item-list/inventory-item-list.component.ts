@@ -19,6 +19,8 @@ export class InventoryItemListComponent implements OnInit {
     );
   }
 
+
+
   constructor(private inventoryItemService: InventoryItemService, public authService: AuthService) { }
 
   ngOnInit() {

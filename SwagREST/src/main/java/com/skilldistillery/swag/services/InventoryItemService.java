@@ -5,12 +5,13 @@ import java.util.Set;
 
 import com.skilldistillery.swag.entities.InventoryItem;
 import com.skilldistillery.swag.entities.User;
+import com.skilldistillery.swag.entities.Vendor;
 
 public interface InventoryItemService {
 	
 	public Set<InventoryItem> indexCustomer();
 	
-	public Set<InventoryItem> indexVendor(String email);
+	public List<InventoryItem> indexVendor(Vendor vendor);
 	
 	public List<InventoryItem> indexItems();
 
