@@ -1,0 +1,73 @@
+<form action="" name="registration" *ngIf="!userProfiles && !authService.getToken()">
+  <input
+    type="text"
+    name="email"
+    placeholder="email"
+    [(ngModel)]="newUser.email"
+    required
+  /><br />
+  <input
+    type="text"
+    name="password"
+    placeholder="password"
+    [(ngModel)]="newUser.password"
+    required
+  /><br />
+  <input
+    type="button"
+    class="btn btn-danger"
+    value="Register"
+    (click)="register(newUser)"
+  />
+</form>
+
+<form action="" name="createCustomerProfile" *ngIf="userProfiles">
+    <input
+    type="text"
+    name="Full Name"
+    placeholder="Full Name"
+    [(ngModel)]="customerProfile.displayName"
+    required
+  /><br />
+  <input
+      type="text"
+      name="avatarUrl"
+      placeholder="Avatar url"
+      [(ngModel)]="customerProfile.avatarURL"
+    /><br />
+    I would like to be able to sell:
+    <input type="checkbox" name="vendor" (change)="createVendor()" [(ngModel)] = "isVendor"/>
+
+    <div *ngIf="isVendor">
+        <input
+        type="text"
+        name="displayName"
+        placeholder="Business Name"
+        [(ngModel)]="vendorProfile.displayName"
+      /><br />
+
+      <input
+        type="text"
+        name="about"
+        placeholder="Description"
+        [(ngModel)]="vendorProfile.about"
+      /><br />
+
+      <input
+        type="text"
+        name="imgUrl"
+        placeholder="Vendor Image URL"
+        [(ngModel)]="vendorProfile.imgUrl"
+      /><br />
+
+    </div>
+
+    <br>
+    <input
+    type="button"
+    class="btn btn-danger"
+    value="Register"
+    (click)="createProfile(userProfiles)"
+  />
+
+</form>
