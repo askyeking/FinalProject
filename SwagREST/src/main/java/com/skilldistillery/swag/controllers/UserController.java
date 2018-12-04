@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,28 +55,31 @@ public class UserController {
 		return user;
 	}
 	
+	@PatchMapping("user/customer")
+	public User editUserCustomer(@RequestBody User userUpdate, HttpServletRequest req, HttpServletResponse resp,
+			Principal principal) {
+		
+		System.out.println("PATCH UserController.editUserCustomre() {api/user/customer}");
+		System.out.println(userUpdate.getEmail());
+		System.out.println("************************************");
+		System.out.println(userUpdate.getCustomer().getDisplayName());
+		User originalUser = userService.findByEmail(principal.getName());
+		
+		
+		if (originalUser != null && userUpdate != null) {
+			userService.update(userUpdate, originalUser);
+			resp.setStatus(200);
+			originalUser = userService.findByEmail(principal.getName());
+		} else {
+			resp.setStatus(400);
+		}
+
+		return originalUser;
+	}
+	
 	@PostMapping("user/register")
 	public User addUserCustomerOrVendor(@RequestBody User user, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal ) {
-			
-			System.out.println("User entered");
-			System.out.println(user);
-			
-			
-			if (user.getCustomer() != null) {
-			System.out.println(user.getCustomer().getDisplayName());
-			}
-			else {
-				System.out.println("not found customer");
-			}
-			
-			if(user.getVendor() != null) {
-				System.out.println("vendor");
-				System.out.println(user.getVendor().getDisplayName());
-			}
-			else {
-				System.out.println("not found vendor");
-			}
 			
 			User controlUser = userService.findByEmail(principal.getName());
  			if(controlUser.getEmail().equals(principal.getName())) {
