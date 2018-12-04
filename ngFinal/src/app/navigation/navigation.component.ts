@@ -12,27 +12,24 @@ import { AuthService } from '../auth.service';
 export class NavigationComponent implements OnInit {
   loginUser = new User();
   private baseUrl = environment.baseUrl;
+
+
   constructor(private router: Router, private authService: AuthService) { }
 
 
-login(user: User) {
-  console.log('in here');
-  console.log(user);
+// login(user: User) {
+//   console.log('in here');
+//   console.log(user);
 
-  this.authService.login(user.email, user.password).subscribe(
-    data => {
-      this.loginUser = new User();
-    },
-    err => {
-      console.error('Observer got an error' + err);
-    }
-  );
-}
-
-
-
-
-
+//   this.authService.login(user.email, user.password).subscribe(
+//     data => {
+//       this.loginUser = new User();
+//     },
+//     err => {
+//       console.error('Observer got an error' + err);
+//     }
+//   );
+// }
 
   ngOnInit() {
 
