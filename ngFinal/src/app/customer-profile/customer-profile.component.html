@@ -1,15 +1,19 @@
 <div *ngIf="user">
 <form action="">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="edit()">Edit</button>
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="setEdit()">Edit</button>
 </form>
 
-<h1>{{user.customer.displayName}}</h1>
+
+
+<div *ngIf="!editUser">
+    <div *ngIf="user.customer.avatarURL">
+        <img src="{{user.customer.avatarURL}}" alt="">
+      </div>
+    <h1>{{user.customer.displayName}}</h1>
   Email: {{user.email}} <br>
   Name: {{user.customer.displayName}} <br>
 
-  <div *ngIf="user.customer.avatarURL">
-  Image: <img src={{user.customer.avatarURL}}" alt="">
-  </div>
+
   <div *ngIf="user.vendor">Vendor profile (add the link)</div>
   <br>
   Items rented:  <div  *ngIf="user.customer.rentedItems.length === 0"> No item rent history</div>
@@ -20,7 +24,22 @@
     {{item.paidAmount}}
     {{item.transactionInfo}}
   </div>
+</div>
 
+
+<div *ngIf="editUser">
+  <h1>{{editUser.email}}</h1>
+  {{editUser.password}}
+  <form action="">
+    <!-- {{customer.displayName}} {{user.customer.displayName}} -->
+      Email: <input type="email" name="email" value="editUser.email" [(ngModel)]="editUser.email"  /><br>
+      Name: <input type="text" name="name" value="editUser.customer.displayName" [(ngModel)]="editUser.customer.displayName"  /><br>
+      Avatar URL: <input type="text" name="avatarURL" value="editUser.customer.avatarURL" [(ngModel)]="editUser.customer.avatarURL"  /><br>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="updateCustomer(editUser)">Submit</button> &nbsp;&nbsp;
+      <button class="btn btn-danger my-2 my-sm-0" type="submit" (click)="cancelEdit()">Cancel</button>
+    </form>
+  <br>
+</div>
 
 
 </div>

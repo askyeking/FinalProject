@@ -79,6 +79,23 @@ public class UserServiceImpl implements UserService {
 		return userRepo.findByEmail(email);
 	}
 
+	@Override
+	public void update(User userUpdate, User originalUser) {
+		System.out.println("Updated email " + userUpdate.getEmail());
+		if(userUpdate.getEmail() != null) {
+			originalUser.setEmail(userUpdate.getEmail());
+		}
+		if(userUpdate.getCustomer().getDisplayName() != null) {
+			originalUser.getCustomer().setDisplayName(userUpdate.getCustomer().getDisplayName());
+		}
+		if(userUpdate.getCustomer().getAvatarURL() != null) {
+			originalUser.getCustomer().setAvatarURL(userUpdate.getCustomer().getAvatarURL());
+		}
+		
+		userRepo.saveAndFlush(originalUser);
+		
+	}
+
 	
 
 

@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: CustomerProfileComponent },
   { path: '', component: InventoryItemListComponent },
+  { path: 'landing', component: InventoryItemListComponent },
 ];
 
 @NgModule({
