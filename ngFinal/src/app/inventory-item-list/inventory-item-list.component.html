@@ -1,3 +1,23 @@
-<p>
-  inventory-item-list works!
-</p>
+<table *ngIf="!selected">
+
+  <th>ID</th>
+  <th>NAME</th>
+  <th>DESCRIPTION</th>
+  <th>PRICE</th>
+  <th>CONDITION</th>
+  <th>IMAGE</th>
+
+  {{inventoryItems[0].name}}
+
+<tbody>
+<tr *ngFor="let item of inventoryItems">
+  <td>{{item.id}}</td>
+  <td>{{item.name}}</td>
+  <td>{{item.description}}</td>
+  <td>{{item.price}}</td>
+  <td>{{item.condition}}</td>
+  <td>{{item.imgUrl}}</td>
+
+</tr>
+</tbody>
+</table>

@@ -8,7 +8,6 @@ export class Vendor {
   isActive: boolean;
   inventory: InventoryItem [] = [];
 
-
   constructor(id?: number,
     imgUrl?: string,
     about?: string,
