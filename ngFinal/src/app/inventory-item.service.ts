@@ -46,4 +46,25 @@ export class InventoryItemService {
       })
     );
   }
+
+  addVendorItems(vendorItem: InventoryItem) {
+    return this.http.post<InventoryItem>(this.baseUrl + 'api/item', vendorItem, this.httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error creating VendorInventoryItem');
+        })
+    );
+  }
+
+  updateVendorItems(vendorItem: InventoryItem) {
+    return this.http.put<InventoryItem>(this.baseUrl + 'api/item/' + vendorItem.id, vendorItem, this.httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('Error updating VendorInventoryItem');
+      })
+    );
+
+  }
 }
