@@ -16,18 +16,21 @@
   <div *ngIf="!user.vendor.listedItems">
     No items posted.
   </div>
-  <div *ngFor="let item of user.vendor.listedItems">
-    <img src="{{item.imgUrl}}" alt=""> <br>
-
-    Title: {{item.name}} <br>
-    Condition: {{item.condition}} <br>
-    Description: {{item.description}} <br>
-    Currently Rented: {{item.rented}} <br>
-    Delted: {{!item.active}} <br>
-    Price: {{item.price}} <br>
-    <hr>
-  </div>
+  <div *ngFor="let item of user.vendor.listedItems" class="card" style="width: 18rem;">
+      <img class="card-img-top" [src]="item.imgUrl" alt="image">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.description}}</p>
+        <p class="card-text">{{item.price | currency}}</p>
+        <p class="card-text">{{item.condition}}</p>
+      </div>
+      <button class="btn btn-primary" >Rent Me</button>
+    </div>
 </div>
+
+
+
+
 
 
   <div *ngIf="editUser">

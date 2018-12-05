@@ -13,17 +13,22 @@
 <br>
 <br>
 <br>
-<div *ngIf="!selected && !editItem" >
-  <div *ngFor="let item of vendorInventory" class="card" style="width: 18rem;">
+
+
+
+<div *ngIf="!selected && !editItem && !editItem.active" >
+  <div *ngFor="let item of vendorInventory" class="card" style="width: 18rem;" >
       <img class="card-img-top" [src]="item.imgUrl" alt="image">
       <div class="card-body">
         <h5 class="card-title">{{item.name}}</h5>
         <p class="card-text">{{item.description}}</p>
         <p class="card-text">{{item.price | currency}}</p>
         <p class="card-text">{{item.condition}}</p>
+        <!-- <p hidden class="card-text">{{item.active}}</p>
+        <p hidden class="card-text">{{item.rented}}</p> -->
       </div>
       <button class="btn btn-primary" (click)="setEditVendorInventory(item)">Edit</button>
-      <button class="btn btn-danger">Delete</button>
+      <button class="btn btn-danger" (click)="updateVendorInventory(!editItem.active)">Delete</button>
     </div>
 </div>
 

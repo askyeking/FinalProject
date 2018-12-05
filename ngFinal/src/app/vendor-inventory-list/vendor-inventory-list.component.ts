@@ -57,6 +57,10 @@ export class VendorInventoryListComponent implements OnInit {
 
   }
 
+  setVendorInventoryItemToFalse() {
+    this.editItem.active = false;
+  }
+
   updateVendorInventory () {
     this.inventoryItemService.updateVendorItems(this.editItem).subscribe(
       data => {
