@@ -1,0 +1,25 @@
+<p>
+  vendor-inventory-list works!
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div *ngIf="!selected" >
+  <div *ngFor="let item of vendorInventory" class="card" style="width: 18rem;">
+      <img class="card-img-top" src="item.imgUrl" alt="image">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.description}}</p>
+        <p class="card-text">{{item.price | currency}}</p>
+        <p class="card-text">{{item.condition}}</p>
+        <div *ngIf="authService.getToken()">
+            <a href="#" class="btn btn-primary">View Item</a>
+        </div>
+      </div>
+      <button class="btn btn-primary" >Edit</button>
+      <button  class="btn btn-danger">Delete</button>
+    </div>
+</div>
