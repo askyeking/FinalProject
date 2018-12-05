@@ -5,13 +5,32 @@
       <img class="card-img-top" src="item.imgUrl" alt="image">
       <div class="card-body">
         <h5 class="card-title">{{item.name}}</h5>
-        <p class="card-text">{{item.description}}</p>
-        <p class="card-text">{{item.price | currency}}</p>
-        <p class="card-text">{{item.condition}}</p>
         <div *ngIf="authService.getToken()">
-            <a href="#" class="btn btn-primary">View Item</a>
+            <button (click)="loadInventoryItems(selected=item)" class="btn btn-primary">View Item</button>
         </div>
 
       </div>
     </div>
 </div>
+
+<div *ngIf="selected" >
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="selected.imgUrl" alt="image">
+        <div class="card-body">
+          <h5 class="card-title">{{selected.name}}</h5>
+          <p class="card-text">{{selected.description}}</p>
+          <p class="card-text">{{selected.price | currency}}</p>
+          <p class="card-text">{{selected.condition}}</p>
+          <div *ngIf="authService.getToken()">
+              <button class="btn btn-primary">Rent</button>
+              <button (click)="loadInventoryItems(selected=null)" class="btn btn-primary">Back</button>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+
+
+
+

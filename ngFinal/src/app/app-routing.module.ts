@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'profile', component: CustomerProfileComponent },
   { path: 'vendorInventory', component: VendorInventoryListComponent },
   { path: '', component: InventoryItemListComponent },
+  { path: 'landing', component: InventoryItemListComponent },
 ];
 
 @NgModule({

@@ -15,6 +15,8 @@ public interface UserService {
 	User addVendor(Vendor vendor, int uid);
 	
 	User findByEmail(String email);
+
+	void update(User userUpdate, User originalUser);
 	
 	
 	

@@ -58,4 +58,25 @@ export class UserService {
     );
   }
 
+  update(user: User): Observable<User> {
+    if (user.email) {
+      this.authService.logout();
+      this.router.navigateByUrl('');
+    }
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.patch<User>(this.baseUrl + 'api/user/customer', user, httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('userService.retrieveProfiles(): Error creating profiles');
+      })
+    );
+  }
+
 }
