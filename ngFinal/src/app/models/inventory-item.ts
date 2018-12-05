@@ -5,8 +5,8 @@ export class InventoryItem {
   name: string;
   description: string;
   imgUrl: string;
-  isActive: boolean;
-  isRented: boolean;
+  active: boolean;
+  rented: boolean;
 
 
   constructor(
@@ -16,8 +16,8 @@ export class InventoryItem {
     name?: string,
     description?: string,
     imgUrl?: string,
-    isActive?: boolean,
-    isRented?: boolean
+    active?: boolean,
+    rented?: boolean
   ) {
     this.id = id;
     this.price = price;
@@ -25,8 +25,8 @@ export class InventoryItem {
     this.name = name;
     this.description = description;
     this.imgUrl = imgUrl;
-    this.isActive = isActive;
-    this.isRented = isRented;
+    this.active = active;
+    this.rented = rented;
 
   }
 

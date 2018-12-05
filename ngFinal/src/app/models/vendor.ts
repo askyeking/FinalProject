@@ -5,19 +5,21 @@ export class Vendor {
   imgUrl: string;
   about: string;
   displayName: string;
-  isActive: boolean;
-  inventory: InventoryItem [] = [];
+  active: boolean;
+  listedItems: InventoryItem [] = [];
 
   constructor(id?: number,
     imgUrl?: string,
     about?: string,
     displayName?: string,
-    isActive?: boolean) {
+    active?: boolean,
+    listedItems?: InventoryItem []) {
     this.id = id;
     this.imgUrl = imgUrl;
     this.about = about;
     this.displayName = displayName;
-    this.isActive = isActive;
+    this.active = active;
+    this.listedItems = listedItems;
   }
 
 
