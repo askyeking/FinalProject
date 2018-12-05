@@ -5,10 +5,13 @@ import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.skilldistillery.swag.entities.Category;
 import com.skilldistillery.swag.entities.InventoryItem;
 import com.skilldistillery.swag.entities.Vendor;
 
 public interface InventoryItemRepository extends JpaRepository<InventoryItem, Integer> {
 	Set<InventoryItem> findByIsRentedAndIsActive(boolean isRented, boolean isActive);
 	List<InventoryItem> findByVendor(Vendor vendor);
+//	List<InventoryItem> findByCategory(Category category);
+//	List<InventoryItem> findByNameLikeOrDescriptionLike(String keyword);
 }

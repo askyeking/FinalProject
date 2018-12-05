@@ -8,7 +8,8 @@ public interface RentalItemService {
 
 	List<ItemRental> showAll();
 
-	ItemRental postItemRental();
+
+	ItemRental postItemRental(ItemRental itemRented);
 
 	
 	

@@ -1,13 +1,17 @@
 package com.skilldistillery.swag.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,25 +27,71 @@ public class InventoryItem {
 	@ManyToOne
 	@JoinColumn(name="vendor_id")
 	private Vendor vendor;
+	
 	private double price;
-	//change data type to ENUM
 	@Column(name="item_condition")
+	
 	private String condition;
+	
 	private String name;
+	
 	private String description;
+	
 	@Column(name="image_url")
 	private String imgUrl;
+	
 	@Column(name="active")
 	private boolean isActive;
+	
 	@Column(name="rented")
 	private boolean isRented;
+	
+	
+	
+	@ManyToMany
+	@JoinTable(name="inventory_item_category",
+	joinColumns=@JoinColumn(name="inventory_item_id"),
+	inverseJoinColumns=@JoinColumn(name="category_id"))
+	private List<Category> itemCategories;
+	
+	
+//	@ManyToMany
+//	@JoinTable(name="favorite_recipe",
+//	joinColumns=@JoinColumn(name="recipe_id"),
+//	inverseJoinColumns=@JoinColumn(name="user_id"))
+//	private List<User> usersWhoFavorited;
+		
+	
+	
 
+	@JsonIgnore
+	@OneToMany(mappedBy="inventoryItem")
+	private List<ItemRental> allRents;
 	
 	
 	public Vendor getVendor() {
 		return vendor;
 	}
 	
+	public List<Category> getItemCategories() {
+		return itemCategories;
+	}
+
+	public void setItemCategories(List<Category> itemCategories) {
+		this.itemCategories = itemCategories;
+	}
+
+	
+	public List<ItemRental> getAllRents() {
+		return allRents;
+	}
+
+
+	public void setAllRents(List<ItemRental> allRents) {
+		this.allRents = allRents;
+	}
+
+
 	public void setVendor(Vendor vendor) {
 		this.vendor = vendor;
 	}

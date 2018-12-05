@@ -1,11 +1,17 @@
 package com.skilldistillery.swag.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.swag.entities.InventoryItem;
 import com.skilldistillery.swag.entities.ItemRental;
+import com.skilldistillery.swag.repositories.InventoryItemRepository;
 import com.skilldistillery.swag.repositories.RentalItemRepository;
 import com.skilldistillery.swag.repositories.UserRepository;
 
@@ -17,6 +23,8 @@ public class RentalItemServiceImpl implements RentalItemService {
 	RentalItemRepository rentalRepo;
 	@Autowired
 	UserRepository userRepo;
+	@Autowired
+	InventoryItemRepository itemRepo;
 	
 	
 	@Override
@@ -26,9 +34,28 @@ public class RentalItemServiceImpl implements RentalItemService {
 
 
 	@Override
-	public ItemRental postItemRental() {
-		// TODO Auto-generated method stub
-		return null;
+	public ItemRental postItemRental(ItemRental itemRented) {
+		itemRented.setActive(true);
+		itemRented.setPaid(true);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		if(itemRented.getStartDate() == null) {
+			try {
+				itemRented.setStartDate(new SimpleDateFormat("yyyy-MM-dd").parse(LocalDate.now().toString()));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		InventoryItem itemToRent = itemRented.getInventoryItem();
+		itemToRent.setRented(true);
+		itemToRent.getAllRents().add(itemRented);
+		
+		System.out.println("customer");
+		System.out.println(itemRented.getCustomer());
+		
+		itemRepo.saveAndFlush(itemToRent);
+//		rentalRepo.saveAndFlush(itemRented);
+		
+		return itemRented;
 	}
 
 

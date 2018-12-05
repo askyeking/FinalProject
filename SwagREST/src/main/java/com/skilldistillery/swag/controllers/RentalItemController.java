@@ -53,6 +53,26 @@ public class RentalItemController {
 //		return rentItem;
 //	}
 	
+	@PostMapping("rental")
+	public ItemRental rentInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
+		
+		System.out.println("**************************************************************************");
+		
+		if(itemRented.getCustomer() != null
+				&& itemRented.getInventoryItem() != null) {
+			System.out.println("********************************************************************************");
+			resp.setStatus(200);
+			System.out.println(itemRented);
+			itemRented = rentalService.postItemRental(itemRented);
+		}
+		else {
+			resp.setStatus(406);
+		}
+		
+		System.out.println(itemRented);
+		return itemRented;
+	}
+	
 	
 
 }

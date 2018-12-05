@@ -42,7 +42,8 @@ class CategoryTests {
 
 	@Test
 	void test_Category_mapping() {
-		assertEquals("hats", cat.getName());
+//		assertEquals("hats", cat.getName());
+		assertEquals(1 ,cat.getItemsOfCategory().size());
 	}
 
 }

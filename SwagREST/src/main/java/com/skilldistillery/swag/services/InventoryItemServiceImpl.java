@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.swag.entities.Category;
 import com.skilldistillery.swag.entities.InventoryItem;
 import com.skilldistillery.swag.entities.User;
 import com.skilldistillery.swag.entities.Vendor;
@@ -83,6 +84,14 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 		return managedItem;
 	}
 	
+	
+//	public List<InventoryItem> findByCategory(Category category) {
+//		return this.itemRepo.findByCategory(category);
+//	}
+	
+//	public List<InventoryItem> findByKeyword(String keyword) {
+//		return this.itemRepo.findByNameLikeOrDescriptionLike(keyword);
+//	}
 	  
 
 }
