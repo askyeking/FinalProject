@@ -83,15 +83,21 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 		}
 		return managedItem;
 	}
-	
-	
-//	public List<InventoryItem> findByCategory(Category category) {
-//		return this.itemRepo.findByCategory(category);
+
+//	@Override
+//	public List<InventoryItem> test(Category category) {
+//		
+//		return this.itemRepo.;
 //	}
 	
-//	public List<InventoryItem> findByKeyword(String keyword) {
-//		return this.itemRepo.findByNameLikeOrDescriptionLike(keyword);
-//	}
+	
+	public List<InventoryItem> findByCategory(String category) {
+		return this.itemRepo.findByItemCategory(category);
+	}
+	
+	public List<InventoryItem> findByKeyword(String keyword) {
+		return this.itemRepo.findByNameLikeOrDescriptionLike(keyword, keyword);
+	}
 	  
 
 }
