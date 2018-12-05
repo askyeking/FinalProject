@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -77,6 +78,16 @@ public class InventoryItemController {
 		
 	}
 	
+	@PutMapping("item/{id}")
+	public InventoryItem updateItem(@PathVariable ("id") int id, @RequestBody InventoryItem item,
+			HttpServletResponse res, HttpServletRequest req, Principal principal) {
+		
+		User userUpdatingItem = userService.findByEmail(principal.getName());
+		
+		InventoryItem updateItem = itemService.update(userUpdatingItem, id, item);
+		return updateItem;
+	}
+	
 	
 	@GetMapping("item/vendor")
 	public List<InventoryItem> vendorItems(HttpServletResponse res, HttpServletRequest req, Principal principal) {
@@ -86,6 +97,8 @@ public class InventoryItemController {
 		return vendorItems;
 		
 	}
+	
+	
 	
 
 }

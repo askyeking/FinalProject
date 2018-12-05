@@ -63,6 +63,25 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 		itemRepo.saveAndFlush(item);
 		return item;
 	}
+
+	@Override
+	public InventoryItem update(User poster, int id, InventoryItem item) {
+		InventoryItem managedItem = null;
+		Optional<InventoryItem> itemOpt = itemRepo.findById(id);
+		if(itemOpt.isPresent()) {
+			managedItem = itemOpt.get();
+			managedItem.setName(item.getName());
+			managedItem.setDescription(item.getDescription());
+			managedItem.setPrice(item.getPrice());
+			managedItem.setCondition(item.getCondition());
+			managedItem.setImgUrl(item.getImgUrl());
+			managedItem.setActive(item.isActive());
+			managedItem.setRented(item.isRented());
+			itemRepo.saveAndFlush(managedItem);
+			
+		}
+		return managedItem;
+	}
 	
 	  
 

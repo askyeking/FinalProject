@@ -19,7 +19,7 @@ public interface InventoryItemService {
 
 	public InventoryItem postItem(InventoryItem item, User poster);
 
-//	  public Todo update(String username, int tid, Todo todo);
+	public InventoryItem update(User poster, int tid, InventoryItem item);
 //
 //	  public boolean destroy(String username, int tid);
 }
