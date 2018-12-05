@@ -25,20 +25,12 @@
       <li class="nav-item"><a class="nav-link" href="#">Cart</a></li>
     </ul>
 
-
+    <button>Search</button>
     <form  *ngIf="authService.getToken()">
       <div class="form-group">
         <label for="inputsm"></label>
         <input class="form-control input-sm" id="inputsm" type="text">
       </div>
-       <!-- <div class="form-group">
-        <label for="inputdefault">Default input</label>
-        <input class="form-control" id="inputdefault" type="text">
-      </div>
-      <div class="form-group">
-        <label for="inputlg">Large input</label>
-        <input class="form-control input-lg" id="inputlg" type="text">
-      </div> -->
     </form>&nbsp;
 
 
@@ -59,18 +51,28 @@
         aria-labelledby="button-basic">
         <li role="menuitem"><a class="dropdown-item"  (click)="dropdownButtonText = 'Vendor' "  href="#">Vendor</a></li>
         <li role="menuitem">
-          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item"  (click)="dropdownButtonText = 'Keyword' " href="#">Keyword</a>
         </li>
-        <li role="menuitem">
-          <a class="dropdown-item" href="#">Something else here</a>
+        <!-- <li role="menuitem">
+          <a class="dropdown-item" (click)="dropdownButtonText = 'Category' " href="#">Category</a>
+        </li> -->
+        <li role="menuitem" dropdown triggers="mouseover" placement="left" container="body">
+          <a dropdownToggle class="dropdown-item dropdown-toggle"
+             (click)="false"> Category <span class="caret"></span></a>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem"><a class="dropdown-item" (click)="dropdownButtonText = 'Testing'" href="#/dropdowns#nested">Testing</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested">Action1</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested">Action2</a></li>
+          </ul>
         </li>
-        <li class="divider dropdown-divider"></li>
+        <!-- <li class="divider dropdown-divider"></li>
         <li role="menuitem">
           <a class="dropdown-item" href="#">Separated link</a>
-        </li>
+        </li> -->
       </ul>
     </div>
     <!-- dropdown menu end-->
+
     <div>
       <app-login *ngIf="!authService.getToken()"></app-login>
       <app-logout *ngIf="authService.getToken()"></app-logout>
