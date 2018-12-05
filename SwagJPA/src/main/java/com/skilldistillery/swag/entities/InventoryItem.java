@@ -1,13 +1,16 @@
 package com.skilldistillery.swag.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,13 +38,37 @@ public class InventoryItem {
 	private boolean isActive;
 	@Column(name="rented")
 	private boolean isRented;
-
+	
+	
+	@ManyToMany
+	@JoinTable(name="inventory_item_category",
+	joinColumns=@JoinColumn(name="inventory_item_id"),
+	inverseJoinColumns=@JoinColumn(name="category_id"))
+	private List<Category> itemCategories;
+	
+	
+//	@ManyToMany
+//	@JoinTable(name="favorite_recipe",
+//	joinColumns=@JoinColumn(name="recipe_id"),
+//	inverseJoinColumns=@JoinColumn(name="user_id"))
+//	private List<User> usersWhoFavorited;
+		
+	
+	
 	
 	
 	public Vendor getVendor() {
 		return vendor;
 	}
 	
+	public List<Category> getItemCategories() {
+		return itemCategories;
+	}
+
+	public void setItemCategories(List<Category> itemCategories) {
+		this.itemCategories = itemCategories;
+	}
+
 	public void setVendor(Vendor vendor) {
 		this.vendor = vendor;
 	}

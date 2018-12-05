@@ -60,9 +60,7 @@
           <a dropdownToggle class="dropdown-item dropdown-toggle"
              (click)="false"> Category <span class="caret"></span></a>
           <ul *dropdownMenu class="dropdown-menu" role="menu">
-            <li role="menuitem"><a class="dropdown-item" (click)="dropdownButtonText = 'Testing'" href="#/dropdowns#nested">Testing</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested">Action1</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested">Action2</a></li>
+            <li   *ngFor="let cat of categories"   role="menuitem"><a class="dropdown-item" (click)="selectCategory(cat)" href="#/dropdowns#nested">{{cat.name}}</a></li>
           </ul>
         </li>
         <!-- <li class="divider dropdown-divider"></li>

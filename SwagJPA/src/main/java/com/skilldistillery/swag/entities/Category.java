@@ -1,9 +1,13 @@
 package com.skilldistillery.swag.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Category {
@@ -13,9 +17,31 @@ public class Category {
 	private int id;
 	private String name;
 	
+	@ManyToMany(mappedBy="itemCategories")
+	private List<InventoryItem> itemsOfCategory;
+	
+	
+//	@ManyToMany
+//	@JoinTable(name="favorite_recipe",
+//	joinColumns=@JoinColumn(name="recipe_id"),
+//	inverseJoinColumns=@JoinColumn(name="user_id"))
+//	private List<User> usersWhoFavorited;
+	
+	
+	
+	
+	
 	
 	public String getName() {
 		return name;
+	}
+
+	public List<InventoryItem> getItemsOfCategory() {
+		return itemsOfCategory;
+	}
+
+	public void setItemsOfCategory(List<InventoryItem> itemsOfCategory) {
+		this.itemsOfCategory = itemsOfCategory;
 	}
 
 	public void setName(String name) {
