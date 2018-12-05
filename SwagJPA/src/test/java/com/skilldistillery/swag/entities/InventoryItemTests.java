@@ -42,6 +42,7 @@ class InventoryItemTests {
 
 	@Test
 	void test_InventoryItem_mapping() {
+<<<<<<< HEAD
 //		assertEquals("swagger hat for swaggy men", item.getName());
 //		assertEquals(4, item.getPrice());
 //		assertEquals(1, item.getVendor().getId());
@@ -54,6 +55,18 @@ class InventoryItemTests {
 //		assertEquals(true, item.isActive());
 //		assertEquals(false, item.isRented());
 		assertEquals(1, item.getItemCategories().size());
+=======
+		assertEquals("Page Boy Hat", item.getName());
+		assertEquals(4, item.getPrice());
+		assertEquals(1, item.getVendor().getId());
+		assertEquals("A nice hat all year round, keeps the sun out of your eyes or can provide some extra warmth in the winter.", item.getDescription());
+		assertEquals("https://images-na.ssl-images-amazon.com/images/I/61KToCWpZSL._UY445_.jpg", item.getImgUrl());
+		assertEquals("Good", item.getCondition());
+		assertEquals("theSeller!!", item.getVendor().getDisplayName());
+		assertEquals(true, item.isActive());
+		assertEquals(false, item.isRented());
+		assertEquals(1, item.getAllRents().get(0).getId());
+>>>>>>> aa2e01643972446f60c36273188bb28ecc6935bf
 	}
 
 }

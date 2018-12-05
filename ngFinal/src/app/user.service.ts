@@ -77,7 +77,9 @@ export class UserService {
     );
   }
 
+
   updateVendor(user: User): Observable<User> {
+    console.log('In Service.updateVendor()');
     console.log(user);
 
     const httpOptions = {
@@ -87,7 +89,7 @@ export class UserService {
       })
     };
 
-    return this.http.patch<User>(this.baseUrl + 'api/user/vendor', user, httpOptions)
+    return this.http.patch<User>(this.baseUrl + 'api/vendor', user.vendor, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);

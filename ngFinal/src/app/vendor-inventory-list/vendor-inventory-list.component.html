@@ -1,13 +1,19 @@
-<p>
-  vendor-inventory-list works!
-</p>
+
+<div *ngIf="!selected && !editItem">
+  <form>
+    <input type="text" name="name" placeholder="Name" [(ngModel)]="newItem.name"/><br>
+    <input type="text" name="description" placeholder="Description" [(ngModel)]="newItem.description"/><br>
+    <input type="text" name="price" placeholder="Price" [(ngModel)]="newItem.price"/><br>
+    <input type="text" name="condition" placeholder="Condition" [(ngModel)]="newItem.condition"/><br>
+    <input type="text" name="imgUrl" placeholder="Link of Image URL" [(ngModel)]="newItem.imgUrl"/><br>
+    <input type="submit" value="Add Item" (click) = "addVendorInventory();"/>
+  </form>
+</div>
+
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<div *ngIf="!selected" >
+<div *ngIf="!selected && !editItem" >
   <div *ngFor="let item of vendorInventory" class="card" style="width: 18rem;">
       <img class="card-img-top" [src]="item.imgUrl" alt="image">
       <div class="card-body">
@@ -15,11 +21,19 @@
         <p class="card-text">{{item.description}}</p>
         <p class="card-text">{{item.price | currency}}</p>
         <p class="card-text">{{item.condition}}</p>
-        <div *ngIf="authService.getToken()">
-            <a href="#" class="btn btn-primary">View Item</a>
-        </div>
       </div>
-      <button class="btn btn-primary" >Edit</button>
-      <button  class="btn btn-danger">Delete</button>
+      <button class="btn btn-primary" (click)="setEditVendorInventory(item)">Edit</button>
+      <button class="btn btn-danger">Delete</button>
     </div>
 </div>
+
+
+  <form selected="setEditVendorInventory" *ngIf="editItem">
+     Name: <input type="text" [(ngModel)]="editItem.name" name="name" size="50"  /><br>
+     Description: <input type="text" [(ngModel)]="editItem.description" name="description" size="50"  /><br>
+     Price: <input type="text" [(ngModel)]="editItem.price" name="price" size="50"  /><br>
+     Condition: <input type="text" [(ngModel)]="editItem.condition" name="condition" size="50"  /><br>
+     Image URL: <input type="text" [(ngModel)]="editItem.imgUrl" name="imgUrl" size="50"  /><br>
+      <button class="btn btn-outline-success" (click)="updateVendorInventory(editItem)">Save</button>
+      <button class="btn btn-outline-danger" (click)="editItem=null">Cancel</button>
+  </form>

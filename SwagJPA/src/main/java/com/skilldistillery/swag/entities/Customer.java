@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -34,6 +35,7 @@ public class Customer {
 	@JoinColumn(name="user_id")
 	private User customerUser;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="customer")
 	private List<ItemRental> rentedItems;
 	
@@ -107,6 +109,7 @@ public class Customer {
 		return true;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", displayName=" + displayName + ", isActive=" + isActive + ", avatarURL="

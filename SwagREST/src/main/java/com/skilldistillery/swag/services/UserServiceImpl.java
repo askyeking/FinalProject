@@ -82,10 +82,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void update(User userUpdate, User originalUser) {
 		System.out.println("Updated email " + userUpdate.getEmail());
-		if(userUpdate.getEmail() != null) {
+		if(userUpdate.getEmail() != null
+				&& !userUpdate.getEmail().equals("")) {
 			originalUser.setEmail(userUpdate.getEmail());
 		}
-		if(userUpdate.getCustomer().getDisplayName() != null) {
+		if(userUpdate.getCustomer().getDisplayName() != null
+				&& !userUpdate.getCustomer().getDisplayName().equals("")) {
 			originalUser.getCustomer().setDisplayName(userUpdate.getCustomer().getDisplayName());
 		}
 		if(userUpdate.getCustomer().getAvatarURL() != null) {

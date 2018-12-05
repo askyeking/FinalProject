@@ -9,9 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="item_rental")
@@ -21,12 +20,12 @@ public class ItemRental {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="inventory_item_id")
 	private InventoryItem inventoryItem;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;
@@ -59,6 +58,8 @@ public class ItemRental {
 	public void setInventoryItem(InventoryItem inventoryItem) {
 		this.inventoryItem = inventoryItem;
 	}
+	
+	
 
 	public Customer getCustomer() {
 		return customer;

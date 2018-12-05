@@ -1,5 +1,9 @@
 package com.skilldistillery.swag.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +30,20 @@ public class RentalItemServiceImpl implements RentalItemService {
 
 
 	@Override
-	public ItemRental postItemRental() {
-		// TODO Auto-generated method stub
-		return null;
+	public ItemRental postItemRental(ItemRental itemRented) {
+		itemRented.setActive(true);
+		itemRented.setPaid(true);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		if(itemRented.getStartDate() == null) {
+			try {
+				itemRented.setStartDate(new SimpleDateFormat("yyyy-MM-dd").parse(LocalDate.now().toString()));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		rentalRepo.saveAndFlush(itemRented);
+		
+		return itemRented;
 	}
 
 

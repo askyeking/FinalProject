@@ -11,6 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+<<<<<<< HEAD
+=======
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+>>>>>>> aa2e01643972446f60c36273188bb28ecc6935bf
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,18 +31,25 @@ public class InventoryItem {
 	@ManyToOne
 	@JoinColumn(name="vendor_id")
 	private Vendor vendor;
+	
 	private double price;
-	//change data type to ENUM
 	@Column(name="item_condition")
+	
 	private String condition;
+	
 	private String name;
+	
 	private String description;
+	
 	@Column(name="image_url")
 	private String imgUrl;
+	
 	@Column(name="active")
 	private boolean isActive;
+	
 	@Column(name="rented")
 	private boolean isRented;
+<<<<<<< HEAD
 	
 	
 	@ManyToMany
@@ -55,12 +67,19 @@ public class InventoryItem {
 		
 	
 	
+=======
+
+	@JsonIgnore
+	@OneToMany(mappedBy="inventoryItem")
+	private List<ItemRental> allRents;
+>>>>>>> aa2e01643972446f60c36273188bb28ecc6935bf
 	
 	
 	public Vendor getVendor() {
 		return vendor;
 	}
 	
+<<<<<<< HEAD
 	public List<Category> getItemCategories() {
 		return itemCategories;
 	}
@@ -69,6 +88,19 @@ public class InventoryItem {
 		this.itemCategories = itemCategories;
 	}
 
+=======
+	
+	public List<ItemRental> getAllRents() {
+		return allRents;
+	}
+
+
+	public void setAllRents(List<ItemRental> allRents) {
+		this.allRents = allRents;
+	}
+
+
+>>>>>>> aa2e01643972446f60c36273188bb28ecc6935bf
 	public void setVendor(Vendor vendor) {
 		this.vendor = vendor;
 	}

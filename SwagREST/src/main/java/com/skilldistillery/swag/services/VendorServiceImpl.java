@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.swag.entities.User;
 import com.skilldistillery.swag.entities.Vendor;
 import com.skilldistillery.swag.repositories.VendorRepository;
 
@@ -31,6 +32,26 @@ public class VendorServiceImpl implements VendorService {
 		//vendorRepo.
 		
 		return this.vendorRepo.findAll();
+	}
+
+	@Override
+	public void update(Vendor userUpdate, User originalUser) {
+		Vendor toUpdateVendor = originalUser.getVendor();
+		if (userUpdate.getAbout() != null 
+				&& !userUpdate.getAbout().equals("")) {
+			toUpdateVendor.setAbout(userUpdate.getAbout());
+		}
+		if (userUpdate.getDisplayName() != null
+				&& !userUpdate.getDisplayName().equals("")) {
+			toUpdateVendor.setDisplayName(userUpdate.getDisplayName());
+		}
+		if(userUpdate.getImgUrl() != null
+				&& !userUpdate.getImgUrl().equals("")) {
+			toUpdateVendor.setImgUrl(userUpdate.getImgUrl());
+		}
+		
+		System.out.println(toUpdateVendor);
+		vendorRepo.saveAndFlush(toUpdateVendor);
 	}
 	
 	
