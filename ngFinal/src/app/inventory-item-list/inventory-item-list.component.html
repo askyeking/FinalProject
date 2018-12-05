@@ -2,7 +2,7 @@
 <br>
 <div *ngIf="!selected" >
   <div *ngFor="let item of inventoryItems" class="card" style="width: 18rem;">
-      <img class="card-img-top" src="item.imgUrl" alt="image">
+      <img class="card-img-top" [src]="item.imgUrl" alt="image">
       <div class="card-body">
         <h5 class="card-title">{{item.name}}</h5>
         <div *ngIf="authService.getToken()">
@@ -15,7 +15,7 @@
 
 <div *ngIf="selected" >
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="selected.imgUrl" alt="image">
+        <img class="card-img-top" [src]="selected.imgUrl" alt="image">
         <div class="card-body">
           <h5 class="card-title">{{selected.name}}</h5>
           <p class="card-text">{{selected.description}}</p>
