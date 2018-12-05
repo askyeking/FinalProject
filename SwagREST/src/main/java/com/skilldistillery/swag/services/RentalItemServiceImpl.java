@@ -9,7 +9,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.swag.entities.InventoryItem;
 import com.skilldistillery.swag.entities.ItemRental;
+import com.skilldistillery.swag.repositories.InventoryItemRepository;
 import com.skilldistillery.swag.repositories.RentalItemRepository;
 import com.skilldistillery.swag.repositories.UserRepository;
 
@@ -21,6 +23,8 @@ public class RentalItemServiceImpl implements RentalItemService {
 	RentalItemRepository rentalRepo;
 	@Autowired
 	UserRepository userRepo;
+	@Autowired
+	InventoryItemRepository itemRepo;
 	
 	
 	@Override
@@ -41,7 +45,15 @@ public class RentalItemServiceImpl implements RentalItemService {
 				e.printStackTrace();
 			}
 		}
-		rentalRepo.saveAndFlush(itemRented);
+		InventoryItem itemToRent = itemRented.getInventoryItem();
+		itemToRent.setRented(true);
+		itemToRent.getAllRents().add(itemRented);
+		
+		System.out.println("customer");
+		System.out.println(itemRented.getCustomer());
+		
+		itemRepo.saveAndFlush(itemToRent);
+//		rentalRepo.saveAndFlush(itemRented);
 		
 		return itemRented;
 	}
