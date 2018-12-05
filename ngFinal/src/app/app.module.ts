@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { InventoryItemListComponent } from './inventory-item-list/inventory-item-list.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
+import { VendorProfileComponent } from './vendor-profile/vendor-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
     NavigationComponent,
     RegisterComponent,
     InventoryItemListComponent,
-    CustomerProfileComponent
+    CustomerProfileComponent,
+    VendorProfileComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),

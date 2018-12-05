@@ -17,7 +17,6 @@ export class CustomerProfileComponent implements OnInit {
   editUser: User = null;
 
   constructor(
-    private authService: AuthService,
     private userService: UserService,
     private router: Router
   ) {}

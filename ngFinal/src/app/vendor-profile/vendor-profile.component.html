@@ -1,0 +1,28 @@
+<div *ngIf="user && user.vendor">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="setEdit()">Edit</button>
+  {{user.vendor.imgUrl}}
+  <h1>{{user.vendor.displayName}}</h1>
+
+  <h3>About</h3>
+  {{user.vendor.about}} <br>
+  <hr>
+
+  <br>
+  <br>
+  <br>
+  <h3>Inventory</h3>
+  <div *ngIf="!user.vendor.listedItems">
+    No items posted.
+  </div>
+  <div *ngFor="let item of user.vendor.listedItems">
+    <img src="{{item.imgUrl}}" alt=""> <br>
+
+    Title: {{item.name}} <br>
+    Condition: {{item.condition}} <br>
+    Description: {{item.description}} <br>
+    Currently Rented: {{item.rented}} <br>
+    Delted: {{!item.active}} <br>
+    Price: {{item.price}} <br>
+    <hr>
+  </div>
+</div>

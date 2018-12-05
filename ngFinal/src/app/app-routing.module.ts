@@ -1,3 +1,4 @@
+import { VendorProfileComponent } from './vendor-profile/vendor-profile.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'profile', component: CustomerProfileComponent },
   { path: '', component: InventoryItemListComponent },
   { path: 'landing', component: InventoryItemListComponent },
+  { path: 'vendorProfile', component: VendorProfileComponent },
 ];
 
 @NgModule({

@@ -59,10 +59,8 @@ export class UserService {
   }
 
   update(user: User): Observable<User> {
-    if (user.email) {
-      this.authService.logout();
-      this.router.navigateByUrl('');
-    }
+    console.log(user);
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
