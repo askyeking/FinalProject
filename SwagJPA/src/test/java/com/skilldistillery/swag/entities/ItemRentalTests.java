@@ -31,7 +31,7 @@ class ItemRentalTests {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		rental = em.find(ItemRental.class, 1);
+		rental = em.find(ItemRental.class, 9);
 	}
 
 	@AfterEach
@@ -41,15 +41,15 @@ class ItemRentalTests {
 
 	@Test
 	void test_ItemRental_mapping() {
-		assertEquals(1, rental.getInventoryItem().getId());
-		assertEquals(1, rental.getCustomer().getId());getClass();
-		assertEquals(true, rental.isPaid());
-		assertEquals("2018-12-13", rental.getStartDate().toString());
-		assertEquals("2018-12-14", rental.getEndDate().toString());
-		assertEquals(56, rental.getPaidAmount());
-		assertEquals(true, rental.isActive());
-		assertEquals("send it to me address mate. I'll pay ya. That stuff is real swag!", rental.getTransactionInfo());
-		
+//		assertEquals(1, rental.getInventoryItem().getId());
+//		assertEquals(1, rental.getCustomer().getId());getClass();
+//		assertEquals(true, rental.isPaid());
+//		assertEquals("2018-12-13", rental.getStartDate().toString());
+//		assertEquals("2018-12-14", rental.getEndDate().toString());
+//		assertEquals(56, rental.getPaidAmount());
+//		assertEquals(true, rental.isActive());
+//		assertEquals("send it to me address mate. I'll pay ya. That stuff is real swag!", rental.getTransactionInfo());
+		assertEquals("effrom23", rental.getCustomer().getDisplayName());
 	}
 
 }

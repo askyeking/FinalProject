@@ -21,7 +21,6 @@ export class VendorProfileComponent implements OnInit {
     this.getCurrentUser();
     console.log('active?');
     console.log(this.user.vendor.active);
-
   }
 
   getCurrentUser() {
@@ -42,7 +41,7 @@ export class VendorProfileComponent implements OnInit {
     console.log(user);
     console.log(user.vendor);
 
-    this.userService.update(user).subscribe(
+    this.userService.updateVendor(user).subscribe(
       data => {
 
         this.refresh();

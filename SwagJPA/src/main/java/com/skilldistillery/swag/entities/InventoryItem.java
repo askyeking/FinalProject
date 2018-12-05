@@ -1,5 +1,7 @@
 package com.skilldistillery.swag.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,25 +26,45 @@ public class InventoryItem {
 	@ManyToOne
 	@JoinColumn(name="vendor_id")
 	private Vendor vendor;
+	
 	private double price;
-	//change data type to ENUM
 	@Column(name="item_condition")
+	
 	private String condition;
+	
 	private String name;
+	
 	private String description;
+	
 	@Column(name="image_url")
 	private String imgUrl;
+	
 	@Column(name="active")
 	private boolean isActive;
+	
 	@Column(name="rented")
 	private boolean isRented;
 
+	@JsonIgnore
+	@OneToMany(mappedBy="inventoryItem")
+	private List<ItemRental> allRents;
 	
 	
 	public Vendor getVendor() {
 		return vendor;
 	}
 	
+	
+	public List<ItemRental> getAllRents() {
+		return allRents;
+	}
+
+
+	public void setAllRents(List<ItemRental> allRents) {
+		this.allRents = allRents;
+	}
+
+
 	public void setVendor(Vendor vendor) {
 		this.vendor = vendor;
 	}
