@@ -37,6 +37,24 @@ export class VendorProfileComponent implements OnInit {
     );
   }
 
+  updateVendor(user) {
+    console.log('vendorProfilecomponent.updateVendor()');
+    console.log(user);
+    console.log(user.vendor);
+
+    this.userService.update(user).subscribe(
+      data => {
+
+        this.refresh();
+        this.user = data;
+      },
+      err => {
+        this.refresh();
+        console.error('Observer got an error' + err);
+      }
+    );
+  }
+
   refresh() {
     this.getCurrentUser();
     this.editUser = null;

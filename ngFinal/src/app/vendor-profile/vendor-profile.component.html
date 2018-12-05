@@ -1,5 +1,7 @@
 <div *ngIf="user && user.vendor">
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="setEdit()">Edit</button>
+
+  <div *ngIf="!editUser">
   {{user.vendor.imgUrl}}
   <h1>{{user.vendor.displayName}}</h1>
 
@@ -25,4 +27,19 @@
     Price: {{item.price}} <br>
     <hr>
   </div>
+</div>
+
+
+  <div *ngIf="editUser">
+      <h1>{{editUser.email}}</h1>
+      {{editUser.password}}
+      <form action="">
+          Name: <input type="text" name="name" value="editUser.vendor.displayName" [(ngModel)]="editUser.vendor.displayName"  /><br>
+          Image URL: <input type="text" name="imageURL" value="editUser.vendor.imgUrl" [(ngModel)]="editUser.vendor.imgUrl"  /><br>
+          About: <input type="text" name="about" value="editUser.vendor.about" [(ngModel)]="editUser.vendor.about"  /><br>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="updateVendor(editUser)">Submit</button> &nbsp;&nbsp;
+          <button class="btn btn-danger my-2 my-sm-0" type="submit" (click)="cancelEdit()">Cancel</button>
+        </form>
+      <br>
+    </div>
 </div>

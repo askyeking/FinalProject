@@ -72,7 +72,26 @@ export class UserService {
     .pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError('userService.retrieveProfiles(): Error creating profiles');
+        return throwError('userService.update(): Error updateing customer');
+      })
+    );
+  }
+
+  updateVendor(user: User): Observable<User> {
+    console.log(user);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.patch<User>(this.baseUrl + 'api/user/vendor', user, httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('userService.updateVendor(): Error updating vendor');
       })
     );
   }
