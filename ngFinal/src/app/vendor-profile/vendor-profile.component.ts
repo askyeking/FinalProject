@@ -46,5 +46,12 @@ export class VendorProfileComponent implements OnInit {
   setEdit() {
     this.editUser = Object.assign({}, this.user);
     this.vendor = this.editUser.vendor;
+    console.log(this.vendor);
+  }
+
+  cancelEdit() {
+    this.editUser = null;
+    this.vendor = null;
+    this.getCurrentUser();
   }
 }
