@@ -28,10 +28,21 @@ export class InventoryItemService {
     // return this.http.get<InventoryItem[]>(this.url, this.httpOptions).pipe(
       return this.http.get<InventoryItem[]>(this.url).pipe(
         catchError((err: any) => {
-
         console.log('error in inventoryItemService index():');
         console.log(err);
       return throwError('Error getting InventoryItem List');
+      })
+    );
+  }
+
+
+  loadVendorItems() {
+    console.log(this.baseUrl);
+    return this.http.get<InventoryItem[]>(this.baseUrl + 'api/item/vendor', this.httpOptions).pipe(
+      catchError((err: any) => {
+        console.log('error in inventoryItemService loadVendorItems():');
+        console.log(err);
+      return throwError('Error getting InventoryItem List for Vendor');
       })
     );
   }
