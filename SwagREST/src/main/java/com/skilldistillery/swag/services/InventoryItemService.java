@@ -22,6 +22,10 @@ public interface InventoryItemService {
 
 	public InventoryItem update(User poster, int tid, InventoryItem item);
 //
+
+	List<InventoryItem> findByCategory(String category);
+
+	List<InventoryItem> findByKeyword(String keyword);
 	
 //	List<InventoryItem> test(Category category);
 

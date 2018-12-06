@@ -81,9 +81,7 @@ public class InventoryItemController {
 	@PutMapping("item/{id}")
 	public InventoryItem updateItem(@PathVariable ("id") int id, @RequestBody InventoryItem item,
 			HttpServletResponse res, HttpServletRequest req, Principal principal) {
-		
 		User userUpdatingItem = userService.findByEmail(principal.getName());
-		
 		InventoryItem updateItem = itemService.update(userUpdatingItem, id, item);
 		return updateItem;
 	}
@@ -95,6 +93,20 @@ public class InventoryItemController {
 		List<InventoryItem> vendorItems = this.itemService.indexVendor(vendor);
 		return vendorItems;
 	}
+	
+	
+	@GetMapping("items/category/{category}")
+	public List<InventoryItem> itemsByCategory(@PathVariable("category") String category, HttpServletResponse res, HttpServletRequest req, Principal principal) {
+		return this.itemService.findByCategory(category);
+	}
+	
+	@GetMapping("items/keyword/{keyword}")
+	public List<InventoryItem> itemsByKeyword(@PathVariable("keyword") String keyword, HttpServletResponse res, HttpServletRequest req, Principal principal) {
+		return this.itemService.findByKeyword(keyword);
+	}
+	
+	
+	
 	
 	
 	
