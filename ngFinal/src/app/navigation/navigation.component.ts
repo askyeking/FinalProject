@@ -20,7 +20,8 @@ export class NavigationComponent implements OnInit {
 
   categories: Category[] = [];
   selected: Category;
-
+  parameter: String;
+  keyword: String;
 
   constructor(private router: Router, public authService: AuthService,
      public catService: CategoryService, private searchService: SearchService, route: ActivatedRoute) { }
@@ -53,7 +54,8 @@ export class NavigationComponent implements OnInit {
   }
 
   searchByCategory() {
-
+    console.log("in Search before reroute");
+    this.router.navigateByUrl("inventoryItems/search/" + this.parameter + "/" + this.keyword);
   }
 
   searchByKeyword() {

@@ -2,6 +2,8 @@ import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { InventoryItemService } from '../inventory-item.service';
 import { SearchService } from '../search.service';
+import { ActivatedRoute } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-inventory-item-list',
@@ -13,6 +15,8 @@ export class InventoryItemListComponent implements OnInit {
   inventoryItems = [];
   selected = null;
   temp: string;
+  parameter: string;
+  keyword: string;
 
   loadInventoryItems() {
     this.inventoryItemService.index().subscribe(
@@ -22,22 +26,33 @@ export class InventoryItemListComponent implements OnInit {
 
   }
 
+  loadParameterizedInventoryItems() {
+      this.searchService.search(this.parameter, this.keyword).subscribe(
+          data => {
+            this.inventoryItems = data;
+          },
+          err => {
+           console.error('Observer got an error: ' + err);
 
-  get SearchData(): string {
-    return this.searchService.searchParameter;
+          }
+      );
+
   }
 
-  set searchData(value: string) {
-    this.searchService.searchParameter = value;
-  }
 
 
 
   constructor(private inventoryItemService: InventoryItemService,
-     public authService: AuthService, private searchService: SearchService) { }
+     public authService: AuthService, private searchService: SearchService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadInventoryItems();
+    this.parameter = this.route.snapshot.paramMap.get("parameter");
+    this.keyword = this.route.snapshot.paramMap.get("keyword");
+    if (this.parameter && this.keyword) {
+        this.loadParameterizedInventoryItems();
+    } else {
+      this.loadInventoryItems();
+    }
   }
 
 }
