@@ -54,6 +54,11 @@ public class VendorServiceImpl implements VendorService {
 		vendorRepo.saveAndFlush(toUpdateVendor);
 	}
 	
+	@Override
+	public List<Vendor> vendorSearch(String keyword) {
+		return this.vendorRepo.findByDisplayNameContains(keyword);
+	}
+	
 	
 	
 

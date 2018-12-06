@@ -1,3 +1,19 @@
 <p>
   vendor-list works!
 </p>
+
+
+<br>
+<br>
+<div >
+  <div *ngFor="let vendor of vendors" class="card" style="width: 18rem;">
+    <div *ngIf="vendor.active">
+      <img class="card-img-top" [src]="vendor.imgUrl" alt="image">
+      <div class="card-body">
+        <h4 class="card-title">{{vendor.displayName}}</h4>
+        <h6> {{vendor.about}} </h6>
+            <button (click)="selected=vendor" class="btn btn-primary">View Vendor</button>
+        </div>
+      </div>
+    </div>
+  </div>
