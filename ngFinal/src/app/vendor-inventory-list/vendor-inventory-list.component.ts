@@ -54,11 +54,14 @@ export class VendorInventoryListComponent implements OnInit {
     this.editItem = item;
    // this.editItem =  Object.assign({}, this.selected);
    // console.log(this.editItem);
-
   }
 
-  setVendorInventoryItemToFalse() {
+  setItemActiveToFalse(item: InventoryItem) {
+    this.setEditVendorInventory(item);
     this.editItem.active = false;
+    this.updateVendorInventory();
+    this.loadVendorInventory();
+    console.log(this.editItem);
   }
 
   updateVendorInventory () {
