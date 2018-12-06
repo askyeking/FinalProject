@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { InventoryItemService } from '../inventory-item.service';
 import { AuthService } from '../auth.service';
 import { getValueInRange } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { InventoryItem } from '../models/inventory-item';
 
 @Component({
   selector: 'app-inventory-item-view',
@@ -13,8 +14,8 @@ import { getValueInRange } from '@ng-bootstrap/ng-bootstrap/util/util';
 export class InventoryItemViewComponent implements OnInit {
 
 
-  langId;
-  mathId;
+  id;
+  selected: InventoryItem;
   // try;
   constructor(private inventoryItemService: InventoryItemService,
     public authService: AuthService, private searchService: SearchService, private router: Router, private route: ActivatedRoute) {
@@ -23,8 +24,11 @@ export class InventoryItemViewComponent implements OnInit {
 
   ngOnInit() {
     // this.try = this.langId;
-    this.langId  = this.route.snapshot.paramMap.get('id');
-    this.mathId = this.route.snapshot.paramMap.get('chillin');
+    this.id  = this.route.snapshot.paramMap.get('id');
+  }
+
+  backToHome() {
+    this.router.navigateByUrl('');
   }
 
 

@@ -2,6 +2,7 @@ import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { InventoryItemService } from '../inventory-item.service';
 import { SearchService } from '../search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inventory-item-list',
@@ -19,7 +20,11 @@ export class InventoryItemListComponent implements OnInit {
       data => this.inventoryItems = data,
       err => console.error('Observer got an error: ' + err)
     );
+  }
 
+  openItemView(itemId: number) {
+    console.log(itemId);
+    this.router.navigateByUrl('inventoryItems/viewItem/' + itemId);
   }
 
 
@@ -34,7 +39,7 @@ export class InventoryItemListComponent implements OnInit {
 
 
   constructor(private inventoryItemService: InventoryItemService,
-     public authService: AuthService, private searchService: SearchService) { }
+     public authService: AuthService, private searchService: SearchService, private router: Router) { }
 
   ngOnInit() {
     this.loadInventoryItems();
