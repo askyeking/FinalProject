@@ -1,9 +1,5 @@
-<p>
-  inventory-item-view works!
-  Id: {{id}}
-</p>
-
 <div *ngIf="selected" >
+    <button (click)="backToHome()" class="btn btn-primary">Back To Homes</button>
     <div class="card" style="width: 18rem;">
         <img class="card-img-top" [src]="selected.imgUrl" alt="image">
         <div class="card-body">
@@ -12,10 +8,31 @@
           <p class="card-text">{{selected.price | currency}}</p>
           <p class="card-text">{{selected.condition}}</p>
           <div *ngIf="authService.getToken()">
-              <button class="btn btn-primary">Rent</button>
-              <button (click)="backToHome()" class="btn btn-primary">Back To Homes</button>
+              <!-- <button class="btn btn-primary">Rent</button> -->
+
           </div>
 
         </div>
       </div>
+      <br>
+      <br>
+      <h2>Rental information</h2>
   </div>
+
+  <form *ngIf="selected" >
+  <!--
+  startDate: Date;
+  endDate: Date;
+  paidAmount: number;
+  active: boolean;
+  transactionInfo: string;
+  customer: Customer;
+  inventoryItem: InventoryItem; -->
+
+    Date of Rental (begin);
+    <input type="date"
+    name="Begin date"
+    placeholder="Full Name"
+    [(ngModel)]="itemRental.startDate"
+    required>
+  </form>

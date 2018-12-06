@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { InventoryItem } from './models/inventory-item';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { Injectable, Optional } from '@angular/core';
 import { Router } from '@angular/router';
+import { throwError, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
+import { InventoryItem } from './models/inventory-item';
 
 @Injectable({
   providedIn: 'root'
@@ -67,4 +67,17 @@ export class InventoryItemService {
     );
 
   }
+
+  getOne(id: number): Observable<InventoryItem> {
+    return this.http.get<InventoryItem>(this.baseUrl + 'api/item/' + id, this.httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('userService.retrieveProfiles(): Error creating profiles');
+      })
+    );
+  }
+
+
+
 }
