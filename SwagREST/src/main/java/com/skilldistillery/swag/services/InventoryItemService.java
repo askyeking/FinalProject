@@ -25,6 +25,7 @@ public interface InventoryItemService {
 
 	List<InventoryItem> findByCategory(String category);
 
+	
 	List<InventoryItem> findByKeyword(String keyword);
 	
 //	List<InventoryItem> test(Category category);
