@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'landing', component: InventoryItemListComponent },
   { path: 'vendorProfile', component: VendorProfileComponent },
   { path: 'inventoryItems/viewItem/:id', component: InventoryItemViewComponent},
-  { path: 'items/search/:parameter/:keyword', component: InventoryItemViewComponent},
+  { path: 'items/search/:parameter/:keyword', component: InventoryItemListComponent},
 ];
 
 @NgModule({

@@ -53,7 +53,7 @@ export class NavigationComponent implements OnInit {
   }
 
   searchByCategory() {
-    this.parameter = this.dropdownButtonText;
+    this.parameter = this.dropdownButtonText.toLowerCase();
     console.log('IN NAV COMPONENT !!!!!!!' + this.parameter);
     console.log("in Search before reroute");
     this.router.navigateByUrl("items/search/" + this.parameter + "/" + this.keyword);
@@ -79,6 +79,9 @@ export class NavigationComponent implements OnInit {
       this.selected = selectedCategory;
       this.dropdownButtonText = 'category';
       this.keyword = this.selected.name;
+      console.log(this.keyword);
+      console.log(this.parameter);
+      console.log();
   }
 
   ngOnInit() {
