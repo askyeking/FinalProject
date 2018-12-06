@@ -3,6 +3,7 @@ import { SearchService } from './../search.service';
 import { Component, OnInit } from '@angular/core';
 import { InventoryItemService } from '../inventory-item.service';
 import { AuthService } from '../auth.service';
+import { getValueInRange } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component({
   selector: 'app-inventory-item-view',
@@ -10,11 +11,19 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./inventory-item-view.component.css']
 })
 export class InventoryItemViewComponent implements OnInit {
-  constructor() {}
-  // constructor(private inventoryItemService: InventoryItemService,
-  //   public authService: AuthService, private searchService: SearchService, private router: Router, private route: ActivatedRoute) { }
-  // langId = this.route.snapshot.paramMap.get('id');
+
+
+  langId;
+  // try;
+  constructor(private inventoryItemService: InventoryItemService,
+    public authService: AuthService, private searchService: SearchService, private router: Router, private route: ActivatedRoute) {
+
+     }
+
   ngOnInit() {
+    // this.try = this.langId;
+    this.langId  = this.route.snapshot.paramMap.get('id');
   }
+
 
 }
