@@ -4,6 +4,7 @@ import { InventoryItemService } from '../inventory-item.service';
 import { SearchService } from '../search.service';
 import { ActivatedRoute } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inventory-item-list',
@@ -23,7 +24,11 @@ export class InventoryItemListComponent implements OnInit {
       data => this.inventoryItems = data,
       err => console.error('Observer got an error: ' + err)
     );
+  }
 
+  openItemView(itemId: number) {
+    console.log(itemId);
+    this.router.navigateByUrl('inventoryItems/viewItem/' + itemId);
   }
 
   loadParameterizedInventoryItems() {
@@ -43,7 +48,8 @@ export class InventoryItemListComponent implements OnInit {
 
 
   constructor(private inventoryItemService: InventoryItemService,
-     public authService: AuthService, private searchService: SearchService, private route: ActivatedRoute) { }
+     public authService: AuthService, private searchService: SearchService, private route: ActivatedRoute,
+     private router: Router) { }
 
   ngOnInit() {
     this.parameter = this.route.snapshot.paramMap.get("parameter");
