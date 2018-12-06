@@ -1,3 +1,4 @@
+import { ItemRentalViewComponent } from './item-rental-view/item-rental-view.component';
 import { VendorProfileComponent } from './vendor-profile/vendor-profile.component';
 import { VendorInventoryListComponent } from './vendor-inventory-list/vendor-inventory-list.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'landing', component: InventoryItemListComponent },
   { path: 'vendorProfile', component: VendorProfileComponent },
   { path: 'inventoryItems/viewItem/:id', component: InventoryItemViewComponent},
+  { path: 'inventoryItems/rental/:id', component: ItemRentalViewComponent},
   { path: 'items/search/:parameter/:keyword', component: InventoryItemListComponent},
 ];
 

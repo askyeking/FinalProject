@@ -20,6 +20,7 @@ import { VendorProfileComponent } from './vendor-profile/vendor-profile.componen
 import { VendorInventoryListComponent } from './vendor-inventory-list/vendor-inventory-list.component';
 import { InventoryItemViewComponent } from './inventory-item-view/inventory-item-view.component';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
+import { ItemRentalViewComponent } from './item-rental-view/item-rental-view.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { VendorListComponent } from './vendor-list/vendor-list.component';
     VendorProfileComponent,
     VendorInventoryListComponent,
     InventoryItemViewComponent,
-    VendorListComponent
+    VendorListComponent,
+    ItemRentalViewComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),
