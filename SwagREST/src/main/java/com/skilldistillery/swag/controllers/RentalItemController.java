@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,20 @@ public class RentalItemController {
 	public List<ItemRental> index(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		return rentalService.showAll();
 	}
+	
+	@GetMapping("rental/{id}")
+	public ItemRental getItemRenta(@PathVariable("id") int itemId,HttpServletRequest req, HttpServletResponse resp, Principal principal) {
+		ItemRental itemRequested = rentalService.getOne(itemId);
+		
+		if(itemRequested != null) {
+			resp.setStatus(200);
+		}
+		else {
+			resp.setStatus(400);
+		}
+		
+		return itemRequested;
+	} 
 	
 	@PostMapping("rental")
 	public ItemRental rentInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {

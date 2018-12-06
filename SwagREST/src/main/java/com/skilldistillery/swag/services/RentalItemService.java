@@ -14,6 +14,9 @@ public interface RentalItemService {
 
 	ItemRental returnItemRental(ItemRental itemRented);
 
+
+	ItemRental getOne(int id);
+
 	
 	
 	

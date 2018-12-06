@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -87,6 +88,13 @@ public class RentalItemServiceImpl implements RentalItemService {
 		return itemRented;
 	}
 	
-	
+	@Override
+	public ItemRental getOne(int id) {
+		Optional<ItemRental> rental = rentalRepo.findById(id);
+		if(rental.isPresent()) {
+			return rental.get();
+		}
+		return null;
+	}
 
 }
