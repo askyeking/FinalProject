@@ -53,7 +53,7 @@ export class NavigationComponent implements OnInit {
   }
 
   searchByCategory() {
-    this.parameter = this.dropdownButtonText;
+    this.parameter = this.dropdownButtonText.toLowerCase();
     console.log('IN NAV COMPONENT !!!!!!!' + this.parameter);
     console.log("in Search before reroute");
     this.router.navigateByUrl("items/search/" + this.parameter + "/" + this.keyword);
