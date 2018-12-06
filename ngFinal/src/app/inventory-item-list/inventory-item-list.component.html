@@ -2,15 +2,16 @@
 <br>
 <div *ngIf="!selected" >
   <div *ngFor="let item of inventoryItems" class="card" style="width: 18rem;">
+    <div *ngIf="item.active">
       <img class="card-img-top" [src]="item.imgUrl" alt="image">
       <div class="card-body">
         <h5 class="card-title">{{item.name}}</h5>
         <div *ngIf="authService.getToken()">
             <button (click)="loadInventoryItems(selected=item)" class="btn btn-primary">View Item</button>
         </div>
-
       </div>
     </div>
+  </div>
 </div>
 
 <div *ngIf="selected" >
