@@ -2,7 +2,7 @@ import { SearchService } from './../search.service';
 import { CategoryService } from './../category.service';
 import { Category } from './../models/category';
 import { environment } from './../../environments/environment';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../auth.service';
@@ -23,7 +23,7 @@ export class NavigationComponent implements OnInit {
 
 
   constructor(private router: Router, public authService: AuthService,
-     public catService: CategoryService, private searchService: SearchService) { }
+     public catService: CategoryService, private searchService: SearchService, route: ActivatedRoute) { }
 
 
 // login(user: User) {
