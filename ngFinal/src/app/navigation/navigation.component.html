@@ -25,17 +25,18 @@
       <li class="nav-item"><a class="nav-link" href="#">Cart</a></li>
     </ul>
 
-    <button>Search</button>
+    <button (click)="searchByCategory()"  >Search</button>
     <form  *ngIf="authService.getToken()">
       <div class="form-group">
         <label for="inputsm"></label>
-        <input class="form-control input-sm" id="inputsm" type="text">
+        <input class="form-control input-sm" id="inputsm" type="text" name="keyword"  [(ngModel)]="keyword"  >
       </div>
     </form>&nbsp;
 
 
     <!-- dropdown menu begin-->
-    <div *ngIf="authService.getToken()" class="btn-group" dropdown>
+    <div *ngIf="authService.getToken()" class="btn-group" dropdown >
+      <!-- <input type="hidden" name="parameter"  [(ngModel)]="parameter"> -->
       <button
         id="button-basic"
         dropdownToggle
@@ -43,7 +44,7 @@
         class="btn btn-success dropdown-toggle"
         aria-controls="dropdown-basic">
         {{dropdownButtonText}}  <span class="caret"></span>
-      </button>
+      </button  >
       <ul id="dropdown-basic"
         *dropdownMenu
         class="dropdown-menu"
@@ -51,11 +52,8 @@
         aria-labelledby="button-basic">
         <li role="menuitem"><a class="dropdown-item"  (click)="dropdownButtonText = 'Vendor' "  href="#">Vendor</a></li>
         <li role="menuitem">
-          <a class="dropdown-item"  (click)="dropdownButtonText = 'Keyword' " href="#">Keyword</a>
+          <a class="dropdown-item"  (click)="dropdownButtonText = 'Name' " href="#">Name</a>
         </li>
-        <!-- <li role="menuitem">
-          <a class="dropdown-item" (click)="dropdownButtonText = 'Category' " href="#">Category</a>
-        </li> -->
         <li role="menuitem" dropdown triggers="mouseover" placement="left" container="body">
           <a dropdownToggle class="dropdown-item dropdown-toggle"
              (click)="false"> Category <span class="caret"></span></a>
@@ -63,10 +61,6 @@
             <li   *ngFor="let cat of categories"   role="menuitem"><a class="dropdown-item" (click)="selectCategory(cat)" href="#/dropdowns#nested">{{cat.name}}</a></li>
           </ul>
         </li>
-        <!-- <li class="divider dropdown-divider"></li>
-        <li role="menuitem">
-          <a class="dropdown-item" href="#">Separated link</a>
-        </li> -->
       </ul>
     </div>
     <!-- dropdown menu end-->

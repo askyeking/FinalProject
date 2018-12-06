@@ -96,7 +96,7 @@ public class InventoryItemController {
 		return this.itemService.findByCategory(category);
 	}
 	
-	@GetMapping("items/keyword/{keyword}")
+	@GetMapping("items/name/{keyword}")
 	public List<InventoryItem> itemsByKeyword(@PathVariable("keyword") String keyword, HttpServletResponse res, HttpServletRequest req, Principal principal) {
 		List<InventoryItem> items = this.itemService.findByKeyword(keyword);
 		System.err.println(items);
