@@ -8,21 +8,20 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { InventoryItemListComponent } from './inventory-item-list/inventory-item-list.component';
 import { InventoryItemViewComponent } from './inventory-item-view/inventory-item-view.component';
+import { VendorListComponent } from './vendor-list/vendor-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: InventoryItemListComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: CustomerProfileComponent },
   { path: 'vendorInventory', component: VendorInventoryListComponent },
   { path: '', component: InventoryItemListComponent },
   { path: 'landing', component: InventoryItemListComponent },
   { path: 'vendorProfile', component: VendorProfileComponent },
-  { path: 'inventoryItems/search/vendor/:vendorName', component: InventoryItemListComponent},
-  { path: 'inventoryItems/search/category/:category', component: InventoryItemListComponent},
-  { path: 'inventoryItems/search/keyword/:keyword', component: InventoryItemListComponent},
-  // { path: 'inventoryItems/view/:id', component: InventoryItemViewComponent},
-
+  { path: 'inventoryItems/viewItem/:id', component: InventoryItemViewComponent},
+  { path: 'items/search/:parameter/:keyword', component: InventoryItemListComponent},
+  { path: 'vendor/search/:keyword', component: VendorListComponent},
 ];
 
 @NgModule({

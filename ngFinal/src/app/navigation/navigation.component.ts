@@ -2,7 +2,7 @@ import { SearchService } from './../search.service';
 import { CategoryService } from './../category.service';
 import { Category } from './../models/category';
 import { environment } from './../../environments/environment';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../auth.service';
@@ -14,16 +14,16 @@ import { AuthService } from '../auth.service';
 })
 export class NavigationComponent implements OnInit {
   loginUser = new User();
-  private baseUrl = environment.baseUrl;
   public isCollapsed = false;
   public dropdownButtonText = 'Search By';
 
   categories: Category[] = [];
   selected: Category;
-
+  parameter: String = "";
+  keyword: String = "";
 
   constructor(private router: Router, public authService: AuthService,
-     public catService: CategoryService, private searchService: SearchService) { }
+     public catService: CategoryService, private searchService: SearchService, route: ActivatedRoute) { }
 
 
 // login(user: User) {
@@ -52,7 +52,16 @@ export class NavigationComponent implements OnInit {
       );
   }
 
-  searchByCategory() {
+  search() {
+    this.parameter = this.dropdownButtonText.toLowerCase();
+
+    if (this.parameter === 'category' || this.parameter === 'name') {
+      this.router.navigateByUrl("items/search/" + this.parameter + "/" + this.keyword);
+    } else if (this.parameter === 'vendor') {
+      this.router.navigateByUrl("vendor/search/" + this.keyword);
+    }
+
+
 
   }
 
@@ -74,7 +83,11 @@ export class NavigationComponent implements OnInit {
 
   selectCategory(selectedCategory: Category) {
       this.selected = selectedCategory;
-      this.dropdownButtonText = this.selected.name;
+      this.dropdownButtonText = 'category';
+      this.keyword = this.selected.name;
+      console.log(this.keyword);
+      console.log(this.parameter);
+      console.log();
   }
 
   ngOnInit() {

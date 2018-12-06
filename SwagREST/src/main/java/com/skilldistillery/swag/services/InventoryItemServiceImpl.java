@@ -90,14 +90,17 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 //		return this.itemRepo.;
 //	}
 	
+	
+	
 	@Override
 	public List<InventoryItem> findByCategory(String category) {
 		return this.itemRepo.findByItemCategory(category);
 	}
 	
+	
 	@Override
 	public List<InventoryItem> findByKeyword(String keyword) {
-		return this.itemRepo.findByNameLikeOrDescriptionLike(keyword, keyword);
+		return this.itemRepo.findByNameContains(keyword);
 	}
 	  
 

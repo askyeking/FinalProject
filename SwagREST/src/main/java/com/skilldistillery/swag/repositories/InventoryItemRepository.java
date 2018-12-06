@@ -12,15 +12,11 @@ import com.skilldistillery.swag.entities.Vendor;
 
 public interface InventoryItemRepository extends JpaRepository<InventoryItem, Integer> {
 	Set<InventoryItem> findByIsRentedAndIsActive(boolean isRented, boolean isActive);
+	
 	List<InventoryItem> findByVendor(Vendor vendor);
 	
-	
-	//native query for the jpql for findByItemCategory
-//	select * from inventory_item 
-//	join inventory_item_category on inventory_item.id = inventory_item_category.inventory_item_id
-//	join category on category.id = inventory_item_category.category_id where category.name = 'formal';
-	
 	@Query("select i from InventoryItem i JOIN FETCH i.itemCategories ic where ic.name = :category")
-	List<InventoryItem> findByItemCategory(@Param("category")String category);
-	List<InventoryItem> findByNameLikeOrDescriptionLike(String keyword, String keyword2);
+	List<InventoryItem> findByItemCategory(@Param("category") String category);
+	
+	List<InventoryItem> findByNameContains(String keyword);
 }

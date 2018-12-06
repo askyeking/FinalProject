@@ -1,3 +1,65 @@
-<p>
-  inventory-item-view works!
-</p>
+<div *ngIf="selected" >
+    <button (click)="backToHome()" class="btn btn-primary">Back To Homes</button>
+    <br>
+    <br>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" [src]="selected.imgUrl" alt="image">
+        <div class="card-body">
+          <h5 class="card-title">{{selected.name}}</h5>
+          <p class="card-text">{{selected.description}}</p>
+          <p class="card-text">{{selected.price | currency}}</p>
+          <p class="card-text">{{selected.condition}}</p>
+          <div *ngIf="authService.getToken()">
+              <!-- <button class="btn btn-primary">Rent</button> -->
+
+          </div>
+
+        </div>
+      </div>
+      <br>
+      <br>
+      <h2>Rental information</h2>
+  </div>
+
+  <form *ngIf="selected" >
+  <!--
+  startDate: Date;
+  endDate: Date;
+  paidAmount: number;
+  active: boolean;
+  transactionInfo: string;
+  customer: Customer;
+  inventoryItem: InventoryItem; -->
+
+    Rental Begins:
+    <input type="date"
+    name="BeginDate"
+    placeholder="Begin Date"
+    [(ngModel)]="itemRental.startDate"
+    required>
+
+    <br>
+    Rental Ends:
+    <input type="date"
+    name="EndDate"
+    placeholder="End Date"
+    [(ngModel)]="itemRental.endDate"
+    required>
+
+    <br>
+    <textarea class="form-control"
+    rows="3"
+    name="transactionInfo"
+    placeholder="Delivery and transaction Info"
+    [(ngModel)]="itemRental.transactionInfo"
+    required></textarea>
+
+    <br>
+    <input
+    type="button"
+    class="btn btn-danger"
+    value="Proceed"
+    (click)="persistItemRental()"
+  />
+
+  </form>

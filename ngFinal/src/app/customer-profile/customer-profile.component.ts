@@ -12,7 +12,7 @@ import { Customer } from '../models/customer';
   styleUrls: ['./customer-profile.component.css']
 })
 export class CustomerProfileComponent implements OnInit {
-  user: User = null;
+  currentUser: User = null;
   customer: Customer = null;
   editUser: User = null;
 
@@ -22,19 +22,24 @@ export class CustomerProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.refresh();
+    // this.refresh();
     this.getCurrentUser();
   }
 
   getCurrentUser() {
     this.userService.retrieveProfiles().subscribe(
       data => {
-        this.user = data;
+        this.currentUser = data;
+        // has value
+        console.log(this.currentUser);
+
       },
       err => {
         console.error('Observer got an error' + err);
       }
     );
+    // is null
+    // console.log(this.user);
   }
 
   refresh() {
@@ -44,7 +49,7 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   setEdit() {
-    this.editUser = Object.assign({}, this.user);
+    this.editUser = Object.assign({}, this.currentUser);
     this.customer = this.editUser.customer;
   }
 
@@ -62,7 +67,7 @@ export class CustomerProfileComponent implements OnInit {
       data => {
 
         this.refresh();
-        this.user = data;
+        this.currentUser = data;
       },
       err => {
         this.refresh();
