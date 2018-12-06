@@ -1,6 +1,38 @@
-.editForm {
-  margin: 0 auto; /* Added */
-  float: none; /* Added */
-  margin-bottom: 10px; /* Added */
-  /* text-align: center; */
+form {
+ position: absolute;
+ top: 40%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+ width: 500px;
+ color: white;
 }
+
+.addForm {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 500px;
+  color: white;
+ }
+
+ body {
+    background-image: url('https://www.thespruce.com/thmb/lFFp06Y6E461T8sqDEznYyfLrnE=/724x483/filters:fill(auto,1)/GettyImages-860455582-5a0dbf8eec2f640036cb884f.jpg');
+    background-size: 100%;
+}
+
+
+
+img {
+  width: 200px; /* You can set the dimensions to whatever you want */
+  height: 200px;
+  object-fit: cover;
+}
+
+button {
+  margin:0 auto;
+  width: 150px;
+  text-align: center;
+}
+
+/* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4r6M7Jc_sau2SijxsFCEoDNZ--vnR4fgfe5Hf56oRTB8Gp5wD") */

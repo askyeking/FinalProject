@@ -1,3 +1,4 @@
+import { RentService } from './../rent.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SearchService } from './../search.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,7 +24,7 @@ export class InventoryItemViewComponent implements OnInit {
 
   // try;
   constructor(private inventoryItemService: InventoryItemService,
-    public authService: AuthService, private userService: UserService, private router: Router, private route: ActivatedRoute) {
+    public authService: AuthService, private rentService: RentService, private router: Router, private route: ActivatedRoute) {
 
      }
 
@@ -63,6 +64,17 @@ export class InventoryItemViewComponent implements OnInit {
     this.itemRental.active = true;
 
     console.log(this.itemRental);
+
+    this.rentService.rentItem(this.itemRental).subscribe(
+      data => {
+        this.itemRental = data;
+        console.log(this.itemRental);
+        this.router.navigateByUrl('inventoryItems/rental/' + this.itemRental.id);
+      },
+      err => {
+        console.error('Observer got an error' + err);
+      }
+    );
   }
 
   calculatePrice(): number {
