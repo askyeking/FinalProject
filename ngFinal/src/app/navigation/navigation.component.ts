@@ -52,11 +52,17 @@ export class NavigationComponent implements OnInit {
       );
   }
 
-  searchByCategory() {
+  search() {
     this.parameter = this.dropdownButtonText.toLowerCase();
-    console.log('IN NAV COMPONENT !!!!!!!' + this.parameter);
-    console.log("in Search before reroute");
-    this.router.navigateByUrl("items/search/" + this.parameter + "/" + this.keyword);
+
+    if (this.parameter === 'category' || this.parameter === 'name') {
+      this.router.navigateByUrl("items/search/" + this.parameter + "/" + this.keyword);
+    } else if (this.parameter === 'vendor') {
+      this.router.navigateByUrl("vendor/search/" + this.keyword);
+    }
+
+
+
   }
 
   searchByKeyword() {

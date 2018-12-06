@@ -39,7 +39,6 @@ export class InventoryItemListComponent implements OnInit {
           },
           err => {
            console.error('Observer got an error: ' + err);
-
           }
       );
 
@@ -55,15 +54,9 @@ export class InventoryItemListComponent implements OnInit {
   ngOnInit() {
     this.parameter = this.route.snapshot.paramMap.get("parameter");
     this.keyword = this.route.snapshot.paramMap.get("keyword");
-    console.log(this.route.snapshot.paramMap);
-    console.log("---------------");
-    console.log(this.parameter + "-> PARAMETER VALUE");
-    console.log(this.keyword + "-> KEYWORD VALUE");
-    console.log("---------------");
 
 
     if (this.parameter && this.keyword) {
-      console.log("INSIDE INIT IF");
       this.loadParameterizedInventoryItems();
     } else {
       this.loadInventoryItems();

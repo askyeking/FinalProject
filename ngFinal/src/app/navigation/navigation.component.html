@@ -25,7 +25,7 @@
       <li class="nav-item"><a class="nav-link" href="#">Cart</a></li>
     </ul>
 
-    <button (click)="searchByCategory()"  >Search</button>
+    <button (click)="search()"  >Search</button>
     <form  *ngIf="authService.getToken()">
       <div class="form-group">
         <label for="inputsm"></label>
@@ -35,8 +35,7 @@
 
 
     <!-- dropdown menu begin-->
-    <div *ngIf="authService.getToken()" class="btn-group" dropdown >
-      <!-- <input type="hidden" name="parameter"  [(ngModel)]="parameter"> -->
+    <div *ngIf="authService.getToken()" class="btn-group" dropdown>
       <button
         id="button-basic"
         dropdownToggle
@@ -64,7 +63,6 @@
       </ul>
     </div>
     <!-- dropdown menu end-->
-
     <div>
       <app-login *ngIf="!authService.getToken()"></app-login>
       <app-logout *ngIf="authService.getToken()"></app-logout>
