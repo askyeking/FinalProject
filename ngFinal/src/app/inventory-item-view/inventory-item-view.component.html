@@ -7,7 +7,7 @@
         <div class="card-body">
           <h5 class="card-title">{{selected.name}}</h5>
           <p class="card-text">{{selected.description}}</p>
-          <p class="card-text">{{selected.price | currency}}</p>
+          <p class="card-text">{{selected.price | currency}} per day + $15 shipping fee</p>
           <p class="card-text">{{selected.condition}}</p>
           <div *ngIf="authService.getToken()">
               <!-- <button class="btn btn-primary">Rent</button> -->
@@ -54,6 +54,18 @@
     [(ngModel)]="itemRental.transactionInfo"
     required></textarea>
 
+    <h2>Payment</h2>
+    Valid through: <input type="Date">
+    <br>
+    <input type="text"
+    placeholder="Card Owner">
+    <br>
+    <input type="number"
+    placeholder="Credit Card Number">
+    <br>
+    <input type="text"
+    placeholder="CVC">
+
     <br>
     <input
     type="button"
@@ -63,3 +75,4 @@
   />
 
   </form>
+

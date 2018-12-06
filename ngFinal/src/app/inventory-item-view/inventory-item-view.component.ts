@@ -49,16 +49,6 @@ export class InventoryItemViewComponent implements OnInit {
   }
 
   persistItemRental() {
-    // let user: User;
-    // this.userService.retrieveProfiles().subscribe(
-    //   data => {
-    //     user = data;
-    //     this.itemRental.customer = user.customer;
-    //   },
-    //   err => {
-    //     console.error('Observer got an error' + err);
-    //   }
-    // );
     this.itemRental.inventoryItem = this.selected;
     this.itemRental.paidAmount = this.calculatePrice();
     this.itemRental.active = true;

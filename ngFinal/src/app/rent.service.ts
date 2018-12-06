@@ -32,8 +32,24 @@ export class RentService {
     );
   }
 
-  returnItem(itemToReturn: ItemRental) {
+  getItem(id: number) {
+    return this.http.get<ItemRental>(this.baseUrl + 'api/rental/' + id, this.httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error getting RentalItem (rentService)');
+        })
+    );
+  }
 
+  returnItem(itemToReturn: ItemRental) {
+    return this.http.patch<ItemRental>(this.baseUrl + 'api/rental', itemToReturn, this.httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error creating VendorInventoryItem');
+        })
+    );
   }
 
 

@@ -1,3 +1,22 @@
-<p>
-  item-rental-view works!
-</p>
+    <div *ngIf="selected" >
+        <button (click)="backToHome()" class="btn btn-primary">Back To Homes</button>
+        <br>
+        <br>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" [src]="selected.imgUrl" alt="image">
+            <div class="card-body">
+              <h5 class="card-title">{{selected.name}}</h5>
+              <p class="card-text">{{selected.description}}</p>
+              <p class="card-text">{{selected.price | currency}}</p>
+              <p class="card-text">{{selected.condition}}</p>
+              <div *ngIf="authService.getToken()">
+                  <!-- <button class="btn btn-primary">Rent</button> -->
+
+              </div>
+
+            </div>
+          </div>
+          <br>
+          <br>
+          <h2>Rental information</h2>
+      </div>
