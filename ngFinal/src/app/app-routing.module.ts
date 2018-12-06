@@ -18,11 +18,8 @@ const routes: Routes = [
   { path: '', component: InventoryItemListComponent },
   { path: 'landing', component: InventoryItemListComponent },
   { path: 'vendorProfile', component: VendorProfileComponent },
-  { path: 'inventoryItems/search/vendor/:vendorName', component: InventoryItemListComponent},
-  { path: 'inventoryItems/search/category/:category', component: InventoryItemListComponent},
-  { path: 'inventoryItems/search/keyword/:keyword', component: InventoryItemListComponent},
   { path: 'inventoryItems/viewItem/:id', component: InventoryItemViewComponent},
-  { path: 'inventoryItems/search/:parameter/:keyword', component: InventoryItemViewComponent},
+  { path: 'items/search/:parameter/:keyword', component: InventoryItemViewComponent},
 ];
 
 @NgModule({

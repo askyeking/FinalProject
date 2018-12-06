@@ -14,14 +14,13 @@ import { AuthService } from '../auth.service';
 })
 export class NavigationComponent implements OnInit {
   loginUser = new User();
-  private baseUrl = environment.baseUrl;
   public isCollapsed = false;
   public dropdownButtonText = 'Search By';
 
   categories: Category[] = [];
   selected: Category;
-  parameter: String;
-  keyword: String;
+  parameter: String = "";
+  keyword: String = "";
 
   constructor(private router: Router, public authService: AuthService,
      public catService: CategoryService, private searchService: SearchService, route: ActivatedRoute) { }
@@ -54,8 +53,10 @@ export class NavigationComponent implements OnInit {
   }
 
   searchByCategory() {
+    this.parameter = this.dropdownButtonText;
+    console.log('IN NAV COMPONENT !!!!!!!' + this.parameter);
     console.log("in Search before reroute");
-    this.router.navigateByUrl("inventoryItems/search/" + this.parameter + "/" + this.keyword);
+    this.router.navigateByUrl("items/search/" + this.parameter + "/" + this.keyword);
   }
 
   searchByKeyword() {
@@ -76,7 +77,8 @@ export class NavigationComponent implements OnInit {
 
   selectCategory(selectedCategory: Category) {
       this.selected = selectedCategory;
-      this.dropdownButtonText = this.selected.name;
+      this.dropdownButtonText = 'category';
+      this.keyword = this.selected.name;
   }
 
   ngOnInit() {

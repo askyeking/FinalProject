@@ -5,6 +5,7 @@ import { SearchService } from '../search.service';
 import { ActivatedRoute } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
+import { createEmptyStateSnapshot } from '@angular/router/src/router_state';
 
 @Component({
   selector: 'app-inventory-item-list',
@@ -28,7 +29,7 @@ export class InventoryItemListComponent implements OnInit {
 
   openItemView(itemId: number) {
     console.log(itemId);
-    this.router.navigateByUrl('inventoryItems/viewItem/' + itemId);
+    this.router.navigateByUrl('items/viewItem/' + itemId);
   }
 
   loadParameterizedInventoryItems() {
@@ -54,8 +55,16 @@ export class InventoryItemListComponent implements OnInit {
   ngOnInit() {
     this.parameter = this.route.snapshot.paramMap.get("parameter");
     this.keyword = this.route.snapshot.paramMap.get("keyword");
+    console.log(this.route.snapshot.paramMap);
+    console.log("---------------");
+    console.log(this.parameter + "-> PARAMETER VALUE");
+    console.log(this.keyword + "-> KEYWORD VALUE");
+    console.log("---------------");
+
+
     if (this.parameter && this.keyword) {
-        this.loadParameterizedInventoryItems();
+      console.log("INSIDE INIT IF");
+      this.loadParameterizedInventoryItems();
     } else {
       this.loadInventoryItems();
     }
