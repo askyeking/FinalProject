@@ -24,8 +24,6 @@ export class InventoryItemService {
   private url = this.baseUrl + 'api/itemslist';
 
   index() {
-    console.log('URL: ' + this.url);
-    // return this.http.get<InventoryItem[]>(this.url, this.httpOptions).pipe(
       return this.http.get<InventoryItem[]>(this.url).pipe(
         catchError((err: any) => {
         console.log('error in inventoryItemService index():');
@@ -37,7 +35,6 @@ export class InventoryItemService {
 
 
   loadVendorItems() {
-    console.log(this.baseUrl);
     return this.http.get<InventoryItem[]>(this.baseUrl + 'api/item/vendor', this.httpOptions).pipe(
       catchError((err: any) => {
         console.log('error in inventoryItemService loadVendorItems():');

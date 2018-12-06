@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.swag.entities.ItemRental;
+import com.skilldistillery.swag.entities.User;
 import com.skilldistillery.swag.services.CustomerService;
 import com.skilldistillery.swag.services.InventoryItemService;
 import com.skilldistillery.swag.services.RentalItemService;
@@ -40,24 +41,11 @@ public class RentalItemController {
 		return rentalService.showAll();
 	}
 	
-//	@PostMapping("rental")
-//	public ItemRental itemInCart(@RequestBody ItemRental item, HttpServletRequest req, HttpServletResponse res, Principal principal) {
-//		User itemPoster = userService.findByEmail(principal.getName());
-//		
-//		ItemRental rentItem = rentalService.postItemRental(itemPoster, ItemRental);
-//		
-//		if (rentItem != null) {
-//			res.setStatus(201);
-//		}else {
-//			res.setStatus(400);
-//		}
-//		
-//		return rentItem;
-//	}
-	
 	@PostMapping("rental")
 	public ItemRental rentInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		
+		User rentingUser = userService.findByEmail(principal.getName());
+		itemRented.setCustomer(rentingUser.getCustomer());
 		
 		if(itemRented.getCustomer() != null
 				&& itemRented.getInventoryItem() != null
@@ -77,6 +65,8 @@ public class RentalItemController {
 	@PatchMapping("rental")
 	public ItemRental returnInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		
+		User rentingUser = userService.findByEmail(principal.getName());
+		itemRented.setCustomer(rentingUser.getCustomer());
 		
 		if(itemRented.getCustomer() != null
 				&& itemRented.getInventoryItem() != null
