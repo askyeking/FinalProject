@@ -17,6 +17,7 @@
     No items posted.
   </div>
   <div *ngFor="let item of user.vendor.listedItems" class="card" style="width: 18rem;">
+    <div *ngIf="item.active">
       <img class="card-img-top" [src]="item.imgUrl" alt="image">
       <div class="card-body">
         <h5 class="card-title">{{item.name}}</h5>
@@ -26,6 +27,7 @@
       </div>
       <button class="btn btn-primary" >Rent Me</button>
     </div>
+  </div>
 </div>
 
 
