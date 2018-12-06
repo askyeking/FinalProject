@@ -20,7 +20,7 @@ public interface InventoryItemRepository extends JpaRepository<InventoryItem, In
 //	join inventory_item_category on inventory_item.id = inventory_item_category.inventory_item_id
 //	join category on category.id = inventory_item_category.category_id where category.name = 'formal';
 	
-	@Query("select i from inventory_item i JOIN FETCH i.itemCategories ic where ic.name = :category")
+	@Query("select i from InventoryItem i JOIN FETCH i.itemCategories ic where ic.name = :category")
 	List<InventoryItem> findByItemCategory(@Param("category")String category);
 	List<InventoryItem> findByNameLikeOrDescriptionLike(String keyword, String keyword2);
 }
