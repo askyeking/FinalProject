@@ -37,7 +37,7 @@ export class SearchService {
 
 
   searchVendors(keyword: string) {
-    return this.http.get<Vendor[]>(this.url + "/vendor/" + keyword, this.httpOptions).pipe(
+    return this.http.get<Vendor[]>(this.url + "/vendor/search/" + keyword, this.httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
       return throwError('Error getting vendors');
