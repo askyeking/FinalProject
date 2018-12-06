@@ -79,6 +79,9 @@ export class NavigationComponent implements OnInit {
       this.selected = selectedCategory;
       this.dropdownButtonText = 'category';
       this.keyword = this.selected.name;
+      console.log(this.keyword);
+      console.log(this.parameter);
+      console.log();
   }
 
   ngOnInit() {
