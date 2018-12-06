@@ -14,6 +14,7 @@ export class InventoryItemViewComponent implements OnInit {
 
 
   langId;
+  mathId;
   // try;
   constructor(private inventoryItemService: InventoryItemService,
     public authService: AuthService, private searchService: SearchService, private router: Router, private route: ActivatedRoute) {
@@ -23,6 +24,7 @@ export class InventoryItemViewComponent implements OnInit {
   ngOnInit() {
     // this.try = this.langId;
     this.langId  = this.route.snapshot.paramMap.get('id');
+    this.mathId = this.route.snapshot.paramMap.get('chillin');
   }
 
 

@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'inventoryItems/search/vendor/:vendorName', component: InventoryItemListComponent},
   { path: 'inventoryItems/search/category/:category', component: InventoryItemListComponent},
   { path: 'inventoryItems/search/keyword/:keyword', component: InventoryItemListComponent},
-  { path: 'inventoryItems/view/:id', component: InventoryItemViewComponent},
+  { path: 'inventoryItems/viewiItem/:id/', component: InventoryItemViewComponent},
   { path: 'inventoryItems/search/:parameter/:keyword', component: InventoryItemViewComponent},
 ];
 
