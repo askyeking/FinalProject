@@ -1,5 +1,7 @@
+<body>
 
-<div *ngIf="!selected && !editItem">
+
+<!-- <div *ngIf="!selected && !editItem">
   <form>
     <input type="text" name="name" placeholder="Name" [(ngModel)]="newItem.name"/><br>
     <input type="text" name="description" placeholder="Description" [(ngModel)]="newItem.description"/><br>
@@ -8,41 +10,98 @@
     <input type="text" name="imgUrl" placeholder="Link of Image URL" [(ngModel)]="newItem.imgUrl"/><br>
     <input type="submit" value="Add Item" (click) = "addVendorInventory();"/>
   </form>
-</div>
+</div> -->
+<div class="addForm" *ngIf="!selected && !editItem">
+    <div class="form-group">
+      <!-- <label for="inputName">Name</label> --> <br>
+      <input type="text" class="form-control" id="inputName" placeholder="Name" [(ngModel)]="newItem.name" >
+    </div>
+    <div class="form-group">
+      <!-- <label for="inputDescription">Description</label> --> <br>
+      <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Description" [(ngModel)]="newItem.description" rows="2"></textarea>
+    </div>
 
-<br>
-<br>
-<br>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <!-- <label for="inputPrice">Price</label> --> <br>
+        <input type="text" class="form-control" id="inputPrice" placeholder="Price" [(ngModel)]="newItem.price">
+      </div>
+      <div class="form-group col-md-6">
+          <!-- <label for="inputCondition">Condition</label> --> <br>
+          <input type="text" class="form-control" id="inputCondition" placeholder="Condition" [(ngModel)]="newItem.condition">
+        </div>
+    </div>
+    <div class="form-group">
+        <!-- <label for="inputImgUrl">Image URL</label> --> <br>
+        <input type="text" class="form-control" id="inputImgUrl" placeholder="Link or Image URL" [(ngModel)]="newItem.imgUrl">
+      </div>
+      <br>
+      <div class="btn-toolbar">
+          <button class="btn btn-success" (click)="addVendorInventory()">Add Item</button>
+      </div>
+    </div>
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 
 <div *ngIf="!selected && !editItem" >
-  <div *ngFor="let item of vendorInventory" class="card" style="width: 18rem;" >
+  <div *ngFor="let item of vendorInventory" class="card text-center">
     <div *ngIf="item.active">
-      <img class="card-img-top" [src]="item.imgUrl" alt="image">
+      <div class="card-header">
+        Available
+      </div>
       <div class="card-body">
+        <div class="thumbnail">
+          <img class="card-img-top" [src]="item.imgUrl" alt="image">
+        </div>
         <h5 class="card-title">{{item.name}}</h5>
         <p class="card-text">{{item.description}}</p>
-        <p class="card-text">{{item.price | currency}}</p>
-        <p class="card-text">{{item.condition}}</p>
-        <!-- <p hidden class="card-text">{{item.active}}</p>
-        <p hidden class="card-text">{{item.rented}}</p> -->
+          <p class="card-text">{{item.price | currency}}</p>
+          <p class="card-text">{{item.condition}}</p>
+          <div style="text-align:center" ></div>
+          <button class="btn btn-primary" (click)="setEditVendorInventory(item)">Edit</button>
+        <button class="btn btn-danger" (click)="setItemActiveToFalse(item)">Delete</button>
       </div>
+      <div class="card-footer text-muted">
 
-      <button class="btn btn-primary" (click)="setEditVendorInventory(item)">Edit</button>
-      <button class="btn btn-danger" (click)="setItemActiveToFalse(item)">Delete</button>
+      </div>
+      <br>
     </div>
-    </div>
+  </div>
 </div>
 
-<div class="editForm">
-  <form  selected="setEditVendorInventory" *ngIf="editItem && editItem.active">
-     Name: <br><input type="text" [(ngModel)]="editItem.name" name="name" size="50"  /><br><br>
-     Description: <br><textarea rows="4" cols="49" [(ngModel)]="editItem.description" name="description"></textarea><br><br>
-     Price:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Condition:
-     <br><input type="text" [(ngModel)]="editItem.price" name="price" size="20"  />
-     &nbsp;&nbsp;&nbsp;<input type="text" [(ngModel)]="editItem.condition" name="condition" size="27"  /><br><br>
-     Image URL: <br><input type="text" [(ngModel)]="editItem.imgUrl" name="imgUrl" size="50"  /><br><br><br>
-      <button class="btn btn-outline-success" (click)="updateVendorInventory(editItem)">Save</button>
-      <button class="btn btn-outline-danger" (click)="editItem=null">Cancel</button>
+<form selected="setEditVendorInventory" *ngIf="editItem">
+    <div class="form-group">
+      <label for="inputName">Name</label>
+      <input type="text" class="form-control" id="inputName" [ngModelOptions]="{standalone: true}" [(ngModel)]="editItem.name" placeholder="{{editItem.name}}">
+    </div>
+    <div class="form-group">
+      <label for="inputDescription">Description</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" [ngModelOptions]="{standalone: true}" [(ngModel)]="editItem.description" placeholder="{{editItem.description}}" rows="2"></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputPrice">Price</label>
+        <input type="text" class="form-control" id="inputPrice" [ngModelOptions]="{standalone: true}" [(ngModel)]="editItem.price" placeholder="{{editItem.price | currency}}">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="inputPrice">Condition</label>
+          <input type="text" class="form-control" id="inputCondtion" [ngModelOptions]="{standalone: true}" [(ngModel)]="editItem.condition" placeholder="{{editItem.condition}}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputImgUrl">Image URL</label>
+        <input type="text" class="form-control" id="inputImgUrl" [ngModelOptions]="{standalone: true}" [(ngModel)]="editItem.imgUrl" placeholder="{{editItem.imgUrl}}">
+      </div>
+      <br>
+      <div class="btn-toolbar">
+          <button class="btn btn-success" (click)="updateVendorInventory(editItem)">Save</button>
+          <button class="btn btn-danger" (click)="editItem=null">Cancel</button>
+      </div>
   </form>
-</div>
+
+</body>
+
+
+

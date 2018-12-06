@@ -53,7 +53,7 @@ export class VendorInventoryListComponent implements OnInit {
   setEditVendorInventory(item: InventoryItem) {
     this.editItem = item;
    // this.editItem =  Object.assign({}, this.selected);
-   // console.log(this.editItem);
+  //  console.log(this.editItem);
   }
 
   setItemActiveToFalse(item: InventoryItem) {
@@ -64,7 +64,7 @@ export class VendorInventoryListComponent implements OnInit {
     console.log(this.editItem);
   }
 
-  updateVendorInventory () {
+  updateVendorInventory() {
     this.inventoryItemService.updateVendorItems(this.editItem).subscribe(
       data => {
         this.editItem = null;
