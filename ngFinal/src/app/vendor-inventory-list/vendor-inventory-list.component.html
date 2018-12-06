@@ -13,27 +13,36 @@
 <br>
 <br>
 <br>
+
 <div *ngIf="!selected && !editItem" >
-  <div *ngFor="let item of vendorInventory" class="card" style="width: 18rem;">
+  <div *ngFor="let item of vendorInventory" class="card" style="width: 18rem;" >
+    <div *ngIf="item.active">
       <img class="card-img-top" [src]="item.imgUrl" alt="image">
       <div class="card-body">
         <h5 class="card-title">{{item.name}}</h5>
         <p class="card-text">{{item.description}}</p>
         <p class="card-text">{{item.price | currency}}</p>
         <p class="card-text">{{item.condition}}</p>
+        <!-- <p hidden class="card-text">{{item.active}}</p>
+        <p hidden class="card-text">{{item.rented}}</p> -->
       </div>
+
       <button class="btn btn-primary" (click)="setEditVendorInventory(item)">Edit</button>
-      <button class="btn btn-danger">Delete</button>
+      <button class="btn btn-danger" (click)="setItemActiveToFalse(item)">Delete</button>
+    </div>
     </div>
 </div>
 
-
-  <form selected="setEditVendorInventory" *ngIf="editItem">
-     Name: <input type="text" [(ngModel)]="editItem.name" name="name" size="50"  /><br>
-     Description: <input type="text" [(ngModel)]="editItem.description" name="description" size="50"  /><br>
-     Price: <input type="text" [(ngModel)]="editItem.price" name="price" size="50"  /><br>
-     Condition: <input type="text" [(ngModel)]="editItem.condition" name="condition" size="50"  /><br>
-     Image URL: <input type="text" [(ngModel)]="editItem.imgUrl" name="imgUrl" size="50"  /><br>
+<div class="editForm">
+  <form  selected="setEditVendorInventory" *ngIf="editItem && editItem.active">
+     Name: <br><input type="text" [(ngModel)]="editItem.name" name="name" size="50"  /><br><br>
+     Description: <br><textarea rows="4" cols="49" [(ngModel)]="editItem.description" name="description"></textarea><br><br>
+     Price:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Condition:
+     <br><input type="text" [(ngModel)]="editItem.price" name="price" size="20"  />
+     &nbsp;&nbsp;&nbsp;<input type="text" [(ngModel)]="editItem.condition" name="condition" size="27"  /><br><br>
+     Image URL: <br><input type="text" [(ngModel)]="editItem.imgUrl" name="imgUrl" size="50"  /><br><br><br>
       <button class="btn btn-outline-success" (click)="updateVendorInventory(editItem)">Save</button>
       <button class="btn btn-outline-danger" (click)="editItem=null">Cancel</button>
   </form>
+</div>
