@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.swag.entities.InventoryItem;
 import com.skilldistillery.swag.entities.ItemRental;
-import com.skilldistillery.swag.entities.User;
 import com.skilldistillery.swag.services.CustomerService;
+import com.skilldistillery.swag.services.InventoryItemService;
 import com.skilldistillery.swag.services.RentalItemService;
 import com.skilldistillery.swag.services.UserService;
 
@@ -32,6 +32,8 @@ public class RentalItemController {
 	UserService userService;
 	@Autowired
 	CustomerService customerService;
+	@Autowired
+	InventoryItemService itemService;
 
 	@GetMapping("rental")
 	public List<ItemRental> index(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
@@ -56,20 +58,39 @@ public class RentalItemController {
 	@PostMapping("rental")
 	public ItemRental rentInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		
-		System.out.println("**************************************************************************");
 		
 		if(itemRented.getCustomer() != null
-				&& itemRented.getInventoryItem() != null) {
-			System.out.println("********************************************************************************");
+				&& itemRented.getInventoryItem() != null
+				&& !itemService.showSingleItem(itemRented.getInventoryItem().getId()).isRented()
+				&& itemService.showSingleItem(itemRented.getInventoryItem().getId()).isActive()) {
 			resp.setStatus(200);
-			System.out.println(itemRented);
 			itemRented = rentalService.postItemRental(itemRented);
+		}
+		else {
+			resp.setStatus(406);
+			itemRented = null;
+		}
+		
+		return itemRented;
+	}
+	
+	@PatchMapping("rental")
+	public ItemRental returnInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
+		
+		
+		if(itemRented.getCustomer() != null
+				&& itemRented.getInventoryItem() != null
+				&& itemRented.getInventoryItem().isActive()
+				&& itemRented.getId() != 0) {
+			
+			itemRented = rentalService.returnItemRental(itemRented);
+			resp.setStatus(200);
+			
 		}
 		else {
 			resp.setStatus(406);
 		}
 		
-		System.out.println(itemRented);
 		return itemRented;
 	}
 	

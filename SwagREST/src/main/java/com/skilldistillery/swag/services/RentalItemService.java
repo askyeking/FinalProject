@@ -11,6 +11,9 @@ public interface RentalItemService {
 
 	ItemRental postItemRental(ItemRental itemRented);
 
+
+	ItemRental returnItemRental(ItemRental itemRented);
+
 	
 	
 	

@@ -23,6 +23,7 @@ public class InventoryItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id; 
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="vendor_id")
@@ -45,8 +46,6 @@ public class InventoryItem {
 	
 	@Column(name="rented")
 	private boolean isRented;
-	
-	
 	
 	@ManyToMany
 	@JoinTable(name="inventory_item_category",
