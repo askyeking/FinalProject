@@ -91,6 +91,8 @@ public class InventoryItemController {
 	}
 	
 	
+	
+	
 	@GetMapping("items/category/{category}")
 	public List<InventoryItem> itemsByCategory(@PathVariable("category") String category, HttpServletResponse res, HttpServletRequest req, Principal principal) {
 		return this.itemService.findByCategory(category);

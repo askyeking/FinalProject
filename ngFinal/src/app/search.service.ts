@@ -13,7 +13,7 @@ import { Vendor } from './models/vendor';
 export class SearchService {
 
   private baseUrl = environment.baseUrl;
-  private url = this.baseUrl + 'api/items';
+  private url = this.baseUrl + 'api';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export class SearchService {
 
 
   search(parameter: string,  keyword: string) {
-  return this.http.get<InventoryItem[]>(this.url + "/" + parameter + "/" + keyword, this.httpOptions).pipe(
+  return this.http.get<InventoryItem[]>(this.url + "/items/" + parameter + "/" + keyword, this.httpOptions).pipe(
     catchError((err: any) => {
       console.log(err);
     return throwError('Error getting items with parameter: ' + parameter + "and keyword: " + keyword);
@@ -37,7 +37,7 @@ export class SearchService {
 
 
   searchVendors(keyword: string) {
-    return this.http.get<Vendor[]>(this.url + "/vendor" + keyword, this.httpOptions).pipe(
+    return this.http.get<Vendor[]>(this.url + "/vendor/" + keyword, this.httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
       return throwError('Error getting vendors');

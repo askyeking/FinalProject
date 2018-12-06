@@ -69,6 +69,16 @@ public class VendorController {
 
 		return originalUser;
 	}
+	
+	@GetMapping("vendor/{keyword}")
+	public List<User> vendorSearch(@PathVariable("keyword") String keyword, HttpServletRequest req, HttpServletResponse resp,
+			Principal principal ) {
+		
+		
+		
+		
+		return null;
+	}
 
 	
 }
