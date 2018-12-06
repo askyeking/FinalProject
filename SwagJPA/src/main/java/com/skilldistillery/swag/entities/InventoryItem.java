@@ -46,11 +46,7 @@ public class InventoryItem {
 	
 	@Column(name="rented")
 	private boolean isRented;
-<<<<<<< HEAD
 	
-=======
- 	
->>>>>>> f3ddb96cf5fa3e806f2298f27f3dfeff04e9282e
 	@ManyToMany
 	@JoinTable(name="inventory_item_category",
 	joinColumns=@JoinColumn(name="inventory_item_id"),
