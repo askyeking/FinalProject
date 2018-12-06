@@ -29,7 +29,7 @@ export class InventoryItemListComponent implements OnInit {
 
   openItemView(itemId: number) {
     console.log(itemId);
-    this.router.navigateByUrl('items/viewItem/' + itemId);
+    this.router.navigateByUrl('inventoryItems/viewItem/' + itemId);
   }
 
   loadParameterizedInventoryItems() {

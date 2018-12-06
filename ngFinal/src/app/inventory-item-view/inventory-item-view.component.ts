@@ -29,7 +29,7 @@ export class InventoryItemViewComponent implements OnInit {
 
   ngOnInit() {
     // this.try = this.langId;
-    this.refresh();
+
     this.id  = this.route.snapshot.paramMap.get('id');
     this.inventoryItemService.getOne(this.id).subscribe(
       data => this.selected = data,
@@ -48,28 +48,27 @@ export class InventoryItemViewComponent implements OnInit {
   }
 
   persistItemRental() {
-    let user: User;
-    this.userService.retrieveProfiles().subscribe(
-      data => {
-        user = data;
-      },
-      err => {
-        console.error('Observer got an error' + err);
-      }
-    );
-    this.itemRental.customer = user.customer;
+    // let user: User;
+    // this.userService.retrieveProfiles().subscribe(
+    //   data => {
+    //     user = data;
+    //     this.itemRental.customer = user.customer;
+    //   },
+    //   err => {
+    //     console.error('Observer got an error' + err);
+    //   }
+    // );
     this.itemRental.inventoryItem = this.selected;
-    // this.itemRental.paidAmount =
+    this.itemRental.paidAmount = this.calculatePrice();
+    this.itemRental.active = true;
 
+    console.log(this.itemRental);
   }
 
   calculatePrice(): number {
-    let oneDay = 1000 * 60 * 60 * 24;
-
-    // this.itemRental.endDate.getT
-    // this.itemRental.
-
-    return 3;
+    const oneDay = 1000 * 60 * 60 * 24;
+    const difference = new Date(this.itemRental.endDate).getTime() - new Date(this.itemRental.startDate).getTime();
+    return Math.round(difference / oneDay) + 15;
   }
 
 }

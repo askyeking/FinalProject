@@ -4,22 +4,24 @@ import { User } from './user';
 export class Customer {
   id: number;
   displayName: string;
-  isActive: boolean;
+  active: boolean;
   avatarURL: string;
+  rentedItems;
   user: User;
-  rentedItems: ItemRental[];
 
   constructor(
     id?: number,
-    isActive?: boolean,
+    active?: boolean,
     displayName?: string,
     avatarURL?: string,
-    rentedItems?: ItemRental[]
+    rentedItems?,
+    user?
   ) {
     this.id = id;
-    this.isActive = isActive;
+    this.active = active;
     this.displayName = displayName;
     this.avatarURL = avatarURL;
     this.rentedItems = rentedItems;
+    this.user = user;
   }
 }

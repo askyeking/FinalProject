@@ -1,5 +1,7 @@
 <div *ngIf="selected" >
     <button (click)="backToHome()" class="btn btn-primary">Back To Homes</button>
+    <br>
+    <br>
     <div class="card" style="width: 18rem;">
         <img class="card-img-top" [src]="selected.imgUrl" alt="image">
         <div class="card-body">
@@ -29,10 +31,35 @@
   customer: Customer;
   inventoryItem: InventoryItem; -->
 
-    Date of Rental (begin);
+    Rental Begins:
     <input type="date"
-    name="Begin date"
-    placeholder="Full Name"
+    name="BeginDate"
+    placeholder="Begin Date"
     [(ngModel)]="itemRental.startDate"
     required>
+
+    <br>
+    Rental Ends:
+    <input type="date"
+    name="EndDate"
+    placeholder="End Date"
+    [(ngModel)]="itemRental.endDate"
+    required>
+
+    <br>
+    <textarea class="form-control"
+    rows="3"
+    name="transactionInfo"
+    placeholder="Delivery and transaction Info"
+    [(ngModel)]="itemRental.transactionInfo"
+    required></textarea>
+
+    <br>
+    <input
+    type="button"
+    class="btn btn-danger"
+    value="Proceed"
+    (click)="persistItemRental()"
+  />
+
   </form>
