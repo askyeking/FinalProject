@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { InventoryItemListComponent } from './inventory-item-list/inventory-item-list.component';
 import { InventoryItemViewComponent } from './inventory-item-view/inventory-item-view.component';
+import { VendorListComponent } from './vendor-list/vendor-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'vendorProfile', component: VendorProfileComponent },
   { path: 'inventoryItems/viewItem/:id', component: InventoryItemViewComponent},
   { path: 'items/search/:parameter/:keyword', component: InventoryItemListComponent},
+  { path: 'vendor/search/:keyword', component: VendorListComponent},
 ];
 
 @NgModule({

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { InventoryItem } from './models/inventory-item';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { Vendor } from './models/vendor';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,16 @@ export class SearchService {
     })
   );
 
+  }
+
+
+  searchVendors(keyword: string) {
+    return this.http.get<Vendor[]>(this.url + "/vendor" + keyword, this.httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+      return throwError('Error getting vendors');
+      })
+    );
   }
 
   constructor(private http: HttpClient, private authService: AuthService) { }
