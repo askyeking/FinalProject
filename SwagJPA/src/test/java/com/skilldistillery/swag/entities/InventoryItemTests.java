@@ -42,7 +42,11 @@ class InventoryItemTests {
 
 	@Test
 	void test_InventoryItem_mapping() {
+<<<<<<< HEAD
+		assertEquals(1, item.getItemCategories().size());
+=======
 
+>>>>>>> f3ddb96cf5fa3e806f2298f27f3dfeff04e9282e
 		assertEquals("Page Boy Hat", item.getName());
 		assertEquals(4, item.getPrice());
 		assertEquals(1, item.getVendor().getId());

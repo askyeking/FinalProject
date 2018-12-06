@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { InventoryItemListComponent } from './inventory-item-list/inventory-item-list.component';
+import { InventoryItemViewComponent } from './inventory-item-view/inventory-item-view.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,7 +20,9 @@ const routes: Routes = [
   { path: 'vendorProfile', component: VendorProfileComponent },
   { path: 'inventoryItems/search/vendor/:vendorName', component: InventoryItemListComponent},
   { path: 'inventoryItems/search/category/:category', component: InventoryItemListComponent},
-  { path: 'inventoryItems/search/keyword/:keyword', component: InventoryItemListComponent}
+  { path: 'inventoryItems/search/keyword/:keyword', component: InventoryItemListComponent},
+  // { path: 'inventoryItems/view/:id', component: InventoryItemViewComponent},
+
 ];
 
 @NgModule({

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.swag.entities.InventoryItem;
 import com.skilldistillery.swag.entities.ItemRental;
+import com.skilldistillery.swag.repositories.CustomerRepository;
 import com.skilldistillery.swag.repositories.InventoryItemRepository;
 import com.skilldistillery.swag.repositories.RentalItemRepository;
 import com.skilldistillery.swag.repositories.UserRepository;
@@ -25,6 +26,8 @@ public class RentalItemServiceImpl implements RentalItemService {
 	UserRepository userRepo;
 	@Autowired
 	InventoryItemRepository itemRepo;
+	@Autowired
+	CustomerRepository custRepo;
 	
 	
 	@Override
@@ -45,20 +48,44 @@ public class RentalItemServiceImpl implements RentalItemService {
 				e.printStackTrace();
 			}
 		}
-		InventoryItem itemToRent = itemRented.getInventoryItem();
-		itemToRent.setRented(true);
-		itemToRent.getAllRents().add(itemRented);
+		itemRented.setCustomer(custRepo.getOne(itemRented.getCustomer().getId()));
+		itemRented.setInventoryItem(itemRepo.getOne(itemRented.getInventoryItem().getId()));
 		
-		System.out.println("customer");
+		InventoryItem originalItem = itemRented.getInventoryItem();
+		originalItem.setRented(true);
+//		originalItem.getAllRents().add(itemRented);
+		
+		
 		System.out.println(itemRented.getCustomer());
 		
-		itemRepo.saveAndFlush(itemToRent);
-//		rentalRepo.saveAndFlush(itemRented);
+//		itemRepo.saveAndFlush(originalItem);
+		rentalRepo.saveAndFlush(itemRented);
 		
 		return itemRented;
 	}
 
-
+	@Override
+	public ItemRental returnItemRental(ItemRental itemRented) {
+		itemRented.setActive(false);
+		itemRented.setPaid(true);
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		if(itemRented.getStartDate() == null) {
+			try {
+				itemRented.setEndDate(new SimpleDateFormat("yyyy-MM-dd").parse(LocalDate.now().toString()));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		itemRented.setCustomer(custRepo.getOne(itemRented.getCustomer().getId()));
+		itemRented.setInventoryItem(itemRepo.getOne(itemRented.getInventoryItem().getId()));
+		itemRented.getInventoryItem().setRented(false);
+		
+		rentalRepo.saveAndFlush(itemRented);
+		
+		return itemRented;
+	}
 	
 	
 
