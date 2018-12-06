@@ -9,14 +9,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Category {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="itemCategories")
 	private List<InventoryItem> itemsOfCategory;
 	

@@ -64,10 +64,7 @@ public class InventoryItemController {
 	
 	@PostMapping("item") 
 	public InventoryItem newItem(@RequestBody InventoryItem item, HttpServletResponse res, HttpServletRequest req, Principal principal) {
-		
 		User itemPoster = userService.findByEmail(principal.getName());
-		
-		
 		InventoryItem addItem = itemService.postItem(item, itemPoster);
 		if (addItem != null) {
 			res.setStatus(201);
@@ -75,7 +72,6 @@ public class InventoryItemController {
 			res.setStatus(400);
 		}
 		return addItem;
-		
 	}
 	
 	@PutMapping("item/{id}")
@@ -102,7 +98,9 @@ public class InventoryItemController {
 	
 	@GetMapping("items/keyword/{keyword}")
 	public List<InventoryItem> itemsByKeyword(@PathVariable("keyword") String keyword, HttpServletResponse res, HttpServletRequest req, Principal principal) {
-		return this.itemService.findByKeyword(keyword);
+		List<InventoryItem> items = this.itemService.findByKeyword(keyword);
+		System.err.println(items);
+		return items;
 	}
 	
 	
