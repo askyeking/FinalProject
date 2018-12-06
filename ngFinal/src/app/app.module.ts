@@ -19,6 +19,7 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { VendorProfileComponent } from './vendor-profile/vendor-profile.component';
 import { VendorInventoryListComponent } from './vendor-inventory-list/vendor-inventory-list.component';
 import { InventoryItemViewComponent } from './inventory-item-view/inventory-item-view.component';
+import { VendorListComponent } from './vendor-list/vendor-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { InventoryItemViewComponent } from './inventory-item-view/inventory-item
     CustomerProfileComponent,
     VendorProfileComponent,
     VendorInventoryListComponent,
-    InventoryItemViewComponent
+    InventoryItemViewComponent,
+    VendorListComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),
