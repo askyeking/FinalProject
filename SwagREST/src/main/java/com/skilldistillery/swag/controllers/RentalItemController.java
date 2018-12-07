@@ -53,12 +53,15 @@ public class RentalItemController {
 			resp.setStatus(400);
 		}
 		
+		System.out.println("Transaction info: ");
+		System.out.println(itemRequested.getTransactionInfo());
 		return itemRequested;
 	} 
 	
 	@PostMapping("rental")
 	public ItemRental rentInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
-		
+		System.out.println("Transaction info");
+		System.out.println(itemRented.getTransactionInfo());
 		User rentingUser = userService.findByEmail(principal.getName());
 		itemRented.setCustomer(rentingUser.getCustomer());
 		

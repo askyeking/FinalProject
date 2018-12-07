@@ -1,22 +1,31 @@
-    <div *ngIf="selected" >
-        <button (click)="backToHome()" class="btn btn-primary">Back To Homes</button>
-        <br>
-        <br>
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" [src]="selected.imgUrl" alt="image">
-            <div class="card-body">
-              <h5 class="card-title">{{selected.name}}</h5>
-              <p class="card-text">{{selected.description}}</p>
-              <p class="card-text">{{selected.price | currency}}</p>
-              <p class="card-text">{{selected.condition}}</p>
-              <div *ngIf="authService.getToken()">
-                  <!-- <button class="btn btn-primary">Rent</button> -->
-
-              </div>
-
-            </div>
-          </div>
-          <br>
-          <br>
-          <h2>Rental information</h2>
+<div *ngIf="selectedInventoryItem">
+  <div class="card" style="width: 18rem;">
+    <img
+      class="card-img-top"
+      [src]="selectedInventoryItem.imgUrl"
+      alt="image"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ selectedInventoryItem.name }}</h5>
+      <p class="card-text">{{ selectedInventoryItem.description }}</p>
+      <p class="card-text">{{ selectedInventoryItem.price | currency }}</p>
+      <p class="card-text">{{ selectedInventoryItem.condition }}</p>
+      <div *ngIf="authService.getToken()">
+        <!-- <button class="btn btn-primary">Rent</button> -->
       </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <h2>Rental information</h2>
+</div>
+
+<div *ngIf="selectedItemRental">
+  Returned: {{!selectedItemRental.active}} <br>
+  Total Amount paid: {{selectedItemRental.paidAmount | currency}} <br>
+  Start Date: {{selectedItemRental.startDate}} <br>
+  End Date: {{selectedItemRental.endDate}} <br>
+  Info: {{selectedItemRental.transactionInfo}} <br>
+  <button *ngIf="selectedItemRental.active">Return this item</button>
+  <button *ngIf="!selectedItemRental.active">Rent again</button>
+</div>
