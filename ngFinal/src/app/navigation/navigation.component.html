@@ -19,4 +19,7 @@
     </mat-menu>
 
     <button mat-button (click)="search()">Submit Search</button>
+
+    <app-login *ngIf="!authService.getToken()"></app-login>
+    <app-logout *ngIf="authService.getToken()"></app-logout>
 </mat-toolbar>
