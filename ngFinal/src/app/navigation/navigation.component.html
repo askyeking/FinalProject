@@ -19,10 +19,16 @@
 >
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#"> User Profile <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#"> Profile <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item"><a class="nav-link" href="#">Vendor Profile</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Cart</a></li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="loadVendors()">Vendors</a>
+        <!-- <button (click)="loadVendors()">Vendors</button> -->
+        <!-- <a class="link" (click)="loadVendors()">Vendors</a> -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Cart</a>
+      </li>
     </ul>
 
     <button (click)="search()"  >Search</button>

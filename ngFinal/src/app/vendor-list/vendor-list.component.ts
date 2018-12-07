@@ -47,6 +47,7 @@ export class VendorListComponent implements OnInit {
   ngOnInit() {
     this.keyword = this.route.snapshot.paramMap.get("keyword");
 
+
     if (this.keyword) {
       this.searchVendors();
     } else {
