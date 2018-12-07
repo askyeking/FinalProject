@@ -47,6 +47,14 @@ export class CustomerProfileComponent implements OnInit {
     // console.log(this.user);
   }
 
+  viewRental(rentalId: number) {
+    this.router.navigateByUrl('inventoryItems/rental/' + rentalId);
+  }
+
+  viewItem(inventoryItemId) {
+    this.router.navigateByUrl('inventoryItems/viewItem/' + inventoryItemId);
+  }
+
   getUserRentals() {
     this.rentService.retrieveCustomersRentals(this.currentUser.id).subscribe(
       data => {
