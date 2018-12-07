@@ -1,3 +1,4 @@
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './auth.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,6 +22,9 @@ import { VendorInventoryListComponent } from './vendor-inventory-list/vendor-inv
 import { InventoryItemViewComponent } from './inventory-item-view/inventory-item-view.component';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { ItemRentalViewComponent } from './item-rental-view/item-rental-view.component';
+import { MatSelectModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import { ItemRentalViewComponent } from './item-rental-view/item-rental-view.com
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [
     AuthService,

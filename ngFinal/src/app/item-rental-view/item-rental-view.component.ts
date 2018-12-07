@@ -5,7 +5,6 @@ import { ItemRental } from '../models/item-rental';
 import { InventoryItemService } from '../inventory-item.service';
 import { RentService } from '../rent.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { setupMaster } from 'cluster';
 
 @Component({
   selector: 'app-item-rental-view',
