@@ -14,5 +14,7 @@ public interface VendorService {
 	void update(Vendor userUpdate, User originalUser);
 
 	List<Vendor> vendorSearch(String keyword);
+	
+	User getUserByVendorId(int vendorId);
 
 }

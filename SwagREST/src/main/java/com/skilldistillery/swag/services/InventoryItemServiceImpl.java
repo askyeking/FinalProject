@@ -102,6 +102,19 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 	public List<InventoryItem> findByKeyword(String keyword) {
 		return this.itemRepo.findByNameContains(keyword);
 	}
+
+	@Override
+	public User showVendor(int itemId) {
+		User itemsVendor = null;
+		Optional<InventoryItem> opt = itemRepo.findById(itemId);
+		
+		if(opt.isPresent()) {
+			itemsVendor = opt.get().getVendor().getUser();
+		}
+		
+		
+		return itemsVendor;
+	}
 	  
 
 }

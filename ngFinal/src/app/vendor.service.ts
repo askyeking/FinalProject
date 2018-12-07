@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Vendor } from './models/vendor';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { User } from './models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,26 @@ export class VendorService {
     })
   };
 
+
   constructor(private http: HttpClient, private authService: AuthService) { }
 
+
+  getUserByVendorId(vendorId: number) {
+    return this.http.get<User>(this.url + '/user/' + vendorId, this.httpOptions).pipe(
+      catchError((err: any) => {
+      console.log(err);
+      return throwError('Error retrieving a user: vendorService.getUserByVendorId()');
+      })
+    );
+  }
+  getVendorByInventoryItemId(itemId: number) {
+    return this.http.get<User>(this.url + '/profile/' + itemId, this.httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+      return throwError('Error retrieving a vendor: vendorService.getVendorByInventoryItemId()');
+      })
+    );
+  }
 
   index() {
     return this.http.get<Vendor[]>(this.url, this.httpOptions).pipe(

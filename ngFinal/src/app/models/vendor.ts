@@ -1,7 +1,9 @@
 import { InventoryItem } from './inventory-item';
+import { User } from './user';
 
 export class Vendor {
   id: number;
+  user: User;
   imgUrl: string;
   about: string;
   displayName: string;
@@ -13,8 +15,10 @@ export class Vendor {
     about?: string,
     displayName?: string,
     active?: boolean,
-    listedItems?: InventoryItem []) {
+    listedItems?: InventoryItem [],
+    user?: User) {
     this.id = id;
+    this.user = user;
     this.imgUrl = imgUrl;
     this.about = about;
     this.displayName = displayName;

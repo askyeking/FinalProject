@@ -58,6 +58,17 @@ public class VendorServiceImpl implements VendorService {
 	public List<Vendor> vendorSearch(String keyword) {
 		return this.vendorRepo.findByDisplayNameContains(keyword);
 	}
+
+	@Override
+	public User getUserByVendorId(int vendorId) {
+		User vendorsUser = null;
+		Optional<Vendor> opt = vendorRepo.findById(vendorId);
+		if (opt.isPresent()) {
+			vendorsUser = opt.get().getUser();
+		}
+		
+		return vendorsUser;
+	}
 	
 	
 	

@@ -1,7 +1,4 @@
 <div *ngIf="user && user.vendor">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="setEdit()">Edit</button>
-
-  <div *ngIf="!editUser">
   <img src="{{user.vendor.imgUrl}}" alt="">
   <h1>{{user.vendor.displayName}}</h1>
 
@@ -24,18 +21,19 @@
         <p class="card-text">{{item.description}}</p>
         <p class="card-text">{{item.price | currency}}</p>
         <p class="card-text">{{item.condition}}</p>
+        <p class="card-text" *ngIf="item.rented">Item is currently rented</p>
+        <p class="card-text" *ngIf="!item.rented">Item is available</p>
       </div>
-      <button class="btn btn-primary" >Rent Me</button>
+      <button class="btn btn-primary" *ngIf="!item.rented" (click)="rentItem(item.id)">Rent Me</button>
     </div>
   </div>
-</div>
 
 
 
 
 
 
-  <div *ngIf="editUser">
+  <!-- <div *ngIf="editUser">
       <h1>{{editUser.email}}</h1>
       {{editUser.password}}
       <form action="">
@@ -47,4 +45,4 @@
         </form>
       <br>
     </div>
-</div>
+</div> -->
