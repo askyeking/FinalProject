@@ -83,6 +83,7 @@ public class RentalItemController {
 	@PatchMapping("rental")
 	public ItemRental returnInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		
+		itemRented.setCustomer(null);
 		User rentingUser = userService.findByEmail(principal.getName());
 		itemRented.setCustomer(rentingUser.getCustomer());
 		
