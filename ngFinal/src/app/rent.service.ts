@@ -21,6 +21,16 @@ export class RentService {
   };
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
 
+  retrieveCustomersRentals(customerId: number) {
+    return this.http.get<ItemRental[]>(this.baseUrl + 'api/rental/customer/' + customerId, this.httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error rentService.retrieveCustomersRentals()');
+        })
+    );
+  }
+
   rentItem(itemToRent: ItemRental) {
     console.log("rentService.rentItem()");
     return this.http.post<ItemRental>(this.baseUrl + 'api/rental', itemToRent, this.httpOptions)

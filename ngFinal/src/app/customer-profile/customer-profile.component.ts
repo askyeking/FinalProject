@@ -5,6 +5,8 @@ import { InventoryItemListComponent } from '../inventory-item-list/inventory-ite
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Customer } from '../models/customer';
+import { ItemRental } from '../models/item-rental';
+import { RentService } from '../rent.service';
 
 @Component({
   selector: 'app-customer-profile',
@@ -15,10 +17,12 @@ export class CustomerProfileComponent implements OnInit {
   currentUser: User = null;
   customer: Customer = null;
   editUser: User = null;
+  itemRentals: ItemRental[];
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private rentService: RentService,
   ) {}
 
   ngOnInit() {
@@ -32,6 +36,7 @@ export class CustomerProfileComponent implements OnInit {
         this.currentUser = data;
         // has value
         console.log(this.currentUser);
+        this.getUserRentals();
 
       },
       err => {
@@ -40,6 +45,20 @@ export class CustomerProfileComponent implements OnInit {
     );
     // is null
     // console.log(this.user);
+  }
+
+  getUserRentals() {
+    this.rentService.retrieveCustomersRentals(this.currentUser.id).subscribe(
+      data => {
+        console.log('getUserRentals()');
+        this.currentUser.customer.rentedItems = data;
+        console.log(this.currentUser.customer.rentedItems);
+      },
+      err => {
+        console.log('Error: getUserRentals()');
+        console.error('Observer got an error' + err);
+      }
+    );
   }
 
   refresh() {
