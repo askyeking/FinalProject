@@ -13,6 +13,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+<<<<<<< HEAD
     <div
       class="collapse navbar-collapse"
       id="navbarSupportedContent"
@@ -21,6 +22,61 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="#"> User Profile <span class="sr-only">(current)</span></a>
+=======
+  <div
+    class="collapse navbar-collapse"
+    id="navbarSupportedContent"
+    [ngbCollapse]="isCollapsed"
+>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"> Profile <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="loadVendors()">Vendors</a>
+        <!-- <button (click)="loadVendors()">Vendors</button> -->
+        <!-- <a class="link" (click)="loadVendors()">Vendors</a> -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Cart</a>
+      </li>
+    </ul>
+
+    <button (click)="search()"  >Search</button>
+    <form  *ngIf="authService.getToken()">
+      <div class="form-group">
+        <label for="inputsm"></label>
+        <input class="form-control input-sm" id="inputsm" type="text" name="keyword"  [(ngModel)]="keyword"  >
+      </div>
+    </form>&nbsp;
+
+
+    <!-- dropdown menu begin-->
+    <div *ngIf="authService.getToken()" class="btn-group" dropdown>
+      <button
+        id="button-basic"
+        dropdownToggle
+        type="button"
+        class="btn btn-success dropdown-toggle"
+        aria-controls="dropdown-basic">
+        {{dropdownButtonText}}  <span class="caret"></span>
+      </button  >
+      <ul id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-basic">
+        <li role="menuitem"><a class="dropdown-item"  (click)="dropdownButtonText = 'Vendor' "  href="#">Vendor</a></li>
+        <li role="menuitem">
+          <a class="dropdown-item"  (click)="dropdownButtonText = 'Name' " href="#">Name</a>
+        </li>
+        <li role="menuitem" dropdown triggers="mouseover" placement="left" container="body">
+          <a dropdownToggle class="dropdown-item dropdown-toggle"
+             (click)="false"> Category <span class="caret"></span></a>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li   *ngFor="let cat of categories"   role="menuitem"><a class="dropdown-item" (click)="selectCategory(cat)" href="#/dropdowns#nested">{{cat.name}}</a></li>
+          </ul>
+>>>>>>> febd782598325693e7393cbfa962871ce491ad36
         </li>
         <li class="nav-item"><a class="nav-link" href="#">Vendor Profile</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Cart</a></li>

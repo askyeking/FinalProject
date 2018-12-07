@@ -14,15 +14,15 @@ import com.skilldistillery.swag.entities.InventoryItem;
 import com.skilldistillery.swag.entities.ItemRental;
 import com.skilldistillery.swag.repositories.CustomerRepository;
 import com.skilldistillery.swag.repositories.InventoryItemRepository;
-import com.skilldistillery.swag.repositories.RentalItemRepository;
+import com.skilldistillery.swag.repositories.ItemRentalRepository;
 import com.skilldistillery.swag.repositories.UserRepository;
 
 @Service
-public class RentalItemServiceImpl implements RentalItemService {
+public class ItemRentalServiceImpl implements ItemRentalService {
 
 	
 	@Autowired
-	RentalItemRepository rentalRepo;
+	ItemRentalRepository rentalRepo;
 	@Autowired
 	UserRepository userRepo;
 	@Autowired
@@ -86,6 +86,11 @@ public class RentalItemServiceImpl implements RentalItemService {
 		rentalRepo.saveAndFlush(itemRented);
 		
 		return itemRented;
+	}
+	
+	@Override
+	public List<ItemRental> getCustomersRentalHistory(int customerId) {
+		return rentalRepo.findByCustomer_Id(customerId);
 	}
 	
 	@Override

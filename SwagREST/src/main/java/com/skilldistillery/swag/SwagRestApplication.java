@@ -11,17 +11,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 public class SwagRestApplication extends SpringBootServletInitializer {
 
-	  @Override
-	  protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-	      return application.sources(SwagRestApplication.class);
-	  }
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(SwagRestApplication.class);
+	}
+
+	
+
+	@Bean
+	public PasswordEncoder configurePasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SwagRestApplication.class, args);
 	}
 	
-	@Bean
-	public PasswordEncoder configurePasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 }

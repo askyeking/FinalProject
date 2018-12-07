@@ -1,3 +1,4 @@
+import { Vendor } from './../models/vendor';
 import { SearchService } from './../search.service';
 import { CategoryService } from './../category.service';
 import { Category } from './../models/category';
@@ -6,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../auth.service';
+import { VendorService } from '../vendor.service';
 
 @Component({
   selector: 'app-navigation',
@@ -21,9 +23,11 @@ export class NavigationComponent implements OnInit {
   selectedCategory: Category;
   parameter: String = "";
   keyword: String = "";
+  vendors: Vendor[] = [];
 
   constructor(private router: Router, public authService: AuthService,
-     public catService: CategoryService, private searchService: SearchService, route: ActivatedRoute) { }
+     public catService: CategoryService, private searchService: SearchService, route: ActivatedRoute,
+     private vendorService: VendorService) { }
 
 
   loadCategories() {
@@ -45,8 +49,19 @@ export class NavigationComponent implements OnInit {
       this.router.navigateByUrl("vendor/search/" + this.keyword);
     }
 
+  }
 
-
+  loadVendors() {
+    this.vendorService.index().subscribe(
+      data => {
+        this.vendors = data;
+        console.log(this.vendors);
+        this.router.navigateByUrl("vendor");
+      },
+      err => {
+       console.error('Observer got an error: ' + err);
+      }
+    );
   }
 
   get searchData(): string {

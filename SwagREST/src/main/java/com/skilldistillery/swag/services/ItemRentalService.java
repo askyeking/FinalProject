@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.skilldistillery.swag.entities.ItemRental;
 
-public interface RentalItemService {
+public interface ItemRentalService {
 
 	List<ItemRental> showAll();
 
@@ -16,6 +16,9 @@ public interface RentalItemService {
 
 
 	ItemRental getOne(int id);
+
+
+	List<ItemRental> getCustomersRentalHistory(int customerId);
 
 	
 	
