@@ -22,9 +22,11 @@ import { VendorInventoryListComponent } from './vendor-inventory-list/vendor-inv
 import { InventoryItemViewComponent } from './inventory-item-view/inventory-item-view.component';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { ItemRentalViewComponent } from './item-rental-view/item-rental-view.component';
-import { MatSelectModule } from '@angular/material';
+import { MatSelectModule, MatMenuModule, MatInputModule, MatIconModule } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
+import { MatToolbarModule } from '@angular/material';
+import { AngNavigationComponent } from './ang-navigation/ang-navigation.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { MatButtonModule } from '@angular/material';
     VendorInventoryListComponent,
     InventoryItemViewComponent,
     VendorListComponent,
-    ItemRentalViewComponent
+    ItemRentalViewComponent,
+    AngNavigationComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),
@@ -53,7 +56,13 @@ import { MatButtonModule } from '@angular/material';
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule
+
   ],
   providers: [
     AuthService,
