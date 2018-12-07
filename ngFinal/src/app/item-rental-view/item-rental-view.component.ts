@@ -5,6 +5,7 @@ import { ItemRental } from '../models/item-rental';
 import { InventoryItemService } from '../inventory-item.service';
 import { RentService } from '../rent.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { setupMaster } from 'cluster';
 
 @Component({
   selector: 'app-item-rental-view',
@@ -20,6 +21,27 @@ export class ItemRentalViewComponent implements OnInit {
     public authService: AuthService, private rentService: RentService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.setup();
+  }
+
+  returnRentedItem() {
+    this.rentService.returnItem(this.selectedItemRental).subscribe(
+      data => {
+        this.selectedItemRental = data;
+        console.log(this.selectedItemRental);
+      },
+      err => {
+        console.error('Error returning an item' + err);
+        this.setup();
+      }
+    );
+  }
+
+  viewInventoryItem() {
+    this.router.navigateByUrl('inventoryItems/viewItem/' + this.selectedInventoryItem.id);
+  }
+
+  setup() {
     this.rentalId  = this.route.snapshot.paramMap.get('id');
     this.rentService.getItem(this.rentalId).subscribe(
       data => {
@@ -32,5 +54,4 @@ export class ItemRentalViewComponent implements OnInit {
       }
     );
   }
-
 }

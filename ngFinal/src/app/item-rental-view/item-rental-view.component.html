@@ -26,6 +26,18 @@
   Start Date: {{selectedItemRental.startDate}} <br>
   End Date: {{selectedItemRental.endDate}} <br>
   Info: {{selectedItemRental.transactionInfo}} <br>
-  <button *ngIf="selectedItemRental.active">Return this item</button>
-  <button *ngIf="!selectedItemRental.active">Rent again</button>
+  <button
+  *ngIf="selectedItemRental.active"
+  class="btn btn-danger"
+  value="Return item"
+  (click)="returnRentedItem()"
+  >Return item</button>
+
+  <button
+  *ngIf="!selectedItemRental.active"
+  class="btn btn-danger"
+  value="Rent Again"
+  (click)="viewInventoryItem()">Rent again</button>
+
+
 </div>
