@@ -1,3 +1,4 @@
+import { Vendor } from './models/vendor';
 import { Injectable } from '@angular/core';
 import { User } from './models/user';
 import { environment } from 'src/environments/environment';
@@ -97,5 +98,6 @@ export class UserService {
       })
     );
   }
+
 
 }
