@@ -1,3 +1,4 @@
+import { VendorService } from './../vendor.service';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { InventoryItemService } from '../inventory-item.service';
@@ -6,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
 import { createEmptyStateSnapshot } from '@angular/router/src/router_state';
+import { InventoryItem } from '../models/inventory-item';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-inventory-item-list',
@@ -15,10 +18,11 @@ import { createEmptyStateSnapshot } from '@angular/router/src/router_state';
 export class InventoryItemListComponent implements OnInit {
 
   inventoryItems = [];
-  selected = null;
+  selected: InventoryItem = null;
   temp: string;
   parameter: string;
   keyword: string;
+  vendorsUser: User;
 
   loadInventoryItems() {
     this.inventoryItemService.index().subscribe(
@@ -44,12 +48,26 @@ export class InventoryItemListComponent implements OnInit {
 
   }
 
+  setSelectedItem(item: InventoryItem) {
+    this.selected = item;
+    this.vendorService.getVendorByInventoryItemId(item.id).subscribe(
+      data => {
+        this.vendorsUser = data;
+        this.selected.vendor = this.vendorsUser.vendor;
+      },
+      err => {
+       console.error('Observer got an error: ' + err);
+      }
+  );
+  }
 
-
+  viewVendor() {
+    this.router.navigateByUrl('vendor/profile/' + this.selected.vendor.id);
+  }
 
   constructor(private inventoryItemService: InventoryItemService,
      public authService: AuthService, private searchService: SearchService, private route: ActivatedRoute,
-     private router: Router) { }
+     private router: Router, private vendorService: VendorService) { }
 
   ngOnInit() {
     this.parameter = this.route.snapshot.paramMap.get("parameter");

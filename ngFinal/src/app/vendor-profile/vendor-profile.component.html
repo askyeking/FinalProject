@@ -1,11 +1,6 @@
-<div *ngIf="user && user.vendor || user.customer">
-  <div *ngIf="user && user.vendor">
-      <button  class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="setEdit()">Edit</button>
-  </div>
-
-    <div *ngIf="!editUser && user.vendor || user.customer">
-    <img src="{{user.vendor.imgUrl}}" alt="">
-    <h1>{{user.vendor.displayName}}</h1>
+<div *ngIf="user && user.vendor">
+  <img src="{{user.vendor.imgUrl}}" alt="">
+  <h1>{{user.vendor.displayName}}</h1>
 
     <h3>About</h3>
     {{user.vendor.about}} <br>
@@ -19,23 +14,27 @@
   <div *ngIf="!user.vendor.listedItems">
     No items posted.
   </div>
-    <div *ngFor="let item of user.vendor.listedItems" class="card" style="width: 18rem;">
-      <div *ngIf="item.active">
-        <img class="card-img-top" [src]="item.imgUrl" alt="image">
-        <div class="card-body">
-          <h5 class="card-title">{{item.name}}</h5>
-          <p class="card-text">{{item.description}}</p>
-          <p class="card-text">{{item.price | currency}}</p>
-          <p class="card-text">{{item.condition}}</p>
-        </div>
-        <button class="btn btn-primary" >Rent Me</button>
+  <div *ngFor="let item of user.vendor.listedItems" class="card" style="width: 18rem;">
+    <div *ngIf="item.active">
+      <img class="card-img-top" [src]="item.imgUrl" alt="image">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.description}}</p>
+        <p class="card-text">{{item.price | currency}}</p>
+        <p class="card-text">{{item.condition}}</p>
+        <p class="card-text" *ngIf="item.rented">Item is currently rented</p>
+        <p class="card-text" *ngIf="!item.rented">Item is available</p>
       </div>
-
+      <button class="btn btn-primary" *ngIf="!item.rented" (click)="rentItem(item.id)">Rent Me</button>
     </div>
-</div>
+  </div>
 
 
-  <div *ngIf="editUser">
+
+
+
+
+  <!-- <div *ngIf="editUser">
       <h1>{{editUser.email}}</h1>
       {{editUser.password}}
       <form action="">
@@ -47,4 +46,4 @@
         </form>
       <br>
     </div>
-</div>
+</div> -->

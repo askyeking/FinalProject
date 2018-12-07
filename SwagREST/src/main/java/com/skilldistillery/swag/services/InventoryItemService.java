@@ -27,6 +27,8 @@ public interface InventoryItemService {
 
 	
 	List<InventoryItem> findByKeyword(String keyword);
+
+	public User showVendor(int itemId);
 	
 //	List<InventoryItem> test(Category category);
 

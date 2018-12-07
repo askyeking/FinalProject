@@ -1,4 +1,5 @@
 import { ItemRental } from "./item-rental";
+import { Vendor } from "./vendor";
 
 export class InventoryItem {
   id: number;
@@ -10,6 +11,7 @@ export class InventoryItem {
   active: boolean;
   rented: boolean;
   allRents: ItemRental[];
+  vendor: Vendor;
 
 
   constructor(
@@ -22,6 +24,7 @@ export class InventoryItem {
     active?: boolean,
     rented?: boolean,
     allRents?: ItemRental[],
+    vendor?: Vendor,
   ) {
     this.id = id;
     this.price = price;
@@ -32,6 +35,7 @@ export class InventoryItem {
     this.active = active;
     this.rented = rented;
     this.allRents = allRents;
+    this.vendor = vendor;
   }
 
 }

@@ -50,12 +50,12 @@ public class VendorController {
 	public User editVendor(@RequestBody Vendor userUpdate, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {
 		
-		System.out.println("PATCH VendorController.editVendor() "
-				+ "{api/user/customer}");
-		System.out.println(userUpdate.getAbout());
-		System.out.println(userUpdate.getDisplayName());
-		System.out.println(userUpdate.getImgUrl());
-		System.out.println("************************************");
+//		System.out.println("PATCH VendorController.editVendor() "
+//				+ "{api/user/customer}");
+//		System.out.println(userUpdate.getAbout());
+//		System.out.println(userUpdate.getDisplayName());
+//		System.out.println(userUpdate.getImgUrl());
+//		System.out.println("************************************");
 		
 		User originalUser = userService.findByEmail(principal.getName());
 		
@@ -74,10 +74,21 @@ public class VendorController {
 	public List<Vendor> vendorSearch(@PathVariable("keyword") String keyword, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal ) {
 		return this.vendorService.vendorSearch(keyword);
-		
-		
-		
 	}
+	
+	@GetMapping("vendor/user/{id}")
+	public User retrieveUserObject(@PathVariable("id") int vendorId, HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		User itemsVendor = vendorService.getUserByVendorId(vendorId);
+		
+		if(itemsVendor == null) {
+			res.setStatus(404);
+		}
+		else {
+			res.setStatus(200);
+		}
+		return itemsVendor;
+	}
+
 
 	
 }

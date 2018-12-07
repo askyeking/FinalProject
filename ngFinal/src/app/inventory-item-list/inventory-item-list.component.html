@@ -7,7 +7,7 @@
       <div class="card-body">
         <h5 class="card-title">{{item.name}}</h5>
         <div *ngIf="authService.getToken()">
-            <button (click)="selected=item" class="btn btn-primary">View Item</button>
+            <button (click)="setSelectedItem(item)" class="btn btn-primary">View Item</button>
             <!-- <button (click)="openItemView(item.id)" class="btn btn-primary">View Item</button> -->
         </div>
       </div>
@@ -23,6 +23,7 @@
           <p class="card-text">{{selected.description}}</p>
           <p class="card-text">{{selected.price | currency}}</p>
           <p class="card-text">{{selected.condition}}</p>
+          <p class="card-text" *ngIf="selected.vendor" (click)="viewVendor()">Vendor: {{selected.vendor.displayName}}</p>
           <div *ngIf="authService.getToken()">
               <button (click)="openItemView(selected.id)" class="btn btn-primary">Rent</button>
               <button (click)="selected=null" class="btn btn-primary">Back</button>

@@ -22,7 +22,7 @@ public class InventoryItem {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id; 
+	private int id;
 	
 	@JsonIgnore
 	@ManyToOne

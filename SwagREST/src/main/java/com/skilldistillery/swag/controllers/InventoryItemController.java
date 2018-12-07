@@ -45,6 +45,20 @@ public class InventoryItemController {
 		return itemService.indexCustomer();
 	}
 	
+	@GetMapping("vendor/profile/{id}")
+	public User retrieveVendor(@PathVariable("id") int itemId, HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		User itemsVendor = itemService.showVendor(itemId);
+		
+		if(itemsVendor == null) {
+			res.setStatus(404);
+		}
+		else {
+			res.setStatus(200);
+		}
+		return itemsVendor;
+	}
+
+	
 	@GetMapping("itemslist")
 	public List<InventoryItem> showAllItems(HttpServletRequest req, HttpServletResponse resp/*, Principal principal*/) {
 		return itemService.indexItems();
