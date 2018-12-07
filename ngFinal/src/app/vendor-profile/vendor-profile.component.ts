@@ -1,3 +1,4 @@
+import { Customer } from './../models/customer';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
@@ -13,6 +14,7 @@ export class VendorProfileComponent implements OnInit {
   user: User = null;
   vendor: Vendor = null;
   editUser: User = null;
+  customer: Customer = null;
 
 
   constructor(private userService: UserService, private router: Router) {}
