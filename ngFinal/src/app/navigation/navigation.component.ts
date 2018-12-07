@@ -39,7 +39,6 @@ export class NavigationComponent implements OnInit {
 
   search() {
     this.parameter = this.dropdownButtonText.toLowerCase();
-
     if (this.parameter === 'category' || this.parameter === 'name') {
       this.router.navigateByUrl("items/search/" + this.parameter + "/" + this.keyword);
     } else if (this.parameter === 'vendor') {
@@ -60,8 +59,9 @@ export class NavigationComponent implements OnInit {
 
   selectCategory(selectedCategory: Category) {
       this.selectedCategory = selectedCategory;
-      this.dropdownButtonText = 'category';
+      this.dropdownButtonText = 'Category';
       this.keyword = this.selectedCategory.name;
+      console.log(this.keyword);
   }
 
   ngOnInit() {
