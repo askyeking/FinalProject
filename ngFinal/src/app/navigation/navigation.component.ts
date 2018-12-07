@@ -18,27 +18,12 @@ export class NavigationComponent implements OnInit {
   public dropdownButtonText = 'Search By';
 
   categories: Category[] = [];
-  selected: Category;
+  selectedCategory: Category;
   parameter: String = "";
   keyword: String = "";
 
   constructor(private router: Router, public authService: AuthService,
      public catService: CategoryService, private searchService: SearchService, route: ActivatedRoute) { }
-
-
-// login(user: User) {
-//   console.log('in here');
-//   console.log(user);
-
-//   this.authService.login(user.email, user.password).subscribe(
-//     data => {
-//       this.loginUser = new User();
-//     },
-//     err => {
-//       console.error('Observer got an error' + err);
-//     }
-//   );
-// }
 
 
   loadCategories() {
@@ -65,14 +50,6 @@ export class NavigationComponent implements OnInit {
 
   }
 
-  searchByKeyword() {
-
-  }
-
-  searchByVendor() {
-
-  }
-
   get searchData(): string {
     return this.searchService.searchParameter;
   }
@@ -82,12 +59,9 @@ export class NavigationComponent implements OnInit {
   }
 
   selectCategory(selectedCategory: Category) {
-      this.selected = selectedCategory;
+      this.selectedCategory = selectedCategory;
       this.dropdownButtonText = 'category';
-      this.keyword = this.selected.name;
-      console.log(this.keyword);
-      console.log(this.parameter);
-      console.log();
+      this.keyword = this.selectedCategory.name;
   }
 
   ngOnInit() {

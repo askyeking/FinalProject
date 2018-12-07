@@ -26,20 +26,14 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(user.email, user.password).subscribe(
       data => {
-        // this.todo.selected = user;
         this.loginUser = new User();
-        // this.openTodos();
       },
       err => {
         console.error('Observer got an error' + err);
       }
     );
-    // this.router.navigateByUrl('todo');
   }
 
-  openTodos() {
-    // this.router.navigateByUrl('todo');
-  }
 
   registerRedirect() {
     this.router.navigateByUrl('register');

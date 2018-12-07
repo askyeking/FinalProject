@@ -1,3 +1,4 @@
+import { VendorService } from './../vendor.service';
 import { Vendor } from './../models/vendor';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,8 +15,20 @@ export class VendorListComponent implements OnInit {
   keyword: string;
 
 
+  index() {
+    this.vendorService.index().subscribe(
+      data => {
+        this.vendors = data;
+        console.log(this.vendors);
+      },
+      err => {
+       console.error('Observer got an error: ' + err);
+      }
+    );
+  }
 
-  loadVendors() {
+
+  searchVendors() {
     this.searchService.searchVendors(this.keyword).subscribe(
       data => {
         this.vendors = data;
@@ -27,10 +40,20 @@ export class VendorListComponent implements OnInit {
     );
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private searchService: SearchService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private searchService: SearchService,
+     private vendorService: VendorService) { }
+
+
   ngOnInit() {
     this.keyword = this.route.snapshot.paramMap.get("keyword");
-    this.loadVendors();
+
+    if (this.keyword) {
+      this.searchVendors();
+    } else {
+      this.index();
+    }
+
+
   }
 
 }

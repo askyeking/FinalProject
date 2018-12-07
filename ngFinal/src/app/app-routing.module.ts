@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'home', component: InventoryItemListComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: CustomerProfileComponent },
+  { path: 'vendor', component: VendorListComponent },
   { path: 'vendorInventory', component: VendorInventoryListComponent },
   { path: '', component: InventoryItemListComponent },
   { path: 'landing', component: InventoryItemListComponent },
