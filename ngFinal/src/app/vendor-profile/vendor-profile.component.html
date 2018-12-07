@@ -1,18 +1,31 @@
+<<<<<<< HEAD
 <div *ngIf="user && user.vendor">
   <img src="{{user.vendor.imgUrl}}" alt="">
   <h1>{{user.vendor.displayName}}</h1>
+=======
+<div *ngIf="user && user.vendor || user.customer">
+  <div *ngIf="user && user.vendor">
+      <button  class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="setEdit()">Edit</button>
+  </div>
 
-  <h3>About</h3>
-  {{user.vendor.about}} <br>
-  <hr>
+    <div *ngIf="!editUser && user.vendor || user.customer">
+    <img src="{{user.vendor.imgUrl}}" alt="">
+    <h1>{{user.vendor.displayName}}</h1>
+>>>>>>> 28151443a6a1834208529ff72e0671e6fc9d6226
+
+    <h3>About</h3>
+    {{user.vendor.about}} <br>
+    <hr>
 
   <br>
   <br>
   <br>
+
   <h3>Inventory</h3>
   <div *ngIf="!user.vendor.listedItems">
     No items posted.
   </div>
+<<<<<<< HEAD
   <div *ngFor="let item of user.vendor.listedItems" class="card" style="width: 18rem;">
     <div *ngIf="item.active">
       <img class="card-img-top" [src]="item.imgUrl" alt="image">
@@ -34,6 +47,25 @@
 
 
   <!-- <div *ngIf="editUser">
+=======
+    <div *ngFor="let item of user.vendor.listedItems" class="card" style="width: 18rem;">
+      <div *ngIf="item.active">
+        <img class="card-img-top" [src]="item.imgUrl" alt="image">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <p class="card-text">{{item.description}}</p>
+          <p class="card-text">{{item.price | currency}}</p>
+          <p class="card-text">{{item.condition}}</p>
+        </div>
+        <button class="btn btn-primary" >Rent Me</button>
+      </div>
+
+    </div>
+</div>
+
+
+  <div *ngIf="editUser">
+>>>>>>> 28151443a6a1834208529ff72e0671e6fc9d6226
       <h1>{{editUser.email}}</h1>
       {{editUser.password}}
       <form action="">

@@ -1,3 +1,4 @@
+import { Customer } from './../models/customer';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,7 +15,11 @@ export class VendorProfileComponent implements OnInit {
   user: User = null;
   vendor: Vendor = null;
   editUser: User = null;
+<<<<<<< HEAD
   id = null;
+=======
+  customer: Customer = null;
+>>>>>>> 28151443a6a1834208529ff72e0671e6fc9d6226
 
   constructor(private vendorService: VendorService, private router: Router, private route: ActivatedRoute) {}
 
