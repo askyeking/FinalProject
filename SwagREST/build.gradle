@@ -20,7 +20,7 @@ apply plugin: 'war'
 war {
   enabled = true
   archiveName = "${baseName}.war"     // Our app name, as defined in settings.gradle
-  destinationDir = file("./")      // WAR folder under project root directory
+  destinationDir = file("./WAR")      // WAR folder under project root directory
 }
 
 //group should have .swag if something goes wrong
@@ -41,4 +41,5 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	implementation('org.springframework.boot:spring-boot-starter-tomcat')
  	compile('org.springframework.boot:spring-boot-starter-security')
+ 	providedRuntime ('org.springframework.boot:spring-boot-starter-tomcat')
 }
