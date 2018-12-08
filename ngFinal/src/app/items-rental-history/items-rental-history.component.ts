@@ -25,9 +25,27 @@ export class ItemsRentalHistoryComponent implements OnInit {
   }
 
   retrieveRentalHistory(id: number) {
-    this.rentService.retrieveItemRentalHistory(id).subscribe(
+    this.inventoryItemService.getOne(id).subscribe(
       data => {
         this.itemViewed = data;
+        console.log(this.itemViewed);
+        this.getRentals(id);
+
+
+      },
+      err => {
+        console.error('Observer got an error' + err);
+      }
+    );
+
+
+  }
+
+  getRentals(id: number) {
+    this.rentService.retrieveItemRentalHistory(id).subscribe(
+      data => {
+        this.itemViewed.allRents = data;
+        console.log(this.itemViewed.allRents);
       },
       err => {
         console.error('Observer got an error' + err);

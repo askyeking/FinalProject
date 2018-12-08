@@ -9,6 +9,7 @@ import com.skilldistillery.swag.entities.ItemRental;
 public interface ItemRentalRepository extends JpaRepository<ItemRental, Integer>{
 
 	List<ItemRental> findByCustomer_Id(int customerId);
+	List<ItemRental> findByInventoryItem_Id(int customerId);
 	
 	
 	
