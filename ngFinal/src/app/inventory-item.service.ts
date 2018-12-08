@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { InventoryItem } from './models/inventory-item';
+import { User } from './models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -74,6 +75,16 @@ export class InventoryItemService {
       })
     );
   }
+
+  // getPostingUser(userId: number) {
+  //   return this.http.get<User>(this.baseUrl + 'api/item/user/' + userId, this.httpOptions)
+  //   .pipe(
+  //     catchError((err: any) => {
+  //       console.log(err);
+  //       return throwError('userService.retrieveProfiles(): Error creating profiles');
+  //     })
+  //   );
+  // }
 
 
 

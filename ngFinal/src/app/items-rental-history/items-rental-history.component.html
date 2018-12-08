@@ -1,7 +1,11 @@
 <!-- Consider adding an itemView component that does not have rent option, or -->
 <app-inventory-item-view></app-inventory-item-view>
 <div *ngIf="itemViewed">
-  <h1>{{itemViewed.name}} Rental History</h1>
+  <h3>Rental History</h3>
+  <div *ngIf="itemViewed.allRents && itemViewed.allRents.length != 0">
+      Times Rented: {{itemViewed.allRents.length}} <br>
+      Total income:  {{amountEarnedTotal | currency}}
+    </div>
   <div *ngFor="let rental of itemViewed.allRents">
     <hr>
       <div class="info">
@@ -11,7 +15,7 @@
        </p>
        <p class="return" *ngIf="!rental.active">Returned</p>
        <p class="no-return" *ngIf="rental.active">Not returned</p>
-       <p>Amount paid {{rental.paidAmount}}</p>
+       <p>Amount paid {{rental.paidAmount | currency}}</p>
        <p>Additional Info: {{rental.transactionInfo}}</p>
       </div>
     <hr>

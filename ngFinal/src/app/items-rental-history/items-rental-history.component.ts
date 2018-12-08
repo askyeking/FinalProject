@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ItemsRentalHistoryComponent implements OnInit {
   itemViewed: InventoryItem;
+  amountEarnedTotal = 0;
 
   constructor(
     private inventoryItemService: InventoryItemService,
@@ -46,11 +47,19 @@ export class ItemsRentalHistoryComponent implements OnInit {
       data => {
         this.itemViewed.allRents = data;
         console.log(this.itemViewed.allRents);
+
+        this.getTotalIncome();
       },
       err => {
         console.error('Observer got an error' + err);
       }
     );
+  }
+
+  getTotalIncome() {
+    for (let index = 0; index < this.itemViewed.allRents.length; index++) {
+      this.amountEarnedTotal += this.itemViewed.allRents[index].paidAmount;
+    }
   }
 
   viewRental(id: number) {
