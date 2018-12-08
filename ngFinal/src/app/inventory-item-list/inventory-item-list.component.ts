@@ -50,16 +50,17 @@ export class InventoryItemListComponent implements OnInit {
   }
 
   setSelectedItem(item: InventoryItem) {
-    this.selected = item;
-    this.vendorService.getVendorByInventoryItemId(item.id).subscribe(
-      data => {
-        this.vendorsUser = data;
-        this.selected.vendor = this.vendorsUser.vendor;
-      },
-      err => {
-       console.error('Observer got an error: ' + err);
-      }
-  );
+  // this.selected = item;
+  //   this.vendorService.getVendorByInventoryItemId(item.id).subscribe(
+  //     data => {
+  //       this.vendorsUser = data;
+  //       this.selected.vendor = this.vendorsUser.vendor;
+  //     },
+  //     err => {
+  //      console.error('Observer got an error: ' + err);
+  //     }
+  // );
+    this.router.navigateByUrl('inventoryItems/viewItem/' + item.id);
   }
 
   viewVendor() {
@@ -73,7 +74,6 @@ export class InventoryItemListComponent implements OnInit {
   ngOnInit() {
     this.parameter = this.route.snapshot.paramMap.get("parameter");
     this.keyword = this.route.snapshot.paramMap.get("keyword");
-
 
     if (this.parameter && this.keyword) {
       this.loadParameterizedInventoryItems();

@@ -102,4 +102,10 @@ public class ItemRentalServiceImpl implements ItemRentalService {
 		return null;
 	}
 
+
+	@Override
+	public List<ItemRental> getItemRentalHistory(int itemId) {
+		return rentalRepo.findByInventoryItem_Id(itemId);
+	}
+
 }

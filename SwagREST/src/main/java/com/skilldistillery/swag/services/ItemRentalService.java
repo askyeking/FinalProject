@@ -20,6 +20,9 @@ public interface ItemRentalService {
 
 	List<ItemRental> getCustomersRentalHistory(int customerId);
 
+
+	List<ItemRental> getItemRentalHistory(int itemId);
+
 	
 	
 	

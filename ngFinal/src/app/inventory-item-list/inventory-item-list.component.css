@@ -43,6 +43,16 @@
 	margin-left: 9%;
 }
 
+.link {
+  color: darkblue;
+  text-decoration: underline;
+}
+
+a {
+  color: darkblue;
+  text-decoration: underline;
+}
+
 nav {
   color: black;
 }

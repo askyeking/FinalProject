@@ -43,6 +43,17 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 	public List<InventoryItem> indexItems() {
 		return itemRepo.findAll();
 	}
+	
+	@Override
+	public User showItemOwner(int itemId) {
+		User postingUser = null;
+		InventoryItem itemOwned = showSingleItem(itemId);
+		if(itemOwned != null) {
+			postingUser = itemOwned.getVendor().getUser();
+		}
+		
+		return postingUser;
+	}
 
 	@Override
 	public InventoryItem showSingleItem(int id) {
@@ -105,15 +116,22 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 
 	@Override
 	public User showVendor(int itemId) {
-		User itemsVendor = null;
-		Optional<InventoryItem> opt = itemRepo.findById(itemId);
-		
-		if(opt.isPresent()) {
-			itemsVendor = opt.get().getVendor().getUser();
+		User postingUser = null;
+		InventoryItem itemOwned = showSingleItem(itemId);
+		if(itemOwned != null) {
+			postingUser = itemOwned.getVendor().getUser();
 		}
 		
-		
-		return itemsVendor;
+		return postingUser;
+//		User itemsVendor = null;
+//		Optional<InventoryItem> opt = itemRepo.findById(itemId);
+//		
+//		if(opt.isPresent()) {
+//			itemsVendor = opt.get().getVendor().getUser();
+//		}
+//		
+//		
+//		return itemsVendor;
 	}
 	  
 

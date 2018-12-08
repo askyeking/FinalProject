@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ItemsRentalHistoryComponent implements OnInit {
   itemViewed: InventoryItem;
+  amountEarnedTotal = 0;
 
   constructor(
     private inventoryItemService: InventoryItemService,
@@ -25,14 +26,44 @@ export class ItemsRentalHistoryComponent implements OnInit {
   }
 
   retrieveRentalHistory(id: number) {
-    this.rentService.retrieveItemRentalHistory(id).subscribe(
+    this.inventoryItemService.getOne(id).subscribe(
       data => {
         this.itemViewed = data;
+        console.log(this.itemViewed);
+        this.getRentals(id);
+
+
       },
       err => {
         console.error('Observer got an error' + err);
       }
     );
+
+
+  }
+
+  getRentals(id: number) {
+    this.rentService.retrieveItemRentalHistory(id).subscribe(
+      data => {
+        this.itemViewed.allRents = data;
+        console.log(this.itemViewed.allRents);
+
+        this.getTotalIncome();
+      },
+      err => {
+        console.error('Observer got an error' + err);
+      }
+    );
+  }
+
+  getTotalIncome() {
+    for (let index = 0; index < this.itemViewed.allRents.length; index++) {
+      this.amountEarnedTotal += this.itemViewed.allRents[index].paidAmount;
+    }
+  }
+
+  viewRental(id: number) {
+    this.router.navigateByUrl('inventoryItems/rental/' + id);
   }
 
 }

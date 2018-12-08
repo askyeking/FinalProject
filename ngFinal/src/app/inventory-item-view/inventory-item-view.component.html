@@ -18,10 +18,11 @@
       </div>
       <br>
       <br>
-      <h2>Rental information</h2>
+
   </div>
 
-  <form *ngIf="selected" >
+  <form *ngIf="selected && selected.vendor.id != currentUser.vendor.id" >
+      <h2>Rental information</h2>
   <!--
   startDate: Date;
   endDate: Date;

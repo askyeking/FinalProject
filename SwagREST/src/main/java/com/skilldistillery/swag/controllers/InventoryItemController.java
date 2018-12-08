@@ -104,6 +104,12 @@ public class InventoryItemController {
 		return vendorItems;
 	}
 	
+	@GetMapping("item/user/{id}")
+	public User getPostingUser(@PathVariable("id") int itemId, HttpServletResponse res, HttpServletRequest req, Principal principal) {
+		this.itemService.showItemOwner(itemId);
+		return null;
+	}
+	
 	
 	
 	
