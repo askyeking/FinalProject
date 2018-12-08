@@ -68,9 +68,10 @@ export class InventoryItemViewComponent implements OnInit {
   }
 
   calculatePrice(): number {
+    console.log(this.selected.price);
     const oneDay = 1000 * 60 * 60 * 24;
     const difference = new Date(this.itemRental.endDate).getTime() - new Date(this.itemRental.startDate).getTime();
-    return Math.round(difference / oneDay) + 5;
+    return Math.round(difference / oneDay) * this.selected.price + 5;
   }
 
 }

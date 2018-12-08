@@ -1,6 +1,8 @@
 package com.skilldistillery.swag.controllers;
 
 import java.security.Principal;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +29,7 @@ import com.skilldistillery.swag.services.UserService;
 @RequestMapping(path = "api")
 @CrossOrigin({ "*", "http://localhost:4207" })
 public class ItemRentalController {
-	
+
 	@Autowired
 	ItemRentalService rentalService;
 	@Autowired
@@ -41,69 +43,71 @@ public class ItemRentalController {
 	public List<ItemRental> index(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		return rentalService.showAll();
 	}
-	
+
 	@GetMapping("rental/{id}")
-	public ItemRental getItemRenta(@PathVariable("id") int itemId,HttpServletRequest req, HttpServletResponse resp, Principal principal) {
+	public ItemRental getItemRenta(@PathVariable("id") int itemId, HttpServletRequest req, HttpServletResponse resp,
+			Principal principal) {
 		ItemRental itemRequested = rentalService.getOne(itemId);
-		
-		if(itemRequested != null) {
+
+		if (itemRequested != null) {
 			resp.setStatus(200);
-		}
-		else {
+		} else {
 			resp.setStatus(400);
 		}
-		
+
 		return itemRequested;
-	} 
-	
+	}
+
 	@GetMapping("rental/customer/{id}")
-	public List<ItemRental> getRentalsByCustomer(@PathVariable("id") int customerId,HttpServletRequest req, HttpServletResponse resp, Principal principal) {
-		return rentalService.getCustomersRentalHistory(customerId);
-	} 
-	
+	public List<ItemRental> getRentalsByCustomer(@PathVariable("id") int customerId, HttpServletRequest req,
+			HttpServletResponse resp, Principal principal) {
+		List<ItemRental> rentals = rentalService.getCustomersRentalHistory(customerId);
+		Collections.sort(rentals, new Comparator<ItemRental>() {
+			public int compare(ItemRental i1, ItemRental i2) {
+				return -((Boolean) i1.isActive()).compareTo((Boolean) i2.isActive());
+			}
+		});
+		return rentals;
+	}
+
 	@PostMapping("rental")
-	public ItemRental rentInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
+	public ItemRental rentInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req,
+			HttpServletResponse resp, Principal principal) {
 		User rentingUser = userService.findByEmail(principal.getName());
 		itemRented.setCustomer(rentingUser.getCustomer());
-		
-		if(itemRented.getCustomer() != null
-				&& itemRented.getInventoryItem() != null
+
+		if (itemRented.getCustomer() != null && itemRented.getInventoryItem() != null
 				&& !itemService.showSingleItem(itemRented.getInventoryItem().getId()).isRented()
 				&& itemService.showSingleItem(itemRented.getInventoryItem().getId()).isActive()) {
 			resp.setStatus(200);
 			itemRented = rentalService.postItemRental(itemRented);
-		}
-		else {
+		} else {
 			resp.setStatus(406);
 			itemRented = null;
 		}
-		
+
 		return itemRented;
 	}
-	
+
 	@PatchMapping("rental")
-	public ItemRental returnInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
-		
+	public ItemRental returnInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req,
+			HttpServletResponse resp, Principal principal) {
+
 		itemRented.setCustomer(null);
 		User rentingUser = userService.findByEmail(principal.getName());
 		itemRented.setCustomer(rentingUser.getCustomer());
-		
-		if(itemRented.getCustomer() != null
-				&& itemRented.getInventoryItem() != null
-				&& itemRented.getInventoryItem().isActive()
-				&& itemRented.getId() != 0) {
-			
+
+		if (itemRented.getCustomer() != null && itemRented.getInventoryItem() != null
+				&& itemRented.getInventoryItem().isActive() && itemRented.getId() != 0) {
+
 			itemRented = rentalService.returnItemRental(itemRented);
 			resp.setStatus(200);
-			
-		}
-		else {
+
+		} else {
 			resp.setStatus(406);
 		}
-		
+
 		return itemRented;
 	}
-	
-	
 
 }
