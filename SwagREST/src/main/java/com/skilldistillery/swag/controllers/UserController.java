@@ -40,18 +40,16 @@ public class UserController {
 		return user;
 	}
 	
+	//route for getting logged in user
 	@GetMapping("user/email") 
 	public User showUserByEmail(HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {
-
 		User user = userService.findByEmail(principal.getName());
-		
 		if (user != null) {
 			resp.setStatus(200);
 		} else {
 			resp.setStatus(404);
 		}
-
 		return user;
 	}
 	
