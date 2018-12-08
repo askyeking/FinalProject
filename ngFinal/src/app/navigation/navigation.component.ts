@@ -45,6 +45,8 @@ export class NavigationComponent implements OnInit {
   }
 
   search() {
+    console.log(this.parameter);
+    console.log(this.keyword);
     this.parameter = this.dropdownButtonText.toLowerCase();
     if (this.parameter === 'category' || this.parameter === 'name') {
       this.router.navigateByUrl("items/search/" + this.parameter + "/" + this.keyword);
