@@ -37,11 +37,11 @@
     <div class="card-deck">
           <div *ngFor="let item of inventoryItems; let i=index" class="item-card" style="width: 18rem;">
             <div *ngIf="item.active && i<6">
-              <div class="card-block">
+              <div class="card-block" (click)="setSelectedItem(item)">
                 <img class="card-img-top" [src]="item.imgUrl" alt="Item" height="300" width="auto">
                 <div class="card-body">
                   <h5 class="card-title">
-                    <a href="setSelectedItem(item)"><strong>{{item.name}}</strong></a>
+                    <a ><strong>{{item.name}}</strong></a>
                     <!-- <a href="" (click)="setSelectedItem(item)">{{item.name}}</a> -->
                   </h5>
                   <p class="card-text">{{item.description}}</p>
