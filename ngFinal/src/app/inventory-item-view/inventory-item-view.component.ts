@@ -1,3 +1,4 @@
+import { UserService } from './../user.service';
 import { RentService } from './../rent.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SearchService } from './../search.service';
@@ -7,7 +8,6 @@ import { AuthService } from '../auth.service';
 import { getValueInRange } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { InventoryItem } from '../models/inventory-item';
 import { ItemRental } from '../models/item-rental';
-import { UserService } from '../user.service';
 import { User } from '../models/user';
 
 @Component({
@@ -16,24 +16,32 @@ import { User } from '../models/user';
   styleUrls: ['./inventory-item-view.component.css']
 })
 export class InventoryItemViewComponent implements OnInit {
-
-
   id = null;
   selected: InventoryItem = null;
   itemRental: ItemRental = new ItemRental();
+  currentUser = null;
 
   // try;
   constructor(private inventoryItemService: InventoryItemService,
-    public authService: AuthService, private rentService: RentService, private router: Router, private route: ActivatedRoute) {
+    public authService: AuthService, private rentService: RentService, private userService: UserService,
+    private router: Router, private route: ActivatedRoute) {
 
      }
 
   ngOnInit() {
     // this.try = this.langId;
+    this.currentUser = this.userService.retrieveProfiles().subscribe(
+      data => this.currentUser = data,
+      err => console.error('itemView.ngOnInit.getOne: ' + err)
+    );
 
     this.id  = this.route.snapshot.paramMap.get('id');
     this.inventoryItemService.getOne(this.id).subscribe(
-      data => this.selected = data,
+      data => {this.selected = data;
+      console.log('selected: ');
+      console.log(this.selected);
+
+      },
       err => console.error('itemView.ngOnInit.getOne: ' + err)
     );
   }
