@@ -1,77 +1,90 @@
-<div *ngIf="selected" >
-    <button (click)="backToHome()" class="btn btn-primary">Home</button>
-    <button (click)="toVendorInventory()" *ngIf="selected && selected.vendor && currentUser.vendor && selected.vendor.id === currentUser.vendor.id" class="btn btn-primary">Vendor Inventory</button>
-    <br>
-    <br>
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" [src]="selected.imgUrl" alt="image">
-        <div class="card-body">
-          <h5 class="card-title">{{selected.name}}</h5>
-          <p class="card-text" (click)="viewVendor()">Vendor: {{selected.vendor.displayName}}</p>
-          <p class="card-text">{{selected.description}}</p>
-          <p class="card-text">{{selected.price | currency}} per day + $5 one-time shipping and service fee</p>
-          <p class="card-text">{{selected.condition}}</p>
-        </div>
-      </div>
-      <br>
-      <br>
+<div *ngIf="selected">
+  <button (click)="backToHome()" class="btn btn-primary">Home</button>
+  <button
+    (click)="toVendorInventory()"
+    *ngIf="
+      selected &&
+      selected.vendor &&
+      currentUser &&
+      currentUser.vendor &&
+      selected.vendor.id === currentUser.vendor.id
+    "
+    class="btn btn-primary"
+  >
 
-  <!-- <div *ngIf="selected.rented">This item is already rented</div> -->
-  <form *ngIf="selected && !selected.rented && (!selected.vendor || !(selected.vendor.id === currentUser.vendor.id))">
+    Vendor Inventory
+  </button>
+  <br />
+  <br />
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" [src]="selected.imgUrl" alt="image" />
+    <div class="card-body">
+      <h5 class="card-title">{{ selected.name }}</h5>
+      <p class="card-text" (click)="viewVendor()" *ngIf="selected.vendor">
+        Vendor: {{ selected.vendor.displayName }}
+      </p>
+      <p class="card-text">{{ selected.description }}</p>
+      <p class="card-text">
+        {{ selected.price | currency }} per day + $5 one-time shipping and
+        service fee
+      </p>
+      <p class="card-text">{{ selected.condition }}</p>
+    </div>
+  </div>
+  <br />
+  <br />
 
-      <h2>Rental information</h2>
-  <!--
-  startDate: Date;
-  endDate: Date;
-  paidAmount: number;
-  active: boolean;
-  transactionInfo: string;
-  customer: Customer;
-  inventoryItem: InventoryItem; -->
-
+  <div *ngIf="selected && selected.rented">This item is already rented</div>
+  <form
+    *ngIf="
+      selected &&
+      currentUser &&
+      !selected.rented &&
+      (!currentUser.vendor || !(selected.vendor.id === currentUser.vendor.id))
+    "
+  >
+    <h2>Rental information</h2>
     Rental Begins:
-    <input type="date"
-    name="BeginDate"
-    placeholder="Begin Date"
-    [(ngModel)]="itemRental.startDate"
-    required>
+    <input
+      type="date"
+      name="BeginDate"
+      placeholder="Begin Date"
+      [(ngModel)]="itemRental.startDate"
+      required
+    />
 
-    <br>
+    <br />
     Rental Ends:
-    <input type="date"
-    name="EndDate"
-    placeholder="End Date"
-    [(ngModel)]="itemRental.endDate"
-    required>
+    <input
+      type="date"
+      name="EndDate"
+      placeholder="End Date"
+      [(ngModel)]="itemRental.endDate"
+      required
+    />
 
-    <br>
-    <textarea class="form-control"
-    rows="3"
-    name="transactionInfo"
-    placeholder="Delivery and transaction Info"
-    [(ngModel)]="itemRental.transactionInfo"
-    required></textarea>
+    <br />
+    <textarea
+      class="form-control"
+      rows="3"
+      name="transactionInfo"
+      placeholder="Delivery and transaction Info"
+      [(ngModel)]="itemRental.transactionInfo"
+      required
+    ></textarea>
 
     <h2>Payment</h2>
-    Valid through: <input type="Date">
-    <br>
-    <input type="text"
-    placeholder="Card Owner">
-    <br>
-    <input type="number"
-    placeholder="Credit Card Number">
-    <br>
-    <input type="text"
-    placeholder="CVC">
+    Valid through: <input type="Date" /> <br />
+    <input type="text" placeholder="Card Owner" /> <br />
+    <input type="number" placeholder="Credit Card Number" /> <br />
+    <input type="text" placeholder="CVC" />
 
-    <br>
+    <br />
     <input
-    type="button"
-    class="btn btn-danger"
-    value="Proceed"
-    (click)="persistItemRental()"
-  />
-
+      type="button"
+      class="btn btn-danger"
+      value="Proceed"
+      (click)="persistItemRental()"
+    />
   </form>
-
 </div>

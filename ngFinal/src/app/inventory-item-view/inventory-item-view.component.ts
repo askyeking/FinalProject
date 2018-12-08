@@ -43,22 +43,16 @@ export class InventoryItemViewComponent implements OnInit {
       },
       err => console.error("itemView.ngOnInit.getOne: " + err)
     );
-
   }
 
   getCurrentUser() {
-    this.userService
-    .retrieveProfiles()
-    .subscribe(
+    this.userService.retrieveProfiles().subscribe(
       data => {
         this.currentUser = data;
-
       },
       err => console.error("itemView.ngOnInit.getOne: " + err)
     );
-
   }
-
 
   getItemsOwner(itemId: number) {
     this.vendorService.getVendorByInventoryItemId(itemId).subscribe(
@@ -104,7 +98,7 @@ export class InventoryItemViewComponent implements OnInit {
   }
 
   toVendorInventory() {
-    this.router.navigateByUrl('vendorInventory');
+    this.router.navigateByUrl("vendorInventory");
   }
 
   calculatePrice(): number {
@@ -117,7 +111,6 @@ export class InventoryItemViewComponent implements OnInit {
   }
 
   viewVendor() {
-    this.router.navigateByUrl('vendor/profile/' + this.selected.vendor.id);
+    this.router.navigateByUrl("vendor/profile/" + this.selected.vendor.id);
   }
-
 }
