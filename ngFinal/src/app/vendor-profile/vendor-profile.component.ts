@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Customer } from './../models/customer';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
@@ -14,12 +15,14 @@ import { VendorService } from '../vendor.service';
 export class VendorProfileComponent implements OnInit {
   user: User = null;
   vendor: Vendor = null;
+  userBeingViewed: User = null;
   editUser: User = null;
   id = null;
   customer: Customer = null;
 
 
-  constructor(private vendorService: VendorService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private vendorService: VendorService, private userService: UserService, private router: Router,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.id =  this.route.snapshot.paramMap.get('id');
@@ -32,11 +35,41 @@ export class VendorProfileComponent implements OnInit {
         console.error('Observer got an error' + err);
       }
     );
+
+    this.userService.retrieveProfiles().subscribe(
+      data => {
+        this.userBeingViewed = data;
+      },
+      err => {
+        console.error('Observer got an error' + err);
+      }
+    );
   }
 
 
   rentItem(id: number) {
     this.router.navigateByUrl('inventoryItems/viewItem/' + id);
+  }
+
+  setEditUser() {
+    this.editUser = Object.assign({}, this.user);
+  }
+
+  updateVendor(editUser: User) {
+    this.userService.updateVendor(editUser).subscribe(
+      data => {
+        this.userBeingViewed = data;
+        this.editUser = null;
+      },
+      err => {
+        console.error('Observer got an error' + err);
+      }
+    );
+  }
+
+
+  cancelEdit() {
+    this.editUser = null;
   }
 
 

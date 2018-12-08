@@ -1,5 +1,6 @@
-<div *ngIf="user && user.vendor">
+<div *ngIf="user && user.vendor ">
   <img src="{{user.vendor.imgUrl}}" alt="">
+  <button *ngIf="user.vendor.id === userBeingViewed.vendor.id" (click)="setEditUser()">Edit</button>
   <h1>{{user.vendor.displayName}}</h1>
 
     <h3>About</h3>
@@ -10,11 +11,12 @@
   <br>
   <br>
 
+  <div *ngIf="!editUser">
   <h3>Inventory</h3>
   <div *ngIf="!user.vendor.listedItems">
     No items posted.
   </div>
-  <div *ngFor="let item of user.vendor.listedItems" class="card" style="width: 18rem;">
+  <div  *ngFor="let item of user.vendor.listedItems" class="card" style="width: 18rem;">
     <div *ngIf="item.active">
       <img class="card-img-top" [src]="item.imgUrl" alt="image">
       <div class="card-body">
@@ -28,8 +30,9 @@
       <button class="btn btn-primary" *ngIf="!item.rented" (click)="rentItem(item.id)">Rent Me</button>
     </div>
   </div>
+</div>
 
-  <!-- <div *ngIf="editUser">
+  <div *ngIf="editUser">
       <h1>{{editUser.email}}</h1>
       {{editUser.password}}
       <form action="">
@@ -40,5 +43,5 @@
           <button class="btn btn-danger my-2 my-sm-0" type="submit" (click)="cancelEdit()">Cancel</button>
         </form>
       <br>
-    </div>
-</div> -->
+    </div>asd
+</div>

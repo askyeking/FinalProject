@@ -102,6 +102,7 @@ export class NavigationComponent implements OnInit {
   }
 
   viewCustomerProfile() {
+    this.router.navigateByUrl("profile");
   }
 
 
