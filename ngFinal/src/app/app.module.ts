@@ -26,6 +26,7 @@ import { MatSelectModule, MatMenuModule, MatInputModule, MatIconModule } from '@
 import { MatCheckboxModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
+import { ItemsRentalHistoryComponent } from './items-rental-history/items-rental-history.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MatToolbarModule } from '@angular/material';
     VendorInventoryListComponent,
     InventoryItemViewComponent,
     VendorListComponent,
-    ItemRentalViewComponent
+    ItemRentalViewComponent,
+    ItemsRentalHistoryComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),

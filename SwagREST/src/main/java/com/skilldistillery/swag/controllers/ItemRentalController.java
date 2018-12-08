@@ -69,6 +69,19 @@ public class ItemRentalController {
 		});
 		return rentals;
 	}
+	
+	@GetMapping("rental/item/{id}")
+	public List<ItemRental> getRentalsByItem(@PathVariable("id") int customerId, HttpServletRequest req,
+			HttpServletResponse resp, Principal principal) {
+		List<ItemRental> rentals = rentalService.getCustomersRentalHistory(customerId);
+		Collections.sort(rentals, new Comparator<ItemRental>() {
+			public int compare(ItemRental i1, ItemRental i2) {
+				return -((Boolean) i1.isActive()).compareTo((Boolean) i2.isActive());
+			}
+		});
+		return rentals;
+	}
+	
 
 	@PostMapping("rental")
 	public ItemRental rentInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req,
