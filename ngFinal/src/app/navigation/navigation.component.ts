@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../auth.service';
 import { VendorService } from '../vendor.service';
+import { UserService } from '../user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navigation',
@@ -24,10 +26,11 @@ export class NavigationComponent implements OnInit {
   parameter: String = "";
   keyword: String = "";
   vendors: Vendor[] = [];
+  loggedInUser: User;
 
   constructor(private router: Router, public authService: AuthService,
      public catService: CategoryService, private searchService: SearchService, route: ActivatedRoute,
-     private vendorService: VendorService) { }
+     private vendorService: VendorService, private userService: UserService) { }
 
 
   loadCategories() {
@@ -81,6 +84,24 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.loadCategories();
+  }
+
+
+
+
+  viewVendorProfile() {
+    this.userService.retrieveProfiles().subscribe(
+      data => {
+        this.loggedInUser = data;
+        this.router.navigateByUrl("vendor/profile/" + this.loggedInUser.vendor.id);
+      },
+      err => {
+       console.error('Observer got an error: ' + err);
+      }
+    );
+  }
+
+  viewCustomerProfile() {
   }
 
 
