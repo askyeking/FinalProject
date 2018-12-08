@@ -23,22 +23,7 @@ export class InventoryItemListComponent implements OnInit {
   parameter: string;
   keyword: string;
   vendorsUser: User;
-  page =  1;
-  pages: Array<number>;
 
-
-  setPage(i, event: any) {
-    event.preventDefault();
-    this.page = i;
-    this.loadInventoryItems();
-  }
-
-  // loadPages() {
-  //   this.inventoryItemService.index(this.page).subscribe(
-  //     data => this.inventoryItems = data,
-  //     err => console.error('Observer got an error: ' + err)
-  //   );
-  // }
 
   loadInventoryItems() {
     this.inventoryItemService.index().subscribe(
