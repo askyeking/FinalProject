@@ -62,5 +62,15 @@ export class RentService {
     );
   }
 
+  retrieveItemRentalHistory(itemId: number) {
+    return this.http.get<ItemRental[]>(this.baseUrl + 'api/rental/item/' + itemId, this.httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error rentService.retrieveItemRentalHistory()');
+        })
+    );
+  }
+
 
 }

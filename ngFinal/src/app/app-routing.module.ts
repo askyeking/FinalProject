@@ -2,7 +2,6 @@ import { ItemRentalViewComponent } from './item-rental-view/item-rental-view.com
 import { VendorProfileComponent } from './vendor-profile/vendor-profile.component';
 import { VendorInventoryListComponent } from './vendor-inventory-list/vendor-inventory-list.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
-import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -10,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { InventoryItemListComponent } from './inventory-item-list/inventory-item-list.component';
 import { InventoryItemViewComponent } from './inventory-item-view/inventory-item-view.component';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
+import { ItemsRentalHistoryComponent } from './items-rental-history/items-rental-history.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'inventoryItems/rental/:id', component: ItemRentalViewComponent},
   { path: 'items/search/:parameter/:keyword', component: InventoryItemListComponent},
   { path: 'vendor/search/:keyword', component: VendorListComponent},
+  { path: 'inventoryItems/viewItem/history/:id', component: ItemsRentalHistoryComponent},
 ];
 
 @NgModule({

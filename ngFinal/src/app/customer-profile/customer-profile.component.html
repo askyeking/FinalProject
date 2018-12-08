@@ -46,7 +46,7 @@
             <p class="card-text">Date To: {{ rental.endDate }}</p>
             {{rental.inventoryItem.rente}}
             <p class="card-text">Instructions: {{ rental.transactionInfo }}</p>
-                <button *ngIf="rental.active" (click)="viewRental(rental.id)" class="btn btn-primary">GiveBack</button>
+                <button *ngIf="rental.active" (click)="viewRental(rental.id)" class="btn btn-primary">Return</button>
                 <button *ngIf="!rental.active && !rental.inventoryItem.rented" (click)="viewItem(rental.inventoryItem.id)" class="btn btn-primary">Rent Again</button>
           </div>
         </div>

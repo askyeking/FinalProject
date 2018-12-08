@@ -1,27 +1,26 @@
-
-
 <mat-toolbar style=" padding-top: 20px">
-  <span> My Application </span>&nbsp;&nbsp;&nbsp;&nbsp;
+  <span> Name Pending </span>&nbsp;&nbsp;&nbsp;&nbsp;
 
-
-  <form class="example-form">
+<!-- <div *ngIf="authService.getToken()"> -->
+  <button mat-button *ngIf="authService.getToken()" (click)="viewCustomerProfile()"   >Customer Profile</button>
+  <button mat-button  *ngIf="authService.getToken()" (click)="viewVendorProfile()" >Vendor Profile</button>
+  <button mat-button *ngIf="authService.getToken()"  (click)="loadVendors()">View Vendors</button>
+  <form class="example-form" *ngIf="authService.getToken()">
       <mat-form-field class="example-full-width">
         <input matInput  name="keyword" [(ngModel)]="keyword">
       </mat-form-field>
   </form>
-
-    <button mat-button [matMenuTriggerFor]="searchOptions">{{dropdownButtonText}}</button>
+    <button mat-button [matMenuTriggerFor]="searchOptions" *ngIf="authService.getToken()">{{dropdownButtonText}}</button>
     <mat-menu #searchOptions="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="Categories">Categories</button>
+      <button *ngIf="authService.getToken()"  mat-menu-item [matMenuTriggerFor]="Categories">Categories</button>
       <button mat-menu-item (click)="dropdownButtonText = 'name'"   >Name</button>
       <button mat-menu-item (click)="dropdownButtonText = 'Vendor'" >Vendor</button>
     </mat-menu>
     <mat-menu #Categories="matMenu">
       <button *ngFor="let cat of categories"  (click)="selectCategory(cat)"  mat-menu-item>{{cat.name}}</button>
     </mat-menu>
-
-    <button mat-button (click)="search()">Submit Search</button>
-
-    <app-login *ngIf="!authService.getToken()"></app-login>
+    <button mat-button *ngIf="authService.getToken()" (click)="search()">Submit Search</button>
     <app-logout *ngIf="authService.getToken()"></app-logout>
+  <!-- </div> -->
+    <app-login *ngIf="!authService.getToken()"></app-login>
 </mat-toolbar>
