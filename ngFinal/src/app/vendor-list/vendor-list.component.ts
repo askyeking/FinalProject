@@ -40,6 +40,11 @@ export class VendorListComponent implements OnInit {
     );
   }
 
+
+  viewVendor(vendor: Vendor) {
+      this.router.navigateByUrl('vendor/profile/' + vendor.id);
+  }
+
   constructor(private router: Router, private route: ActivatedRoute, private searchService: SearchService,
      private vendorService: VendorService) { }
 
