@@ -1,6 +1,6 @@
 <div *ngIf="selected" >
     <button (click)="backToHome()" class="btn btn-primary">Home</button>
-    <button (click)="toVendorInventory()" *ngIf="selected.vendor && currentUser.vendor && selected.vendor.id === currentUser.vendor.id" class="btn btn-primary">Vendor Inventory</button>
+    <button (click)="toVendorInventory()" *ngIf="selected && selected.vendor && currentUser.vendor && selected.vendor.id === currentUser.vendor.id" class="btn btn-primary">Vendor Inventory</button>
     <br>
     <br>
     <div class="card" style="width: 18rem;">
@@ -11,19 +11,14 @@
           <p class="card-text">{{selected.description}}</p>
           <p class="card-text">{{selected.price | currency}} per day + $5 one-time shipping and service fee</p>
           <p class="card-text">{{selected.condition}}</p>
-          <div *ngIf="authService.getToken()">
-              <!-- <button class="btn btn-primary">Rent</button> -->
-
-          </div>
-
         </div>
       </div>
       <br>
       <br>
 
-  </div>
+  <!-- <div *ngIf="selected.rented">This item is already rented</div> -->
+  <form *ngIf="selected && !selected.rented && (!selected.vendor || !(selected.vendor.id === currentUser.vendor.id))">
 
-  <form *ngIf="selected && selected.vendor.id != currentUser.vendor.id" >
       <h2>Rental information</h2>
   <!--
   startDate: Date;
@@ -79,5 +74,4 @@
 
   </form>
 
-
-
+</div>

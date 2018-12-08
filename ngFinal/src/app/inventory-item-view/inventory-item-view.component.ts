@@ -20,6 +20,7 @@ export class InventoryItemViewComponent implements OnInit {
   itemRental: ItemRental = new ItemRental();
   currentUser: User = null;
   postingUser: User = null;
+  isAlreadyRenting = false;
 
   // try;
   constructor(
@@ -34,13 +35,6 @@ export class InventoryItemViewComponent implements OnInit {
 
   ngOnInit() {
     // this.try = this.langId;
-    this.userService
-      .retrieveProfiles()
-      .subscribe(
-        data => (this.currentUser = data),
-        err => console.error("itemView.ngOnInit.getOne: " + err)
-      );
-
     this.id = this.route.snapshot.paramMap.get("id");
     this.inventoryItemService.getOne(this.id).subscribe(
       data => {
@@ -49,7 +43,22 @@ export class InventoryItemViewComponent implements OnInit {
       },
       err => console.error("itemView.ngOnInit.getOne: " + err)
     );
+
   }
+
+  getCurrentUser() {
+    this.userService
+    .retrieveProfiles()
+    .subscribe(
+      data => {
+        this.currentUser = data;
+
+      },
+      err => console.error("itemView.ngOnInit.getOne: " + err)
+    );
+
+  }
+
 
   getItemsOwner(itemId: number) {
     this.vendorService.getVendorByInventoryItemId(itemId).subscribe(
@@ -57,6 +66,7 @@ export class InventoryItemViewComponent implements OnInit {
         this.postingUser = data;
         this.selected.vendor = this.postingUser.vendor;
         this.selected.vendor.user = this.postingUser.vendor.user;
+        this.getCurrentUser();
       },
       err => console.error("itemView.ngOnInit.getOne: " + err)
     );
@@ -66,11 +76,11 @@ export class InventoryItemViewComponent implements OnInit {
     this.router.navigateByUrl("");
   }
 
-  refresh() {
-    this.id = null;
-    this.selected = null;
-    this.itemRental = new ItemRental();
-  }
+  // refresh() {
+  //   this.id = null;
+  //   this.selected = null;
+  //   this.itemRental = new ItemRental();
+  // }
 
   persistItemRental() {
     this.itemRental.inventoryItem = this.selected;
