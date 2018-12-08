@@ -53,4 +53,8 @@ export class ItemsRentalHistoryComponent implements OnInit {
     );
   }
 
+  viewRental(id: number) {
+    this.router.navigateByUrl('inventoryItems/rental/' + id);
+  }
+
 }
