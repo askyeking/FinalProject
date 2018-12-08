@@ -73,6 +73,10 @@ export class VendorProfileComponent implements OnInit {
     this.editUser = null;
   }
 
+  viewInventory() {
+    this.router.navigateByUrl('vendorInventory');
+  }
+
 
 
 

@@ -1,16 +1,14 @@
 <div *ngIf="user && user.vendor ">
   <img src="{{user.vendor.imgUrl}}" alt="">
   <button *ngIf="user.vendor.id === userBeingViewed.vendor.id" (click)="setEditUser()">Edit</button>
+  <button *ngIf="user.vendor.id === userBeingViewed.vendor.id" (click)="viewInventory()">View Inventory</button>
   <h1>{{user.vendor.displayName}}</h1>
-
     <h3>About</h3>
     {{user.vendor.about}} <br>
     <hr>
-
   <br>
   <br>
   <br>
-
   <div *ngIf="!editUser">
   <h3>Inventory</h3>
   <div *ngIf="!user.vendor.listedItems">
