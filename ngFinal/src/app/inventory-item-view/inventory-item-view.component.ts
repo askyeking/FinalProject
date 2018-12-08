@@ -93,6 +93,10 @@ export class InventoryItemViewComponent implements OnInit {
     );
   }
 
+  toVendorInventory() {
+    this.router.navigateByUrl('vendorInventory');
+  }
+
   calculatePrice(): number {
     console.log(this.selected.price);
     const oneDay = 1000 * 60 * 60 * 24;
@@ -101,4 +105,9 @@ export class InventoryItemViewComponent implements OnInit {
       new Date(this.itemRental.startDate).getTime();
     return Math.round(difference / oneDay) * this.selected.price + 5;
   }
+
+  viewVendor() {
+    this.router.navigateByUrl('vendor/profile/' + this.selected.vendor.id);
+  }
+
 }

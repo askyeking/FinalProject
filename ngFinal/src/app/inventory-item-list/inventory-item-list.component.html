@@ -22,8 +22,8 @@
       *ngFor="let item of inventoryItems; let i = index"
       class="item-card"
       style="width: 18rem;">
-      <div *ngIf="item.active && i < 6">
-        <div class="card-block" (click)="selected = item">
+      <div *ngIf="item.active">
+        <div class="card-block" (click)="openItemView(item.id)">
           <img
             class="card-img-top"
             [src]="item.imgUrl"
@@ -49,8 +49,9 @@
 </div>
 
 <div *ngIf="selected">
-  <div class="card" style="width: 18rem;">
-    <img class="card-img-top" [src]="selected.imgUrl" alt="image" />
+
+  <!-- <div class="card" style="width: 18rem;"> -->
+    <!-- <img class="card-img-top" [src]="selected.imgUrl" alt="image" />
     <div class="card-body">
       <h5 class="card-title">{{ selected.name }}</h5>
       <p class="card-text">{{ selected.description }}</p>
@@ -65,6 +66,6 @@
         </button>
         <button (click)="selected = null" class="btn btn-primary">Back</button>
       </div>
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
 </div>
