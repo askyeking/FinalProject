@@ -1,11 +1,13 @@
 <div *ngIf="selected" >
-    <button (click)="backToHome()" class="btn btn-primary">Back To Homes</button>
+    <button (click)="backToHome()" class="btn btn-primary">Home</button>
+    <button (click)="toVendorInventory()" *ngIf="selected.vendor && currentUser.vendor && selected.vendor.id === currentUser.vendor.id" class="btn btn-primary">Vendor Inventory</button>
     <br>
     <br>
     <div class="card" style="width: 18rem;">
         <img class="card-img-top" [src]="selected.imgUrl" alt="image">
         <div class="card-body">
           <h5 class="card-title">{{selected.name}}</h5>
+          <p class="card-text" (click)="viewVendor()">Vendor: {{selected.vendor.displayName}}</p>
           <p class="card-text">{{selected.description}}</p>
           <p class="card-text">{{selected.price | currency}} per day + $5 one-time shipping and service fee</p>
           <p class="card-text">{{selected.condition}}</p>
