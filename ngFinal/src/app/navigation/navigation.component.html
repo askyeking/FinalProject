@@ -1,77 +1,27 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Home</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    (click)="isCollapsed = !isCollapsed"
-    [attr.aria-expanded]="!isCollapsed"
-    aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div
-    class="collapse navbar-collapse"
-    id="navbarSupportedContent"
-    [ngbCollapse]="isCollapsed"
->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#"> Profile </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="loadVendors()">Vendors</a>
-        <!-- <button (click)="loadVendors()">Vendors</button> -->
-        <!-- <a class="link" (click)="loadVendors()">Vendors</a> -->
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Cart</a>
-      </li>
-    </ul>
-
-    <button (click)="search()"  >Search</button>
-    <form  *ngIf="authService.getToken()">
-      <div class="form-group">
-        <label for="inputsm"></label>
-        <input class="form-control input-sm" id="inputsm" type="text" name="keyword"  [(ngModel)]="keyword"  >
-      </div>
-    </form>&nbsp;
 
 
-    <!-- dropdown menu begin-->
-    <div *ngIf="authService.getToken()" class="btn-group" dropdown>
-      <button
-        id="button-basic"
-        dropdownToggle
-        type="button"
-        class="btn btn-success dropdown-toggle"
-        aria-controls="dropdown-basic">
-        {{dropdownButtonText}}  <span class="caret"></span>
-      </button  >
-      <ul id="dropdown-basic"
-        *dropdownMenu
-        class="dropdown-menu"
-        role="menu"
-        aria-labelledby="button-basic">
-        <li role="menuitem"><a class="dropdown-item"  (click)="dropdownButtonText = 'Vendor' "  href="#">Vendor</a></li>
-        <li role="menuitem">
-          <a class="dropdown-item"  (click)="dropdownButtonText = 'Name' " href="#">Name</a>
-        </li>
-        <li role="menuitem" dropdown triggers="mouseover" placement="left" container="body">
-          <a dropdownToggle class="dropdown-item dropdown-toggle"
-             (click)="false"> Category <span class="caret"></span></a>
-          <ul *dropdownMenu class="dropdown-menu" role="menu">
-            <li   *ngFor="let cat of categories"   role="menuitem"><a class="dropdown-item" (click)="selectCategory(cat)" href="#/dropdowns#nested">{{cat.name}}</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <!-- dropdown menu end-->
-    <div>
-      <app-login *ngIf="!authService.getToken()"></app-login>
-      <app-logout *ngIf="authService.getToken()"></app-logout>
-    </div>
-  </div>
-</nav>
+<mat-toolbar style=" padding-top: 20px">
+  <span> My Application </span>&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+  <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput  name="keyword" [(ngModel)]="keyword">
+      </mat-form-field>
+  </form>
+
+    <button mat-button [matMenuTriggerFor]="searchOptions">{{dropdownButtonText}}</button>
+    <mat-menu #searchOptions="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="Categories">Categories</button>
+      <button mat-menu-item (click)="dropdownButtonText = 'name'"   >Name</button>
+      <button mat-menu-item (click)="dropdownButtonText = 'Vendor'" >Vendor</button>
+    </mat-menu>
+    <mat-menu #Categories="matMenu">
+      <button *ngFor="let cat of categories"  (click)="selectCategory(cat)"  mat-menu-item>{{cat.name}}</button>
+    </mat-menu>
+
+    <button mat-button (click)="search()">Submit Search</button>
+
+    <app-login *ngIf="!authService.getToken()"></app-login>
+    <app-logout *ngIf="authService.getToken()"></app-logout>
+</mat-toolbar>

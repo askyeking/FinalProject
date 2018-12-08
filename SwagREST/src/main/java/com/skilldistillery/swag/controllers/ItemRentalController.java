@@ -20,16 +20,16 @@ import com.skilldistillery.swag.entities.ItemRental;
 import com.skilldistillery.swag.entities.User;
 import com.skilldistillery.swag.services.CustomerService;
 import com.skilldistillery.swag.services.InventoryItemService;
-import com.skilldistillery.swag.services.RentalItemService;
+import com.skilldistillery.swag.services.ItemRentalService;
 import com.skilldistillery.swag.services.UserService;
 
 @RestController
 @RequestMapping(path = "api")
 @CrossOrigin({ "*", "http://localhost:4207" })
-public class RentalItemController {
+public class ItemRentalController {
 	
 	@Autowired
-	RentalItemService rentalService;
+	ItemRentalService rentalService;
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -53,15 +53,16 @@ public class RentalItemController {
 			resp.setStatus(400);
 		}
 		
-		System.out.println("Transaction info: ");
-		System.out.println(itemRequested.getTransactionInfo());
 		return itemRequested;
+	} 
+	
+	@GetMapping("rental/customer/{id}")
+	public List<ItemRental> getRentalsByCustomer(@PathVariable("id") int customerId,HttpServletRequest req, HttpServletResponse resp, Principal principal) {
+		return rentalService.getCustomersRentalHistory(customerId);
 	} 
 	
 	@PostMapping("rental")
 	public ItemRental rentInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
-		System.out.println("Transaction info");
-		System.out.println(itemRented.getTransactionInfo());
 		User rentingUser = userService.findByEmail(principal.getName());
 		itemRented.setCustomer(rentingUser.getCustomer());
 		
