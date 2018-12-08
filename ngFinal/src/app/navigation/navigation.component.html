@@ -4,7 +4,7 @@
 <!-- <div *ngIf="authService.getToken()"> -->
   <button mat-button *ngIf="authService.getToken()" >Customer Profile</button>
   <button mat-button  *ngIf="authService.getToken()">Vendor Profile</button>
-  <button mat-button *ngIf="authService.getToken()">View Vendors</button>
+  <button mat-button *ngIf="authService.getToken()"  (click)="loadVendors()">View Vendors</button>
   <form class="example-form" *ngIf="authService.getToken()">
       <mat-form-field class="example-full-width">
         <input matInput  name="keyword" [(ngModel)]="keyword">
