@@ -45,15 +45,21 @@ export class NavigationComponent implements OnInit {
   }
 
   search() {
+    this.parameter = this.dropdownButtonText.toLowerCase();
     console.log(this.parameter);
     console.log(this.keyword);
-    this.parameter = this.dropdownButtonText.toLowerCase();
     if (this.parameter === 'category' || this.parameter === 'name') {
       this.router.navigateByUrl("items/search/" + this.parameter + "/" + this.keyword);
+      this.refreshSearch();
     } else if (this.parameter === 'vendor') {
       this.router.navigateByUrl("vendor/search/" + this.keyword);
     }
 
+  }
+
+  refreshSearch() {
+    this.keyword = "";
+    this.parameter = "Search By";
   }
 
   loadVendors() {
