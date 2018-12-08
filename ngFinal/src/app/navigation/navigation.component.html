@@ -22,8 +22,5 @@
     <button mat-button *ngIf="authService.getToken()" (click)="search()">Submit Search</button>
     <app-logout *ngIf="authService.getToken()"></app-logout>
   <!-- </div> -->
-
-
-
     <app-login *ngIf="!authService.getToken()"></app-login>
 </mat-toolbar>
