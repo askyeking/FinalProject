@@ -21,7 +21,8 @@ export class VendorProfileComponent implements OnInit {
   customer: Customer = null;
 
 
-  constructor(private vendorService: VendorService, private userService: UserService, private router: Router,
+  constructor(private authService: AuthService,  private vendorService: VendorService, private userService: UserService,
+    private router: Router,
     private route: ActivatedRoute) {}
 
   ngOnInit() {

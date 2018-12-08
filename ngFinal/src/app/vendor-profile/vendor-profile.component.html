@@ -27,8 +27,8 @@
         <p class="card-text" *ngIf="item.rented">Item is currently rented</p>
         <p class="card-text" *ngIf="!item.rented">Item is available</p>
       </div>
-      <button class="btn btn-primary" *ngIf="!item.rented" (click)="rentItem(item.id)">Rent Me</button>
-    </div>
+        <button class="btn btn-primary" *ngIf="!item.rented" (click)="rentItem(item.id)">Rent Me</button>
+      </div>
   </div>
 </div>
 
@@ -43,5 +43,5 @@
           <button class="btn btn-danger my-2 my-sm-0" type="submit" (click)="cancelEdit()">Cancel</button>
         </form>
       <br>
-    </div>asd
+    </div>
 </div>
