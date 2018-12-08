@@ -28,6 +28,7 @@ import { MatButtonModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
 import { ItemsRentalHistoryComponent } from './items-rental-history/items-rental-history.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +68,7 @@ import { ItemsRentalHistoryComponent } from './items-rental-history/items-rental
   providers: [
     AuthService,
     InventoryItemListComponent,
-    LoginComponent
+    LoginComponent,
   ],
   bootstrap: [AppComponent]
 })
