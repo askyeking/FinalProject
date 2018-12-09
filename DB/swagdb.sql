@@ -301,6 +301,7 @@ CREATE TABLE IF NOT EXISTS `comment_from_vendor` (
   `vendor_id` INT NOT NULL,
   `item_rental_id` INT NOT NULL,
   `comment` TEXT NOT NULL,
+  `post_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `comment_from_vendor-vendor-fk_idx` (`vendor_id` ASC),
   INDEX `comment_from_vendor-item_rental-fk_idx` (`item_rental_id` ASC),
@@ -327,6 +328,7 @@ CREATE TABLE IF NOT EXISTS `comment_from_customer` (
   `customer_id` INT NOT NULL,
   `item_rental_id` INT NOT NULL,
   `comment` TEXT NOT NULL,
+  `post_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `comment_from_customer-customer-fk_idx` (`customer_id` ASC),
   INDEX `comment_from_customer-item_rental-fk_idx` (`item_rental_id` ASC),
@@ -596,7 +598,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaswagdb`;
-INSERT INTO `comment_from_vendor` (`id`, `vendor_id`, `item_rental_id`, `comment`) VALUES (1, 1, 1, 'cool, cool');
+INSERT INTO `comment_from_vendor` (`id`, `vendor_id`, `item_rental_id`, `comment`, `post_date`) VALUES (1, 1, 1, 'cool, cool', '2018-12-12 10-29-42');
 
 COMMIT;
 
@@ -606,6 +608,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaswagdb`;
-INSERT INTO `comment_from_customer` (`id`, `customer_id`, `item_rental_id`, `comment`) VALUES (1, 1, 1, 'Cool dude');
+INSERT INTO `comment_from_customer` (`id`, `customer_id`, `item_rental_id`, `comment`, `post_date`) VALUES (1, 1, 1, 'Cool dude', '2018-11-02 10:29:14');
 
 COMMIT;
+
