@@ -1,11 +1,14 @@
+import { CommentFromVendor } from "./../models/comment-from-vendor";
+import { CommentFromCustomer } from "./../models/comment-from-customer";
+import { User } from "./../models/user";
+import { UserService } from "./../user.service";
 import { AuthService } from "./../auth.service";
 import { Component, OnInit } from "@angular/core";
 import { InventoryItem } from "../models/inventory-item";
 import { ItemRental } from "../models/item-rental";
-import { InventoryItemService } from "../inventory-item.service";
 import { RentService } from "../rent.service";
 import { Router, ActivatedRoute } from "@angular/router";
-import { ArrayDataSource } from "@angular/cdk/collections";
+import { VendorService } from "../vendor.service";
 
 @Component({
   selector: "app-item-rental-view",
@@ -17,14 +20,34 @@ export class ItemRentalViewComponent implements OnInit {
   selectedItemRental: ItemRental;
   rentalId;
   allComments = [];
+  currentUser: User = null;
+  vendorUser: User = null;
+
+  newCustomerComment: CommentFromCustomer = new CommentFromCustomer();
+  newVendorComment: CommentFromVendor = new CommentFromVendor();
 
   constructor(
-    private inventoryItemService: InventoryItemService,
     public authService: AuthService,
     private rentService: RentService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private vendorService: VendorService
   ) {}
+
+  postVendorComment() {
+    this.newVendorComment.itemRental = this.selectedItemRental;
+    this.newVendorComment.poster = this.currentUser.vendor;
+    console.log("Vendor Comment");
+    console.log(this.newVendorComment);
+  }
+
+  postCustomerComment() {
+    this.newCustomerComment.itemRental = this.selectedItemRental;
+    this.newCustomerComment.poster = this.selectedItemRental.customer;
+    console.log("Customer Comment");
+    console.log(this.newCustomerComment);
+  }
 
   ngOnInit() {
     this.setup();
@@ -43,6 +66,39 @@ export class ItemRentalViewComponent implements OnInit {
     );
   }
 
+  viewInventoryItem() {
+    this.router.navigateByUrl(
+      "inventoryItems/viewItem/" + this.selectedInventoryItem.id
+    );
+  }
+
+  setup() {
+    this.rentalId = this.route.snapshot.paramMap.get("id");
+    this.rentService.getItem(this.rentalId).subscribe(
+      data => {
+        this.selectedItemRental = data;
+        this.selectedInventoryItem = this.selectedItemRental.inventoryItem;
+        console.log(this.selectedItemRental);
+        this.getCurrentUser();
+      },
+      err => {
+        console.error("Observer got an error" + err);
+      }
+    );
+  }
+
+  getCurrentUser() {
+    this.userService.retrieveProfiles().subscribe(
+      data => {
+        this.currentUser = data;
+        this.setItemsVendor();
+      },
+      err => {
+        console.error("Observer got an error" + err);
+      }
+    );
+  }
+
   getComments() {
     this.allComments = this.allComments.concat(
       this.selectedItemRental.customerComments
@@ -57,27 +113,55 @@ export class ItemRentalViewComponent implements OnInit {
         return a > b ? -1 : a < b ? 1 : 0;
       });
     }
+
     console.log(this.allComments);
   }
 
-  viewInventoryItem() {
-    this.router.navigateByUrl(
-      "inventoryItems/viewItem/" + this.selectedInventoryItem.id
-    );
+  setItemsVendor() {
+    this.vendorService
+      .getVendorByInventoryItemId(this.selectedItemRental.inventoryItem.id)
+      .subscribe(
+        data => {
+          this.getComments();
+          this.vendorUser = data;
+          this.selectedItemRental.inventoryItem.vendor = this.vendorUser.vendor;
+          console.log(this.selectedItemRental);
+        },
+        err => {
+          console.error("Observer got an error" + err);
+        }
+      );
   }
 
-  setup() {
-    this.rentalId = this.route.snapshot.paramMap.get("id");
-    this.rentService.getItem(this.rentalId).subscribe(
-      data => {
-        this.selectedItemRental = data;
-        this.selectedInventoryItem = this.selectedItemRental.inventoryItem;
-        console.log(this.selectedItemRental);
-        this.getComments();
-      },
-      err => {
-        console.error("Observer got an error" + err);
-      }
-    );
+  isVendor(comment) {
+    if (comment.poster.listedItems) {
+      return true;
+    }
+    return false;
+  }
+
+  isPostingUser() {
+    return true;
+  }
+
+  isPostingVendor(comment) {
+    if (!this.currentUser.vendor || !this.isVendor(comment)) {
+      return false;
+    }
+
+    if (this.currentUser.vendor.id === comment.poster.id) {
+      return true;
+    }
+    return false;
+  }
+
+  isPostingCustomer(comment) {
+    if (this.isVendor(comment)) {
+      return false;
+    }
+    if (this.currentUser.customer.id === comment.poster.id) {
+      return true;
+    }
+    return false;
   }
 }
