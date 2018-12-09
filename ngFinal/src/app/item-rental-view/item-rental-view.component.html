@@ -21,37 +21,72 @@
 </div>
 
 <div *ngIf="selectedItemRental">
-  Returned: {{!selectedItemRental.active}} <br>
-  Total Amount paid: {{selectedItemRental.paidAmount | currency}} <br>
-  Start Date: {{selectedItemRental.startDate}} <br>
-  End Date: {{selectedItemRental.endDate}} <br>
-  Info: {{selectedItemRental.transactionInfo}} <br>
+  Returned: {{ !selectedItemRental.active }} <br />
+  Total Amount paid: {{ selectedItemRental.paidAmount | currency }} <br />
+  Start Date: {{ selectedItemRental.startDate }} <br />
+  End Date: {{ selectedItemRental.endDate }} <br />
+  Info: {{ selectedItemRental.transactionInfo }} <br />
   <button
-  *ngIf="selectedItemRental.active"
-  class="btn btn-danger"
-  value="Return item"
-  (click)="returnRentedItem()"
-  >Return item</button>
+    *ngIf="selectedItemRental.active"
+    class="btn btn-danger"
+    value="Return item"
+    (click)="returnRentedItem()"
+  >
+    Return item
+  </button>
 
   <button
-  *ngIf="!selectedItemRental.active"
-  class="btn btn-danger"
-  value="Rent Again"
-  (click)="viewInventoryItem()">Rent again</button>
+    *ngIf="!selectedItemRental.active"
+    class="btn btn-danger"
+    value="Rent Again"
+    (click)="viewInventoryItem()"
+  >
+    Rent again
+  </button>
 
+  <br /><br /><br />
+  <h2>Comments</h2>
+  <div *ngIf= "allComments.length === 0">
+    No comments have been posted
+  </div>
 
   <div *ngIf="allComments.length > 0">
-    <br><br><br>
-    <h2>Comments</h2>
-    <br>
+    <hr />
     <div *ngFor="let comment of allComments">
-      <!-- <p>Posted by: {{comment.poster.displayName}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{comment.postDate | date:'medium'}}</p> -->
-      <p *ngIf="comment.poster.listedItems">{{comment.poster.displayName}} (Vendor) commented on {{comment.postDate | date:'medium'}}</p>
-      <p *ngIf="!comment.poster.listedItems">{{comment.poster.displayName}} (Customer) commented on {{comment.postDate | date:'medium'}}</p>
-      <h5>{{comment.comment}}</h5>
-      <hr>
+
+      <button *ngIf="isPostingVendor(comment)">Delete</button>
+      <button *ngIf="isPostingCustomer(comment)">Delete</button>
+
+      <button *ngIf="isPostingVendor(comment)">Update</button>
+      <button *ngIf="isPostingCustomer(comment)">Update</button>
+      <!--
+        <p>Posted by: {{comment.poster.displayName}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{comment.postDate | date:'medium'}}</p>
+      -->
+      <div *ngIf="isVendor(comment)">
+          Vendor ({{ comment.poster.displayName }}) commented on {{comment.postDate | date: "medium" }}
+
+      </div>
+      <div *ngIf="!isVendor(comment)">
+          Customer ({{ comment.poster.displayName }})  commented on {{ comment.postDate | date: "medium" }}
+
+      </div>
+      <h5>{{ comment.comment }}</h5>
+      <hr />
     </div>
   </div>
 
+  <br><br>
+  Post a new comment: <br>
 
-</div>
+  <!-- comment that creates VendorComment -->
+  <form *ngIf="currentUser.vendor  && vendorUser.vendor && currentUser.vendor.id === vendorUser.vendor.id">
+      <textarea name="commentText" id="" cols="40" rows="10" [(ngModel)]="newVendorComment.comment"></textarea>
+      <br><button (click)="postVendorComment()" >Post</button>
+  </form>
+
+  <!-- Create customer comment -->
+  <form *ngIf="currentUser.customer.id === selectedItemRental.customer.id">
+      <textarea name="commentText" id="" cols="40" rows="10" [(ngModel)]="newCustomerComment.comment"></textarea>
+      <br><button (click)="postCustomerComment()" >Post</button>
+    </form>
+
