@@ -18,7 +18,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="comment_from_vendor")
+@Table(name="comment_from_customer")
 public class CommentFromCustomer {
 	
 	@Id
