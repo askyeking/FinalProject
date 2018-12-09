@@ -1,5 +1,7 @@
+import { CommentFromCustomer } from './comment-from-customer';
 import { Customer } from './customer';
 import { InventoryItem } from './inventory-item';
+import { CommentFromVendor } from './comment-from-vendor';
 export class ItemRental {
   id: number;
   paid: boolean;
@@ -10,6 +12,8 @@ export class ItemRental {
   transactionInfo: string;
   customer: Customer;
   inventoryItem: InventoryItem;
+  customerComments: CommentFromCustomer[];
+  vendorComments: CommentFromVendor[];
 
 
 
@@ -21,6 +25,8 @@ constructor(
   paidAmount?: number,
   active?: boolean,
   transactionInfo?: string,
+  customerComments?: CommentFromCustomer[],
+  vendorComments?: CommentFromVendor[],
 ) {
   this.id = id;
   this.paid = paid;
@@ -29,6 +35,8 @@ constructor(
   this.paidAmount = paidAmount;
   this.active = active;
   this.transactionInfo = transactionInfo;
+  this.customerComments = customerComments;
+  this.vendorComments = vendorComments;
 }
 
 

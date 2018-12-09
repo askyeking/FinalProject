@@ -43,7 +43,7 @@ class CommentFromVendorTests {
 	@Test
 	void test() {
 		assertEquals(1, vendorComment.getId());
-		assertEquals(1, vendorComment.getVendor().getId());
+		assertEquals(1, vendorComment.getPoster().getId());
 		assertEquals(1, vendorComment.getItemRental().getId());
 		assertEquals("cool, cool", vendorComment.getComment());
 		assertEquals("2018-11-02 10:29:42.0", vendorComment.getPostDate().toString());

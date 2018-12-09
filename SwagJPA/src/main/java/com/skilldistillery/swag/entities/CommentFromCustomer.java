@@ -27,7 +27,7 @@ public class CommentFromCustomer {
 	
 	@ManyToOne
 	@JoinColumn(name="customer_id")
-	private Customer customer;
+	private Customer poster;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -49,12 +49,12 @@ public class CommentFromCustomer {
 		this.id = id;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public Customer getPoster() {
+		return poster;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setPoster(Customer poster) {
+		this.poster = poster;
 	}
 
 	public ItemRental getItemRental() {
@@ -111,7 +111,7 @@ public class CommentFromCustomer {
 	public CommentFromCustomer(int id, Customer customer, ItemRental itemRental, String comment, Date postDate) {
 		super();
 		this.id = id;
-		this.customer = customer;
+		this.poster = customer;
 		this.itemRental = itemRental;
 		this.comment = comment;
 		this.postDate = postDate;

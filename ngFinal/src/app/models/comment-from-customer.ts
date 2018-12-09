@@ -3,20 +3,20 @@ import { ItemRental } from "./item-rental";
 
 export class CommentFromCustomer {
   id: number;
-  customer: Customer;
+  poster: Customer;
   itemRental: ItemRental;
   comment: string;
   postDate: Date;
 
   constructor(
     id?: number,
-    customer?: Customer,
+    poster?: Customer,
     itemRental?: ItemRental,
     comment?: string,
     postDate?: Date,
   ) {
     this.id = id;
-    this.customer = customer;
+    this.poster = poster;
     this.itemRental = itemRental;
     this.comment = comment;
     this.postDate = postDate;

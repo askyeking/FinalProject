@@ -40,4 +40,18 @@
   (click)="viewInventoryItem()">Rent again</button>
 
 
+  <div *ngIf="allComments.length > 0">
+    <br><br><br>
+    <h2>Comments</h2>
+    <br>
+    <div *ngFor="let comment of allComments">
+      <!-- <p>Posted by: {{comment.poster.displayName}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{comment.postDate | date:'medium'}}</p> -->
+      <p *ngIf="comment.poster.listedItems">{{comment.poster.displayName}} (Vendor) commented on {{comment.postDate | date:'medium'}}</p>
+      <p *ngIf="!comment.poster.listedItems">{{comment.poster.displayName}} (Customer) commented on {{comment.postDate | date:'medium'}}</p>
+      <h5>{{comment.comment}}</h5>
+      <hr>
+    </div>
+  </div>
+
+
 </div>

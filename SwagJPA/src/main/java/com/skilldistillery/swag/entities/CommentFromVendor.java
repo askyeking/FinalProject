@@ -27,7 +27,7 @@ public class CommentFromVendor {
 	
 	@ManyToOne
 	@JoinColumn(name="vendor_id")
-	private Vendor vendor;
+	private Vendor poster;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -51,12 +51,12 @@ public class CommentFromVendor {
 		this.id = id;
 	}
 
-	public Vendor getVendor() {
-		return vendor;
+	public Vendor getPoster() {
+		return poster;
 	}
 
-	public void setVendor(Vendor vendor) {
-		this.vendor = vendor;
+	public void setPoster(Vendor poster) {
+		this.poster = poster;
 	}
 
 	public ItemRental getItemRental() {
@@ -114,10 +114,10 @@ public class CommentFromVendor {
 		super();
 	}
 
-	public CommentFromVendor(int id, Vendor vendor, ItemRental itemRental, String comment, Date postDate) {
+	public CommentFromVendor(int id, Vendor poster, ItemRental itemRental, String comment, Date postDate) {
 		super();
 		this.id = id;
-		this.vendor = vendor;
+		this.poster = poster;
 		this.itemRental = itemRental;
 		this.comment = comment;
 		this.postDate = postDate;

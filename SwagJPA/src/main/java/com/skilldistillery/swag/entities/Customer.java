@@ -35,8 +35,8 @@ public class Customer {
 	private User customerUser;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="customer")
-	private List<CommentFromVendor> comments;
+	@OneToMany(mappedBy="poster")
+	private List<CommentFromCustomer> comments;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="customer")
@@ -46,11 +46,11 @@ public class Customer {
 	
 	
 
-	public List<CommentFromVendor> getComments() {
+	public List<CommentFromCustomer> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<CommentFromVendor> comments) {
+	public void setComments(List<CommentFromCustomer> comments) {
 		this.comments = comments;
 	}
 

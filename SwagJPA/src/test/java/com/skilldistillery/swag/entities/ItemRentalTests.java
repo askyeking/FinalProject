@@ -31,7 +31,7 @@ class ItemRentalTests {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		rental = em.find(ItemRental.class, 9);
+		rental = em.find(ItemRental.class, 1);
 	}
 
 	@AfterEach
@@ -49,7 +49,9 @@ class ItemRentalTests {
 //		assertEquals(56, rental.getPaidAmount());
 //		assertEquals(true, rental.isActive());
 //		assertEquals("send it to me address mate. I'll pay ya. That stuff is real swag!", rental.getTransactionInfo());
-		assertEquals("effrom23", rental.getCustomer().getDisplayName());
+//		assertEquals("effrom23", rental.getCustomer().getDisplayName());
+		assertEquals(1, rental.getCustomerComments().size());
+		assertEquals(1, rental.getVendorComments().size());
 	}
 
 }

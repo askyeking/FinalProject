@@ -37,7 +37,7 @@ public class Vendor {
 	private boolean isActive;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="vendor")
+	@OneToMany(mappedBy="poster")
 	private List<CommentFromVendor> comments;
 	
 	@OneToMany(mappedBy="vendor")

@@ -3,20 +3,20 @@ import { ItemRental } from './item-rental';
 import { post } from 'selenium-webdriver/http';
 export class CommentFromVendor {
   id: number;
-  vendor: Vendor;
+  poster: Vendor;
   itemRental: ItemRental;
   comment: string;
   postDate: Date;
 
   constructor(
     id?: number,
-    vendor?: Vendor,
+    poster?: Vendor,
     itemRental?: ItemRental,
     comment?: string,
     postDate?: Date,
   ) {
     this.id = id;
-    this.vendor = vendor;
+    this.poster = poster;
     this.itemRental = itemRental;
     this.comment = comment;
     this.postDate = postDate;
