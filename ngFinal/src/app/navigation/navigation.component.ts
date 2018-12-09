@@ -59,10 +59,6 @@ export class NavigationComponent implements OnInit {
 
   }
 
-  refreshSearch() {
-    this.keyword = "";
-    this.parameter = "Search By";
-  }
 
   loadVendors() {
     this.vendorService.index().subscribe(
@@ -89,14 +85,12 @@ export class NavigationComponent implements OnInit {
       this.selectedCategory = selectedCategory;
       this.dropdownButtonText = 'Category';
       this.keyword = this.selectedCategory.name;
-      console.log(this.keyword);
+      this.search();
   }
 
   ngOnInit() {
     this.loadCategories();
   }
-
-
 
 
   viewVendorProfile() {

@@ -1,10 +1,14 @@
 <mat-toolbar style=" padding-top: 20px">
   <span> Name Pending </span>&nbsp;&nbsp;&nbsp;&nbsp;
 
-<!-- <div *ngIf="authService.getToken()"> -->
   <button mat-button *ngIf="authService.getToken()" (click)="viewCustomerProfile()"   >Customer Profile</button>
   <button mat-button  *ngIf="authService.getToken()" (click)="viewVendorProfile()" >Vendor Profile</button>
   <button mat-button *ngIf="authService.getToken()"  (click)="loadVendors()">View Vendors</button>
+  <app-login *ngIf="!authService.getToken()"></app-login>
+
+  <div style="margin-right: 50%">
+  </div>
+
   <form class="example-form" *ngIf="authService.getToken()">
       <mat-form-field class="example-full-width">
         <input matInput  name="keyword" [(ngModel)]="keyword">
@@ -21,6 +25,4 @@
     </mat-menu>
     <button mat-button *ngIf="authService.getToken()" (click)="search()">Submit Search</button>
     <app-logout *ngIf="authService.getToken()"></app-logout>
-  <!-- </div> -->
-    <app-login *ngIf="!authService.getToken()"></app-login>
 </mat-toolbar>
