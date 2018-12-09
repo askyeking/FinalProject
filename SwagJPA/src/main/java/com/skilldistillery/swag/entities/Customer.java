@@ -36,11 +36,27 @@ public class Customer {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="customer")
+	private List<CommentFromVendor> comments;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="customer")
 	private List<ItemRental> rentedItems;
 	
 	
 	
 	
+
+	public List<CommentFromVendor> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentFromVendor> comments) {
+		this.comments = comments;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public List<ItemRental> getRentedItems() {
 		return rentedItems;

@@ -1,6 +1,7 @@
 package com.skilldistillery.swag.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="item_rental")
@@ -30,6 +30,12 @@ public class ItemRental {
 	@ManyToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;
+	
+	@OneToMany(mappedBy="itemRental")
+	public List<CommentFromCustomer> customerComments;
+	
+	@OneToMany(mappedBy="itemRental")
+	public List<CommentFromVendor> vendorComments;
 	
 	@Column(name="paid")
 	private boolean isPaid;
@@ -52,6 +58,22 @@ public class ItemRental {
 
 	
 	
+	public List<CommentFromCustomer> getCustomerComments() {
+		return customerComments;
+	}
+
+	public void setCustomerComments(List<CommentFromCustomer> customerComments) {
+		this.customerComments = customerComments;
+	}
+
+	public List<CommentFromVendor> getVendorComments() {
+		return vendorComments;
+	}
+
+	public void setVendorComments(List<CommentFromVendor> vendorComments) {
+		this.vendorComments = vendorComments;
+	}
+
 	public InventoryItem getInventoryItem() {
 		return inventoryItem;
 	}

@@ -36,6 +36,10 @@ public class Vendor {
 	@Column(name="active")
 	private boolean isActive;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="vendor")
+	private List<CommentFromVendor> comments;
+	
 	@OneToMany(mappedBy="vendor")
 	private List<InventoryItem> listedItems;
 	
@@ -43,6 +47,14 @@ public class Vendor {
 	
 	
 	
+
+	public List<CommentFromVendor> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentFromVendor> comments) {
+		this.comments = comments;
+	}
 
 	public List<InventoryItem> getListedItems() {
 		return listedItems;
