@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'inventoryItems/rental/:id', component: ItemRentalViewComponent},
 
   // TODO: Search by name not working
-  { path: 'items/search/:parameter/:keyword', component: InventoryItemListComponent},
+  { path: 'items/search/:parameter/:keyword', component: InventoryItemListComponent, runGuardsAndResolvers: 'always'},
   { path: 'vendor/search/:keyword', component: VendorListComponent},
 
   // customer should not see this page
@@ -35,7 +35,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [
+    RouterModule.forRoot(routes, {useHash: true}),
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
