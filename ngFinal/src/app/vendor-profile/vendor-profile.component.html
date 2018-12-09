@@ -1,20 +1,20 @@
-<div *ngIf="user && user.vendor ">
-  <img src="{{user.vendor.imgUrl}}" alt="">
-  <button *ngIf="user.vendor.id === userBeingViewed.vendor.id" (click)="setEditUser()">Edit</button>
-  <button *ngIf="user.vendor.id === userBeingViewed.vendor.id" (click)="viewInventory()">View Inventory</button>
-  <h1>{{user.vendor.displayName}}</h1>
+<div *ngIf="userViewed">
+  <img src="{{userViewed.vendor.imgUrl}}" alt="">
+  <button *ngIf="isOriginalUser" (click)="setEditUser()">Edit</button>
+  <button *ngIf="isOriginalUser" (click)="viewInventory()">View Inventory</button>
+  <h1>{{userViewed.vendor.displayName}}</h1>
     <h3>About</h3>
-    {{user.vendor.about}} <br>
+    {{userViewed.vendor.about}} <br>
     <hr>
   <br>
   <br>
   <br>
   <div *ngIf="!editUser">
   <h3>Inventory</h3>
-  <div *ngIf="!user.vendor.listedItems">
+  <div *ngIf="!userViewed.vendor.listedItems">
     No items posted.
   </div>
-  <div  *ngFor="let item of user.vendor.listedItems" class="card" style="width: 18rem;">
+  <div  *ngFor="let item of userViewed.vendor.listedItems" class="card" style="width: 18rem;">
     <div *ngIf="item.active">
       <img class="card-img-top" [src]="item.imgUrl" alt="image">
       <div class="card-body">
@@ -25,7 +25,8 @@
         <p class="card-text" *ngIf="item.rented">Item is currently rented</p>
         <p class="card-text" *ngIf="!item.rented">Item is available</p>
       </div>
-        <button class="btn btn-primary" *ngIf="!item.rented" (click)="rentItem(item.id)">Rent Me</button>
+        <button class="btn btn-primary" *ngIf="!item.rented && !isOriginalUser" (click)="rentItem(item.id)">Rent Me</button>
+        <button class="btn btn-primary" *ngIf="!item.rented && isOriginalUser" disabled>Rent Me</button>
       </div>
   </div>
 </div>

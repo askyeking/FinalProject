@@ -20,12 +20,17 @@ const routes: Routes = [
   { path: 'vendorInventory', component: VendorInventoryListComponent },
   { path: '', component: InventoryItemListComponent },
   { path: 'landing', component: InventoryItemListComponent },
-  // { path: 'vendorProfile', component: VendorProfileComponent },
+
+  //  TODO: Vendor Profile not showing
   { path: 'vendor/profile/:id', component: VendorProfileComponent},
   { path: 'inventoryItems/viewItem/:id', component: InventoryItemViewComponent},
   { path: 'inventoryItems/rental/:id', component: ItemRentalViewComponent},
+
+  // TODO: Search by name not working
   { path: 'items/search/:parameter/:keyword', component: InventoryItemListComponent},
   { path: 'vendor/search/:keyword', component: VendorListComponent},
+
+  // customer should not see this page
   { path: 'inventoryItems/viewItem/history/:id', component: ItemsRentalHistoryComponent},
 ];
 

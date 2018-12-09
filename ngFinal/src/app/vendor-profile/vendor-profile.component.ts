@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../models/user';
 import { Vendor } from '../models/vendor';
 import { VendorService } from '../vendor.service';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-vendor-profile',
@@ -13,13 +14,13 @@ import { VendorService } from '../vendor.service';
   styleUrls: ['./vendor-profile.component.css']
 })
 export class VendorProfileComponent implements OnInit {
-  user: User = null;
+  userViewed: User = null;
   vendor: Vendor = null;
-  userBeingViewed: User = null;
+  userLoggedIn: User = null;
   editUser: User = null;
   id = null;
   customer: Customer = null;
-
+  isOriginalUser = null;
 
   constructor(private authService: AuthService,  private vendorService: VendorService, private userService: UserService,
     private router: Router,
@@ -29,22 +30,40 @@ export class VendorProfileComponent implements OnInit {
     this.id =  this.route.snapshot.paramMap.get('id');
     this.vendorService.getUserByVendorId(this.id).subscribe(
       data => {
-        this.user = data;
-        this.vendor = this.user.vendor;
+        this.userViewed = data;
+        this.vendor = this.userViewed.vendor;
+        this.retrieveUserLoggedIn();
       },
       err => {
         console.error('Observer got an error' + err);
       }
     );
+  }
 
+  retrieveUserLoggedIn() {
     this.userService.retrieveProfiles().subscribe(
       data => {
-        this.userBeingViewed = data;
+        this.userLoggedIn = data;
+        this.isOriginalUser = this.setIsOriginalUser();
+        console.log("original user: ");
+        console.log(this.isOriginalUser);
+
       },
       err => {
         console.error('Observer got an error' + err);
       }
     );
+  }
+
+  setIsOriginalUser(): boolean {
+    if (isNullOrUndefined(this.userLoggedIn.vendor)) {
+      return false;
+    }
+    if (this.userLoggedIn.vendor.id === this.userViewed.vendor.id) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 
@@ -53,13 +72,13 @@ export class VendorProfileComponent implements OnInit {
   }
 
   setEditUser() {
-    this.editUser = Object.assign({}, this.user);
+    this.editUser = Object.assign({}, this.userViewed);
   }
 
   updateVendor(editUser: User) {
     this.userService.updateVendor(editUser).subscribe(
       data => {
-        this.userBeingViewed = data;
+        this.userLoggedIn = data;
         this.editUser = null;
       },
       err => {

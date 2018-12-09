@@ -1,7 +1,4 @@
 import { Router } from "@angular/router";
-import { RentService } from "./../rent.service";
-import { ItemRental } from "./../models/item-rental";
-import { AuthService } from "./../auth.service";
 import { Component, OnInit } from "@angular/core";
 import { InventoryItemService } from "../inventory-item.service";
 import { InventoryItem } from "../models/inventory-item";
@@ -19,12 +16,24 @@ export class VendorInventoryListComponent implements OnInit {
 
   constructor(
     private inventoryItemService: InventoryItemService,
-    public authService: AuthService,
-    private rentService: RentService,
     private router: Router
-  ) {}
+  ) {
+  this.vendorInventory = [];
+  this.selected = null;
+  this.newItem = new InventoryItem();
+  this.editItem = null;
+  }
+
+  refresh() {}
 
   ngOnInit() {
+    console.log('vendor inventory');
+    console.log(this.vendorInventory);
+    console.log('selected');
+    console.log(this.selected);
+    console.log('editItem');
+    console.log(this.editItem);
+
     this.loadVendorInventory();
   }
 
