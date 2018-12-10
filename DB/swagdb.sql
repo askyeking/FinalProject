@@ -378,11 +378,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaswagdb`;
-INSERT INTO `vendor` (`id`, `user_id`, `image_url`, `about`, `display_name`, `active`) VALUES (1, 2, NULL, 'Lowkey clothes, for the refined gentlman', 'theSeller', 1);
-INSERT INTO `vendor` (`id`, `user_id`, `image_url`, `about`, `display_name`, `active`) VALUES (2, 3, NULL, 'I have quite the collection of dapper garments, for the classy gentleman.', 'DapperDude124', 1);
-INSERT INTO `vendor` (`id`, `user_id`, `image_url`, `about`, `display_name`, `active`) VALUES (3, 4, NULL, 'Pant suits for the business lady that doesn\'t take no for an answer', 'CallYourManager76', 1);
-INSERT INTO `vendor` (`id`, `user_id`, `image_url`, `about`, `display_name`, `active`) VALUES (4, 5, NULL, 'Ski suits for those who don\t want to pay those outrageous resort prices!', 'RadicalBeans', 1);
-INSERT INTO `vendor` (`id`, `user_id`, `image_url`, `about`, `display_name`, `active`) VALUES (5, 6, NULL, 'Tuxes for weddings, prom, or even a proposal!', 'SuitThySelf200OK', 1);
+INSERT INTO `vendor` (`id`, `user_id`, `image_url`, `about`, `display_name`, `active`) VALUES (1, 2, "https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/22539738_10212252906055184_4123726452998465084_n.jpg?_nc_cat=103&_nc_ht=scontent.fapa1-1.fna&oh=f5d4171acfa7caa629562d525bd155e2&oe=5C9EDFD6", 'Lowkey clothes, for the refined gentlman', 'theSeller', 1);
+INSERT INTO `vendor` (`id`, `user_id`, `image_url`, `about`, `display_name`, `active`) VALUES (2, 3, "https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/21078449_1416985355023497_2683685714766386480_n.jpg?_nc_cat=110&_nc_ht=scontent.fapa1-1.fna&oh=85b48a5e6b107cc847398cea109dd73b&oe=5CAF953A", 'I have quite the collection of dapper garments, for the classy gentleman.', 'DapperDude124', 1);
+INSERT INTO `vendor` (`id`, `user_id`, `image_url`, `about`, `display_name`, `active`) VALUES (3, 4, "https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/1623610_10203909246468013_7119304056503734888_n.jpg?_nc_cat=111&_nc_ht=scontent.fapa1-1.fna&oh=9c47e9dba41da75b6c3009dfbb2f0898&oe=5C9F9496", 'Pant suits for the business lady that doesn\'t take no for an answer', 'CallYourManager76', 1);
+INSERT INTO `vendor` (`id`, `user_id`, `image_url`, `about`, `display_name`, `active`) VALUES (4, 5, "https://scontent.fapa1-2.fna.fbcdn.net/v/t1.0-9/19225799_1387010574687496_6514479432798548186_n.jpg?_nc_cat=107&_nc_ht=scontent.fapa1-2.fna&oh=0daedbbf25b603e9cee3cc4c868acc1f&oe=5C9B813A", 'Ski suits for those who don\'t want to pay those outrageous resort prices!', 'RadicalBeans', 1);
+INSERT INTO `vendor` (`id`, `user_id`, `image_url`, `about`, `display_name`, `active`) VALUES (5, 6, "https://scontent.fapa1-2.fna.fbcdn.net/v/t31.0-8/12961368_584365435075646_7357082632212531852_o.jpg?_nc_cat=100&_nc_ht=scontent.fapa1-2.fna&oh=fda1a0538a27109bc1b0fd2a495361d3&oe=5CB22CFB", 'Tuxes for weddings, prom, or even a proposal!', 'SuitThySelf200OK', 1);
 
 
 
