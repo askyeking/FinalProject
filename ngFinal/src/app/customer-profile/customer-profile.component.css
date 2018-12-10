@@ -1,0 +1,75 @@
+.card {
+  background-color: white;
+  padding: 30px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.card img {
+  margin-right: 20px;
+  border-radius: 15px;
+  margin: auto;
+  float: none;
+  display: block;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.container {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+#image {
+  margin-right: 20px;
+  border-radius: 15px;
+  margin: auto;
+  float: none;
+  display: block;
+
+  height: auto;
+    width: auto;
+    max-width: 300px;
+    max-height: 300px;
+}
+
+
+form {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 700px;
+
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  padding: 40px;
+  background-color: white;
+  opacity: 0.9;
+}
+
+input[type=text], textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background:rgb(233, 232, 232);
+}
+
+input[type=text]:focus, textarea:focus{
+  background-color: #ddd;
+  outline: none;
+}
+
+button {
+  margin:0 auto;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+}
+
+h3 {
+  text-align: center;
+}
