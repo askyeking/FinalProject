@@ -246,6 +246,10 @@ export class ItemRentalViewComponent implements OnInit {
 
   }
 
+  navigateToVendor() {
+    this.router.navigateByUrl('vendor/profile/' + this.vendorUser.vendor.id);
+  }
+
   isPostingCustomer(comment) {
     if (this.isVendor(comment)) {
       return false;
