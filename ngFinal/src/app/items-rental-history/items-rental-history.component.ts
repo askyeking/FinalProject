@@ -31,15 +31,11 @@ export class ItemsRentalHistoryComponent implements OnInit {
         this.itemViewed = data;
         console.log(this.itemViewed);
         this.getRentals(id);
-
-
       },
       err => {
         console.error('Observer got an error' + err);
       }
     );
-
-
   }
 
   getRentals(id: number) {
@@ -47,7 +43,6 @@ export class ItemsRentalHistoryComponent implements OnInit {
       data => {
         this.itemViewed.allRents = data;
         console.log(this.itemViewed.allRents);
-
         this.getTotalIncome();
       },
       err => {

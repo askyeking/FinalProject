@@ -6,13 +6,15 @@
       (click)="setEdit()"
     >
       Edit
-    </button
-    >
+    </button>
     <button
-    *ngIf="!currentUser.vendor"
-    class="btn btn-outline-success my-2 my-sm-0"
-    type="submit"
-    (click)="startVendorCreation()">Create a Vendor profile</button>
+      *ngIf="!currentUser.vendor"
+      class="btn btn-outline-success my-2 my-sm-0"
+      type="submit"
+      (click)="startVendorCreation()"
+    >
+      Create a Vendor profile
+    </button>
 
     <div *ngIf="!editUser && !createVendor">
       <div *ngIf="currentUser.customer.avatarURL">
@@ -22,8 +24,15 @@
       Email: {{ currentUser.email }} <br />
       Name: {{ currentUser.customer.displayName }} <br />
 
-      <br>
-      <h2 *ngIf="currentUser.customer.rentedItems && currentUser.customer.rentedItems.length != 0">Rental History</h2>
+      <br />
+      <h2
+        *ngIf="
+          currentUser.customer.rentedItems &&
+          currentUser.customer.rentedItems.length != 0
+        "
+      >
+        Rental History
+      </h2>
       <div
         *ngFor="let rental of currentUser.customer.rentedItems"
         class="card"
@@ -50,24 +59,30 @@
             <p class="card-text">Returned: {{ !rental.active }}</p>
             <p class="card-text">Date From: {{ rental.startDate }}</p>
             <p class="card-text">Date To: {{ rental.endDate }}</p>
-            {{rental.inventoryItem.rente}}
+            {{ rental.inventoryItem.rente }}
             <p class="card-text">Instructions: {{ rental.transactionInfo }}</p>
-                <button *ngIf="rental.active" (click)="viewRental(rental.id)" class="btn btn-primary">Return</button>
-                <button *ngIf="!rental.active && !rental.inventoryItem.rented" (click)="viewItem(rental.inventoryItem.id)" class="btn btn-primary">Rent Again</button>
+            <button
+              *ngIf="rental.active"
+              (click)="viewRental(rental.id)"
+              class="btn btn-primary"
+            >
+              Return
+            </button>
+            <button
+              *ngIf="!rental.active && !rental.inventoryItem.rented"
+              (click)="viewItem(rental.inventoryItem.id)"
+              class="btn btn-primary"
+            >
+              Rent Again
+            </button>
           </div>
         </div>
 
-        <br>
-        <br>
+        <br />
+        <br />
       </div>
-
-
-
-
     </div>
   </div>
-
-
 
   <div *ngIf="editUser">
     <h1>{{ editUser.email }}</h1>
@@ -107,19 +122,32 @@
   </div>
 
   <div *ngIf="createVendor">
-    Insert your vendor information:
-    <form action="">
-    Public Name: <input type="text" name="displayName" [(ngModel)]="createVendor.displayName">
-    imgUrl: <input type="text" name="imageURL" [(ngModel)]="createVendor.imgUrl">
-    About: <input type="text" name="about" [(ngModel)]="createVendor.about">
-    &nbsp;
-    <button  (click)="createVendorProfile()">Submit</button>
-    &nbsp;
-    <button (click)="startVendorCreation()">Cancel</button>
 
-    <br>
-    Note: Upon completing this Form you will have to log in to see vendor tools.
-  </form>
+    <form *ngIf="!shouldLogOut">
+      Insert your vendor information: <br>
+      Public Name:
+      <input
+        type="text"
+        name="displayName"
+        [(ngModel)]="createVendor.displayName"
+      />
+      imgUrl:
+      <input type="text" name="imageURL" [(ngModel)]="createVendor.imgUrl" />
+      About:
+      <input type="text" name="about" [(ngModel)]="createVendor.about" /> &nbsp;
+      <button (click)="createVendorProfile()">Submit</button> &nbsp;
+      <button (click)="startVendorCreation()">Cancel</button>
+
+      <br />
+      Note: Upon completing this Form you will have to log in to see vendor
+      tools.
+    </form>
+
+    <div *ngIf="shouldLogOut">
+      You need to log out to view Vendor tools. <br>
+      Would you like to log-out or stay in the customer mode. <br>
+      <button (click)="logout()">Log out</button> &nbsp; <button (click)="refresh()">Stay</button>
+    </div>
   </div>
 
   <!-- Make sure backend has inventory items -->

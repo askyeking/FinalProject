@@ -1,10 +1,26 @@
 <!-- Consider adding an itemView component that does not have rent option, or -->
-<app-inventory-item-view></app-inventory-item-view>
+<!-- Times Rented: {{itemViewed.allRents.length}} <br> -->
+<!-- Total income:  {{amountEarnedTotal | currency}} -->
+<div style="padding-left: 20%">    <div *ngIf="itemViewed.active">
+    <div class="container">
+        <img src="{{itemViewed.imgUrl}}" alt="Image" style="width:300px">
+        <h4>{{itemViewed.name}}</h4>
+        <p>{{itemViewed.description}}</p>
+        <p><span><strong>{{itemViewed.price | currency}}</strong></span> {{itemViewed.condition}} Condition</p>
+        <br>
+        <p> Times Rented: {{itemViewed.allRents.length}} </p>
+        <p> Total Income: {{amountEarnedTotal | currency}} </p>
+          <!-- <button class="btn btn-dark" (click)="setEditVendorInventory(item)">Edit</button>
+          <button class="btn btn-dark" (click)="setItemActiveToFalse(item)">Delete</button>
+          <button class="btn btn-dark" (click)="viewRentalHistory(item)">Rental history</button> -->
+
+      </div>
+  </div>
+</div>
+
 <div *ngIf="itemViewed">
   <h3>Rental History</h3>
   <div *ngIf="itemViewed.allRents && itemViewed.allRents.length != 0">
-      Times Rented: {{itemViewed.allRents.length}} <br>
-      Total income:  {{amountEarnedTotal | currency}}
     </div>
 
   <!-- <div *ngFor="let rental of itemViewed.allRents">

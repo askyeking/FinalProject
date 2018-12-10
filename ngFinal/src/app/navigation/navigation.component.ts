@@ -44,9 +44,21 @@ export class NavigationComponent implements OnInit {
         console.log(data);
         this.categories = data;
         console.log(this.categories);
+        this.getCurrentUser();
       },
       err => console.error('Observer got an error: ' + err)
       );
+  }
+
+  getCurrentUser() {
+    this.userService.retrieveProfiles().subscribe(
+      data => {
+        this.loggedInUser = data;
+      },
+      err => {
+       console.error('Observer got an error: ' + err);
+      }
+    );
   }
 
   search() {
@@ -61,16 +73,17 @@ export class NavigationComponent implements OnInit {
 
 
   loadVendors() {
-    this.vendorService.index().subscribe(
-      data => {
-        this.vendors = data;
-        console.log(this.vendors);
-        this.router.navigateByUrl("vendor");
-      },
-      err => {
-       console.error('Observer got an error: ' + err);
-      }
-    );
+    this.getCurrentUser();
+    this.router.navigateByUrl("vendor");
+    // this.vendorService.index().subscribe(
+    //   data => {
+    //     this.vendors = data;
+    //     console.log(this.vendors);
+    //   },
+    //   err => {
+    //    console.error('Observer got an error: ' + err);
+    //   }
+    // );
   }
 
   get searchData(): string {
