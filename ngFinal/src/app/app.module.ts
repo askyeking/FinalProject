@@ -27,6 +27,7 @@ import { MatCheckboxModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
 import { ItemsRentalHistoryComponent } from './items-rental-history/items-rental-history.component';
+import { InactivizerPipe } from './inactivizer.pipe';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ItemsRentalHistoryComponent } from './items-rental-history/items-rental
     InventoryItemViewComponent,
     VendorListComponent,
     ItemRentalViewComponent,
-    ItemsRentalHistoryComponent
+    ItemsRentalHistoryComponent,
+    InactivizerPipe
   ],
   imports: [
     BsDropdownModule.forRoot(),

@@ -1,34 +1,18 @@
 <br />
 <br />
-<!--
-  <div *ngIf="!selected" >
-  <div *ngFor="let item of inventoryItems" class="card" style="width: 18rem;">
-    <div *ngIf="item.active">
-      <img class="card-img-top" [src]="item.imgUrl" alt="image">
-      <div class="card-body">
-        <h5 class="card-title">{{item.name}}</h5>
-        <div *ngIf="authService.getToken()">
-            <button (click)="setSelectedItem(item)" class="btn btn-primary">View Item</button>
--->
-<!--
-  <button (click)="openItemView(item.id)" class="btn btn-primary">View Item</button>
--->
-
 <hr />
 
 <div class="center" *ngIf="!selected">
   <div class="card-deck">
-    <div *ngFor="let item of inventoryItems; let i = index">
-      <div *ngIf="item.active" >
+    <div *ngFor="let item of inventoryItems | inactivizer; let i = index">
+      <!-- <div *ngIf="item.active" > -->
         <div class="item-card" style="width: 18rem;">
           <div class="card-block" (click)="openItemView(item.id)">
-            <img
-              class="card-img-top"
+            <img class="card-img-top"
               [src]="item.imgUrl"
               alt="Item"
               height="300"
-              width="auto"
-            />
+              width="auto"/>
             <div class="card-body">
               <h5 class="card-title">
                 <a
@@ -45,7 +29,7 @@
       </div>
     </div>
   </div>
-</div>
+<!-- </div> -->
 
 <div *ngIf="selected">
   <!-- <div class="card" style="width: 18rem;"> -->

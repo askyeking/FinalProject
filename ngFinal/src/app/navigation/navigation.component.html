@@ -6,14 +6,13 @@
   <button mat-button *ngIf="authService.getToken()"  (click)="loadVendors()">View Vendors</button>
   <app-login *ngIf="!authService.getToken()"></app-login>
 
-  <!-- <div style="margin-right: 50%"> -->
-  <!-- </div> -->
-
-  <form class="example-form" *ngIf="authService.getToken()">
+<span style="flex: 1 1 auto"  ></span>
+   <form class="example-form" *ngIf="authService.getToken()" >
       <mat-form-field class="example-full-width">
         <input matInput  name="keyword" [(ngModel)]="keyword">
       </mat-form-field>
-  </form>
+    </form>
+
     <button mat-button [matMenuTriggerFor]="searchOptions" *ngIf="authService.getToken()">{{dropdownButtonText}}</button>
     <mat-menu #searchOptions="matMenu">
       <button *ngIf="authService.getToken()"  mat-menu-item [matMenuTriggerFor]="Categories">Categories</button>
@@ -23,6 +22,9 @@
     <mat-menu #Categories="matMenu">
       <button *ngFor="let cat of categories"  (click)="selectCategory(cat)"  mat-menu-item>{{cat.name}}</button>
     </mat-menu>
+
     <button mat-button *ngIf="authService.getToken()" (click)="search()">Submit Search</button>
-    <app-logout *ngIf="authService.getToken()"></app-logout>
+   <app-logout  *ngIf="authService.getToken()"></app-logout>
+
+
 </mat-toolbar>
