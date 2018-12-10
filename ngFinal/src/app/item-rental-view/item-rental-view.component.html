@@ -20,7 +20,7 @@
   <h2>Rental information</h2>
 </div>
 
-<div *ngIf="selectedItemRental">
+<div *ngIf="selectedItemRental" >
   Returned: {{ !selectedItemRental.active }} <br />
   Total Amount paid: {{ selectedItemRental.paidAmount | currency }} <br />
   Start Date: {{ selectedItemRental.startDate | date }} <br />
@@ -36,13 +36,15 @@
   </button>
 
   <button
-    *ngIf="!selectedItemRental.active"
+    *ngIf="!selectedItemRental.active && !isPostingItemVendor()"
     class="btn btn-danger"
     value="Rent Again"
     (click)="viewInventoryItem()"
   >
     Rent again
   </button>
+
+
 
   <br /><br /><br />
   <h2>Comments</h2>

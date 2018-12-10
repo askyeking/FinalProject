@@ -50,6 +50,11 @@ export class NavigationComponent implements OnInit {
       );
   }
 
+
+  backToHome() {
+    this.router.navigateByUrl('');
+  }
+
   getCurrentUser() {
     this.userService.retrieveProfiles().subscribe(
       data => {

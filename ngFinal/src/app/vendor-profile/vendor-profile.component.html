@@ -73,36 +73,36 @@
 
 <br><br><br>
 <div *ngIf="userViewed && !editUser">
-    <div class="container" style="margin-top:30px">
+    <div class="container">
       <div>
         <div class="row">
           <div class="col-sm-4">
-            <div class="card">
+            <div class="card" id="profile">
               <h2>{{userViewed.vendor.displayName}}</h2>
              <br>
-              <div class="fakeimg"><img src="{{userViewed.vendor.imgUrl}}" alt="Image"></div><br>
-              <h6>{{userViewed.vendor.about}}</h6>
-               <br><br>
-              <button class="btn btn-dark" *ngIf="isOriginalUser" (click)="setEditUser()">Edit Profile</button><br>
-              <button class="btn btn-dark" *ngIf="isOriginalUser" (click)="viewInventory()">View Inventory</button>
+                <img src="{{userViewed.vendor.imgUrl}}" alt="Image"><br>
+                <h6>{{userViewed.vendor.about}}</h6>
+                <br><br>
+                <button class="btn btn-dark" *ngIf="isOriginalUser" (click)="setEditUser()">Edit Profile</button><br>
+                <button class="btn btn-dark" *ngIf="isOriginalUser" (click)="viewInventory()">View Inventory</button>
+
               <hr class="d-sm-none">
             </div>
           </div>
 
           <div class="col-sm-8">
-            <div class="card" *ngFor="let item of userViewed.vendor.listedItems">
-              <div *ngIf="item.active">
-                <h2>{{item.name}}</h2>
-                <h5>{{item.description}}</h5>
+            <div class="card" *ngFor="let item of userViewed.vendor.listedItems | inactivizer">
+
+                <h3>{{item.name}}</h3>
+                <h6>{{item.description}}</h6>
                 <div id="image">
                     <img class="card-img-top" [src]="item.imgUrl" alt="image">
                 </div>
                 <br>
-                <h4>{{item.price | currency}}</h4>
+                <h5>{{item.price | currency}}</h5>
                 <p><strong>{{item.condition}} Condition </strong></p>
-                <button class="btn btn-dark" *ngIf="!item.rented && !isOriginalUser" (click)="rentItem(item.id)">Rent Me</button>
-              <button class="btn btn-dark" *ngIf="!item.rented && isOriginalUser" disabled>Rent Me</button>
-              </div>
+                 <button class="btn btn-dark" *ngIf="!item.rented && !isOriginalUser" (click)="rentItem(item.id)">Rent Me</button>
+                 <button class="btn btn-dark" *ngIf="!item.rented && isOriginalUser" disabled>Rent Me</button>
 
             </div>
           </div>
@@ -110,7 +110,6 @@
       </div>
 
 </div>
-
 
 
 
