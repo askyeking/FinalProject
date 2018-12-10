@@ -47,7 +47,7 @@
     <div *ngFor="let rental of itemViewed.allRents">
     <div *ngIf="itemViewed.active">
       <br>
-      <div class="container">
+      <div class="container" (click)="viewRental(rental.id)">
           <img src="{{itemViewed.imgUrl}}" alt="Image" style="width:300px">
           <h4>{{rental.customer.displayName}}</h4>
           <h4 class="return" *ngIf="!rental.active">Returned</h4>

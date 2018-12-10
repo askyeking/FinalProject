@@ -57,9 +57,9 @@
             <h5 class="card-title">Rental info</h5>
             <p class="card-text">{{ rental.paidAmount | currency }}</p>
             <p class="card-text">Returned: {{ !rental.active }}</p>
-            <p class="card-text">Date From: {{ rental.startDate }}</p>
-            <p class="card-text">Date To: {{ rental.endDate }}</p>
-            {{ rental.inventoryItem.rente }}
+            <p class="card-text">Date From: {{ rental.startDate |date }}</p>
+            <p class="card-text">Date To: {{ rental.endDate | date }}</p>
+            <!-- {{ rental.inventoryItem.rente }} -->
             <p class="card-text">Instructions: {{ rental.transactionInfo }}</p>
             <button
               *ngIf="rental.active"
