@@ -6,8 +6,8 @@
       Times Rented: {{itemViewed.allRents.length}} <br>
       Total income:  {{amountEarnedTotal | currency}}
     </div>
-  <div *ngFor="let rental of itemViewed.allRents">
-    <hr>
+
+  <!-- <div *ngFor="let rental of itemViewed.allRents">
       <div class="info">
        <p >Customer: {{rental.customer.displayName}}</p>
        <p>From: {{rental.startDate | date}}</p>
@@ -20,10 +20,34 @@
       </div>
     <hr>
 
-  </div>
+  </div> -->
 
   <div *ngIf="itemViewed.allRents && itemViewed.allRents.length == 0">
     This item has not yet been rented.
   </div>
 
 </div>
+<hr>
+    <div *ngFor="let rental of itemViewed.allRents">
+    <div *ngIf="itemViewed.active">
+      <br>
+      <div class="container">
+          <img src="{{itemViewed.imgUrl}}" alt="Image" style="width:300px">
+          <h4>{{rental.customer.displayName}}</h4>
+          <h4 class="return" *ngIf="!rental.active">Returned</h4>
+          <h4 class="no-return" *ngIf="rental.active">Not returned</h4>
+          <p>From: {{rental.startDate | date}}</p>
+          <p>To: {{rental.endDate | date}}</p>
+          <p>
+            <span><strong>Amount paid {{rental.paidAmount | currency}}</strong></span>
+            <br> Additional Info: {{rental.transactionInfo}}
+          </p>
+          <br>
+
+            <!-- <button class="btn btn-dark" (click)="setEditVendorInventory(item)">Edit</button>
+            <button class="btn btn-dark" (click)="setItemActiveToFalse(item)">Delete</button>
+            <button class="btn btn-dark" (click)="viewRentalHistory(item)">Rental history</button> -->
+
+        </div>
+    </div>
+  </div>
