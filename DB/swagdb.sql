@@ -611,4 +611,3 @@ USE `rentaswagdb`;
 INSERT INTO `comment_from_customer` (`id`, `customer_id`, `item_rental_id`, `comment`, `post_date`) VALUES (1, 1, 1, 'Cool dude', '2018-11-02 10:29:14');
 
 COMMIT;
-

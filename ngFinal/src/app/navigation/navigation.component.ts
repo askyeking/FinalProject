@@ -1,9 +1,11 @@
+import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { InventoryItemListComponent } from './../inventory-item-list/inventory-item-list.component';
 import { Vendor } from './../models/vendor';
 import { SearchService } from './../search.service';
 import { CategoryService } from './../category.service';
 import { Category } from './../models/category';
 import { environment } from './../../environments/environment';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterState } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../auth.service';
@@ -28,12 +30,15 @@ export class NavigationComponent implements OnInit {
   vendors: Vendor[] = [];
   loggedInUser: User;
 
+
+
   constructor(private router: Router, public authService: AuthService,
      public catService: CategoryService, private searchService: SearchService, route: ActivatedRoute,
      private vendorService: VendorService, private userService: UserService) { }
 
 
   loadCategories() {
+    // this.router.onSameUrlNavigation(");
     this.catService.loadCategories().subscribe(
       data => {
         console.log(data);
@@ -46,21 +51,14 @@ export class NavigationComponent implements OnInit {
 
   search() {
     this.parameter = this.dropdownButtonText.toLowerCase();
-    console.log(this.parameter);
-    console.log(this.keyword);
     if (this.parameter === 'category' || this.parameter === 'name') {
       this.router.navigateByUrl("items/search/" + this.parameter + "/" + this.keyword);
-      this.refreshSearch();
     } else if (this.parameter === 'vendor') {
       this.router.navigateByUrl("vendor/search/" + this.keyword);
     }
 
   }
 
-  refreshSearch() {
-    this.keyword = "";
-    this.parameter = "Search By";
-  }
 
   loadVendors() {
     this.vendorService.index().subscribe(
@@ -87,14 +85,12 @@ export class NavigationComponent implements OnInit {
       this.selectedCategory = selectedCategory;
       this.dropdownButtonText = 'Category';
       this.keyword = this.selectedCategory.name;
-      console.log(this.keyword);
+      this.search();
   }
 
   ngOnInit() {
     this.loadCategories();
   }
-
-
 
 
   viewVendorProfile() {
