@@ -6,4 +6,8 @@ public interface CommentFromCustomerService {
 
 	CommentFromCustomer persistComment(CommentFromCustomer comment);
 
+	boolean delete(int commentId);
+
+	CommentFromCustomer update(CommentFromCustomer comment);
+
 }

@@ -23,8 +23,8 @@
 <div *ngIf="selectedItemRental">
   Returned: {{ !selectedItemRental.active }} <br />
   Total Amount paid: {{ selectedItemRental.paidAmount | currency }} <br />
-  Start Date: {{ selectedItemRental.startDate }} <br />
-  End Date: {{ selectedItemRental.endDate }} <br />
+  Start Date: {{ selectedItemRental.startDate | date }} <br />
+  End Date: {{ selectedItemRental.endDate | date }} <br />
   Info: {{ selectedItemRental.transactionInfo }} <br />
   <button
     *ngIf="selectedItemRental.active"
@@ -54,14 +54,18 @@
     <hr />
     <div *ngFor="let comment of allComments">
 
-      <button *ngIf="isPostingVendor(comment)">Delete</button>
-      <button *ngIf="isPostingCustomer(comment)">Delete</button>
+      <button (click)="deleteVendorComment(comment.id)" *ngIf="isPostingVendor(comment) || currentUser.role === 'admin'">Delete</button>
+      <button  (click)="deleteCustomerComment(comment.id)" *ngIf="isPostingCustomer(comment)">Delete</button>
 
-      <button *ngIf="isPostingVendor(comment)">Update</button>
-      <button *ngIf="isPostingCustomer(comment)">Update</button>
-      <!--
-        <p>Posted by: {{comment.poster.displayName}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{comment.postDate | date:'medium'}}</p>
-      -->
+      <!-- <button *ngIf="isPostingVendor(comment)">Update</button> -->
+
+      <!-- <button (click)="shouldUpdateCustomerComment=true" *ngIf="isPostingCustomer(comment) && !shouldUpdateCustomerComment">Update</button>
+      <form *ngIf="shouldUpdateCustomerComment">
+          <textarea name="commentText" id="" cols="40" rows="10" [(ngModel)]="comment.comment"></textarea>
+          <br><button (click)="updateCustomerComment(comment)" >Post</button>
+          <button (click)="shouldUpdateCustomerComment=false">Cancel</button>
+      </form> -->
+
       <div *ngIf="isVendor(comment)">
           Vendor ({{ comment.poster.displayName }}) commented on {{comment.postDate | date: "medium" }}
 

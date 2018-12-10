@@ -24,6 +24,8 @@ export class ItemRentalViewComponent implements OnInit {
   allComments = [];
   currentUser: User = null;
   vendorUser: User = null;
+  shouldUpdateCustomerComment = false;
+  shouldUpdateVendorComment = false;
 
   newCustomerComment: CommentFromCustomer = new CommentFromCustomer();
   newVendorComment: CommentFromVendor = new CommentFromVendor();
@@ -44,19 +46,15 @@ export class ItemRentalViewComponent implements OnInit {
     this.newVendorComment.poster = this.currentUser.vendor;
     this.commentFromVendorService.postComment(this.newVendorComment).subscribe(
       data => {
-        // this.setup();
         this.refresh();
       },
       err => {
-        console.error("Error returning an item" + err);
+        console.error("Error creating a comment" + err);
         this.setup();
       }
     );
   }
 
-
-
-// TODO
   postCustomerComment() {
     this.newCustomerComment.itemRental = this.selectedItemRental;
     this.newCustomerComment.poster = this.selectedItemRental.customer;
@@ -64,16 +62,54 @@ export class ItemRentalViewComponent implements OnInit {
     console.log(this.newCustomerComment);
     this.commentFromCustomerService.postComment(this.newCustomerComment).subscribe(
       data => {
-        // this.setup();
         this.refresh();
       },
       err => {
-        console.error("Error returning an item" + err);
-        this.setup();
+        console.error("Error creating a comment" + err);
+        this.refresh();
       }
     );
   }
 
+  deleteCustomerComment(commentId: number) {
+    this.commentFromCustomerService.deleteComment(commentId).subscribe(
+      data => {
+        console.log("success");
+
+        this.refresh();
+      },
+      err => {
+        console.error("Error deleting a comment" + err);
+        this.refresh();
+      }
+    );
+  }
+
+  deleteVendorComment(commentId: number) {
+    this.commentFromVendorService.deleteComment(commentId).subscribe(
+      data => {
+        console.log("success");
+        this.refresh();
+      },
+      err => {
+        console.error("Error deleting a comment" + err);
+        this.refresh();
+      }
+    );
+  }
+
+  updateCustomerComment(comment: CommentFromCustomer) {
+    this.commentFromCustomerService.updateComment(comment).subscribe(
+      data => {
+        console.log("success");
+        this.refresh();
+      },
+      err => {
+        console.error("Error deleting a comment" + err);
+        this.refresh();
+      }
+    );
+  }
 
 
 
@@ -85,6 +121,8 @@ export class ItemRentalViewComponent implements OnInit {
     this.allComments = [];
     this.currentUser = null;
     this.vendorUser = null;
+    this.shouldUpdateCustomerComment = false;
+    this.shouldUpdateVendorComment = false;
 
     this.setup();
   }

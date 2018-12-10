@@ -18,4 +18,13 @@ public class CommentFromVendorServiceImpl implements CommentFromVendorService {
 		
 		return comment;
 	}
+	
+	@Override
+	public boolean delete(int commentId) {
+		vendorCommentRepo.deleteById(commentId);
+		if (vendorCommentRepo.findById(commentId).isPresent()) {
+			return false;
+		}
+		return true;
+	}
 }

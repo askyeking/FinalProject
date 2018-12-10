@@ -22,8 +22,6 @@ export class CommentFromVendorService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-
-
   postComment(vendorComment: CommentFromVendor) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -31,7 +29,6 @@ export class CommentFromVendorService {
         Authorization: `Basic ${this.authService.getToken()}`
       })
     };
-
 
     return this.http
       .post<CommentFromVendor>(
@@ -44,9 +41,28 @@ export class CommentFromVendorService {
       .pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError(
-            "Error: CommentFromVendorService.postComment()"
-          );
+          return throwError("Error: CommentFromVendorService.postComment()");
+        })
+      );
+  }
+
+  deleteComment(commentId) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http
+      .delete<number>(
+        this.baseUrl + "api/vendorcomment/" + commentId,
+        httpOptions
+      )
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError("Error: CommentFromVendorService.postComment()");
         })
       );
   }

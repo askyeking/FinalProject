@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,11 +32,30 @@ public class CommentFromVendorController {
 		itemPostedTo.setId(itemId);
 		comment.setItemRental(itemPostedTo);
 		
-		System.err.println("Inside PostCommentFromVendor *****************************************************");
-		System.out.println(comment);
 		comment = vendorCommentService.persistComment(comment);
+		if (comment != null && comment.getId() != 0) {
+			res.setStatus(201);
+		}
+		else {
+			res.setStatus(400);
+		}
 		
 		return comment;
+	}
+	
+	@DeleteMapping("vendorcomment/{id}")
+	public String deleteComment(@PathVariable("id") int commentId, HttpServletRequest req, HttpServletResponse res,
+			Principal principal) {
+		boolean deleted = vendorCommentService.delete(commentId);
+		System.out.println("*****************************************");
+		System.out.println(deleted);
+		if (deleted) {
+			res.setStatus(200);
+			return "Comment deleted";
+		}
+		res.setStatus(400);
+		
+		return "comment deletion failed";
 	}
 
 }
