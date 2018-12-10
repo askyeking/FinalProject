@@ -233,6 +233,19 @@ export class ItemRentalViewComponent implements OnInit {
     return false;
   }
 
+  isPostingItemVendor() {
+    if (!this.currentUser.vendor) {
+      return false;
+    }
+
+    if (this.currentUser.vendor.id === this.vendorUser.vendor.id) {
+      return true;
+    }
+
+    return false;
+
+  }
+
   isPostingCustomer(comment) {
     if (this.isVendor(comment)) {
       return false;
@@ -241,5 +254,9 @@ export class ItemRentalViewComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  isPostingItemCustomer () {
+
   }
 }
