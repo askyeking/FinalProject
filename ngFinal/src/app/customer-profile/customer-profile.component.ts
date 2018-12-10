@@ -38,6 +38,7 @@ export class CustomerProfileComponent implements OnInit {
     this.authService.logout();
   }
 
+
   startVendorCreation() {
     if (this.createVendor) {
       this.createVendor = null;
