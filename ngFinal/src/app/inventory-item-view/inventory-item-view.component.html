@@ -14,9 +14,24 @@
 
     Vendor Inventory
   </button>
-  <br />
-  <br />
-  <div class="card" style="width: 18rem;">
+    <div *ngIf="selected.active">
+        <div class="container">
+            <img src="{{selected.imgUrl}}" alt="Image" style="width:300px">
+            <h4>{{selected.name}}</h4>
+            <p>{{selected.description}}</p>
+            <p><span><strong>{{selected.price | currency}}</strong></span> {{selected.condition}} Condition</p>
+            <br>
+
+              <!-- <button class="btn btn-dark" (click)="setEditVendorInventory(item)">Edit</button>
+              <button class="btn btn-dark" (click)="setItemActiveToFalse(item)">Delete</button>
+              <button class="btn btn-dark" (click)="viewRentalHistory(item)">Rental history</button> -->
+
+          </div>
+      </div>
+    <br />
+    <br />
+
+  <!-- <div class="card" style="width: 18rem;">
     <img class="card-img-top" [src]="selected.imgUrl" alt="image" />
     <div class="card-body">
       <h5 class="card-title">{{ selected.name }}</h5>
@@ -30,11 +45,23 @@
       </p>
       <p class="card-text">{{ selected.condition }}</p>
     </div>
-  </div>
-  <br />
-  <br />
+  </div> -->
+
+
 
   <div *ngIf="selected && selected.rented">This item is already rented</div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <form
     *ngIf="
       selected &&

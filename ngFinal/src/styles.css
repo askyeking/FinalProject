@@ -3,4 +3,5 @@
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-image: url("http://3.bp.blogspot.com/-3UIjuTrbAI8/Uihk5uaH_lI/AAAAAAAAAuk/gcn5XlQ9kyI/s1600/Top+10+best+Simple+Awesome+Background+Images+for+Your+Website+or+Blog2.jpg")}
+
