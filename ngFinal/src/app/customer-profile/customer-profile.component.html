@@ -6,9 +6,15 @@
       (click)="setEdit()"
     >
       Edit
-    </button>
+    </button
+    >
+    <button
+    *ngIf="!currentUser.vendor"
+    class="btn btn-outline-success my-2 my-sm-0"
+    type="submit"
+    (click)="startVendorCreation()">Create a Vendor profile</button>
 
-    <div *ngIf="!editUser">
+    <div *ngIf="!editUser && !createVendor">
       <div *ngIf="currentUser.customer.avatarURL">
         <img src="{{currentUser.customer.avatarURL}}" alt="" />
       </div>
@@ -98,6 +104,22 @@
       </button>
     </form>
     <br />
+  </div>
+
+  <div *ngIf="createVendor">
+    Insert your vendor information:
+    <form action="">
+    Public Name: <input type="text" name="displayName" [(ngModel)]="createVendor.displayName">
+    imgUrl: <input type="text" name="imageURL" [(ngModel)]="createVendor.imgUrl">
+    About: <input type="text" name="about" [(ngModel)]="createVendor.about">
+    &nbsp;
+    <button  (click)="createVendorProfile()">Submit</button>
+    &nbsp;
+    <button (click)="startVendorCreation()">Cancel</button>
+
+    <br>
+    Note: Upon completing this Form you will have to log in to see vendor tools.
+  </form>
   </div>
 
   <!-- Make sure backend has inventory items -->

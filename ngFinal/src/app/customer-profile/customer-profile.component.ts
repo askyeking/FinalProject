@@ -1,32 +1,68 @@
-import { UserService } from './../user.service';
-import { User } from './../models/user';
-import { Component, OnInit } from '@angular/core';
-import { InventoryItemListComponent } from '../inventory-item-list/inventory-item-list.component';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { Customer } from '../models/customer';
-import { ItemRental } from '../models/item-rental';
-import { RentService } from '../rent.service';
+import { AuthService } from './../auth.service';
+import { UserService } from "./../user.service";
+import { User } from "./../models/user";
+import { Component, OnInit } from "@angular/core";
+import { InventoryItemListComponent } from "../inventory-item-list/inventory-item-list.component";
+import { Router } from "@angular/router";
+import { AuthService } from "../auth.service";
+import { Customer } from "../models/customer";
+import { ItemRental } from "../models/item-rental";
+import { RentService } from "../rent.service";
+import { Vendor } from "../models/vendor";
 
 @Component({
-  selector: 'app-customer-profile',
-  templateUrl: './customer-profile.component.html',
-  styleUrls: ['./customer-profile.component.css']
+  selector: "app-customer-profile",
+  templateUrl: "./customer-profile.component.html",
+  styleUrls: ["./customer-profile.component.css"]
 })
 export class CustomerProfileComponent implements OnInit {
   currentUser: User = null;
   customer: Customer = null;
   editUser: User = null;
+  createVendor: Vendor = null;
   itemRentals: ItemRental[];
 
   constructor(
     private userService: UserService,
     private router: Router,
     private rentService: RentService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
     // this.refresh();
+    this.getCurrentUser();
+  }
+
+  startVendorCreation() {
+    if (this.createVendor) {
+      this.createVendor = null;
+    } else {
+      this.createVendor = new Vendor();
+    }
+  }
+
+  createVendorProfile() {
+    this.userService.createVendor(this.createVendor).subscribe(
+      data => {
+        this.currentUser = data;
+        this.refresh();
+      },
+      err => {
+        console.error("Observer got an error" + err);
+        this.refresh();
+      }
+    );
+    // this.authService.logout();
+  }
+
+  refresh() {
+    this.currentUser = null;
+    this.customer = null;
+    this.editUser = null;
+    this.createVendor = null;
+    this.itemRentals = [];
+
     this.getCurrentUser();
   }
 
@@ -37,10 +73,9 @@ export class CustomerProfileComponent implements OnInit {
         // has value
         console.log(this.currentUser);
         this.getUserRentals();
-
       },
       err => {
-        console.error('Observer got an error' + err);
+        console.error("Observer got an error" + err);
       }
     );
     // is null
@@ -48,32 +83,27 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   viewRental(rentalId: number) {
-    this.router.navigateByUrl('inventoryItems/rental/' + rentalId);
+    this.router.navigateByUrl("inventoryItems/rental/" + rentalId);
   }
 
   viewItem(inventoryItemId) {
-    this.router.navigateByUrl('inventoryItems/viewItem/' + inventoryItemId);
+    this.router.navigateByUrl("inventoryItems/viewItem/" + inventoryItemId);
   }
 
   getUserRentals() {
     this.rentService.retrieveCustomersRentals(this.currentUser.id).subscribe(
       data => {
-        console.log('getUserRentals()');
+        console.log("getUserRentals()");
         this.currentUser.customer.rentedItems = data;
         console.log(this.currentUser.customer.rentedItems);
       },
       err => {
-        console.log('Error: getUserRentals()');
-        console.error('Observer got an error' + err);
+        console.log("Error: getUserRentals()");
+        console.error("Observer got an error" + err);
       }
     );
   }
 
-  refresh() {
-    this.getCurrentUser();
-    this.editUser = null;
-    this.customer = null;
-  }
 
   setEdit() {
     this.editUser = Object.assign({}, this.currentUser);
@@ -86,19 +116,18 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   updateCustomer(user) {
-    console.log('profilecomponent.updateCustomer');
+    console.log("profilecomponent.updateCustomer");
     console.log(user);
     console.log(user.customer);
 
     this.userService.update(user).subscribe(
       data => {
-
         this.refresh();
         this.currentUser = data;
       },
       err => {
         this.refresh();
-        console.error('Observer got an error' + err);
+        console.error("Observer got an error" + err);
       }
     );
   }

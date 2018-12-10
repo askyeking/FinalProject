@@ -99,5 +99,23 @@ export class UserService {
     );
   }
 
+  createVendor(vendor: Vendor) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.post<User>(this.baseUrl + 'api/user/register/vendor', vendor, httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('userService.updateVendor(): Error creating vendor');
+      })
+    );
+  }
+
+
 
 }

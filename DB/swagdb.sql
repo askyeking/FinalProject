@@ -39,7 +39,7 @@ DROP TABLE IF EXISTS `vendor` ;
 CREATE TABLE IF NOT EXISTS `vendor` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
-  `image_url` VARCHAR(45) NULL,
+  `image_url` TEXT NULL,
   `about` TEXT NULL,
   `display_name` VARCHAR(45) NOT NULL,
   `active` TINYINT(1) NOT NULL DEFAULT 1,

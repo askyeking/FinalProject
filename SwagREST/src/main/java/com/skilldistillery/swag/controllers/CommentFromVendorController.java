@@ -47,8 +47,6 @@ public class CommentFromVendorController {
 	public String deleteComment(@PathVariable("id") int commentId, HttpServletRequest req, HttpServletResponse res,
 			Principal principal) {
 		boolean deleted = vendorCommentService.delete(commentId);
-		System.out.println("*****************************************");
-		System.out.println(deleted);
 		if (deleted) {
 			res.setStatus(200);
 			return "Comment deleted";

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.swag.entities.Customer;
 import com.skilldistillery.swag.entities.User;
+import com.skilldistillery.swag.entities.Vendor;
 import com.skilldistillery.swag.services.UserService;
 
 @RestController
@@ -57,10 +58,6 @@ public class UserController {
 	public User editUserCustomer(@RequestBody User userUpdate, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {
 		
-		System.out.println("PATCH UserController.editUserCustomre() {api/user/customer}");
-		System.out.println(userUpdate.getEmail());
-		System.out.println("************************************");
-		System.out.println(userUpdate.getCustomer().getDisplayName());
 		User originalUser = userService.findByEmail(principal.getName());
 		
 		
@@ -90,6 +87,26 @@ public class UserController {
 				resp.setStatus(201);
 				controlUser = userService.findByEmail(principal.getName());
 				return controlUser;
+			}
+			else {
+				resp.setStatus(401);
+				return null;
+			}
+	}
+	
+	@PostMapping("user/register/vendor")
+	public User addVendorProfile(@RequestBody Vendor vendorProfileToAdd, HttpServletRequest req, HttpServletResponse resp,
+			Principal principal ) {
+		
+			System.err.println("Inside Vendor");
+			
+			User postingUser = userService.findByEmail(principal.getName());
+			
+ 			if(postingUser.getVendor() == null) {
+				this.userService.addVendor(vendorProfileToAdd, postingUser.getID());
+				resp.setStatus(201);
+				postingUser = userService.findByEmail(principal.getName());
+				return postingUser;
 			}
 			else {
 				resp.setStatus(401);
