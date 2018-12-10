@@ -1,8 +1,9 @@
+import { OnDestroy } from '@angular/core';
 import { AuthService } from './../auth.service';
 import { Customer } from './../models/customer';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import {NavigationEnd, Router,  ActivatedRoute} from '@angular/router';
 import { User } from '../models/user';
 import { Vendor } from '../models/vendor';
 import { VendorService } from '../vendor.service';
@@ -13,7 +14,9 @@ import { isNullOrUndefined } from 'util';
   templateUrl: './vendor-profile.component.html',
   styleUrls: ['./vendor-profile.component.css']
 })
-export class VendorProfileComponent implements OnInit {
+export class VendorProfileComponent implements OnInit, OnDestroy {
+
+  navigationSubscription;
   userViewed: User = null;
   vendor: Vendor = null;
   userLoggedIn: User = null;
@@ -24,7 +27,14 @@ export class VendorProfileComponent implements OnInit {
 
   constructor(private authService: AuthService,  private vendorService: VendorService, private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute) {
+      this.navigationSubscription = this.router.events.subscribe((e: any) => {
+        if (e instanceof NavigationEnd) {
+          this.retrieveUserLoggedIn();
+          this.userViewed = this.userLoggedIn;
+        }
+      });
+    }
 
   ngOnInit() {
     this.id =  this.route.snapshot.paramMap.get('id');
@@ -96,8 +106,11 @@ export class VendorProfileComponent implements OnInit {
     this.router.navigateByUrl('vendorInventory');
   }
 
-
-
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
+  }
 
 
 
