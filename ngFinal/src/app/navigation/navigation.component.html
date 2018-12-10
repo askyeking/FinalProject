@@ -2,12 +2,12 @@
   <span> Name Pending </span>&nbsp;&nbsp;&nbsp;&nbsp;
 
   <button mat-button *ngIf="authService.getToken()" (click)="viewCustomerProfile()"   >Customer Profile</button>
-  <button mat-button  *ngIf="authService.getToken()" (click)="viewVendorProfile()" >Vendor Profile</button>
+  <button mat-button  *ngIf="authService.getToken()  && loggedInUser && loggedInUser.vendor" (click)="viewVendorProfile()" >Vendor Profile</button>
   <button mat-button *ngIf="authService.getToken()"  (click)="loadVendors()">View Vendors</button>
   <app-login *ngIf="!authService.getToken()"></app-login>
 
-  <div style="margin-right: 50%">
-  </div>
+  <!-- <div style="margin-right: 50%"> -->
+  <!-- </div> -->
 
   <form class="example-form" *ngIf="authService.getToken()">
       <mat-form-field class="example-full-width">
