@@ -1,38 +1,68 @@
 <div>
-  <div *ngIf="currentUser">
+  <!-- <div *ngIf="currentUser">
     <button
-      class="btn btn-outline-success my-2 my-sm-0"
-      type="submit"
-      (click)="setEdit()"
-    >
-      Edit
-    </button>
-    <button
-      *ngIf="!currentUser.vendor"
-      class="btn btn-outline-success my-2 my-sm-0"
-      type="submit"
-      (click)="startVendorCreation()"
-    >
+      class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="setEdit()">Edit</button>
+    <button *ngIf="!currentUser.vendor" class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="startVendorCreation()">
       Create a Vendor profile
-    </button>
+    </button> -->
+
+    <br><br><br><br><br>
 
     <div *ngIf="!editUser && !createVendor">
-      <div *ngIf="currentUser.customer.avatarURL">
+      <!-- <div *ngIf="currentUser.customer.avatarURL">
         <img src="{{currentUser.customer.avatarURL}}" alt="" />
       </div>
       <h1>{{ currentUser.customer.displayName }}</h1>
-      Email: {{ currentUser.email }} <br />
-      Name: {{ currentUser.customer.displayName }} <br />
+      Email: {{currentUser.email}} <br />
+      Name: {{currentUser.customer.displayName}} <br /> -->
 
-      <br />
-      <h2
-        *ngIf="
-          currentUser.customer.rentedItems &&
-          currentUser.customer.rentedItems.length != 0
-        "
-      >
-        Rental History
-      </h2>
+
+
+      <div *ngIf="currentUser && !editUser && !createVendor">
+          <div class="container">
+            <div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="card" id="profile">
+                    <h2>{{currentUser.customer.displayName}}</h2>
+                    <img src="{{currentUser.customer.avatarURL}}" alt="Image"><br>
+                    Email: {{currentUser.email}} <br />
+                    Name: {{currentUser.customer.displayName}} <br />
+                   <br>
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="setEdit()">Edit</button>
+                      <button *ngIf="!currentUser.vendor" class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="startVendorCreation()">
+                       Create a Vendor profile
+                      </button>
+
+                    <hr class="d-sm-none">
+                  </div>
+                </div>
+
+                <div class="col-sm-8">
+                    <h2 *ngIf="currentUser.customer.rentedItems && currentUser.customer.rentedItems.length != 0">Rental History</h2>
+                  <div class="card" *ngFor="let item of currentUser.vendor.listedItems | inactivizer">
+
+                      <h3>{{item.name}}</h3>
+                      <h6>{{item.description}}</h6>
+                      <div id="image">
+                          <img class="card-img-top" [src]="item.imgUrl" alt="image">
+                      </div>
+                      <br>
+                      <h5>{{item.price | currency}}</h5>
+                      <p><strong>{{item.condition}} Condition </strong></p>
+                       <!-- <button class="btn btn-dark" *ngIf="!item.rented && !isOriginalUser" (click)="rentItem(item.id)">Rent Me</button>
+                       <button class="btn btn-dark" *ngIf="!item.rented && isOriginalUser" disabled>Rent Me</button> -->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      </div>
+
+
+
+      <h2 *ngIf="currentUser.customer.rentedItems && currentUser.customer.rentedItems.length != 0">Rental History</h2>
       <div
         *ngFor="let rental of currentUser.customer.rentedItems"
         class="card"
