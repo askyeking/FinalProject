@@ -1,3 +1,4 @@
+import { UserService } from './../user.service';
 import { VendorService } from "./../vendor.service";
 import { AuthService } from "./../auth.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
@@ -21,6 +22,7 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
   parameter: string;
   keyword: string;
   vendorsUser: User;
+  currentUser: User = null;
 
   loadInventoryItems() {
     console.log("INSIDE LOAD INVENTORY ITEMS");
@@ -38,8 +40,10 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
 
 
   openItemView(itemId: number) {
-    console.log(itemId);
-    this.router.navigateByUrl("inventoryItems/viewItem/" + itemId);
+    if (this.authService.checkLogin()) {
+      this.router.navigateByUrl("inventoryItems/viewItem/" + itemId);
+  }
+  console.log('inside openItemView');
   }
 
   loadParameterizedInventoryItems() {
@@ -68,7 +72,8 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private route: ActivatedRoute,
     private router: Router,
-    private vendorService: VendorService
+    private vendorService: VendorService,
+    private userService: UserService
   ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -95,9 +100,24 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(
-      "INSIDE ON INIT METHOD POST SEARCH REROUTE -- INVENTORY ITEM LIST COMPONENT"
-    );
+    this.refresh();
+
+  }
+
+  refresh() {
+    this.inventoryItems = [];
+    this.selected = null;
+    this.temp = null;
+    this.parameter = null;
+    this.keyword = null;
+    this.vendorsUser = null;
+    this.currentUser = null;
+
+
+    this.setup();
+  }
+
+  setup() {
     this.parameter = this.route.snapshot.paramMap.get("parameter");
     this.keyword = this.route.snapshot.paramMap.get("keyword");
     if (this.parameter && this.keyword) {
@@ -105,5 +125,13 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
     } else {
       this.loadInventoryItems();
     }
+    this.userService.retrieveProfiles().subscribe(
+      data => {
+        this.currentUser = data;
+      },
+      err => {
+        console.error("ngOnInit error: " + err);
+      }
+    );
   }
 }

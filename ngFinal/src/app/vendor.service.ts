@@ -14,19 +14,27 @@ export class VendorService {
 
   private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/vendor';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${this.authService.getToken()}`
-    })
-  };
+  // httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Basic ${this.authService.getToken()}`
+  //   })
+  // };
 
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
 
   getUserByVendorId(vendorId: number) {
-    return this.http.get<User>(this.url + '/user/' + vendorId, this.httpOptions).pipe(
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.get<User>(this.url + '/user/' + vendorId, httpOptions).pipe(
       catchError((err: any) => {
       console.log(err);
       return throwError('Error retrieving a user: vendorService.getUserByVendorId()');
@@ -34,7 +42,15 @@ export class VendorService {
     );
   }
   getVendorByInventoryItemId(itemId: number) {
-    return this.http.get<User>(this.url + '/profile/' + itemId, this.httpOptions).pipe(
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.get<User>(this.url + '/profile/' + itemId, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
       return throwError('Error retrieving a vendor: vendorService.getVendorByInventoryItemId()');
@@ -43,7 +59,15 @@ export class VendorService {
   }
 
   index() {
-    return this.http.get<Vendor[]>(this.url, this.httpOptions).pipe(
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.get<Vendor[]>(this.url, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
       return throwError('Error getting vendors');

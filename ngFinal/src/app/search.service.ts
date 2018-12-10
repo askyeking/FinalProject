@@ -14,19 +14,27 @@ export class SearchService {
 
   private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${this.authService.getToken()}`
-    })
-  };
+  // httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Basic ${this.authService.getToken()}`
+  //   })
+  // };
 
 
   searchParameter: string;
 
 
   search(parameter: string,  keyword: string) {
-  return this.http.get<InventoryItem[]>(this.url + "/items/" + parameter + "/" + keyword, this.httpOptions).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+    console.log(httpOptions);
+
+  return this.http.get<InventoryItem[]>(this.url + "/items/" + parameter + "/" + keyword, httpOptions).pipe(
     catchError((err: any) => {
       console.log(err);
     return throwError('Error getting items with parameter: ' + parameter + "and keyword: " + keyword);
@@ -37,7 +45,16 @@ export class SearchService {
 
 
   searchVendors(keyword: string) {
-    return this.http.get<Vendor[]>(this.url + "/vendor/search/" + keyword, this.httpOptions).pipe(
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+
+    return this.http.get<Vendor[]>(this.url + "/vendor/search/" + keyword, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
       return throwError('Error getting vendors');
