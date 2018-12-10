@@ -13,16 +13,24 @@ import { throwError } from 'rxjs';
 export class RentService {
   private baseUrl = environment.baseUrl;
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${this.authService.getToken()}`
-    })
-  };
+  // httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Basic ${this.authService.getToken()}`
+  //   })
+  // };
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
 
   retrieveCustomersRentals(customerId: number) {
-    return this.http.get<ItemRental[]>(this.baseUrl + 'api/rental/customer/' + customerId, this.httpOptions)
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.get<ItemRental[]>(this.baseUrl + 'api/rental/customer/' + customerId, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
@@ -32,8 +40,13 @@ export class RentService {
   }
 
   rentItem(itemToRent: ItemRental) {
-    console.log("rentService.rentItem()");
-    return this.http.post<ItemRental>(this.baseUrl + 'api/rental', itemToRent, this.httpOptions)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+    return this.http.post<ItemRental>(this.baseUrl + 'api/rental', itemToRent, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
@@ -42,8 +55,13 @@ export class RentService {
     );
   }
 
-  getItem(id: number) {
-    return this.http.get<ItemRental>(this.baseUrl + 'api/rental/' + id, this.httpOptions)
+  getItem(id: number) {const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${this.authService.getToken()}`
+    })
+  };
+    return this.http.get<ItemRental>(this.baseUrl + 'api/rental/' + id, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
@@ -53,7 +71,13 @@ export class RentService {
   }
 
   returnItem(itemToReturn: ItemRental) {
-    return this.http.patch<ItemRental>(this.baseUrl + 'api/rental', itemToReturn, this.httpOptions)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+    return this.http.patch<ItemRental>(this.baseUrl + 'api/rental', itemToReturn, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
@@ -63,7 +87,13 @@ export class RentService {
   }
 
   retrieveItemRentalHistory(itemId: number) {
-    return this.http.get<ItemRental[]>(this.baseUrl + 'api/rental/item/' + itemId, this.httpOptions)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+    return this.http.get<ItemRental[]>(this.baseUrl + 'api/rental/item/' + itemId, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);

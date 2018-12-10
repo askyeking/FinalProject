@@ -12,12 +12,12 @@ import { User } from './models/user';
   providedIn: 'root'
 })
 export class InventoryItemService {
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${this.authService.getToken()}`
-    })
-  };
+  // httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Basic ${this.authService.getToken()}`
+  //   })
+  // };
 
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
 
@@ -36,7 +36,15 @@ export class InventoryItemService {
 
 
   loadVendorItems() {
-    return this.http.get<InventoryItem[]>(this.baseUrl + 'api/item/vendor', this.httpOptions).pipe(
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.get<InventoryItem[]>(this.baseUrl + 'api/item/vendor', httpOptions).pipe(
       catchError((err: any) => {
         console.log('error in inventoryItemService loadVendorItems():');
         console.log(err);
@@ -46,7 +54,14 @@ export class InventoryItemService {
   }
 
   addVendorItems(vendorItem: InventoryItem) {
-    return this.http.post<InventoryItem>(this.baseUrl + 'api/item', vendorItem, this.httpOptions)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.post<InventoryItem>(this.baseUrl + 'api/item', vendorItem, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
@@ -56,7 +71,14 @@ export class InventoryItemService {
   }
 
   updateVendorItems(vendorItem: InventoryItem) {
-    return this.http.put<InventoryItem>(this.baseUrl + 'api/item/' + vendorItem.id, vendorItem, this.httpOptions)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.put<InventoryItem>(this.baseUrl + 'api/item/' + vendorItem.id, vendorItem, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.error(err);
@@ -67,7 +89,14 @@ export class InventoryItemService {
   }
 
   getOne(id: number): Observable<InventoryItem> {
-    return this.http.get<InventoryItem>(this.baseUrl + 'api/item/' + id, this.httpOptions)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.get<InventoryItem>(this.baseUrl + 'api/item/' + id, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
