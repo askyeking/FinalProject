@@ -20,6 +20,7 @@ export class CustomerProfileComponent implements OnInit {
   editUser: User = null;
   createVendor: Vendor = null;
   itemRentals: ItemRental[];
+  shouldLogOut = false;
 
   constructor(
     private userService: UserService,
@@ -31,6 +32,10 @@ export class CustomerProfileComponent implements OnInit {
   ngOnInit() {
     // this.refresh();
     this.getCurrentUser();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   startVendorCreation() {
@@ -45,7 +50,7 @@ export class CustomerProfileComponent implements OnInit {
     this.userService.createVendor(this.createVendor).subscribe(
       data => {
         this.currentUser = data;
-        this.refresh();
+        this.shouldLogOut = true;
       },
       err => {
         console.error("Observer got an error" + err);
@@ -61,6 +66,7 @@ export class CustomerProfileComponent implements OnInit {
     this.editUser = null;
     this.createVendor = null;
     this.itemRentals = [];
+    this.shouldLogOut = false;
 
     this.getCurrentUser();
   }
