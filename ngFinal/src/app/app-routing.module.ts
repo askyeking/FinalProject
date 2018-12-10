@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'landing', component: InventoryItemListComponent },
 
   //  TODO: Vendor Profile not showing
-  { path: 'vendor/profile/:id', component: VendorProfileComponent},
+  { path: 'vendor/profile/:id', component: VendorProfileComponent, runGuardsAndResolvers: 'always'},
   { path: 'inventoryItems/viewItem/:id', component: InventoryItemViewComponent},
   { path: 'inventoryItems/rental/:id', component: ItemRentalViewComponent},
 
