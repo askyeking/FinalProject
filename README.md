@@ -2,7 +2,13 @@
 
 ### Overview
   The project is a website that allows customers and vendors to rent clothing articles.
-  At the landing page, an unlogged user can view items available for rental. In the navbar, the user can insert login information or register. Upon successfully registering / logging in, the user can view all items, as well as the details of any individual item by clicking on it. If the item is not currently rented, 
+  At the landing page, an unlogged user can view items available for rental. In the navbar, the user can insert login information or register.
+
+  Upon successfully registering / logging in, the user can view all items, as well as the details of any individual item by clicking on it. If the user is not the vendor of the item, and the item is not currently rented, the user will see a form that they can fill in to rent the item.
+
+  Upon successfully renting an item, the user will view the item-rental information - total amount paid, date from, date to. The user can mark an item as returned which will make the item rentable. Also, both the user, and the vendor will have an option to post a comment on the item-rental, allowing the customer and the vendor to communicate. They will also have an option to remove their comments. The comments are sorted from the newest to the oldest.
+
+  The user can also navigate to their customer-profile by clicking a button in the navbar. They will se information such as their display-name and their e-mail. They will also be able to view a summary of their rental history.
 
 #### Building blocks:
   * Database built using SQL and MySQL Workbench
