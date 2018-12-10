@@ -22,6 +22,11 @@ export class InventoryItemViewComponent implements OnInit {
   postingUser: User = null;
   isAlreadyRenting = false;
 
+  // information for use in rental history component only
+  numberOfRentals: number;
+  amountEarnedTotal: number;
+
+
   // try;
   constructor(
     private inventoryItemService: InventoryItemService,
@@ -54,6 +59,7 @@ export class InventoryItemViewComponent implements OnInit {
     );
   }
 
+
   getItemsOwner(itemId: number) {
     this.vendorService.getVendorByInventoryItemId(itemId).subscribe(
       data => {
@@ -70,11 +76,6 @@ export class InventoryItemViewComponent implements OnInit {
     this.router.navigateByUrl("");
   }
 
-  // refresh() {
-  //   this.id = null;
-  //   this.selected = null;
-  //   this.itemRental = new ItemRental();
-  // }
 
   persistItemRental() {
     this.itemRental.inventoryItem = this.selected;
@@ -113,4 +114,6 @@ export class InventoryItemViewComponent implements OnInit {
   viewVendor() {
     this.router.navigateByUrl("vendor/profile/" + this.selected.vendor.id);
   }
+
+
 }
