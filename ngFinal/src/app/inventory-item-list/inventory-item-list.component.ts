@@ -24,14 +24,18 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
 
   loadInventoryItems() {
     console.log("INSIDE LOAD INVENTORY ITEMS");
-
     this.inventoryItemService
       .index()
       .subscribe(
-        data => (this.inventoryItems = data),
+        data => {
+          this.inventoryItems = data;
+         },
         err => console.error("Observer got an error: " + err)
       );
   }
+
+
+
 
   openItemView(itemId: number) {
     console.log(itemId);
