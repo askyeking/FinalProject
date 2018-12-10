@@ -1,3 +1,4 @@
+import { CommentFromCustomerService } from '../comment-from-customer.service';
 import { CommentFromVendor } from "./../models/comment-from-vendor";
 import { CommentFromCustomer } from "./../models/comment-from-customer";
 import { User } from "./../models/user";
@@ -9,6 +10,7 @@ import { ItemRental } from "../models/item-rental";
 import { RentService } from "../rent.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { VendorService } from "../vendor.service";
+import { CommentFromVendorService } from '../comment-from-vendor.service';
 
 @Component({
   selector: "app-item-rental-view",
@@ -32,21 +34,59 @@ export class ItemRentalViewComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
-    private vendorService: VendorService
+    private vendorService: VendorService,
+    private commentFromCustomerService: CommentFromCustomerService,
+    private commentFromVendorService: CommentFromVendorService
   ) {}
 
   postVendorComment() {
     this.newVendorComment.itemRental = this.selectedItemRental;
     this.newVendorComment.poster = this.currentUser.vendor;
-    console.log("Vendor Comment");
-    console.log(this.newVendorComment);
+    this.commentFromVendorService.postComment(this.newVendorComment).subscribe(
+      data => {
+        // this.setup();
+        this.refresh();
+      },
+      err => {
+        console.error("Error returning an item" + err);
+        this.setup();
+      }
+    );
   }
 
+
+
+// TODO
   postCustomerComment() {
     this.newCustomerComment.itemRental = this.selectedItemRental;
     this.newCustomerComment.poster = this.selectedItemRental.customer;
     console.log("Customer Comment");
     console.log(this.newCustomerComment);
+    this.commentFromCustomerService.postComment(this.newCustomerComment).subscribe(
+      data => {
+        // this.setup();
+        this.refresh();
+      },
+      err => {
+        console.error("Error returning an item" + err);
+        this.setup();
+      }
+    );
+  }
+
+
+
+
+
+  refresh() {
+    this.selectedInventoryItem = null;
+    this.selectedItemRental = null;
+    this.rentalId = null;
+    this.allComments = [];
+    this.currentUser = null;
+    this.vendorUser = null;
+
+    this.setup();
   }
 
   ngOnInit() {
