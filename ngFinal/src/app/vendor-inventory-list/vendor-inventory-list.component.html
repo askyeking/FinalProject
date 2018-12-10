@@ -12,39 +12,60 @@
   </form>
 </div> -->
 <div class="addForm" *ngIf="!selected && !editItem">
+  <h3>Add Item</h3><br>
     <div class="form-group">
-      <!-- <label for="inputName">Name</label> --> <br>
+
       <input type="text" class="form-control" id="inputName" placeholder="Name" [(ngModel)]="newItem.name" >
     </div>
     <div class="form-group">
-      <!-- <label for="inputDescription">Description</label> --> <br>
-      <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Description" [(ngModel)]="newItem.description" rows="2"></textarea>
+
+      <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Description" [(ngModel)]="newItem.description" rows="3"></textarea>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <!-- <label for="inputPrice">Price</label> --> <br>
+
         <input type="text" class="form-control" id="inputPrice" placeholder="Price" [(ngModel)]="newItem.price">
       </div>
       <div class="form-group col-md-6">
-          <!-- <label for="inputCondition">Condition</label> --> <br>
+
           <input type="text" class="form-control" id="inputCondition" placeholder="Condition" [(ngModel)]="newItem.condition">
         </div>
     </div>
     <div class="form-group">
-        <!-- <label for="inputImgUrl">Image URL</label> --> <br>
+
         <input type="text" class="form-control" id="inputImgUrl" placeholder="Link or Image URL" [(ngModel)]="newItem.imgUrl">
       </div>
       <br>
       <div class="btn-toolbar">
-          <button class="btn btn-success" (click)="addVendorInventory()">Add Item</button>
+          <button id="addBtn" (click)="addVendorInventory()">Add</button>
       </div>
     </div>
 
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 <div *ngIf="!selected && !editItem" >
+  <div *ngFor="let item of vendorInventory" class="card text-center">
+    <div *ngIf="item.active">
+      <div class="container">
+          <img src="{{item.imgUrl}}" alt="Image" style="width:300px">
+          <h4>{{item.name}}</h4>
+          <p>{{item.description}}</p>
+          <p><span><strong>{{item.price | currency}}</strong></span> {{item.condition}} Condition</p>
+          <br>
+
+            <button class="btn btn-dark" (click)="setEditVendorInventory(item)">Edit</button>
+            <button class="btn btn-dark" (click)="setItemActiveToFalse(item)">Delete</button>
+            <button class="btn btn-dark" (click)="viewRentalHistory(item)">Rental history</button>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div *ngIf="!selected && !editItem" >
   <div *ngFor="let item of vendorInventory" class="card text-center">
     <div *ngIf="item.active">
       <div class="card-header">
@@ -69,7 +90,7 @@
       <br>
     </div>
   </div>
-</div>
+</div> -->
 
 <form selected="setEditVendorInventory" *ngIf="editItem">
     <div class="form-group">
@@ -78,7 +99,7 @@
     </div>
     <div class="form-group">
       <label for="inputDescription">Description</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" [ngModelOptions]="{standalone: true}" [(ngModel)]="editItem.description" placeholder="{{editItem.description}}" rows="2"></textarea>
+      <textarea class="form-control" id="exampleFormControlTextarea1" [ngModelOptions]="{standalone: true}" [(ngModel)]="editItem.description" placeholder="{{editItem.description}}" rows="3"></textarea>
     </div>
 
     <div class="form-row">
@@ -97,8 +118,8 @@
       </div>
       <br>
       <div class="btn-toolbar">
-          <button class="btn btn-success" (click)="updateVendorInventory(editItem)">Save</button>
-          <button class="btn btn-danger" (click)="editItem=null">Cancel</button>
+          <button class="btn btn-dark" (click)="updateVendorInventory(editItem)">Save</button>
+          <button class="btn btn-secondary" (click)="editItem=null">Cancel</button>
       </div>
   </form>
 
