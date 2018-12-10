@@ -4,7 +4,6 @@ import { User } from "./../models/user";
 import { Component, OnInit } from "@angular/core";
 import { InventoryItemListComponent } from "../inventory-item-list/inventory-item-list.component";
 import { Router } from "@angular/router";
-import { AuthService } from "../auth.service";
 import { Customer } from "../models/customer";
 import { ItemRental } from "../models/item-rental";
 import { RentService } from "../rent.service";
