@@ -41,7 +41,7 @@
         <label for="inputDisplayName">Display Name</label>
         <input type="text" class="form-control" id="inputDisplayName" [ngModelOptions]="{standalone: true}" [(ngModel)]="editUser.vendor.displayName" placeholder="{{editUser.vendor.displayName}}">
       </div>
-        <div *ngIf="editUser.vendor.imgUrl" class="form-group col-md-6">
+        <div class="form-group col-md-6">
           <label for="inputImg">Image URL</label>
           <input type="text" class="form-control" id="inputImg" [ngModelOptions]="{standalone: true}" [(ngModel)]="editUser.vendor.imgUrl" placeholder="{{editUser.vendor.imgUrl}}">
         </div>
@@ -80,7 +80,7 @@
             <div class="card">
               <h2>{{userViewed.vendor.displayName}}</h2>
              <br>
-                <img src="{{userViewed.vendor.imgUrl}}" alt="Image"><br>
+                <img *ngIf="userViewed.vendor.imgUrl" src="{{userViewed.vendor.imgUrl}}" alt="Image"><br>
                 <h6>{{userViewed.vendor.about}}</h6>
                 <br><br>
                 <button class="btn btn-dark" *ngIf="isOriginalUser" (click)="setEditUser()">Edit Profile</button><br>
