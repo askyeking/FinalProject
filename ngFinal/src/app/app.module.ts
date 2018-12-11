@@ -22,7 +22,7 @@ import { VendorInventoryListComponent } from './vendor-inventory-list/vendor-inv
 import { InventoryItemViewComponent } from './inventory-item-view/inventory-item-view.component';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { ItemRentalViewComponent } from './item-rental-view/item-rental-view.component';
-import { MatSelectModule, MatMenuModule, MatInputModule, MatIconModule } from '@angular/material';
+import { MatSelectModule, MatMenuModule, MatInputModule, MatIconModule, MatExpansionModule } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
@@ -64,7 +64,8 @@ import { InactivizerPipe } from './inactivizer.pipe';
     MatMenuModule,
     MatInputModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule
 
   ],
   providers: [

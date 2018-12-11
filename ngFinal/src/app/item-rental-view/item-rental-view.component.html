@@ -1,27 +1,35 @@
-<div *ngIf="selectedInventoryItem">
-  <div class="card" style="width: 18rem;">
-    <img
-      class="card-img-top"
-      [src]="selectedInventoryItem.imgUrl"
-      alt="image"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{ selectedInventoryItem.name }}</h5>
-      <p><span>Offered by </span> <span (click)="navigateToVendor()" class="linked">{{vendorUser.vendor.displayName}}</span></p>
-      <p class="card-text">{{ selectedInventoryItem.description }}</p>
-      <p class="card-text">{{ selectedInventoryItem.price | currency }}</p>
-      <p class="card-text">{{ selectedInventoryItem.condition }}</p>
-      <div *ngIf="authService.getToken()">
-        <!-- <button class="btn btn-primary">Rent</button> -->
-      </div>
+
+
+<div style="padding-left: 20%">
+  <div *ngIf="selectedInventoryItem.active">
+    <div class="container">
+      <img
+        src="{{selectedInventoryItem.imgUrl}}"
+        alt="Image"
+        style="width:300px"
+      />
+      <h4>{{ selectedInventoryItem.name }}</h4>
+      <p>
+        <span>Offered by</span>
+        <span class="linked">{{
+          selectedInventoryItem.vendor.displayName
+        }}</span>
+      </p>
+      <p>{{ selectedInventoryItem.description }}</p>
+      <p>
+        <span
+          ><strong
+            >{{ selectedInventoryItem.price | currency }} per day</strong
+          ></span
+        >
+        {{ selectedInventoryItem.condition }} Condition
+      </p>
+      <br />
     </div>
   </div>
-  <br />
-  <br />
-  <h2>Rental information</h2>
 </div>
 
-<div *ngIf="selectedItemRental" >
+<div *ngIf="selectedItemRental">
   Returned: {{ !selectedItemRental.active }} <br />
   Total Amount paid: {{ selectedItemRental.paidAmount | currency }} <br />
   Start Date: {{ selectedItemRental.startDate | date }} <br />
@@ -45,55 +53,133 @@
     Rent again
   </button>
 
-
-
   <br /><br /><br />
   <h2>Comments</h2>
-  <div *ngIf= "allComments.length === 0">
-    No comments have been posted
-  </div>
+  <div *ngIf="allComments.length === 0">No comments have been posted</div>
 
-  <div *ngIf="allComments.length > 0">
-    <hr />
-    <div *ngFor="let comment of allComments">
+  <!-- <button *ngIf="isPostingVendor(comment)">Update</button> -->
 
-      <button (click)="deleteVendorComment(comment.id)" *ngIf="isPostingVendor(comment) || currentUser.role === 'admin'">Delete</button>
-      <button  (click)="deleteCustomerComment(comment.id)" *ngIf="isPostingCustomer(comment)">Delete</button>
+  <!--
+    <button (click)="shouldUpdateCustomerComment=true" *ngIf="isPostingCustomer(comment) && !shouldUpdateCustomerComment">Update</button>
+    <form *ngIf="shouldUpdateCustomerComment">
+      <textarea name="commentText" id="" cols="40" rows="10" [(ngModel)]="comment.comment"></textarea>
+      <br><button (click)="updateCustomerComment(comment)" >Post</button>
+      <button (click)="shouldUpdateCustomerComment=false">Cancel</button>
+    </form>
+  -->
 
-      <!-- <button *ngIf="isPostingVendor(comment)">Update</button> -->
 
-      <!-- <button (click)="shouldUpdateCustomerComment=true" *ngIf="isPostingCustomer(comment) && !shouldUpdateCustomerComment">Update</button>
-      <form *ngIf="shouldUpdateCustomerComment">
-          <textarea name="commentText" id="" cols="40" rows="10" [(ngModel)]="comment.comment"></textarea>
-          <br><button (click)="updateCustomerComment(comment)" >Post</button>
-          <button (click)="shouldUpdateCustomerComment=false">Cancel</button>
-      </form> -->
-
-      <div *ngIf="isVendor(comment)">
-          Vendor ({{ comment.poster.displayName }}) commented on {{comment.postDate | date: "medium" }}
-
-      </div>
-      <div *ngIf="!isVendor(comment)">
-          Customer ({{ comment.poster.displayName }})  commented on {{ comment.postDate | date: "medium" }}
-
-      </div>
-      <h5>{{ comment.comment }}</h5>
-      <hr />
-    </div>
-  </div>
-
-  <br><br>
-  Post a new comment: <br>
 
   <!-- comment that creates VendorComment -->
-  <form *ngIf="currentUser.vendor  && vendorUser.vendor && currentUser.vendor.id === vendorUser.vendor.id">
-      <textarea name="commentText" id="" cols="40" rows="10" [(ngModel)]="newVendorComment.comment"></textarea>
-      <br><button (click)="postVendorComment()" >Post</button>
+  <form
+    *ngIf="
+      currentUser.vendor &&
+      vendorUser.vendor &&
+      currentUser.vendor.id === vendorUser.vendor.id
+    "
+  >
+    <textarea
+      name="commentText"
+      id=""
+      cols="40"
+      rows="10"
+      [(ngModel)]="newVendorComment.comment"
+    ></textarea>
+    <br /><button (click)="postVendorComment()">Post</button>
   </form>
+
+   <div *ngIf="allComments.length > 0">
+      <div *ngFor="let comment of allComments">
+        <div *ngIf="isVendor(comment)">
+           {{ comment.poster.displayName }} (Vendor) commented on
+          {{ comment.postDate | date: "medium" }}
+          <button
+            class="btn btn-outline-danger"
+            (click)="deleteVendorComment(comment.id)"
+            *ngIf="isPostingVendor(comment) || currentUser.role === 'admin'"
+          >
+            Delete
+          </button> -->
+  <!--   Vendor comment expansion panel begin -->
+          <mat-expansion-panel
+            (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title> {{ comment.poster.displayName }} (Vendor) </mat-panel-title>
+              <mat-panel-description>
+                {{ panelOpenState ? "Show Comment" : "Hide Comment" }}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p> {{ comment.poster.displayName }} (Vendor) commented on
+                {{ comment.postDate | date: "medium" }}
+                <button
+            class="btn btn-outline-danger"
+            (click)="deleteVendorComment(comment.id)"
+            *ngIf="isPostingVendor(comment) || currentUser.role === 'admin'"
+          >
+            Delete
+          </button>
+              </p>
+          </mat-expansion-panel>
+
+          <h4>{{ comment.comment }}</h4>
+        </div>
+  <!--   Vendor comment expansion panel end -->
+
+        <div *ngIf="!isVendor(comment)">
+            <mat-expansion-panel
+            (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title> {{ comment.poster.displayName }} (Customer) </mat-panel-title>
+              <mat-panel-description>
+                 {{ panelOpenState ? "Show Comment" : "Hide Comment" }}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>
+                 {{ comment.poster.displayName }} (Customer) commented on
+                {{ comment.postDate | date: "medium" }}
+                <button
+                class="btn btn-outline-danger"
+                (click)="deleteCustomerComment(comment.id)"
+                *ngIf="isPostingCustomer(comment) || currentUser.role === 'admin'"
+              >
+                Delete
+              </button>
+            </p>
+                <hr>
+                <h4>{{ comment.comment }}</h4>
+
+          </mat-expansion-panel>
+        </div>
+        </div>
+        <hr />
+      </div>
+    <!-- </div> -->
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <span style="flex: 1 1 auto"></span>
 
   <!-- Create customer comment -->
   <form *ngIf="currentUser.customer.id === selectedItemRental.customer.id">
-      <textarea name="commentText" id="" cols="40" rows="10" [(ngModel)]="newCustomerComment.comment"></textarea>
-      <br><button (click)="postCustomerComment()" >Post</button>
-    </form>
+    <textarea
+      name="commentText"
+      id=""
+      cols="40"
+      rows="10"
+      [(ngModel)]="newCustomerComment.comment"
+    ></textarea>
+    <br /><button (click)="postCustomerComment()">Post</button>
+  </form>
+
+
+
 
