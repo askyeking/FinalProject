@@ -25,17 +25,21 @@ export class VendorProfileComponent implements OnInit, OnDestroy {
   customer: Customer = null;
   isOriginalUser = null;
 
+
   constructor(private authService: AuthService,  private vendorService: VendorService, private userService: UserService,
     private router: Router,
     private route: ActivatedRoute) {
       this.navigationSubscription = this.router.events.subscribe((e: any) => {
         if (e instanceof NavigationEnd) {
           this.retrieveUserLoggedIn();
+          // subscription the events to allow you to navigate to your vendor profile from another
+          // vendor's profile
           this.userViewed = this.userLoggedIn;
         }
       });
     }
 
+    // OnInit is used to get the user who's profile we are navigating to when we navigate
   ngOnInit() {
     this.id =  this.route.snapshot.paramMap.get('id');
     this.vendorService.getUserByVendorId(this.id).subscribe(
@@ -49,7 +53,7 @@ export class VendorProfileComponent implements OnInit, OnDestroy {
       }
     );
   }
-
+  // method for getting the logged in user, used on init
   retrieveUserLoggedIn() {
     this.userService.retrieveProfiles().subscribe(
       data => {
@@ -65,6 +69,7 @@ export class VendorProfileComponent implements OnInit, OnDestroy {
     );
   }
 
+  // boolean field used for identifying if you are the owner of the profile
   setIsOriginalUser(): boolean {
     if (isNullOrUndefined(this.userLoggedIn.vendor)) {
       return false;
@@ -76,15 +81,15 @@ export class VendorProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-
+  // used to navigate to the item rental page, passing it the item's id to navigate to the correct item
   rentItem(id: number) {
     this.router.navigateByUrl('inventoryItems/viewItem/' + id);
   }
-
+  // sets the editUser field for checks in our html to show the edit user view
   setEditUser() {
     this.editUser = Object.assign({}, this.userViewed);
   }
-
+  // persists changes to the user using the userservice
   updateVendor(editUser: User) {
     this.userService.updateVendor(editUser).subscribe(
       data => {
@@ -97,15 +102,15 @@ export class VendorProfileComponent implements OnInit, OnDestroy {
     );
   }
 
-
+  // used to reset the value of editUser
   cancelEdit() {
     this.editUser = null;
   }
-
+  // used to navigate to the inventory view for you
   viewInventory() {
     this.router.navigateByUrl('vendorInventory');
   }
-
+  // stop subscription set in constructor to prevent memory leaks
   ngOnDestroy() {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();

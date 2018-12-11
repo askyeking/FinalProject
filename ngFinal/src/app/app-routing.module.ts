@@ -28,7 +28,7 @@ const routes: Routes = [
 
   // TODO: Search by name not working
   { path: 'items/search/:parameter/:keyword', component: InventoryItemListComponent, runGuardsAndResolvers: 'always'},
-  { path: 'vendor/search/:keyword', component: VendorListComponent},
+  { path: 'vendor/search/:keyword', component: VendorListComponent, runGuardsAndResolvers: 'always' },
 
   // customer should not see this page
   { path: 'inventoryItems/viewItem/history/:id', component: ItemsRentalHistoryComponent},
