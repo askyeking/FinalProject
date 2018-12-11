@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,7 +92,15 @@ public class ItemRentalServiceImpl implements ItemRentalService {
 	
 	@Override
 	public List<ItemRental> getCustomersRentalHistory(int customerId) {
-		return rentalRepo.findByCustomer_Id(customerId);
+		List<ItemRental> rentals = rentalRepo.findByCustomer_Id(customerId);
+		
+		Collections.sort(rentals, new Comparator<ItemRental>() {
+			public int compare(ItemRental i1, ItemRental i2) {
+				return -((Boolean) i1.isActive()).compareTo((Boolean) i2.isActive());
+			}
+		});
+		
+		return rentals;
 	}
 	
 	@Override

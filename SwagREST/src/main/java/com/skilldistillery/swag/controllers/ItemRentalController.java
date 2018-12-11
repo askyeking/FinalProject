@@ -39,11 +39,13 @@ public class ItemRentalController {
 	@Autowired
 	InventoryItemService itemService;
 
+	// route to view all the items that are rented or in the rental transaction
 	@GetMapping("rental")
 	public List<ItemRental> index(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		return rentalService.showAll();
 	}
 
+	// route that retrieves a specific item being rented or on the rental transaction
 	@GetMapping("rental/{id}")
 	public ItemRental getItemRenta(@PathVariable("id") int itemId, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {
@@ -73,14 +75,14 @@ public class ItemRentalController {
 	@GetMapping("rental/item/{id}")
 	public List<ItemRental> getRentalsByItem(@PathVariable("id") int itemId, HttpServletRequest req,
 			HttpServletResponse resp, Principal principal) {
-		List<ItemRental> rentals = rentalService.getItemRentalHistory(itemId);
-		Collections.sort(rentals, new Comparator<ItemRental>() {
-			public int compare(ItemRental i1, ItemRental i2) {
-				return -((Boolean) i1.isActive()).compareTo((Boolean) i2.isActive());
-			}
-		});
+//		List<ItemRental> rentals = rentalService.getItemRentalHistory(itemId);
+//		Collections.sort(rentals, new Comparator<ItemRental>() {
+//			public int compare(ItemRental i1, ItemRental i2) {
+//				return -((Boolean) i1.isActive()).compareTo((Boolean) i2.isActive());
+//			}
+//		});
 
-		return rentals;
+		return rentalService.getItemRentalHistory(itemId);
 	}
 
 	@PostMapping("rental")
