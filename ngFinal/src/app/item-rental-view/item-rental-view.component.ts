@@ -195,7 +195,6 @@ export class ItemRentalViewComponent implements OnInit {
       });
     }
 
-    console.log(this.allComments);
   }
 
   setItemsVendor() {
