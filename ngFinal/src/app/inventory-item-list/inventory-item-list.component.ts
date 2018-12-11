@@ -16,7 +16,7 @@ import { validateStyleParams } from "@angular/animations/browser/src/util";
 })
 export class InventoryItemListComponent implements OnInit, OnDestroy {
   navigationSubscription;
-  inventoryItems = [];
+  inventoryItems: InventoryItem[] = [];
   selected: InventoryItem = null;
   temp: string;
   parameter: string;
@@ -31,6 +31,12 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
       .subscribe(
         data => {
           this.inventoryItems = data;
+          for (let index = 0; index < this.inventoryItems.length; index++) {
+            const element = this.inventoryItems[index];
+            if (element.rented) {
+              this.inventoryItems.splice(index, 1);
+            }
+          }
          },
         err => console.error("Observer got an error: " + err)
       );
@@ -51,12 +57,12 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
     this.searchService.search(this.parameter, this.keyword).subscribe(
       data => {
         this.inventoryItems = data;
-        for (let index = 0; index < this.inventoryItems.length; index++) {
-          const element = this.inventoryItems[index];
-          if (this.isCurrentUsersItem(element)) {
-            this.inventoryItems.splice(index);
-          }
-        }
+        // for (let index = 0; index < this.inventoryItems.length; index++) {
+        //   const element = this.inventoryItems[index];
+        //   if (this.isCurrentUsersItem(element)) {
+        //     this.inventoryItems.splice(index);
+        //   }
+        // }
       },
       err => {
         console.error("Observer got an error: " + err);

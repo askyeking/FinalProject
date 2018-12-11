@@ -15,7 +15,7 @@
   </button> -->
 
 
-  <div class="col-sm-6">
+  <!-- <div class="container"> -->
       <div class="card">
 
           <h3>{{selected.name}}</h3>
@@ -29,9 +29,11 @@
           <p><strong>{{selected.condition}} Condition </strong></p>
            <!-- <button class="btn btn-dark" *ngIf="!item.rented && !isOriginalUser" (click)="rentItem(item.id)">Rent Me</button>
            <button class="btn btn-dark" *ngIf="!item.rented && isOriginalUser" disabled>Rent Me</button> -->
-
+           <div *ngIf="(currentUser.vendor &&selected.vendor.id === currentUser.vendor.id)">
+              <i>You are the vendor for this item.</i>
+            </div>
       </div>
-    </div>
+    <!-- </div> -->
 
 
   <!-- <div style="padding-left: 20%">    <div *ngIf="selected.active">
@@ -68,9 +70,7 @@
       <p class="card-text">{{ selected.condition }}</p>
     </div>
   </div> -->
-  <div *ngIf="(currentUser.vendor &&selected.vendor.id === currentUser.vendor.id)">
-      You are the vendor for this item.
-    </div>
+
   <div *ngIf="selected && selected.rented">This item is already rented</div>
   <br>
   <br>
@@ -91,9 +91,7 @@
       selected &&
       currentUser &&
       !selected.rented &&
-      (!currentUser.vendor || !(selected.vendor.id === currentUser.vendor.id))
-    "
-  >
+      (!currentUser.vendor || !(selected.vendor.id === currentUser.vendor.id))">
     <h2>Rental information</h2>
     Rental Begins:
     <input
@@ -133,7 +131,7 @@
     <br />
     <input
       type="button"
-      class="btn btn-danger"
+      class="btn btn-dark"
       value="Proceed"
       (click)="persistItemRental()"
     />
