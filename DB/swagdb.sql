@@ -395,16 +395,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaswagdb`;
-INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (1, 1, 'blake', NULL, 1);
-INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (2, 2, 'swagg3r', NULL, 1);
-INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (3, 3, 'Davenport90', NULL, 1);
-INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (4, 4, 'KanyeDressed', NULL, 1);
-INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (5, 5, 'SteveHarwell', NULL, 1);
-INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (6, 6, 'Uzumaki', NULL, 1);
-INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (7, 7, 'BabyGirl25', NULL, 1);
-INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (8, 8, 'Tom', NULL, 1);
-INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (9, 9, 'ShranTheMan', NULL, 1);
-INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (10, 10, 'effrom23', NULL, 1);
+INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (1, 1, 'blake', "https://scontent.fapa1-2.fna.fbcdn.net/v/t1.0-9/23795135_1953125161380982_6270494205260508582_n.jpg?_nc_cat=109&_nc_ht=scontent.fapa1-2.fna&oh=5ca441b60e787a38465e5747c8908e83&oe=5C914E0B", 1);
+INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (2, 2, 'swagg3r', "https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/22539738_10212252906055184_4123726452998465084_n.jpg?_nc_cat=103&_nc_ht=scontent.fapa1-1.fna&oh=f5d4171acfa7caa629562d525bd155e2&oe=5C9EDFD6", 1);
+INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (3, 3, 'Davenport90', "https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/21078449_1416985355023497_2683685714766386480_n.jpg?_nc_cat=110&_nc_ht=scontent.fapa1-1.fna&oh=85b48a5e6b107cc847398cea109dd73b&oe=5CAF953A", 1);
+INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (4, 4, 'KanyeDressed', "https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/1623610_10203909246468013_7119304056503734888_n.jpg?_nc_cat=111&_nc_ht=scontent.fapa1-1.fna&oh=9c47e9dba41da75b6c3009dfbb2f0898&oe=5C9F9496", 1);
+INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (5, 5, 'SteveHarwell', "https://scontent.fapa1-2.fna.fbcdn.net/v/t1.0-9/19225799_1387010574687496_6514479432798548186_n.jpg?_nc_cat=107&_nc_ht=scontent.fapa1-2.fna&oh=0daedbbf25b603e9cee3cc4c868acc1f&oe=5C9B813A", 1);
+INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (6, 6, 'Uzumaki', "https://scontent.fapa1-2.fna.fbcdn.net/v/t31.0-8/12961368_584365435075646_7357082632212531852_o.jpg?_nc_cat=100&_nc_ht=scontent.fapa1-2.fna&oh=fda1a0538a27109bc1b0fd2a495361d3&oe=5CB22CFB", 1);
+INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (7, 7, 'BabyGirl25', "https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/10501777_10203773803441007_7865519477366877060_n.jpg?_nc_cat=101&_nc_ht=scontent.fapa1-1.fna&oh=38e4962ce0df3d6a535e252e33bddc97&oe=5C66C64D", 1);
+INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (8, 8, 'Tom', "https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-0/p206x206/18740032_432208673815819_907759713225512237_n.jpg?_nc_cat=110&_nc_ht=scontent.fapa1-1.fna&oh=695d92fd99972f316eb3e68adf87a880&oe=5C6467F1", 1);
+INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (9, 9, 'ShranTheMan', "https://scontent.fapa1-2.fna.fbcdn.net/v/t31.0-8/1398610_650208571668513_1822131187_o.jpg?_nc_cat=102&_nc_ht=scontent.fapa1-2.fna&oh=36e0ed355a13d4f05ac54d9476f7568f&oe=5C679519", 1);
+INSERT INTO `customer` (`id`, `user_id`, `display_name`, `avatar_url`, `active`) VALUES (10, 10, 'effrom23', "https://m.media-amazon.com/images/M/MV5BNGI1Y2U2MGQtNGQ1OC00NDUxLWIwNjQtMDI4ZWZhMjVmOGNjXkEyXkFqcGdeQXVyNzg5OTk2OA@@._V1_.jpg", 1);
 
 
 
