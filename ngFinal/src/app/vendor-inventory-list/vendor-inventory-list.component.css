@@ -89,7 +89,8 @@ button {
   background-color: #eee;
   border-radius: 5px;
   padding: 16px;
-  margin: 16px 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 /* Clear floats after containers */
