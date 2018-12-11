@@ -78,6 +78,10 @@ public class InventoryItemController {
 	
 	@PostMapping("item") 
 	public InventoryItem newItem(@RequestBody InventoryItem item, HttpServletResponse res, HttpServletRequest req, Principal principal) {
+		if(item.getImgUrl() == null || item.getImgUrl().equals("")) {
+			item.setImgUrl("https://feedingsouthflorida.org/wp-content/uploads/2015/09/image-pending.gif");
+		}
+		
 		User itemPoster = userService.findByEmail(principal.getName());
 		InventoryItem addItem = itemService.postItem(item, itemPoster);
 		if (addItem != null) {

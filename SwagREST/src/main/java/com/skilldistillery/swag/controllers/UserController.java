@@ -75,6 +75,11 @@ public class UserController {
 	@PostMapping("user/register")
 	public User addUserCustomerOrVendor(@RequestBody User user, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal ) {
+		
+			if (user != null && user.getCustomer() != null
+					&& user.getCustomer().getAvatarURL() == null) {
+				user.getCustomer().setAvatarURL("https://feedingsouthflorida.org/wp-content/uploads/2015/09/image-pending.gif");
+			}
 			
 			User controlUser = userService.findByEmail(principal.getName());
  			if(controlUser.getEmail().equals(principal.getName())) {
@@ -99,6 +104,9 @@ public class UserController {
 			Principal principal ) {
 		
 			System.err.println("Inside Vendor");
+			if (vendorProfileToAdd != null && (vendorProfileToAdd.getImgUrl() == null)){
+				vendorProfileToAdd.setImgUrl("https://feedingsouthflorida.org/wp-content/uploads/2015/09/image-pending.gif");
+			}
 			
 			User postingUser = userService.findByEmail(principal.getName());
 			
