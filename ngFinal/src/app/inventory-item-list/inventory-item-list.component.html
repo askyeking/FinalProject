@@ -6,31 +6,33 @@
 
 <div class="center" *ngIf="!selected">
   <div class="card-deck">
-    <div *ngFor="let item of inventoryItems | inactivizer; let i = index">
+    <div *ngFor="let item of (inventoryItems | inactivizer); let i = index">
       <!-- <div *ngIf="item.active" > -->
-        <div class="item-card" style="width: 18rem;">
-          <div class="card-block" (click)="openItemView(item.id)">
-            <img class="roundrect"
-              [src]="item.imgUrl"
-              alt="Item"
-              height="300"
-              width="auto"/>
-            <div class="card-body">
-              <h5 class="card-title">
-                <a
-                  ><strong class="link">{{ item.name }}</strong></a
-                >
-                <!--
-                  <a href="" (click)="setSelectedItem(item)">{{item.name}}</a>
-                -->
-              </h5>
-              <p class="card-text">{{ item.description }}</p>
-            </div>
+      <div class="item-card" style="width: 18rem;">
+        <div class="card-block" (click)="openItemView(item.id)">
+          <img
+            class="roundrect"
+            [src]="item.imgUrl"
+            alt="Item"
+            height="300"
+            width="auto"
+          />
+          <div class="card-body">
+            <h5 class="card-title">
+              <a
+                ><strong class="link">{{ item.name }}</strong></a
+              >
+              <!--
+                <a href="" (click)="setSelectedItem(item)">{{item.name}}</a>
+              -->
+            </h5>
+            <p class="card-text">{{ item.description }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 <!-- </div> -->
 
 <!-- <div *ngIf="selected"> -->

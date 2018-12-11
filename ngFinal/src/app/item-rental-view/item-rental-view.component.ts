@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { VendorService } from "../vendor.service";
 import { CommentFromVendorService } from '../comment-from-vendor.service';
 
+
 @Component({
   selector: "app-item-rental-view",
   templateUrl: "./item-rental-view.component.html",
@@ -26,6 +27,8 @@ export class ItemRentalViewComponent implements OnInit {
   vendorUser: User = null;
   shouldUpdateCustomerComment = false;
   shouldUpdateVendorComment = false;
+  panelOpenState = false;
+
 
   newCustomerComment: CommentFromCustomer = new CommentFromCustomer();
   newVendorComment: CommentFromVendor = new CommentFromVendor();
@@ -244,6 +247,10 @@ export class ItemRentalViewComponent implements OnInit {
 
     return false;
 
+  }
+
+  navigateToVendor() {
+    this.router.navigateByUrl('vendor/profile/' + this.vendorUser.vendor.id);
   }
 
   isPostingCustomer(comment) {
