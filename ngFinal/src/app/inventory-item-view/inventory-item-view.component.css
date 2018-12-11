@@ -112,6 +112,11 @@ button {
   margin-right: 15px;
 }
 
+.linked {
+  color: blue;
+  text-decoration: underline;
+}
+
 /* Add media queries for responsiveness. This will center both the text and the image inside the container */
 @media (max-width: 500px) {
   .container {

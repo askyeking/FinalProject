@@ -11,15 +11,17 @@
     "
     class="btn btn-primary"
   >
-
     Vendor Inventory
   </button>
+
+
   <div style="padding-left: 20%">    <div *ngIf="selected.active">
         <div class="container">
             <img src="{{selected.imgUrl}}" alt="Image" style="width:300px">
             <h4>{{selected.name}}</h4>
+            <p><span>Offered by</span> <span (click)="viewVendor()" class="linked">{{selected.vendor.displayName}}</span></p>
             <p>{{selected.description}}</p>
-            <p><span><strong>{{selected.price | currency}}</strong></span> {{selected.condition}} Condition</p>
+            <p><span><strong>{{selected.price | currency}} per day</strong></span> {{selected.condition}} Condition</p>
             <br>
 
               <!-- <button class="btn btn-dark" (click)="setEditVendorInventory(item)">Edit</button>
@@ -32,7 +34,6 @@
 
     <br />
     <br />
-
   <!-- <div class="card" style="width: 18rem;">
     <img class="card-img-top" [src]="selected.imgUrl" alt="image" />
     <div class="card-body">
@@ -48,9 +49,9 @@
       <p class="card-text">{{ selected.condition }}</p>
     </div>
   </div> -->
-
-
-
+  <div *ngIf="(currentUser.vendor &&selected.vendor.id === currentUser.vendor.id)">
+      You are the vendor for this item.
+    </div>
   <div *ngIf="selected && selected.rented">This item is already rented</div>
   <br>
   <br>
@@ -64,6 +65,8 @@
   <br>
   <br>
   <br>
+
+
   <form
     *ngIf="
       selected &&
