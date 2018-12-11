@@ -21,7 +21,7 @@ export class CommentFromVendorService {
   // };
 
   constructor(private http: HttpClient, private authService: AuthService) {}
-
+  // this method is used for persisting a new vendorComment to the database
   postComment(vendorComment: CommentFromVendor) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -45,7 +45,7 @@ export class CommentFromVendorService {
         })
       );
   }
-
+  // used for setting a comment to inactive
   deleteComment(commentId) {
     const httpOptions = {
       headers: new HttpHeaders({

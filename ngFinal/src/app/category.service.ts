@@ -22,7 +22,7 @@ export class CategoryService {
   // };
 
 
-
+// method for loading all the categories from the database for the navbar dropdown menu
   loadCategories() {
     const httpOptions = {
       headers: new HttpHeaders({

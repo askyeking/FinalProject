@@ -14,17 +14,10 @@ export class SearchService {
 
   private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api';
-  // httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Basic ${this.authService.getToken()}`
-  //   })
-  // };
+ searchParameter: string;
 
-
-  searchParameter: string;
-
-
+  // this method is used for submitting a search from the navbar
+  // specifically for items including the search by name and the search by category
   search(parameter: string,  keyword: string) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -44,6 +37,7 @@ export class SearchService {
   }
 
 
+  // this method is used for searching for vendors from the navbar
   searchVendors(keyword: string) {
 
     const httpOptions = {

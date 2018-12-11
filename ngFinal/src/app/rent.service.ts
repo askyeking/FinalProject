@@ -21,6 +21,8 @@ export class RentService {
   // };
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
 
+
+  // method for retrieving the rentals a customer has made
   retrieveCustomersRentals(customerId: number) {
 
     const httpOptions = {
@@ -39,6 +41,7 @@ export class RentService {
     );
   }
 
+  // method for persisting an instance of a rental into the database
   rentItem(itemToRent: ItemRental) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -54,7 +57,7 @@ export class RentService {
         })
     );
   }
-
+  // this method returns an item from the database based on the id
   getItem(id: number) {const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -69,7 +72,7 @@ export class RentService {
         })
     );
   }
-
+  // this method persists the change of an item rental to be returned, setting the active feild to false
   returnItem(itemToReturn: ItemRental) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -86,6 +89,7 @@ export class RentService {
     );
   }
 
+  // this method returns all the rentals for a specific item using that item's id
   retrieveItemRentalHistory(itemId: number) {
     const httpOptions = {
       headers: new HttpHeaders({

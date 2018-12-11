@@ -35,6 +35,7 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
             const element = this.inventoryItems[index];
             if (element.rented) {
               this.inventoryItems.splice(index, 1);
+              index -= 1;
             }
           }
          },

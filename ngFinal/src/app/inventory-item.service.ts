@@ -24,6 +24,7 @@ export class InventoryItemService {
   private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/itemslist';
 
+  // index method for retrieving a list of all inventory items
   index() {
       return this.http.get<InventoryItem[]>(this.url).pipe(
         catchError((err: any) => {
@@ -34,9 +35,8 @@ export class InventoryItemService {
     );
   }
 
-
+  // method for retrieving a list of inventory items for the vendor logged in
   loadVendorItems() {
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export class InventoryItemService {
       })
     );
   }
-
+  // method for persisting a new item for the vendor
   addVendorItems(vendorItem: InventoryItem) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -69,7 +69,7 @@ export class InventoryItemService {
         })
     );
   }
-
+   // method for persisting a change to a vendor's item
   updateVendorItems(vendorItem: InventoryItem) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -88,6 +88,7 @@ export class InventoryItemService {
 
   }
 
+  // gets one inventory item based on the id
   getOne(id: number): Observable<InventoryItem> {
     const httpOptions = {
       headers: new HttpHeaders({
