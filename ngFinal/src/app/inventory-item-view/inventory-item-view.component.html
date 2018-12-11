@@ -1,5 +1,5 @@
 <div *ngIf="selected">
-  <button (click)="backToHome()" class="btn btn-primary">Home</button>
+  <!-- <button (click)="backToHome()" class="btn btn-primary">Home</button>
   <button
     (click)="toVendorInventory()"
     *ngIf="
@@ -12,25 +12,44 @@
     class="btn btn-primary"
   >
     Vendor Inventory
-  </button>
+  </button> -->
 
 
-  <div style="padding-left: 20%">    <div *ngIf="selected.active">
+  <div class="col-sm-6">
+      <div class="card">
+
+          <h3>{{selected.name}}</h3>
+          <h6>{{selected.description}}</h6>
+          <p><span>Offered by </span> <span (click)="viewVendor()" class="linked">{{selected.vendor.displayName}}</span></p>
+          <div id="image">
+              <img class="card-img-top" [src]="selected.imgUrl" alt="image">
+          </div>
+          <br>
+          <h5>{{selected.price | currency}} per day</h5>
+          <p><strong>{{selected.condition}} Condition </strong></p>
+           <!-- <button class="btn btn-dark" *ngIf="!item.rented && !isOriginalUser" (click)="rentItem(item.id)">Rent Me</button>
+           <button class="btn btn-dark" *ngIf="!item.rented && isOriginalUser" disabled>Rent Me</button> -->
+
+      </div>
+    </div>
+
+
+  <!-- <div style="padding-left: 20%">    <div *ngIf="selected.active">
         <div class="container">
             <img src="{{selected.imgUrl}}" alt="Image" style="width:300px">
             <h4>{{selected.name}}</h4>
             <p><span>Offered by</span> <span (click)="viewVendor()" class="linked">{{selected.vendor.displayName}}</span></p>
             <p>{{selected.description}}</p>
             <p><span><strong>{{selected.price | currency}} per day</strong></span> {{selected.condition}} Condition</p>
-            <br>
+            <br> -->
 
               <!-- <button class="btn btn-dark" (click)="setEditVendorInventory(item)">Edit</button>
               <button class="btn btn-dark" (click)="setItemActiveToFalse(item)">Delete</button>
               <button class="btn btn-dark" (click)="viewRentalHistory(item)">Rental history</button> -->
 
-          </div>
+          <!-- </div>
       </div>
-    </div>
+    </div> -->
 
     <br />
     <br />
