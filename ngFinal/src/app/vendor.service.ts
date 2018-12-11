@@ -11,20 +11,15 @@ import { User } from './models/user';
   providedIn: 'root'
 })
 export class VendorService {
-
+  // fields
   private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/vendor';
-  // httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Basic ${this.authService.getToken()}`
-  //   })
-  // };
 
 
+  // methods
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-
+  // This method gets a user from the database based on the id provided
   getUserByVendorId(vendorId: number) {
 
     const httpOptions = {
@@ -41,6 +36,8 @@ export class VendorService {
       })
     );
   }
+
+  // This method gets a vendor based on an items's id
   getVendorByInventoryItemId(itemId: number) {
 
     const httpOptions = {
@@ -57,7 +54,7 @@ export class VendorService {
       })
     );
   }
-
+  // index method for getting a list of all vendors
   index() {
 
     const httpOptions = {

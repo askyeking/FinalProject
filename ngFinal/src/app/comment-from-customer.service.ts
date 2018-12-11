@@ -11,7 +11,7 @@ import { throwError } from "rxjs";
 })
 export class CommentFromCustomerService {
   private baseUrl = environment.baseUrl;
-
+  // method for persisting a new customer comment to the database
   postComment(customerComment: CommentFromCustomer) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -35,7 +35,7 @@ export class CommentFromCustomerService {
         })
       );
   }
-
+// method for setting a comment to inactive in the database
   deleteComment(commentId: number) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -56,7 +56,7 @@ export class CommentFromCustomerService {
         })
       );
   }
-
+// method for persisting changes to a comment in the database
   updateComment(comment: CommentFromCustomer) {
     const httpOptions = {
       headers: new HttpHeaders({

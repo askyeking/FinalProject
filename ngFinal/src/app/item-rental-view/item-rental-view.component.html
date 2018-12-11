@@ -50,7 +50,8 @@
           <div class="col-md-9">
             <div class="card-block">
               <h4 class="card-title">{{selectedInventoryItem.name}}</h4>
-              <p class="card-text"> Vendor: {{ selectedInventoryItem.vendor.displayName }} </p>
+              <!-- <span (click)="viewVendor()" class="linked">{{selected.vendor.displayName}}</span></p> -->
+              <p class="card-text" (click)="navigateToVendor()" > Vendor: {{ selectedInventoryItem.vendor.displayName }} </p>
               <p class="card-text"> Customer: {{ selectedItemRental.customer.displayName }} </p>
               <p class="card-text"> {{selectedInventoryItem.description}} </p>
               <p class="card-text"> {{ selectedInventoryItem.condition }} Condition </p>

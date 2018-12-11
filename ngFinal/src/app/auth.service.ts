@@ -14,7 +14,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {
   }
-
+  // this method is used to log a user in
   login(email, password) {
     // Make token
     const token = this.generateBasicAuthToken(email, password);
@@ -43,7 +43,7 @@ export class AuthService {
   }
 
 
-
+// method for submitting a new user account
     register(user) {
       console.log('AuthService.register(user)');
       console.log(user);
@@ -59,23 +59,23 @@ export class AuthService {
         })
       );
   }
-
+// method to logout a user, by removing it's token from localstorage
   logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('landing');
   }
-
+// check if the user is logged in
   checkLogin() {
     if (localStorage.getItem('token')) {
       return true;
     }
     return false;
   }
-
+// used to generate the token stored in localstorage for identifying the logged in user
   generateBasicAuthToken(username, password) {
     return btoa(`${username}:${password}`);
   }
-
+// used to get the token out of localstorage for authentication purposes
   getToken() {
     return localStorage.getItem('token');
   }
