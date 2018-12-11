@@ -28,7 +28,7 @@ button {
 /* Style the container with a rounded border, grey background and some padding and margin */
 .container {
   border: 2px solid #ccc;
-  background-color: #eee;
+  background-color: white;
   border-radius: 5px;
   padding: 16px;
 
