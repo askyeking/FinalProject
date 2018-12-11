@@ -1,7 +1,9 @@
 <!-- Consider adding an itemView component that does not have rent option, or -->
 <!-- Times Rented: {{itemViewed.allRents.length}} <br> -->
 <!-- Total income:  {{amountEarnedTotal | currency}} -->
-<div style="padding-left: 20%">    <div *ngIf="itemViewed.active">
+<br>
+<br>
+   <div *ngIf="itemViewed.active">
     <div class="container">
         <img src="{{itemViewed.imgUrl}}" alt="Image" style="width:300px">
         <h4>{{itemViewed.name}}</h4>
@@ -16,8 +18,8 @@
 
       </div>
   </div>
-</div>
-
+<br>
+<hr>
 <div *ngIf="itemViewed">
   <h3>Rental History</h3>
   <div *ngIf="itemViewed.allRents && itemViewed.allRents.length != 0">
@@ -43,7 +45,6 @@
   </div>
 
 </div>
-<hr>
     <div *ngFor="let rental of itemViewed.allRents">
     <div *ngIf="itemViewed.active">
       <br>
@@ -66,4 +67,8 @@
 
         </div>
     </div>
+    <br>
+    <br>
   </div>
+  <br>
+  <br>
