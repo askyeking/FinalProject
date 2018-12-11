@@ -1,6 +1,5 @@
-
-
-<div style="padding-left: 20%">
+<!-- begin card
+ <div style="padding-left: 20%">
   <div *ngIf="selectedInventoryItem.active">
     <div class="container">
       <img
@@ -27,22 +26,45 @@
       <br />
     </div>
   </div>
-</div>
-
-<div *ngIf="selectedItemRental">
-  Returned: {{ !selectedItemRental.active }} <br />
-  Total Amount paid: {{ selectedItemRental.paidAmount | currency }} <br />
-  Start Date: {{ selectedItemRental.startDate | date }} <br />
-  End Date: {{ selectedItemRental.endDate | date }} <br />
-  Info: {{ selectedItemRental.transactionInfo }} <br />
-  <button
-    *ngIf="selectedItemRental.active"
+</div> -->
+<div class="container">
+  <div class="row ">
+        <div class="col-md-3">
+            <img src="{{selectedInventoryItem.imgUrl}}" >
+            <button
+    *ngIf="selectedItemRental.active && (selectedInventoryItem.vendor.id != currentUser.vendor.id)"
     class="btn btn-danger"
     value="Return item"
-    (click)="returnRentedItem()"
-  >
+    (click)="returnRentedItem()">
     Return item
   </button>
+            <button
+    *ngIf="!selectedItemRental.active && (selectedInventoryItem.vendor.id != currentUser.vendor.id)"
+    class="btn btn-danger"
+    value="Return item"
+    (click)="viewInventoryItem()">
+    Rent Again
+  </button>
+
+          </div>
+          <div class="col-md-9">
+            <div class="card-block">
+              <h4 class="card-title">{{selectedInventoryItem.name}}</h4>
+              <p class="card-text"> Vendor: {{ selectedInventoryItem.vendor.displayName }} </p>
+              <p class="card-text"> Customer: {{ selectedItemRental.customer.displayName }} </p>
+              <p class="card-text"> {{selectedInventoryItem.description}} </p>
+              <p class="card-text"> {{ selectedInventoryItem.condition }} Condition </p>
+              <p class="card-text"> {{ selectedInventoryItem.price | currency }} per day </p>
+              <hr>
+              Rental: {{ selectedItemRental.active ? "Active" : "Returned" }} <br />
+              Total Amount paid: {{ selectedItemRental.paidAmount | currency }} <br />
+              Start Date: {{ selectedItemRental.startDate | date }} <br />
+              End Date: {{ selectedItemRental.endDate | date }} <br />
+              Info: {{ selectedItemRental.transactionInfo }} <br />
+            </div>
+          </div>
+        </div>
+      </div>
 
   <button
     *ngIf="!selectedItemRental.active && !isPostingItemVendor()"
@@ -53,24 +75,9 @@
     Rent again
   </button>
 
-  <br /><br /><br />
+  <br />
   <h2>Comments</h2>
   <div *ngIf="allComments.length === 0">No comments have been posted</div>
-
-  <!-- <button *ngIf="isPostingVendor(comment)">Update</button> -->
-
-  <!--
-    <button (click)="shouldUpdateCustomerComment=true" *ngIf="isPostingCustomer(comment) && !shouldUpdateCustomerComment">Update</button>
-    <form *ngIf="shouldUpdateCustomerComment">
-      <textarea name="commentText" id="" cols="40" rows="10" [(ngModel)]="comment.comment"></textarea>
-      <br><button (click)="updateCustomerComment(comment)" >Post</button>
-      <button (click)="shouldUpdateCustomerComment=false">Cancel</button>
-    </form>
-  -->
-
-
-
-  <!-- comment that creates VendorComment -->
 
 
    <div *ngIf="allComments.length > 0">
@@ -84,14 +91,10 @@
             <mat-expansion-panel-header>
               <mat-panel-title> {{ comment.poster.displayName }} (Vendor)   commented on {{ comment.postDate | date: "medium" }} </mat-panel-title>
               <mat-panel-description>
-                {{ panelOpenState ? "Show Comment" : "Hide Comment" }}
+                <!-- {{ panelOpenState ? "Hide Comment" : "Show Comment" }} -->
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>
-
-            </p>
-            <span>
-            <h4>{{ comment.comment }}</h4>
+            <h4>{{ comment.comment }}
             <button
             class="btn btn-outline-danger"
             (click)="deleteVendorComment(comment.id)"
@@ -99,7 +102,7 @@
           >
             Delete
           </button>
-        </span>
+        </h4>
           </mat-expansion-panel>
 
 
@@ -112,29 +115,24 @@
             (closed)="panelOpenState = false"
           >
             <mat-expansion-panel-header>
-              <mat-panel-title> {{ comment.poster.displayName }} (Customer) </mat-panel-title>
+              <mat-panel-title> {{ comment.poster.displayName }} (Customer) commented on
+                  {{ comment.postDate | date: "medium" }} </mat-panel-title>
               <mat-panel-description>
-                 {{ panelOpenState ? "Show Comment" : "Hide Comment" }}
+                 <!-- {{ panelOpenState ? "Hide Comment" : "Show Comment" }} -->
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>
-                 {{ comment.poster.displayName }} (Customer) commented on
-                {{ comment.postDate | date: "medium" }}
-                <button
+            <h4>{{ comment.comment }}
+                             <button
                 class="btn btn-outline-danger"
                 (click)="deleteCustomerComment(comment.id)"
                 *ngIf="isPostingCustomer(comment) || currentUser.role === 'admin'"
               >
                 Delete
               </button>
-            </p>
-                <hr>
-                <h4>{{ comment.comment }}</h4>
-
+            </h4>
           </mat-expansion-panel>
         </div>
         </div>
-        <hr />
       </div>
     <!-- </div> -->
 
@@ -146,17 +144,18 @@
   <br />
   <br />
   <br />
+  <br />
   <span style="flex: 1 1 auto"></span>
 
   <!-- Create customer comment -->
-  <form *ngIf="currentUser.customer.id === selectedItemRental.customer.id">
+  <form *ngIf=" currentUser.customer.id === selectedItemRental.customer.id">
     <textarea
       name="commentText"
       id=""
       cols="40"
+      placeholder="Customer Comment"
       rows="10"
-      [(ngModel)]="newCustomerComment.comment"
-    ></textarea>
+      [(ngModel)]="newCustomerComment.comment"></textarea>
     <br /><button (click)="postCustomerComment()">Post</button>
   </form>
 
@@ -165,15 +164,14 @@
   *ngIf="
     currentUser.vendor &&
     vendorUser.vendor &&
-    currentUser.vendor.id === vendorUser.vendor.id
-  "
->
+    currentUser.vendor.id === vendorUser.vendor.id">
   <textarea
     name="commentText"
     id=""
     cols="40"
     rows="10"
     [(ngModel)]="newVendorComment.comment"
+    placeholder="vendor comment"
   ></textarea>
   <br /><button (click)="postVendorComment()">Post</button>
 </form>

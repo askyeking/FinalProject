@@ -126,8 +126,12 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.refresh();
-
+    // this.refresh();
+    if (this.parameter && this.keyword) {
+      this.loadParameterizedInventoryItems();
+    } else {
+      this.loadInventoryItems();
+    }
   }
 
   refresh() {
