@@ -10,9 +10,6 @@ import com.skilldistillery.swag.repositories.CategoryRepository;
 
 public interface CategoryService {
 
-	List<Category> index();
-	
-	
-	
+	List<Category> index();	
 
 }

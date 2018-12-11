@@ -39,11 +39,13 @@ public class ItemRentalController {
 	@Autowired
 	InventoryItemService itemService;
 
+	// route to view all the items that are rented or in the rental transaction
 	@GetMapping("rental")
 	public List<ItemRental> index(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		return rentalService.showAll();
 	}
 
+	// route that retrieves a specific item being rented or on the rental transaction
 	@GetMapping("rental/{id}")
 	public ItemRental getItemRenta(@PathVariable("id") int itemId, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {

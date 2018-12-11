@@ -25,17 +25,6 @@ public class Category {
 	private List<InventoryItem> itemsOfCategory;
 	
 	
-//	@ManyToMany
-//	@JoinTable(name="favorite_recipe",
-//	joinColumns=@JoinColumn(name="recipe_id"),
-//	inverseJoinColumns=@JoinColumn(name="user_id"))
-//	private List<User> usersWhoFavorited;
-	
-	
-	
-	
-	
-	
 	public String getName() {
 		return name;
 	}

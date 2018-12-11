@@ -45,6 +45,7 @@ public class InventoryItemController {
 		return itemService.indexCustomer();
 	}
 	
+	// route that retrieves a specific vendor profile based on the ID provided.
 	@GetMapping("vendor/profile/{id}")
 	public User retrieveVendor(@PathVariable("id") int itemId, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		User itemsVendor = itemService.showVendor(itemId);
@@ -58,12 +59,13 @@ public class InventoryItemController {
 		return itemsVendor;
 	}
 
-	
+	// route that retrieves the list of the entire InventoryItems
 	@GetMapping("itemslist")
 	public List<InventoryItem> showAllItems(HttpServletRequest req, HttpServletResponse resp/*, Principal principal*/) {
 		return itemService.indexItems();
 	}
 	
+	// route that retrieves a specific InventoryItem with an id as a path variable
 	@GetMapping("item/{id}")
 	public InventoryItem showSingleItem(@PathVariable("id") int id, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		InventoryItem item = itemService.showSingleItem(id);
@@ -76,6 +78,7 @@ public class InventoryItemController {
 		return item;
 	}
 	
+	// route to create an itemInventory and persist it to the database
 	@PostMapping("item") 
 	public InventoryItem newItem(@RequestBody InventoryItem item, HttpServletResponse res, HttpServletRequest req, Principal principal) {
 		if(item.getImgUrl() == null || item.getImgUrl().equals("")) {
@@ -92,6 +95,7 @@ public class InventoryItemController {
 		return addItem;
 	}
 	
+	// route that is used to update/edit a specific inventoryItem
 	@PutMapping("item/{id}")
 	public InventoryItem updateItem(@PathVariable ("id") int id, @RequestBody InventoryItem item,
 			HttpServletResponse res, HttpServletRequest req, Principal principal) {
@@ -100,7 +104,7 @@ public class InventoryItemController {
 		return updateItem;
 	}
 	
-	
+	// route that retrieves a list of inventoryItems based on the vendor(user) that owns/posted them
 	@GetMapping("item/vendor")
 	public List<InventoryItem> vendorItems(HttpServletResponse res, HttpServletRequest req, Principal principal) {
 		Vendor vendor = userService.findByEmail(principal.getName()).getVendor();
@@ -108,31 +112,27 @@ public class InventoryItemController {
 		return vendorItems;
 	}
 	
+	// route that retrieves a specific user based on the posted item
 	@GetMapping("item/user/{id}")
 	public User getPostingUser(@PathVariable("id") int itemId, HttpServletResponse res, HttpServletRequest req, Principal principal) {
 		this.itemService.showItemOwner(itemId);
 		return null;
 	}
 	
-	
-	
-	
+	// route for search functionality based on inventoryItem category (i.e. suit, pants, etc...)
 	@GetMapping("items/category/{category}")
 	public List<InventoryItem> itemsByCategory(@PathVariable("category") String category, HttpServletResponse res, HttpServletRequest req, Principal principal) {
 		return this.itemService.findByCategory(category);
 	}
 	
+	// roiute for search functionality using keywords. Works on both "name" and "vendor"
 	@GetMapping("items/name/{keyword}")
 	public List<InventoryItem> itemsByKeyword(@PathVariable("keyword") String keyword, HttpServletResponse res, HttpServletRequest req, Principal principal) {
 		List<InventoryItem> items = this.itemService.findByKeyword(keyword);
 		System.err.println(items);
 		return items;
 	}
-	
-	
-	
-	
-	
+		
 	
 
 }
