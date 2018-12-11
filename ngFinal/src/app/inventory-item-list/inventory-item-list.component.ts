@@ -1,13 +1,13 @@
-import { UserService } from './../user.service';
-import { VendorService } from "./../vendor.service";
-import { AuthService } from "./../auth.service";
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { InventoryItemService } from "../inventory-item.service";
-import { SearchService } from "../search.service";
-import { ActivatedRoute, NavigationEnd } from "@angular/router";
-import { Router } from "@angular/router";
 import { InventoryItem } from "../models/inventory-item";
 import { User } from "../models/user";
+import { SearchService } from "../search.service";
+import { AuthService } from "./../auth.service";
+import { UserService } from './../user.service';
+import { VendorService } from "./../vendor.service";
+import { validateStyleParams } from "@angular/animations/browser/src/util";
 
 @Component({
   selector: "app-inventory-item-list",
@@ -51,11 +51,31 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
     this.searchService.search(this.parameter, this.keyword).subscribe(
       data => {
         this.inventoryItems = data;
+        for (let index = 0; index < this.inventoryItems.length; index++) {
+          const element = this.inventoryItems[index];
+          if (this.isCurrentUsersItem(element)) {
+            this.inventoryItems.splice(index);
+          }
+        }
       },
       err => {
         console.error("Observer got an error: " + err);
       }
     );
+  }
+
+  isCurrentUsersItem(item: InventoryItem) {
+    if (!this.currentUser || !this.currentUser.vendor
+      || !this.currentUser.vendor.listedItems || this.currentUser.vendor.listedItems.length === 0) {
+      return false;
+    }
+    for (let index = 0; index < this.currentUser.vendor.listedItems.length; index++) {
+      const element = this.currentUser.vendor.listedItems[index];
+      if (element.id === this.currentUser.vendor.listedItems[index].id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   setSelectedItem(item: InventoryItem) {
@@ -120,18 +140,20 @@ export class InventoryItemListComponent implements OnInit, OnDestroy {
   setup() {
     this.parameter = this.route.snapshot.paramMap.get("parameter");
     this.keyword = this.route.snapshot.paramMap.get("keyword");
-    if (this.parameter && this.keyword) {
-      this.loadParameterizedInventoryItems();
-    } else {
-      this.loadInventoryItems();
-    }
     this.userService.retrieveProfiles().subscribe(
       data => {
         this.currentUser = data;
+
+        if (this.parameter && this.keyword) {
+          this.loadParameterizedInventoryItems();
+        } else {
+          this.loadInventoryItems();
+        }
       },
       err => {
         console.error("ngOnInit error: " + err);
       }
     );
+
   }
 }
