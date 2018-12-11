@@ -49,7 +49,7 @@
   <div *ngFor="let item of vendorInventory" class="card text-center">
     <div *ngIf="item.active">
       <div class="container">
-          <img src="https://imgur.com/OcgFQdR" alt="Image" style="width:300px">
+          <img src="{{item.imgUrl}}" alt="Image" style="width:300px">
           <h4>{{item.name}}</h4>
           <p>{{item.description}}</p>
           <p><span><strong>{{item.price | currency}}</strong></span> {{item.condition}} Condition</p>
