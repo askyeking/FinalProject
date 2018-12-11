@@ -41,7 +41,7 @@
         <label for="inputDisplayName">Display Name</label>
         <input type="text" class="form-control" id="inputDisplayName" [ngModelOptions]="{standalone: true}" [(ngModel)]="editUser.vendor.displayName" placeholder="{{editUser.vendor.displayName}}">
       </div>
-      <div class="form-group col-md-6">
+        <div *ngIf="editUser.vendor.imgUrl" class="form-group col-md-6">
           <label for="inputImg">Image URL</label>
           <input type="text" class="form-control" id="inputImg" [ngModelOptions]="{standalone: true}" [(ngModel)]="editUser.vendor.imgUrl" placeholder="{{editUser.vendor.imgUrl}}">
         </div>
