@@ -55,13 +55,12 @@ The database contains fourteen tables. Below, you will find the schema.
 * Angular
 * JavaScript
 * SQL
-* RESTful API
+* REST API
 * JSON API
 * UNIX
 * MySQL Workbench
 * Spring Boot
 * Spring Security
-* Spring MVC
 * Spring Hibernate
 * Spring Data JPA
 * Gradle
@@ -69,4 +68,4 @@ The database contains fourteen tables. Below, you will find the schema.
 * AWS
 
 ### Team Members
-Newel Miole, Novak Dobrosavjevic, Anthony King
+Newel Miole, Anthony King, Novak Dobrosavjevic
