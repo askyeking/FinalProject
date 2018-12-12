@@ -22,11 +22,13 @@
 
 
 
-#### Building blocks:
+### Building blocks summary:
   * Database built using SQL and MySQL Workbench
   * Java and Spring (MVC, Security, Hibernate, Bootstrap, Data JPA) back-end for a RESTful web app
   * Angular (TypeScript, HTML, CSS) front-end.
 
+
+### Deployed at http://18.188.120.152:8080/SwagREST/
 
 
 ### Stretch goals:
@@ -43,9 +45,6 @@ Currently, the website trusts the customer when they mark an item as returned. T
 ##### Customers and Vendors can flag each-other
 For reasons such as the invasion of privacy, damaged item, item not as described, etc.
 
-### Deployed at http://18.188.120.152:8080/SwagREST/
-
-
 
 ### Database
 The database contains fourteen tables. Below, you will find the schema.
@@ -61,6 +60,7 @@ The database contains fourteen tables. Below, you will find the schema.
 * UNIX
 * MySQL Workbench
 * Spring Boot
+* Spring Security
 * Spring MVC
 * Spring Hibernate
 * Spring Data JPA
