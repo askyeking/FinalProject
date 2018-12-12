@@ -38,7 +38,7 @@
 
 #### Database
 The database contains fourteen tables. Below, you will find the schema.
--- schema to be inserted soon --
+![Alt text](DB/DBSchema.png?raw=true "Database Schema")
 
 
 ### Technologies used
@@ -57,3 +57,6 @@ The database contains fourteen tables. Below, you will find the schema.
 * Gradle
 * JUnit Jupiter
 * AWS
+
+### Team Members
+Newel Miole, Novak Dobrosavjevic, Anthony King
