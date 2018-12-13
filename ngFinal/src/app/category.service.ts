@@ -27,7 +27,8 @@ export class CategoryService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: `Basic ${this.authService.getToken()}`
+        Authorization: `Basic ${this.authService.getToken()}`,
+        "x-requested-with": "XMLHttpRequest"
       })
     };
    return this.http.get<Category[]>(this.url, httpOptions).pipe(

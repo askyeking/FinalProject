@@ -561,7 +561,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaswagdb`;
-INSERT INTO `item_rental` (`id`, `inventory_item_id`, `customer_id`, `paid`, `start_date`, `end_date`, `paid_amount`, `active`, `transaction_info`) VALUES (1, 1, 1, 1, '2018-12-13', '2018-12-14', 56, 0, 'Send it to my address. I\'ll pay ya.!');
+INSERT INTO `item_rental` (`id`, `inventory_item_id`, `customer_id`, `paid`, `start_date`, `end_date`, `paid_amount`, `active`, `transaction_info`) VALUES (1, 1, 1, 1, '2018-12-10', '2018-12-11', 56, 0, 'Send it to my address. I\'ll pay ya.!');
 INSERT INTO `item_rental` (`id`, `inventory_item_id`, `customer_id`, `paid`, `start_date`, `end_date`, `paid_amount`, `active`, `transaction_info`) VALUES (2, 5 , 3, 0, '2018-12-13', '2018-12-14', 56, 0, 'Ship it to my address');
 INSERT INTO `item_rental` (`id`, `inventory_item_id`, `customer_id`, `paid`, `start_date`, `end_date`, `paid_amount`, `active`, `transaction_info`) VALUES (3, 10 , 2, 1, '2018-12-13', '2018-12-14', 56, 1, 'Ship it to my address');
 INSERT INTO `item_rental` (`id`, `inventory_item_id`, `customer_id`, `paid`, `start_date`, `end_date`, `paid_amount`, `active`, `transaction_info`) VALUES (4, 11 , 2, 1, '2018-12-13', '2018-12-14', 56, 1, 'Ship it to my address');

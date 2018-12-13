@@ -29,7 +29,8 @@ export class UserService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: `Basic ${this.authService.getToken()}`
+        Authorization: `Basic ${this.authService.getToken()}`,
+        "x-requested-with": "XMLHttpRequest"
       })
     };
     console.log(httpOptions);
@@ -49,7 +50,8 @@ export class UserService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: `Basic ${this.authService.getToken()}`
+        Authorization: `Basic ${this.authService.getToken()}`,
+        "x-requested-with": "XMLHttpRequest"
       })
     };
 
@@ -69,7 +71,8 @@ export class UserService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: `Basic ${this.authService.getToken()}`
+        Authorization: `Basic ${this.authService.getToken()}`,
+        "x-requested-with": "XMLHttpRequest"
       })
     };
 
@@ -109,7 +112,8 @@ export class UserService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: `Basic ${this.authService.getToken()}`
+        Authorization: `Basic ${this.authService.getToken()}`,
+        "x-requested-with": "XMLHttpRequest"
       })
     };
 

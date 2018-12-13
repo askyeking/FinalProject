@@ -43,7 +43,8 @@ export class VendorService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: `Basic ${this.authService.getToken()}`
+        Authorization: `Basic ${this.authService.getToken()}`,
+        "x-requested-with": "XMLHttpRequest"
       })
     };
 
@@ -60,7 +61,8 @@ export class VendorService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: `Basic ${this.authService.getToken()}`
+        Authorization: `Basic ${this.authService.getToken()}`,
+        "x-requested-with": "XMLHttpRequest"
       })
     };
 
