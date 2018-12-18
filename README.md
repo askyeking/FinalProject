@@ -2,6 +2,7 @@
 
 ### Overview
   The project is a website that allows customers and vendors to rent clothing articles.
+  
   At the landing page, an unlogged user can view items available for rental. In the navbar, the user can insert login information or register.
 
   Upon successfully registering / logging in, the user can view all items, as well as the details of any individual item by clicking on it. If the user is not the vendor of the item, and the item is not currently rented, the user will see a form that they can fill in to rent the item.
