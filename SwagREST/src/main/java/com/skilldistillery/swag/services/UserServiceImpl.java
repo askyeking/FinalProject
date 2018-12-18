@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	VendorRepository vendorRepo;
 
+	// retrieve a single user by id
 	@Override
 	public User show(int id) {
 		User user = null;
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	// persist a new user object to the DB
 	@Override
 	public User newUser(User user) {
 		if (this.userRepo.existsByEmail(user.getEmail())) {
@@ -41,7 +43,8 @@ public class UserServiceImpl implements UserService {
 			return user;
 		}
 	}
-
+	
+	// Create a customer object (profile) for a user
 	@Override
 	public User addCustomer(Customer customer, int uid) {
 		System.err.println(customer);
@@ -58,7 +61,7 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
-	
+	// Create a vendor object (profile) for a user
 	@Override
 	public User addVendor(Vendor vendor, int uid) {
 		System.err.println(vendor);
@@ -74,11 +77,13 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	// find a user by their email address
 	@Override
 	public User findByEmail(String email) {
 		return userRepo.findByEmail(email);
 	}
 
+	// update user
 	@Override
 	public void update(User userUpdate, User originalUser) {
 		System.out.println("Updated email " + userUpdate.getEmail());

@@ -14,6 +14,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Autowired
 	CategoryRepository categoryRepo;
 	
+	// retrieve all categories from the database
 	@Override
 	public List<Category> index() {
 		return this.categoryRepo.findAll();

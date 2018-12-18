@@ -19,6 +19,7 @@ public class AuthServiceImpl implements AuthService {
 	@Autowired
 	UserRepository userRepo;
 
+	// persists a new user object to the database
 	@Override
 	public User register(User user) {
 		if (this.userRepo.existsByEmail(user.getEmail())) {

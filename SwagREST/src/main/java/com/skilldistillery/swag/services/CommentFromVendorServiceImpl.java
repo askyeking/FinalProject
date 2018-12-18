@@ -12,6 +12,7 @@ public class CommentFromVendorServiceImpl implements CommentFromVendorService {
 	@Autowired
 	CommentFromVendorRepository vendorCommentRepo;
 
+	// persist a vendor comment
 	@Override
 	public CommentFromVendor persistComment(CommentFromVendor comment) {
 		vendorCommentRepo.saveAndFlush(comment);
@@ -19,6 +20,7 @@ public class CommentFromVendorServiceImpl implements CommentFromVendorService {
 		return comment;
 	}
 	
+	// delete a vendor comment
 	@Override
 	public boolean delete(int commentId) {
 		vendorCommentRepo.deleteById(commentId);

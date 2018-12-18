@@ -26,6 +26,7 @@ public class CommentFromVendorController {
 	@Autowired
 	CommentFromVendorService vendorCommentService;
 	
+	// persist a comment from vendor
 	@PostMapping("vendorcomment/itemRental/{id}")
 	public CommentFromVendor postVendorComment(@PathVariable("id") int itemId, @RequestBody CommentFromVendor comment , HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		ItemRental itemPostedTo = new ItemRental();
@@ -43,6 +44,7 @@ public class CommentFromVendorController {
 		return comment;
 	}
 	
+	// delete a comment from vendor
 	@DeleteMapping("vendorcomment/{id}")
 	public String deleteComment(@PathVariable("id") int commentId, HttpServletRequest req, HttpServletResponse res,
 			Principal principal) {

@@ -21,6 +21,8 @@ public class AuthController {
 	@Autowired
 	AuthService authSvc;
 	
+	
+	// this method registers a new user object
 	@RequestMapping(path = "/register", method = RequestMethod.POST)
 	public User register(@RequestBody User user, HttpServletResponse res) {
 	  if (user == null) {
@@ -31,6 +33,7 @@ public class AuthController {
 	  return user;
 	}
 
+	//This method authenticates a user when logging in
 	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
 	public Principal authenticate(Principal principal) {
 	  return principal;

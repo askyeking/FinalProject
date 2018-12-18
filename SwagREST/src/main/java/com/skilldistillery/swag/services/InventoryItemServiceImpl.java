@@ -26,23 +26,27 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 	@Autowired
 	VendorRepository vendorRepo;
 
+	// retrieve all inventory items that are not rented and not removed
 	@Override
 	public Set<InventoryItem> indexCustomer() {
 		Set<InventoryItem> allAvailableItems = itemRepo.findByIsRentedAndIsActive(false, true);
 		return allAvailableItems;
 	}
 
+	// retrieve inventory items offered by a specific vendor
 	@Override
 	public List<InventoryItem> indexVendor(Vendor vendor) {
 		return this.itemRepo.findByVendor(vendor);
 		
 	}
 
+	//retrieve all inventory items
 	@Override
 	public List<InventoryItem> indexItems() {
 		return itemRepo.findAll();
 	}
 	
+	// retrieve user who posted a specific item as a vendor
 	@Override
 	public User showItemOwner(int itemId) {
 		User postingUser = null;
@@ -54,6 +58,7 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 		return postingUser;
 	}
 
+	// retrieve a single item by id
 	@Override
 	public InventoryItem showSingleItem(int id) {
 		InventoryItem item = null;
@@ -64,6 +69,7 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 		return item;
 	}
 
+	// post a new item
 	@Override
 	public InventoryItem postItem(InventoryItem item, User itemPoster) {
 		
@@ -75,6 +81,7 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 		return item;
 	}
 
+	// update an inventory item
 	@Override
 	public InventoryItem update(User poster, int id, InventoryItem item) {
 		InventoryItem managedItem = null;
@@ -94,25 +101,19 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 		return managedItem;
 	}
 
-//	@Override
-//	public List<InventoryItem> test(Category category) {
-//		
-//		return this.itemRepo.;
-//	}
-	
-	
-	
+	// find all items that belong to a specific category
 	@Override
 	public List<InventoryItem> findByCategory(String category) {
 		return this.itemRepo.findByItemCategory(category);
 	}
 	
-	
+	// find all items whose name contains a keyword
 	@Override
 	public List<InventoryItem> findByKeyword(String keyword) {
 		return this.itemRepo.findByNameContains(keyword);
 	}
 
+	// find a vendor profile by item's id
 	@Override
 	public User showVendor(int itemId) {
 		User postingUser = null;
@@ -122,15 +123,6 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 		}
 		
 		return postingUser;
-//		User itemsVendor = null;
-//		Optional<InventoryItem> opt = itemRepo.findById(itemId);
-//		
-//		if(opt.isPresent()) {
-//			itemsVendor = opt.get().getVendor().getUser();
-//		}
-//		
-//		
-//		return itemsVendor;
 	}
 	  
 

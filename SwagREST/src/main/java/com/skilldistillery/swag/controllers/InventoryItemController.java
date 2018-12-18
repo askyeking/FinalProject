@@ -39,7 +39,7 @@ public class InventoryItemController {
 	UserService userService;
 	
 	
-	
+	// retrieve all inventory items
 	@GetMapping("items")
 	public Set<InventoryItem> indexCustomer(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		return itemService.indexCustomer();

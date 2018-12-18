@@ -19,6 +19,7 @@ public class CategoryController {
 	@Autowired
 	CategoryService catService;
 	
+	// retrieves all categories
 	@GetMapping("categories")
 	public List<Category> index() {
 		return this.catService.index();

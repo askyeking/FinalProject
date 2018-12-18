@@ -14,6 +14,7 @@ public class CommentFromCustomerServiceImpl implements CommentFromCustomerServic
 	@Autowired
 	CommentFromCustomerRepository customerCommentRepo;
 	
+	// persist a comment from customer
 	@Override
 	public CommentFromCustomer persistComment(CommentFromCustomer comment) {
 		customerCommentRepo.saveAndFlush(comment);
@@ -21,6 +22,7 @@ public class CommentFromCustomerServiceImpl implements CommentFromCustomerServic
 		return comment;
 	}
 	
+	// delete a comment from customer
 	@Override
 	public boolean delete(int commentId) {
 		customerCommentRepo.deleteById(commentId);
@@ -30,6 +32,7 @@ public class CommentFromCustomerServiceImpl implements CommentFromCustomerServic
 		return true;
 	}
 	
+	// update a comment from customer
 	@Override
 	public CommentFromCustomer update(CommentFromCustomer comment) {
 		CommentFromCustomer commentUpdated = null;

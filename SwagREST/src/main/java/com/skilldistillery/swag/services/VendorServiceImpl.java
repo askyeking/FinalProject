@@ -16,6 +16,7 @@ public class VendorServiceImpl implements VendorService {
 	@Autowired
 	VendorRepository vendorRepo;
 
+	// find a single vendor by id
 	@Override
 	public Vendor show(int vid) {
 		Vendor vendor = null;
@@ -26,6 +27,7 @@ public class VendorServiceImpl implements VendorService {
 		return vendor;
 	}
 	
+	// retrieve all vendors from the DB
 	@Override
 	public List<Vendor> showAll() {
 		
@@ -34,6 +36,7 @@ public class VendorServiceImpl implements VendorService {
 		return this.vendorRepo.findAll();
 	}
 
+	// update fields of an existing vendor object
 	@Override
 	public void update(Vendor userUpdate, User originalUser) {
 		Vendor toUpdateVendor = originalUser.getVendor();
@@ -50,15 +53,16 @@ public class VendorServiceImpl implements VendorService {
 			toUpdateVendor.setImgUrl(userUpdate.getImgUrl());
 		}
 		
-		System.out.println(toUpdateVendor);
 		vendorRepo.saveAndFlush(toUpdateVendor);
 	}
 	
+	// find a vendor by a keyword in their name
 	@Override
 	public List<Vendor> vendorSearch(String keyword) {
 		return this.vendorRepo.findByDisplayNameContains(keyword);
 	}
 
+	// find a user object by ther vendor profile's id
 	@Override
 	public User getUserByVendorId(int vendorId) {
 		User vendorsUser = null;

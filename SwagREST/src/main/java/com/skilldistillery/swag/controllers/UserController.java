@@ -27,6 +27,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	// shows a single user (takes user id path variable)
 	@GetMapping("user/{id}")
 	public User showUser(@PathVariable("id") int id, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {
@@ -54,6 +55,7 @@ public class UserController {
 		return user;
 	}
 	
+	// edits a customer profile of a user
 	@PatchMapping("user/customer")
 	public User editUserCustomer(@RequestBody User userUpdate, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {
@@ -72,6 +74,7 @@ public class UserController {
 		return originalUser;
 	}
 	
+	// create a new customer or customer and vendor profile
 	@PostMapping("user/register")
 	public User addUserCustomerOrVendor(@RequestBody User user, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal ) {
@@ -99,6 +102,8 @@ public class UserController {
 			}
 	}
 	
+	// create a new vendor profile
+	// this method is used when a customer is originally registered just as a user, but later decides to also become a vendor.
 	@PostMapping("user/register/vendor")
 	public User addVendorProfile(@RequestBody Vendor vendorProfileToAdd, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal ) {

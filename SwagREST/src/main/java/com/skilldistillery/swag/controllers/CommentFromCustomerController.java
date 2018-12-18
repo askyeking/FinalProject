@@ -27,6 +27,7 @@ public class CommentFromCustomerController {
 	@Autowired
 	CommentFromCustomerService customerCommentService;
 
+	// persists comments posted by a customer to a rental
 	@PostMapping("customercomment/itemRental/{id}")
 	public CommentFromCustomer postVendorComment(@PathVariable("id") int itemId,
 			@RequestBody CommentFromCustomer comment, HttpServletRequest req, HttpServletResponse res,
@@ -45,6 +46,7 @@ public class CommentFromCustomerController {
 		return comment;
 	}
 
+	// deletes a specific customer comment
 	@DeleteMapping("customercomment/{id}")
 	public String deleteComment(@PathVariable("id") int commentId, HttpServletRequest req, HttpServletResponse res,
 			Principal principal) {
@@ -58,6 +60,7 @@ public class CommentFromCustomerController {
 		return "comment deletion failed";
 	}
 
+	// edits a comment
 	@PutMapping("customercomment")
 	public CommentFromCustomer updateComment(@RequestBody CommentFromCustomer comment, HttpServletRequest req,
 			HttpServletResponse res, Principal principal) {

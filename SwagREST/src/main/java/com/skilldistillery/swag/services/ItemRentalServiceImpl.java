@@ -32,13 +32,13 @@ public class ItemRentalServiceImpl implements ItemRentalService {
 	@Autowired
 	CustomerRepository custRepo;
 	
-	
+	// retrieve all rentals
 	@Override
 	public List<ItemRental> showAll() {
 		return this.rentalRepo.findAll();
 	}
 
-
+	// persist an itemRental to the DB
 	@Override
 	public ItemRental postItemRental(ItemRental itemRented) {
 		itemRented.setActive(true);
@@ -56,17 +56,13 @@ public class ItemRentalServiceImpl implements ItemRentalService {
 		
 		InventoryItem originalItem = itemRented.getInventoryItem();
 		originalItem.setRented(true);
-//		originalItem.getAllRents().add(itemRented);
 		
-		
-		System.out.println(itemRented.getCustomer());
-		
-//		itemRepo.saveAndFlush(originalItem);
 		rentalRepo.saveAndFlush(itemRented);
 		
 		return itemRented;
 	}
 
+	// set an itemRental's active field to false (meaning the item is returned)
 	@Override
 	public ItemRental returnItemRental(ItemRental itemRented) {
 		itemRented.setActive(false);
@@ -90,6 +86,7 @@ public class ItemRentalServiceImpl implements ItemRentalService {
 		return itemRented;
 	}
 	
+	// get all rentals made by a customer
 	@Override
 	public List<ItemRental> getCustomersRentalHistory(int customerId) {
 		List<ItemRental> rentals = rentalRepo.findByCustomer_Id(customerId);
@@ -103,6 +100,7 @@ public class ItemRentalServiceImpl implements ItemRentalService {
 		return rentals;
 	}
 	
+	// get a single rental by id
 	@Override
 	public ItemRental getOne(int id) {
 		Optional<ItemRental> rental = rentalRepo.findById(id);
@@ -112,7 +110,7 @@ public class ItemRentalServiceImpl implements ItemRentalService {
 		return null;
 	}
 
-
+	// get all rentals by an inventory item id (all the times the item had been rented)
 	@Override
 	public List<ItemRental> getItemRentalHistory(int itemId) {
 		return rentalRepo.findByInventoryItem_Id(itemId);

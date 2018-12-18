@@ -31,6 +31,7 @@ public class VendorController {
 	@Autowired
 	UserService userService;
 	
+	// retrieve a single vendor
 	@GetMapping("vendor/{vid}")
 	public Vendor show(@PathVariable("vid") int vid, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		Vendor vendor = vendorService.show(vid);
@@ -40,22 +41,16 @@ public class VendorController {
 		return vendor;
 	}
 	
-	
+	// retrieve a list with all vendors
 	@GetMapping("vendor")
 	public List<Vendor> showAll(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		return this.vendorService.showAll();
 	}
 	
+	//update a vendor's profile information
 	@PatchMapping("vendor")
 	public User editVendor(@RequestBody Vendor userUpdate, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {
-		
-//		System.out.println("PATCH VendorController.editVendor() "
-//				+ "{api/user/customer}");
-//		System.out.println(userUpdate.getAbout());
-//		System.out.println(userUpdate.getDisplayName());
-//		System.out.println(userUpdate.getImgUrl());
-//		System.out.println("************************************");
 		
 		User originalUser = userService.findByEmail(principal.getName());
 		
@@ -70,12 +65,14 @@ public class VendorController {
 		return originalUser;
 	}
 	
+	// retrieve vendors by keyword
 	@GetMapping("vendor/search/{keyword}")
 	public List<Vendor> vendorSearch(@PathVariable("keyword") String keyword, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal ) {
 		return this.vendorService.vendorSearch(keyword);
 	}
 	
+	// retrieve the user by their vendor profile id
 	@GetMapping("vendor/user/{id}")
 	public User retrieveUserObject(@PathVariable("id") int vendorId, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		User itemsVendor = vendorService.getUserByVendorId(vendorId);

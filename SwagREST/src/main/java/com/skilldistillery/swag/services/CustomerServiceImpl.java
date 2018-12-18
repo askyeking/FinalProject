@@ -14,6 +14,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	CustomerRepository customerRepo;
 	
+	// retrieve a single customer by their id
 	@Override
 	public Customer show(int id) {
 		

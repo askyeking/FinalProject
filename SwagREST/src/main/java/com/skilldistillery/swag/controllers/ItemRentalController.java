@@ -59,7 +59,8 @@ public class ItemRentalController {
 
 		return itemRequested;
 	}
-
+	
+	// retrieves all rentals made by a specific customer (takes the id of the customer)
 	@GetMapping("rental/customer/{id}")
 	public List<ItemRental> getRentalsByCustomer(@PathVariable("id") int customerId, HttpServletRequest req,
 			HttpServletResponse resp, Principal principal) {
@@ -72,19 +73,14 @@ public class ItemRentalController {
 		return rentals;
 	}
 
+	// retrieve all rentals of a specific inventory item
 	@GetMapping("rental/item/{id}")
 	public List<ItemRental> getRentalsByItem(@PathVariable("id") int itemId, HttpServletRequest req,
 			HttpServletResponse resp, Principal principal) {
-//		List<ItemRental> rentals = rentalService.getItemRentalHistory(itemId);
-//		Collections.sort(rentals, new Comparator<ItemRental>() {
-//			public int compare(ItemRental i1, ItemRental i2) {
-//				return -((Boolean) i1.isActive()).compareTo((Boolean) i2.isActive());
-//			}
-//		});
-
 		return rentalService.getItemRentalHistory(itemId);
 	}
 
+	// persists a new rental of an inventory item
 	@PostMapping("rental")
 	public ItemRental rentInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req,
 			HttpServletResponse resp, Principal principal) {
@@ -103,7 +99,9 @@ public class ItemRentalController {
 
 		return itemRented;
 	}
-
+	
+	// edits an inventory item and rental objects so that they are mark as "returned" when a customer
+	// returns an item they rented.
 	@PatchMapping("rental")
 	public ItemRental returnInventoryItem(@RequestBody ItemRental itemRented, HttpServletRequest req,
 			HttpServletResponse resp, Principal principal) {
