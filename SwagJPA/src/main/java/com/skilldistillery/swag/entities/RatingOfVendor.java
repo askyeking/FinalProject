@@ -8,6 +8,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/*
+ * RatingOfVendor entity
+ * ** Not currently used by the front-end, but tested via Postman **
+ * Mapped fields to the table in the DB using JPA and Hibernate.
+ * Methods are standard getters and setters, hashcode and equals (using unique ID) and toString
+ */
 @Entity
 @Table(name="rating_of_vendor")
 public class RatingOfVendor {

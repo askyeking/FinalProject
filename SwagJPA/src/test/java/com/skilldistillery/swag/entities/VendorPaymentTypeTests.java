@@ -12,7 +12,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+//Due to constant fluctuations in the DB, tests may not pass, even though the mapping is working correctly
+//TODO and lesson learned: create mock data that can stay constant for testing purposes.
 class VendorPaymentTypeTests {
 	
 	private static EntityManagerFactory emf;

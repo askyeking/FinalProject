@@ -11,6 +11,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/*
+ * PaymentMethod entity
+ * Mapped fields to the table in the DB using JPA and Hibernate.
+ * Methods are standard getters and setters, hashcode and equals (using unique ID) and toString
+ */
 @Entity
 @Table(name="payment_method")
 public class PaymentMethod {

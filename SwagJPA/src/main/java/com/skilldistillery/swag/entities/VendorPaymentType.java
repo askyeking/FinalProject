@@ -11,6 +11,12 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/*
+ * VendorPaymentType entity
+ * ** Not currently used by the front-end, but tested via Postman **
+ * Mapped fields to the table in the DB using JPA and Hibernate.
+ * Methods are standard getters and setters, hashcode and equals (using unique ID) and toString
+ */
 @Entity
 @Table(name="vendor_payment_type")
 public class VendorPaymentType {

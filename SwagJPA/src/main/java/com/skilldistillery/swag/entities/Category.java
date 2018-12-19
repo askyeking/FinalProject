@@ -11,6 +11,11 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/*
+ * Category object
+ * Mapped fields to the table in the DB using JPA and Hibernate.
+ * Methods are standard getters and setters, hashcode and equals (using unique ID) and toString
+ */
 @Entity
 public class Category {
 	

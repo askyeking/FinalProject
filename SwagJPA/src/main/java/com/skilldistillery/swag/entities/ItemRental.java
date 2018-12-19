@@ -13,6 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/*
+ * ItemRental entity
+ * Mapped fields to the table in the DB using JPA and Hibernate.
+ * Methods are standard getters and setters, hashcode and equals (using unique ID) and toString
+ */
 @Entity
 @Table(name="item_rental")
 public class ItemRental {

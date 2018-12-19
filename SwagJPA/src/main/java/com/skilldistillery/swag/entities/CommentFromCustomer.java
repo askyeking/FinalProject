@@ -17,6 +17,11 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/*
+ * CommentFromCustomer entity
+ * Mapped fields to the table in the DB using JPA and Hibernate.
+ * Methods are standard getters and setters, hashcode and equals (using unique ID) and toString
+ */
 @Entity
 @Table(name="comment_from_customer")
 public class CommentFromCustomer {
