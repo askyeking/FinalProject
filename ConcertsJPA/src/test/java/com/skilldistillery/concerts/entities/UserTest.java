@@ -1,6 +1,8 @@
 package com.skilldistillery.concerts.entities;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -21,7 +23,7 @@ class UserTest {
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-	    emf = Persistence.createEntityManagerFactory("TodoJPA");
+	    emf = Persistence.createEntityManagerFactory("ConcertsJPA");
 	}
 
 	@AfterAll
@@ -41,8 +43,12 @@ class UserTest {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void test_User_basic_mappings() {
+		assertNotNull(user);
+		assertEquals("test", user.getUsername());
+		assertEquals("standard", user.getRole());
+		assertTrue(user.isEnabled());
+		
 	}
 
 }

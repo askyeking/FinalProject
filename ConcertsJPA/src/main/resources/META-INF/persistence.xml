@@ -12,8 +12,8 @@
  
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/concertsdb" />
-      <property name="jakarta.persistence.jdbc.user" value="concerts"/>
-      <property name="jakarta.persistence.jdbc.password" value="concerts" />
+      <property name="jakarta.persistence.jdbc.user" value="concertsuser"/>
+      <property name="jakarta.persistence.jdbc.password" value="concertsuser" />
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 
       <property name="hibernate.show_sql" value="true" />
