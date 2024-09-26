@@ -9,24 +9,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class User {
+public class Band {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String username;
-	
-	private String password;
-	
-	private boolean enabled;
-	
-	private String role;
+	private String name;
 	
 	@Column(name="image_url")
 	private String imageUrl;
 
-	public User() {
+	public Band() {
 		super();
 	}
 
@@ -38,38 +32,14 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getName() {
+		return name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-	
 	public String getImageUrl() {
 		return imageUrl;
 	}
@@ -91,15 +61,16 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Band other = (Band) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + "]";
+		return "Band [id=" + id + ", name=" + name + ", imageUrl=" + imageUrl + "]";
 	}
+	
+	
 	
 	
 	
