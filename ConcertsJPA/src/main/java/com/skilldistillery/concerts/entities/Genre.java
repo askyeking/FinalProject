@@ -3,33 +3,33 @@ package com.skilldistillery.concerts.entities;
 import java.util.List;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 
 @Entity
-public class Band {
-	
+public class Genre {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String name;
 	
-	@Column(name="image_url")
-	private String imageUrl;
+	@ManyToMany
+	@JoinTable(
+			name="band_has_genre",
+		    joinColumns=@JoinColumn(name="genre_id"),
+		    inverseJoinColumns=@JoinColumn(name="band_id")
+	)
+	private List<Band> bands;
 	
-	@ManyToMany(mappedBy="bands")
-	private List<Genre> genres;
-	
-	@OneToMany(mappedBy="band")
-	private List<ConcertAct> concerts;
 
-	public Band() {
+	public Genre() {
 		super();
 	}
 
@@ -48,30 +48,13 @@ public class Band {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
 	
-
-	public List<Genre> getGenres() {
-		return genres;
+	public List<Band> getBands() {
+		return bands;
 	}
 
-	public void setGenres(List<Genre> genres) {
-		this.genres = genres;
-	}
-
-	public List<ConcertAct> getConcerts() {
-		return concerts;
-	}
-
-	public void setConcerts(List<ConcertAct> concerts) {
-		this.concerts = concerts;
+	public void setBands(List<Band> bands) {
+		this.bands = bands;
 	}
 
 	@Override
@@ -87,15 +70,14 @@ public class Band {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Band other = (Band) obj;
+		Genre other = (Genre) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "Band [id=" + id + ", name=" + name + ", imageUrl=" + imageUrl + "]";
+		return "Genre [id=" + id + ", name=" + name + "]";
 	}
-	
 	
 	
 	

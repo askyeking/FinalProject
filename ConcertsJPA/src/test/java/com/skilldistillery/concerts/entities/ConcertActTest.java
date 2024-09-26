@@ -14,11 +14,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class BandTest {
+class ConcertActTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Band band;
+	private ConcertAct concertAct;
 	
 	
 	@BeforeAll
@@ -34,7 +34,9 @@ class BandTest {
 	@BeforeEach
 	void setUp() throws Exception {
 	    em = emf.createEntityManager();
-	    band = em.find(Band.class, 1);
+	    ConcertActId id = new ConcertActId(1,1);
+	    
+	    concertAct = em.find(ConcertAct.class, id);
 	}
 
 	@AfterEach
@@ -44,19 +46,20 @@ class BandTest {
 
 	@Test
 	void test_User_basic_mappings() {
-		assertNotNull(band);
-		assertEquals("Fontaines D.C.", band.getName());
+		assertNotNull(concertAct);
+		assertEquals(1, concertAct.getLineupPosition());
+		
 	}
 	
 	@Test
-	void test_Band_has_genres() {
-		assertNotNull(band.getGenres());
-		assertTrue(band.getGenres().size() > 0);
+	void ConcertAct_has_concert() {
+		assertNotNull(concertAct.getConcert());
+		
 	}
-	
 	@Test
-	void test_Band_has_concerts() {
-		assertNotNull(band.getConcerts());
+	void ConcertAct_has_band() {
+		assertNotNull(concertAct.getBand());
+		
 	}
 
 }

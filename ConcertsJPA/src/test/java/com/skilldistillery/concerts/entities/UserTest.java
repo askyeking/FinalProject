@@ -50,5 +50,17 @@ class UserTest {
 		assertTrue(user.isEnabled());
 		
 	}
-
+	
+	@Test
+	void test_user_has_favorite_bands() {
+		assertNotNull(user.getFavoriteBands());
+		assertTrue(user.getFavoriteBands().size() > 0);
+	}
+	
+	@Test
+	void test_user_has_favorite_venues() {
+		assertNotNull(user.getFavoriteBands());
+		assertTrue(user.getFavoriteBands().size() > 0);
+		
+	}
 }

@@ -222,7 +222,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `concertsdb`;
-INSERT INTO `venue` (`id`, `name`, `city`, `state`, `zip`, `street`, `image_url`, `website_url`) VALUES (1, 'Gothic Theatre', 'Englewood', 'Colorado', '80113', '3263', 'https://upload.wikimedia.org/wikipedia/commons/6/6b/The_Gothic_Theater_%286034645077%29.jpg', 'https://www.gothictheatre.com/');
+INSERT INTO `venue` (`id`, `name`, `city`, `state`, `zip`, `street`, `image_url`, `website_url`) VALUES (1, 'Gothic Theater', 'Englewood', 'Colorado', '80113', '3263', 'https://upload.wikimedia.org/wikipedia/commons/6/6b/The_Gothic_Theater_%286034645077%29.jpg', 'https://www.gothictheatre.com/');
 
 COMMIT;
 

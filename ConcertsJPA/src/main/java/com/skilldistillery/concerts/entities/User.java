@@ -1,5 +1,6 @@
 package com.skilldistillery.concerts.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class User {
@@ -26,6 +30,20 @@ public class User {
 	@Column(name="image_url")
 	private String imageUrl;
 
+	@ManyToMany
+	@JoinTable(name="favorite_band",
+	    joinColumns=@JoinColumn(name="user_id"),
+	    inverseJoinColumns=@JoinColumn(name="band_id")
+	  )
+	private List<Band> favoriteBands;
+
+	@ManyToMany
+	@JoinTable(name="favorite_venue",
+	joinColumns=@JoinColumn(name="user_id"),
+	inverseJoinColumns=@JoinColumn(name="venue_id")
+			)
+	private List<Venue> favoriteVenues;
+	
 	public User() {
 		super();
 	}
@@ -76,6 +94,23 @@ public class User {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public List<Band> getFavoriteBands() {
+		return favoriteBands;
+	}
+
+	public void setFavoriteBands(List<Band> favoriteBands) {
+		this.favoriteBands = favoriteBands;
+	}
+
+	
+	public List<Venue> getFavoriteVenues() {
+		return favoriteVenues;
+	}
+
+	public void setFavoriteVenues(List<Venue> favoriteVenues) {
+		this.favoriteVenues = favoriteVenues;
 	}
 
 	@Override

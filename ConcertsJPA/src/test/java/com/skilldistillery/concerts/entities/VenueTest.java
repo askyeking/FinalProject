@@ -14,11 +14,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class BandTest {
+class VenueTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Band band;
+	private Venue venue;
 	
 	
 	@BeforeAll
@@ -34,7 +34,7 @@ class BandTest {
 	@BeforeEach
 	void setUp() throws Exception {
 	    em = emf.createEntityManager();
-	    band = em.find(Band.class, 1);
+	    venue = em.find(Venue.class, 1);
 	}
 
 	@AfterEach
@@ -44,19 +44,14 @@ class BandTest {
 
 	@Test
 	void test_User_basic_mappings() {
-		assertNotNull(band);
-		assertEquals("Fontaines D.C.", band.getName());
+		assertNotNull(venue);
+		assertEquals("Gothic Theater", venue.getName());
+		
 	}
 	
 	@Test
-	void test_Band_has_genres() {
-		assertNotNull(band.getGenres());
-		assertTrue(band.getGenres().size() > 0);
-	}
-	
-	@Test
-	void test_Band_has_concerts() {
-		assertNotNull(band.getConcerts());
+	void test_venue_has_concerts() {
+		assertNotNull(venue.getConcerts());
 	}
 
 }
