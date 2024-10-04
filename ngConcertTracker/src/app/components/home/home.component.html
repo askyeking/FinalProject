@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div *ngFor="let concert of upcomingConcerts" class="col-md-4 mb-4">
+      <div  class="card text-white bg-dark" style="width: 23rem;">
+        <div class="card-header">
+          <h5 class="card-title">{{displayHeadlinerName(concert)}}  -  {{concert.dayOfEvent | date}}</h5>
+        </div>
+        <img [src]="concert.imageUrl" class="card-img-top" >
+        <div class="card-body">
+          <p class="card-text">Day of Event: </p>&nbsp;&nbsp;
+          <a [href]="concert.ticketPurchaseLink" class="btn btn-dark">Buy Tickets</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a [href]="concert.venue.websiteUrl" class="btn btn-dark">Venue</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a [href]="concert.venue.websiteUrl" class="btn btn-dark">Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

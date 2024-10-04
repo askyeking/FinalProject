@@ -7,5 +7,9 @@ import com.skilldistillery.concerts.entities.Concert;
 public interface ConcertService {
 	
 	List<Concert> index();
+	
+	List<Concert> findUpcomingConcerts();
+	
+	Concert createConcert(Concert concert);
 
 }

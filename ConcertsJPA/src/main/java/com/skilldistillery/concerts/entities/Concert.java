@@ -5,6 +5,9 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,6 +45,7 @@ public class Concert {
 	@Column(name="website_url")
 	private String websiteUrl;
 	
+	@JsonIgnoreProperties({"concert"})
 	@OneToMany(mappedBy="concert")
 	private List<ConcertAct> bands;
 	

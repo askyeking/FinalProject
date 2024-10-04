@@ -222,7 +222,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `concertsdb`;
-INSERT INTO `venue` (`id`, `name`, `city`, `state`, `zip`, `street`, `image_url`, `website_url`) VALUES (1, 'Gothic Theater', 'Englewood', 'Colorado', '80113', '3263', 'https://upload.wikimedia.org/wikipedia/commons/6/6b/The_Gothic_Theater_%286034645077%29.jpg', 'https://www.gothictheatre.com/');
+INSERT INTO `venue` (`id`, `name`, `city`, `state`, `zip`, `street`, `image_url`, `website_url`) VALUES (1, 'Gothic Theater', 'Englewood', 'Colorado', '80113', '3263 South Broadway', 'https://upload.wikimedia.org/wikipedia/commons/6/6b/The_Gothic_Theater_%286034645077%29.jpg', 'https://www.gothictheatre.com/');
+INSERT INTO `venue` (`id`, `name`, `city`, `state`, `zip`, `street`, `image_url`, `website_url`) VALUES (2, 'HQ Denver', 'Denver', 'Colorado', '80209', '60 South Broadway', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXaJvB90qP6l7bs4O9MO_yWPWJisLCGpSd0A&s', 'https://hqdenver.com/');
+INSERT INTO `venue` (`id`, `name`, `city`, `state`, `zip`, `street`, `image_url`, `website_url`) VALUES (3, 'The Venue', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `venue` (`id`, `name`, `city`, `state`, `zip`, `street`, `image_url`, `website_url`) VALUES (4, 'The Venue 2', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `venue` (`id`, `name`, `city`, `state`, `zip`, `street`, `image_url`, `website_url`) VALUES (5, 'The Hangout', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `venue` (`id`, `name`, `city`, `state`, `zip`, `street`, `image_url`, `website_url`) VALUES (6, 'The Hangout 2', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `venue` (`id`, `name`, `city`, `state`, `zip`, `street`, `image_url`, `website_url`) VALUES (7, 'Thespian\'s Stage', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `venue` (`id`, `name`, `city`, `state`, `zip`, `street`, `image_url`, `website_url`) VALUES (8, 'The Thespian\'s Stage', NULL, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -233,6 +240,8 @@ COMMIT;
 START TRANSACTION;
 USE `concertsdb`;
 INSERT INTO `concert` (`id`, `doors_time`, `start_time`, `day_of_event`, `image_url`, `age_requirement`, `ticket_purchase_link`, `website_url`, `venue_id`) VALUES (1, '7:00:00', '8:00:00', '2024-10-02', 'https://media.pitchfork.com/photos/663a3eaa68d7f4b7d12cde91/master/w_1280%2Cc_limit/Fontaines-DC-Tour-2024.jpg', '16', 'https://www.axs.com/events/559567/fontaines-d-c-tickets', 'https://www.gothictheatre.com/events/detail/?event_id=559567', 1);
+INSERT INTO `concert` (`id`, `doors_time`, `start_time`, `day_of_event`, `image_url`, `age_requirement`, `ticket_purchase_link`, `website_url`, `venue_id`) VALUES (2, '7:00:00', '8:00:00', '2024-10-05', 'https://i.ticketweb.com/i/00/12/52/01/43_Original.jpg?v=4', 'All Ages', 'https://tickets.holdmyticket.com/tickets/436202', 'https://hqdenver.com/', 2);
+INSERT INTO `concert` (`id`, `doors_time`, `start_time`, `day_of_event`, `image_url`, `age_requirement`, `ticket_purchase_link`, `website_url`, `venue_id`) VALUES (3, '7:00:00', '8:00:00', '2024-10-14', 'https://images.discovery-prod.axs.com/2024/09/unwound-tickets_10-14-24_17_66f1c70d615d8.jpg', '16', 'https://www.axs.com/events/554418/unwound-tickets', 'https://www.gothictheatre.com/events/detail/?event_id=554418', 1);
 
 COMMIT;
 
@@ -244,6 +253,8 @@ START TRANSACTION;
 USE `concertsdb`;
 INSERT INTO `band` (`id`, `name`, `image_url`) VALUES (1, 'Fontaines D.C.', 'https://images.discovery-prod.axs.com/2024/05/fontaines-d-c-tickets_10-02-24_17_663a387bcac49.jpg');
 INSERT INTO `band` (`id`, `name`, `image_url`) VALUES (2, 'Been Stellar', 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRYO53fs_vMkcMmGNMq-dMAAtsrRtKJZG6I9voSKo_rW7xoSY41');
+INSERT INTO `band` (`id`, `name`, `image_url`) VALUES (3, 'Descartes A Kant', 'https://swampbooking.com/wp-content/uploads/2021/07/After-Destruction-DPG_8906.jpg');
+INSERT INTO `band` (`id`, `name`, `image_url`) VALUES (4, 'Unwound', 'https://www.self-titledmag.com/wp-content/uploads/2019/05/unwnd-group001.jpg');
 
 COMMIT;
 
@@ -257,6 +268,8 @@ INSERT INTO `genre` (`id`, `name`) VALUES (1, 'Indie');
 INSERT INTO `genre` (`id`, `name`) VALUES (2, 'Post-Punk');
 INSERT INTO `genre` (`id`, `name`) VALUES (3, 'Shoegaze');
 INSERT INTO `genre` (`id`, `name`) VALUES (4, 'Rock');
+INSERT INTO `genre` (`id`, `name`) VALUES (5, 'Post-Hardcore');
+INSERT INTO `genre` (`id`, `name`) VALUES (6, 'Avant-Garde');
 
 COMMIT;
 
@@ -271,6 +284,10 @@ INSERT INTO `band_has_genre` (`band_id`, `genre_id`) VALUES (1, 2);
 INSERT INTO `band_has_genre` (`band_id`, `genre_id`) VALUES (1, 4);
 INSERT INTO `band_has_genre` (`band_id`, `genre_id`) VALUES (2, 1);
 INSERT INTO `band_has_genre` (`band_id`, `genre_id`) VALUES (2, 4);
+INSERT INTO `band_has_genre` (`band_id`, `genre_id`) VALUES (3, 4);
+INSERT INTO `band_has_genre` (`band_id`, `genre_id`) VALUES (3, 6);
+INSERT INTO `band_has_genre` (`band_id`, `genre_id`) VALUES (4, 5);
+INSERT INTO `band_has_genre` (`band_id`, `genre_id`) VALUES (4, 1);
 
 COMMIT;
 
@@ -282,6 +299,8 @@ START TRANSACTION;
 USE `concertsdb`;
 INSERT INTO `concert_act` (`concert_id`, `band_id`, `lineup_position`) VALUES (1, 1, 1);
 INSERT INTO `concert_act` (`concert_id`, `band_id`, `lineup_position`) VALUES (1, 2, 2);
+INSERT INTO `concert_act` (`concert_id`, `band_id`, `lineup_position`) VALUES (2, 3, 1);
+INSERT INTO `concert_act` (`concert_id`, `band_id`, `lineup_position`) VALUES (3, 4, 1);
 
 COMMIT;
 

@@ -8,6 +8,11 @@
 	
 	
  	<class>com.skilldistillery.concerts.entities.User</class>
+ 	<class>com.skilldistillery.concerts.entities.Concert</class>
+ 	<class>com.skilldistillery.concerts.entities.Band</class>
+ 	<class>com.skilldistillery.concerts.entities.ConcertAct</class>
+ 	<class>com.skilldistillery.concerts.entities.Genre</class>
+ 	<class>com.skilldistillery.concerts.entities.Venue</class>
  
  
     <properties>

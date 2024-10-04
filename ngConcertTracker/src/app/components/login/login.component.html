@@ -1,0 +1,13 @@
+<form name="login">
+  <div class="row g-1">
+      <div class="col-sm-4">
+          <input class="form-control" type="text" name="username" placeholder="Username" [(ngModel)]="loginUser.username">
+      </div>
+      <div class="col-sm-4">
+          <input class="form-control" type="text" name="password" placeholder="Password" [(ngModel)]="loginUser.password">
+      </div>
+      <div class="col-sm-4">
+          <button class="btn btn-success" (click)="login(loginUser)">Login</button>
+      </div>
+  </div>
+</form>

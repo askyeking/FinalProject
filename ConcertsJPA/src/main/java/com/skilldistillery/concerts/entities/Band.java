@@ -3,6 +3,8 @@ package com.skilldistillery.concerts.entities;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,9 +25,11 @@ public class Band {
 	@Column(name="image_url")
 	private String imageUrl;
 	
+	
 	@ManyToMany(mappedBy="bands")
 	private List<Genre> genres;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="band")
 	private List<ConcertAct> concerts;
 

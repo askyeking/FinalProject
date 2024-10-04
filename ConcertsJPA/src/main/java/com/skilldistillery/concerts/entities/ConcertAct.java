@@ -2,6 +2,8 @@ package com.skilldistillery.concerts.entities;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -20,6 +22,7 @@ public class ConcertAct {
 	@Column(name = "lineup_position")
 	private int lineupPosition;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "concert_id")
 	@MapsId(value = "concertId")

@@ -3,6 +3,8 @@ package com.skilldistillery.concerts.entities;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Genre {
 	
 	private String name;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 			name="band_has_genre",

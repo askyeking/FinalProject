@@ -14,6 +14,13 @@ java {
 	}
 }
 
+apply plugin: 'war'
+war {
+  enabled = true
+  archiveFileName = "${archivesBaseName}.war"
+  destinationDirectory = file("../")          // Project workspace directory
+}
+
 repositories {
 	mavenCentral()
 }

@@ -1,0 +1,68 @@
+
+
+<form name="newConcertForm">
+  <label for="typeahead-http-venue">Venue:</label>
+  <input id="typeahead-http-venue"  name="venueSearch" type="text" class="form-control"
+  [(ngModel)]="newConcert.venue"
+  [ngbTypeahead]="venueSearch"
+  [inputFormatter]="inputFormatter"
+  [resultFormatter]="resultFormatter"/>
+
+
+
+  <label for="typeahead-http-band">Headliner:</label>
+  <input id="typeahead-http-band"  name="bandSearch" type="text" class="form-control"  [(ngModel)]="headliner.name" [ngbTypeahead]="bandSearch"
+  [inputFormatter]="inputFormatter"
+  [resultFormatter]="resultFormatter"/>
+
+  <label for="acts">Number of Supporting Acts: </label>
+  <input type="number" name="acts" id="acts" class="form-control" (change)="updateNumOfBands()" [(ngModel)]="numOfActs">
+
+  <div class="supporting-acts-{{i}}" *ngFor="let band of bands; let i = index">
+    <label for="typeahead-http-band">Supporting Act {{i + 1}}:</label>
+    <input id="supporting-band-{{i}}" name="bandSearch-{{i}}" type="text" class="form-control"
+    [(ngModel)]="band.name"
+    [ngbTypeahead]="bandSearch"
+    [inputFormatter]="inputFormatter"
+    [resultFormatter]="resultFormatter"/>
+  </div>
+
+  <label for="eventUrl">Event URL: </label>
+  <input type="text" id="eventUrl" name="eventUrl"  class="form-control" [(ngModel)]="newConcert.websiteUrl">
+
+  <label for="ticketUrl">Ticket URL: </label>
+  <input type="text" id="ticketUrl" name="ticketUrl" class="form-control" [(ngModel)]="newConcert.ticketPurchaseLink"><br>
+  <div class="row">
+    <div class="col-1"></div>
+  <div class="col-4">
+    <label for="day">Day Of Event: </label>
+    <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dayOfEvent" ngbDatepicker #d="ngbDatepicker" />
+        <button class="btn btn-dark"  (click)="d.toggle()" type="button">
+          <i class="bi bi-calendar3 text-light"></i>
+        </button>
+    </div>
+  </div>
+  <div class="col-1"></div>
+  <div class="col-2">
+    <label for="doors" >Doors Time</label>
+    <ngb-timepicker name="doors" [(ngModel)]="doorsTime" />
+  </div>
+
+  <div class="col-2">
+    <label for="start">Start Time</label>
+    <ngb-timepicker  name="start" [(ngModel)]="startTime" />
+  </div>
+  <div class="col-2">
+    <select name="ageRequirement" [(ngModel)]="newConcert.ageRequirement">
+      <option value="All Ages" selected >All Ages</option>
+      <option value="16+">16+</option>
+      <option value="18+">18+</option>
+      <option value="21+">21+</option>
+    </select>
+  </div>
+  </div>
+
+  <button (click)="saveConcert(newConcert)">Save Concert</button>
+</form>
+
